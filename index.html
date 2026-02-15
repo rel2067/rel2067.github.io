@@ -4,22 +4,25 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>minutemed.ai — Simplified Paper Summaries</title>
-  <meta name="description" content="MinuteMed.ai: med-focused summaries of scientific papers with Beginner, Medium, and Pro reading levels." />
+  <meta name="description" content="MinuteMed.ai: med-focused summaries of scientific papers with three reading levels (Beginner, Medium, Pro)." />
 
   <style>
     :root{
-      --bg:#0b0f14;
-      --panel:#111823;
-      --panel2:#0f1620;
-      --text:#e6edf3;
-      --muted:#9fb0c0;
-      --border:#233143;
-      --accent:#7dd3fc;
-      --good:#86efac;
-      --warn:#fde68a;
-      --bad:#fca5a5;
+      /* White + green + orange theme (light, clinical, approachable) */
+      --bg:#ffffff;
+      --surface:#ffffff;
+      --surface2:#f6fbf7;          /* faint green tint */
+      --text:#0f172a;              /* slate-900 */
+      --muted:#475569;             /* slate-600 */
+      --border:#e2e8f0;            /* slate-200 */
+      --shadow: 0 10px 30px rgba(15, 23, 42, .08);
+
+      --green:#16a34a;             /* green-600 */
+      --greenSoft:#e9f9ee;         /* soft green background */
+      --orange:#f97316;            /* orange-500 */
+      --orangeSoft:#fff3e9;        /* soft orange background */
+
       --radius:16px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
       --max: 1180px;
     }
 
@@ -28,21 +31,21 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
       background:
-        radial-gradient(1200px 650px at 15% 0%, rgba(125,211,252,.14), transparent 60%),
-        radial-gradient(900px 600px at 85% 10%, rgba(134,239,172,.10), transparent 55%),
+        radial-gradient(1200px 650px at 15% 0%, rgba(22,163,74,.10), transparent 60%),
+        radial-gradient(900px 600px at 85% 10%, rgba(249,115,22,.10), transparent 55%),
         var(--bg);
       color:var(--text);
       line-height:1.55;
     }
-    a{color:var(--accent); text-decoration:none}
+    a{color:var(--green); text-decoration:none}
     a:hover{text-decoration:underline}
     .container{max-width:var(--max); margin:0 auto; padding:22px}
 
     header{
       position:sticky; top:0; z-index:20;
       backdrop-filter: blur(10px);
-      background: rgba(11,15,20,.65);
-      border-bottom:1px solid rgba(35,49,67,.6);
+      background: rgba(255,255,255,.82);
+      border-bottom:1px solid rgba(226,232,240,.9);
     }
     .topbar{
       max-width:var(--max);
@@ -53,23 +56,25 @@
     .brand{display:flex; align-items:center; gap:10px; font-weight:850; letter-spacing:.2px}
     .logo{
       width:36px; height:36px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(125,211,252,.95), rgba(134,239,172,.9));
-      box-shadow: 0 10px 24px rgba(125,211,252,.15);
+      background: linear-gradient(135deg, rgba(22,163,74,.95), rgba(249,115,22,.9));
+      box-shadow: 0 10px 24px rgba(22,163,74,.12);
     }
     .brand small{
       display:block;
-      font-weight:600;
+      font-weight:650;
       color:var(--muted);
       letter-spacing:0;
       margin-top:2px;
       font-size:12px;
     }
+
     .search{
       flex:1; max-width:600px;
       display:flex; gap:10px; align-items:center;
-      background: rgba(17,24,35,.9);
+      background: rgba(255,255,255,.95);
       border:1px solid var(--border);
       padding:10px 12px; border-radius:999px;
+      box-shadow: 0 8px 20px rgba(15,23,42,.05);
     }
     .search input{
       width:100%; background:transparent; border:0; outline:0; color:var(--text);
@@ -79,23 +84,23 @@
       display:inline-flex; align-items:center; gap:8px;
       padding:6px 10px; border:1px solid var(--border);
       border-radius:999px; color:var(--muted); font-size:12px;
-      background: rgba(17,24,35,.75);
+      background: rgba(241,245,249,.75);
       white-space:nowrap;
     }
     .btn{
       padding:10px 12px; border-radius:14px;
       border:1px solid var(--border);
-      background: rgba(17,24,35,.9);
+      background: rgba(255,255,255,.95);
       color:var(--text);
       cursor:pointer;
+      box-shadow: 0 8px 20px rgba(15,23,42,.05);
     }
-    .btn:hover{border-color:#335074}
+    .btn:hover{border-color:#cbd5e1}
     @media (max-width: 980px){
       .topbar{flex-wrap:wrap}
       .search{order:3; flex-basis:100%; max-width:none}
     }
 
-    /* Layout */
     .grid{
       display:grid; gap:18px;
       grid-template-columns: 1.22fr .78fr;
@@ -103,51 +108,55 @@
     }
     @media (max-width: 980px){ .grid{grid-template-columns: 1fr} }
 
-    /* Cards */
     .card{
-      background: linear-gradient(180deg, rgba(17,24,35,.95), rgba(15,22,32,.95));
+      background: linear-gradient(180deg, rgba(255,255,255,.98), rgba(246,251,247,.98));
       border:1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
     }
     .pad{padding:18px}
-    .divider{height:1px; background:rgba(35,49,67,.9); margin:14px 0}
+    .divider{height:1px; background:rgba(226,232,240,.95); margin:14px 0}
 
-    /* Headings */
-    .h1{font-size:22px; line-height:1.2; margin:0 0 10px; letter-spacing:.2px}
+    .h1{font-size:22px; line-height:1.2; margin:0 0 10px; letter-spacing:.1px}
     .meta{display:flex; flex-wrap:wrap; gap:10px; color:var(--muted); font-size:13px}
     .meta span{display:inline-flex; gap:6px; align-items:center}
+
     .section h2{
       font-size:13px; letter-spacing:.15em; text-transform:uppercase;
-      color:var(--muted);
+      color:#334155; /* slate-700 */
       margin:0 0 10px;
     }
 
-    /* Pills / badges */
     .pill{
       display:inline-flex; align-items:center; gap:8px;
       padding:7px 10px; border-radius:999px;
       border:1px solid var(--border);
-      background: rgba(17,24,35,.65);
+      background: rgba(241,245,249,.7);
       font-size:12px; color:var(--muted);
     }
     .badge{
       display:inline-flex; align-items:center;
-      padding:5px 9px; border-radius:999px;
+      padding:6px 10px; border-radius:999px;
       border:1px solid var(--border);
-      background: rgba(17,24,35,.65);
+      background: rgba(241,245,249,.7);
       font-size:12px; color:var(--muted);
     }
-    .badge.good{color:var(--good)}
-    .badge.warn{color:var(--warn)}
-    .badge.bad{color:var(--bad)}
+    .badge.good{
+      border-color: rgba(22,163,74,.25);
+      background: var(--greenSoft);
+      color: #166534; /* green-800 */
+    }
+    .badge.warn{
+      border-color: rgba(249,115,22,.25);
+      background: var(--orangeSoft);
+      color: #9a3412; /* orange-800 */
+    }
 
-    /* Tabs */
     .tabs{
       display:flex; gap:8px; flex-wrap:wrap;
       border:1px solid var(--border);
-      background: rgba(17,24,35,.55);
+      background: rgba(241,245,249,.55);
       padding:8px;
       border-radius: 999px;
       width:fit-content;
@@ -155,27 +164,32 @@
     .tab{
       border:1px solid transparent;
       background: transparent;
-      color: var(--muted);
+      color: #334155;
       padding:8px 12px;
       border-radius:999px;
       cursor:pointer;
-      font-weight:700;
+      font-weight:800;
       font-size:13px;
     }
     .tab[aria-selected="true"]{
-      background: rgba(125,211,252,.12);
-      color: var(--text);
-      border-color: rgba(125,211,252,.28);
+      background: rgba(22,163,74,.12);
+      color: #14532d;
+      border-color: rgba(22,163,74,.22);
+    }
+    .tab[data-level="pro"][aria-selected="true"]{
+      background: rgba(249,115,22,.12);
+      color: #7c2d12;
+      border-color: rgba(249,115,22,.22);
     }
     .tab:focus{
-      outline:2px solid rgba(125,211,252,.35);
+      outline:2px solid rgba(22,163,74,.35);
       outline-offset:2px;
     }
 
-    /* Lists */
     .list{margin:0; padding-left:18px}
-    .list li{margin:6px 0}
+    .list li{margin:8px 0}
     .small{font-size:13px; color:var(--muted)}
+
     .kpi{
       display:grid; gap:10px;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -184,51 +198,51 @@
     @media (max-width: 650px){ .kpi{grid-template-columns: 1fr} }
     .kpi .box{
       border:1px solid var(--border);
-      background: rgba(17,24,35,.65);
+      background: rgba(255,255,255,.9);
       border-radius: 14px;
       padding:12px;
     }
     .kpi .label{color:var(--muted); font-size:12px}
-    .kpi .value{font-size:16px; font-weight:850; margin-top:4px}
+    .kpi .value{font-size:16px; font-weight:900; margin-top:4px}
 
-    /* Paper list items */
     .paperGrid{display:grid; gap:12px}
     .paperItem{
       border:1px solid var(--border);
-      background: rgba(17,24,35,.65);
+      background: rgba(255,255,255,.95);
       border-radius: 14px;
       padding:14px;
       cursor:pointer;
-      transition: transform .08s ease, border-color .08s ease;
+      transition: transform .08s ease, border-color .08s ease, box-shadow .08s ease;
+      box-shadow: 0 8px 18px rgba(15,23,42,.05);
     }
-    .paperItem:hover{transform: translateY(-1px); border-color:#335074}
+    .paperItem:hover{transform: translateY(-1px); border-color:#cbd5e1; box-shadow: 0 10px 22px rgba(15,23,42,.07)}
     .paperTitle{margin:0 0 6px; font-size:15px; line-height:1.25}
     .paperSub{margin:0; color:var(--muted); font-size:13px}
     .row{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
 
-    /* Views */
     .hidden{display:none !important}
 
-    /* Sidebar */
     .paperlist{display:grid; gap:12px}
     .paperitem{
       border:1px solid var(--border);
-      background: rgba(17,24,35,.65);
+      background: rgba(255,255,255,.95);
       border-radius: 14px;
       padding:12px;
+      box-shadow: 0 8px 18px rgba(15,23,42,.05);
     }
     .paperitem h3{margin:0 0 6px; font-size:14px}
     .paperitem p{margin:0; color:var(--muted); font-size:13px}
 
     footer{padding:26px 0; color:var(--muted); font-size:13px}
+
     .kbd{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       border:1px solid var(--border);
-      background: rgba(17,24,35,.65);
+      background: rgba(241,245,249,.75);
       padding:2px 7px;
       border-radius:8px;
       font-size:12px;
-      color:var(--muted);
+      color:#334155;
     }
   </style>
 </head>
@@ -247,7 +261,7 @@
     <div class="search" role="search" aria-label="Search papers">
       <span class="small" aria-hidden="true">🔎</span>
       <input id="searchInput" type="search" placeholder="Search papers, conditions, drugs… (static demo)" />
-      <span class="chip">Try: “donanemab”</span>
+      <span class="chip">Try: “GLP-1”</span>
     </div>
 
     <button id="homeBtn" class="btn" type="button" title="Back to paper list">Home</button>
@@ -263,7 +277,10 @@
         <div class="pad">
           <h2>Currently relevant</h2>
           <p class="small" style="margin:0 0 12px;">
-            Click a paper to open it, then choose your level: <strong>Beginner</strong>, <strong>Medium</strong>, or <strong>Pro</strong>.
+            Click a paper to open it. Then choose a reading level:
+            <strong>Beginner</strong> (anyone can understand),
+            <strong>Medium</strong> (some scientific language; assumes basic background),
+            or <strong>Pro</strong> (full scientific detail).
           </p>
 
           <div class="divider"></div>
@@ -291,19 +308,26 @@
 
           <div class="section">
             <h2>Choose your level</h2>
-            <div class="tabs" role="tablist" aria-label="Knowledge level">
-              <button class="tab" role="tab" id="tab-beginner" aria-controls="panel-beginner" aria-selected="true" data-level="beginner">Beginner</button>
-              <button class="tab" role="tab" id="tab-medium" aria-controls="panel-medium" aria-selected="false" data-level="medium">Medium</button>
-              <button class="tab" role="tab" id="tab-pro" aria-controls="panel-pro" aria-selected="false" data-level="pro">Pro</button>
+            <div class="tabs" role="tablist" aria-label="Reading level">
+              <button class="tab" role="tab" id="tab-beginner" aria-controls="panel-beginner" aria-selected="true" data-level="beginner">
+                Beginner
+              </button>
+              <button class="tab" role="tab" id="tab-medium" aria-controls="panel-medium" aria-selected="false" data-level="medium">
+                Medium
+              </button>
+              <button class="tab" role="tab" id="tab-pro" aria-controls="panel-pro" aria-selected="false" data-level="pro">
+                Pro
+              </button>
             </div>
             <p class="small" style="margin:12px 0 0;">
-              Keyboard: <span class="kbd">1</span> Beginner, <span class="kbd">2</span> Medium, <span class="kbd">3</span> Pro, <span class="kbd">Esc</span> back to list.
+              Keyboard: <span class="kbd">1</span> Beginner, <span class="kbd">2</span> Medium, <span class="kbd">3</span> Pro,
+              <span class="kbd">Esc</span> back to the list.
             </p>
           </div>
 
           <div class="divider"></div>
 
-          <!-- Panels (content is rendered dynamically, headings remain consistent) -->
+          <!-- Panels (content is rendered dynamically; headings remain consistent) -->
           <div id="panel-beginner" class="section" role="tabpanel" aria-labelledby="tab-beginner" data-panel="beginner"></div>
           <div id="panel-medium" class="section hidden" role="tabpanel" aria-labelledby="tab-medium" data-panel="medium"></div>
           <div id="panel-pro" class="section hidden" role="tabpanel" aria-labelledby="tab-pro" data-panel="pro"></div>
@@ -317,16 +341,18 @@
         <div class="pad section">
           <h2>How to use MinuteMed</h2>
           <ul class="list">
-            <li><strong>Home</strong> shows what’s hot right now (papers people are actually talking about).</li>
+            <li><strong>Home</strong> shows papers people are actively discussing (high-impact trials, practice-changing results, and notable translational work).</li>
             <li>Click a paper → pick your level → skim the same headings every time.</li>
-            <li>Beginner = clinical story. Medium = journal club ready. Pro = mechanism + critique.</li>
+            <li><strong>Beginner</strong> focuses on the “story” and what it means. <strong>Medium</strong> adds methods + key terminology. <strong>Pro</strong> adds deeper mechanism + critique.</li>
           </ul>
 
           <div class="divider"></div>
 
           <h2>Consistent headings</h2>
           <p class="small" style="margin:0;">
-            Every level uses the same structure: <strong>TL;DR</strong>, <strong>The Big Question</strong>, <strong>Methods</strong>, <strong>Results</strong>, <strong>Limitations</strong>, <strong>Discussion</strong>, <strong>Citations</strong>.
+            Every level uses the same structure:
+            <strong>TL;DR</strong>, <strong>The Big Question</strong>, <strong>How they tested it (Methods)</strong>,
+            <strong>What they found (Results)</strong>, <strong>Limitations & caveats</strong>, <strong>Discussion questions</strong>, <strong>Citations</strong>.
           </p>
         </div>
       </div>
@@ -336,16 +362,16 @@
           <h2>Up next</h2>
           <div class="paperlist">
             <div class="paperitem">
-              <h3>Feature idea: “Why this matters” cards</h3>
-              <p>Auto-generate clinical implications + who this applies to.</p>
+              <h3>Feature idea: “What changes Monday?”</h3>
+              <p>A practical box: what a clinician would do differently after reading the paper.</p>
             </div>
             <div class="paperitem">
               <h3>Feature idea: “Mechanism map”</h3>
-              <p>One diagram per drug/paper (pathway-first).</p>
+              <p>One clean pathway diagram per paper (drug → target → physiology → patient outcome).</p>
             </div>
             <div class="paperitem">
               <h3>Feature idea: “Compare trials”</h3>
-              <p>Same endpoint, different papers → side-by-side.</p>
+              <p>Side-by-side endpoints for competing interventions (who wins, who loses, and why).</p>
             </div>
           </div>
         </div>
@@ -356,428 +382,31 @@
   <footer class="container" style="padding-left:0; padding-right:0;">
     <div class="divider"></div>
     <p style="margin:0;">
-      © <span id="year"></span> minutemed.ai — Static demo layout (list → paper → level).
+      © <span id="year"></span> minutemed.ai — Static demo layout (list → paper → reading level).
     </p>
   </footer>
 </main>
 
 <script>
-  // --- Data: 4 currently relevant, widely discussed papers (static examples) ---
-  // Each paper contains the same section keys per level, ensuring consistent headings.
+  /*
+    NOTE:
+    - The “currently relevant” papers below are examples for layout + content structure.
+    - Replace titles, DOIs, PubMed IDs, and text with the exact papers you want to feature.
+  */
+
   const PAPERS = [
     {
-      id: "nejm-immune-evasive-islets-2025",
+      id: "paper-1-select-semaglutide",
       relevance: "Hot",
       updated: "2026-02-15",
-      title: "Survival of Transplanted Allogeneic Beta Cells with No Immunosuppression",
-      journal: "N Engl J Med",
-      year: "2025",
-      design: "Case report (first-in-human, gene-edited donor islets)",
-      sample: "n = 1",
-      area: "Endocrinology • Transplant • Gene editing",
-      tags: ["Type 1 Diabetes", "CRISPR/Cas12b", "Immune evasion", "Islet transplant"],
-      evidenceBadge: { tone:"warn", text:"Evidence: Early (n=1)" },
-      links: [
-        { label: "DOI", url: "https://doi.org/10.1056/NEJMoa2503822" },
-        { label: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov/40757665/" },
-        { label: "ClinicalTrials.gov", url: "https://clinicaltrials.gov/study/NCT06239636" }
-      ],
-      summaries: {
-        beginner: {
-          kpi: [
-            { label:"What problem?", value:"T1D needs insulin; transplants usually need immune-suppressing meds" },
-            { label:"What’s new?", value:"Gene-edited donor islet cells to avoid rejection" },
-            { label:"What happened?", value:"Cells worked 12 weeks without immunosuppression" }
-          ],
-          tldr: [
-            "This report describes a person with type 1 diabetes who received donor insulin-producing cells that were gene-edited to help them “hide” from the immune system.",
-            "The patient did not take anti-rejection medications, and the transplanted cells still showed glucose-responsive insulin secretion at 12 weeks."
-          ],
-          bigQuestion: [
-            "Can we transplant insulin-producing cells without lifelong immunosuppression?",
-            "If we can avoid immune rejection safely, cell therapy for type 1 diabetes becomes much more realistic."
-          ],
-          methods: [
-            "Donor islet cells were genetically modified using CRISPR/Cas12b plus additional engineering to reduce immune recognition.",
-            "Cells were implanted into forearm muscle (not the usual portal vein route).",
-            "They monitored immune response and insulin secretion using C-peptide and glucose responsiveness."
-          ],
-          results: [
-            "At 12 weeks, there was no detected immune response against the edited cells.",
-            "C-peptide suggested stable, glucose-responsive insulin secretion.",
-            "No serious adverse events were reported in this short follow-up."
-          ],
-          limitations: [
-            "This is one patient (n=1), so we can’t assume it will work for everyone.",
-            "Short follow-up: we don’t yet know durability (months/years) or rare safety issues.",
-            "Type 1 diabetes includes autoimmunity—long-term immune escape has to be proven safe."
-          ],
-          discussion: [
-            "If this lasts years, how might it change the standard of care for type 1 diabetes?",
-            "What’s the best transplant site: forearm muscle vs liver (portal vein) vs elsewhere?",
-            "What is the tradeoff between immune evasion and safety (e.g., surveillance for abnormal cell growth)?"
-          ],
-          citations: [
-            "Carlsson PO, et al. N Engl J Med. 2025;393(9):887–894. doi:10.1056/NEJMoa2503822."
-          ]
-        },
-        medium: {
-          kpi: [
-            { label:"Design", value:"First-in-human case report" },
-            { label:"Mechanism", value:"Reduce HLA visibility + increase immune 'don’t eat me' signaling" },
-            { label:"Readout", value:"C-peptide + immune reactivity over 12 weeks" }
-          ],
-          tldr: [
-            "A gene-edited allogeneic islet product was transplanted into a person with long-standing T1D without immunosuppression, showing glucose-responsive insulin secretion at 12 weeks.",
-            "This is a proof-of-concept for “hypoimmune” beta-cell replacement, with the main question now being durability, scalability, and long-term safety."
-          ],
-          bigQuestion: [
-            "Can genetic engineering of donor islet cells enable functional engraftment without systemic immunosuppression?",
-            "If yes, beta-cell replacement could shift from niche transplant medicine toward broader clinical adoption."
-          ],
-          methods: [
-            "Allogeneic donor islet cells were edited (CRISPR/Cas12b) and further engineered to reduce alloimmune recognition; product transplanted intramuscularly (forearm).",
-            "No immunosuppressive drugs were administered.",
-            "Primary assessments: immune response against graft + biochemical evidence of insulin secretion (C-peptide), including glucose responsiveness."
-          ],
-          results: [
-            "No detected immune response against the gene-edited cells at 12 weeks.",
-            "C-peptide remained stable and glucose-responsive, consistent with graft function.",
-            "Four adverse events occurred; none were serious or related to the intervention (short observation window)."
-          ],
-          limitations: [
-            "Single patient; uncontrolled design; limited inference on efficacy magnitude.",
-            "Short follow-up (12 weeks reported in abstract context).",
-            "Generalizability: intramuscular site, product manufacturing, and immune profile vary across patients."
-          ],
-          discussion: [
-            "What monitoring should be required for long-term immune-evasive grafts (imaging, biomarkers, safety switches)?",
-            "How do we separate alloimmune vs autoimmune failure modes in T1D over time?",
-            "What endpoints matter most in future trials: insulin independence, A1c, time-in-range, hypoglycemia burden?"
-          ],
-          citations: [
-            "Carlsson PO, et al. N Engl J Med. 2025;393(9):887–894. doi:10.1056/NEJMoa2503822."
-          ]
-        },
-        pro: {
-          kpi: [
-            { label:"Intervention", value:"Hypoimmune allogeneic islet graft (edited + engineered)" },
-            { label:"Key risk", value:"Durability vs immune escape tradeoffs (safety + tumor surveillance)" },
-            { label:"Next step", value:"Dose, durability, reproducibility in cohorts" }
-          ],
-          tldr: [
-            "This first-in-human report demonstrates short-term functional persistence of an engineered hypoimmune allogeneic islet graft without immunosuppression, with biochemical evidence of glucose-responsive insulin secretion.",
-            "Mechanistically, the approach aims to blunt antigen presentation/recognition while adding pro-survival immune-modulatory signaling; clinically, it reframes beta-cell replacement around engineered immune compatibility rather than systemic suppression."
-          ],
-          bigQuestion: [
-            "Can we create a clinically durable, scalable beta-cell replacement platform that is immune evasive yet still safe and controllable in vivo?",
-            "How do we design future trials to distinguish engraftment success, immune escape, and long-term off-target risks?"
-          ],
-          methods: [
-            "Gene editing (CRISPR/Cas12b) and transduction-based engineering to reduce rejection susceptibility, followed by intramuscular transplantation.",
-            "No immunosuppression; serial immune surveillance and functional assays (C-peptide, glucose responsiveness).",
-            "Trial registration and structured AE capture (proof-of-concept clinical translation)."
-          ],
-          results: [
-            "Short-term engraftment with maintained glucose-responsive secretion and no detectable immune response signals at 12 weeks.",
-            "AE profile in this timeframe lacked serious events attributable to the product, but exposure is minimal and underpowered for safety."
-          ],
-          limitations: [
-            "n=1; heavy selection/measurement context; absence of comparator; interpret as translational feasibility signal only.",
-            "Durability unknown: immune pressure, inflammatory microenvironment, and autoimmunity may emerge over months/years.",
-            "Safety architecture not established in this summary: long-term immune evasion raises surveillance concerns (infection, malignancy escape) unless kill-switch or control systems are implemented."
-          ],
-          discussion: [
-            "What is the optimal engineering stack: antigen presentation reduction vs checkpoint modulation vs physical encapsulation?",
-            "What trial design best answers: intramuscular vs intraportal site, dose-response, and standardized metabolic endpoints?",
-            "How should regulatory frameworks treat long-lived immune-evasive cell grafts (longitudinal registries, mandated safety monitoring)?"
-          ],
-          citations: [
-            "Carlsson PO, et al. N Engl J Med. 2025;393(9):887–894. doi:10.1056/NEJMoa2503822."
-          ]
-        }
-      }
-    },
-
-    {
-      id: "tjpad-donanemab-lte-2025",
-      relevance: "Trending",
-      updated: "2026-02-15",
-      title: "Donanemab in early symptomatic Alzheimer’s disease: TRAILBLAZER-ALZ 2 long-term extension",
-      journal: "J Prev Alzheimers Dis",
-      year: "2026 (Epub 2025)",
-      design: "Long-term extension (phase 3 program)",
-      sample: "3-year outcomes (extension + external controls)",
-      area: "Neurology • Alzheimer’s",
-      tags: ["Alzheimer’s", "Anti-amyloid", "Disease-modifying therapy", "Long-term outcomes"],
-      evidenceBadge: { tone:"good", text:"Evidence: Phase 3 program" },
-      links: [
-        { label: "DOI", url: "https://doi.org/10.1016/j.tjpad.2025.100446" },
-        { label: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov/41330788/" }
-      ],
-      summaries: {
-        beginner: {
-          kpi: [
-            { label:"What problem?", value:"Alzheimer’s slowly worsens memory and daily function" },
-            { label:"What did they test?", value:"A drug that removes amyloid plaques (donanemab)" },
-            { label:"Main idea", value:"Earlier treatment may help more over time" }
-          ],
-          tldr: [
-            "This study followed people who previously participated in a major donanemab trial and looked at how they did over about 3 years.",
-            "People who started donanemab earlier tended to decline more slowly than similar people who didn’t receive the drug in the same way."
-          ],
-          bigQuestion: [
-            "Does starting donanemab earlier lead to bigger long-term benefits in Alzheimer’s?",
-            "Can treatment be limited in duration (stop after amyloid clears) while keeping benefits?"
-          ],
-          methods: [
-            "People who finished the original placebo-controlled phase could enter a long-term extension.",
-            "Some started donanemab early; others started later (after placebo).",
-            "They compared outcomes over time and also used an external comparison group from an Alzheimer’s research cohort."
-          ],
-          results: [
-            "Over 3 years, early-start participants showed slower worsening on standard dementia scales compared with the external control group.",
-            "Many participants reached very low amyloid levels (“amyloid clearance”).",
-            "Safety signals did not show new surprises compared with what is already known for this type of therapy."
-          ],
-          limitations: [
-            "Extensions and external comparisons are trickier than a clean randomized trial.",
-            "Benefits are usually modest and must be weighed against risks (like MRI changes/ARIA in anti-amyloid drugs).",
-            "Real-world results can differ depending on patient selection and monitoring."
-          ],
-          discussion: [
-            "Who benefits most—people with lower tau burden or earlier disease stages?",
-            "How often should patients be monitored (MRI schedule, symptoms)?",
-            "What does “limited-duration dosing” mean for cost and safety?"
-          ],
-          citations: [
-            "Zimmer JA, et al. J Prev Alzheimers Dis. 2026;13(2):100446. Epub 2025 Dec 1. doi:10.1016/j.tjpad.2025.100446."
-          ]
-        },
-        medium: {
-          kpi: [
-            { label:"Design", value:"LTE + early-start vs delayed-start + external cohort" },
-            { label:"Endpoint", value:"CDR-SB trajectory (3-year)" },
-            { label:"Signal", value:"Increasing separation favoring early start" }
-          ],
-          tldr: [
-            "TRAILBLAZER-ALZ 2 long-term extension data suggest accumulating clinical benefit over ~3 years in early-start donanemab participants, with substantial amyloid clearance and no new safety signals versus the established profile.",
-            "Interpretation requires caution because long-term extensions and external controls are not equivalent to randomized comparisons."
-          ],
-          bigQuestion: [
-            "Does early initiation of anti-amyloid therapy produce greater long-horizon clinical separation, and can dosing be time-limited after biomarker-defined amyloid clearance?",
-            "How do biomarker trajectories (amyloid/tau) map onto clinical endpoints over multi-year windows?"
-          ],
-          methods: [
-            "Participants completing the placebo-controlled period entered a double-blind extension; delayed-start participants began donanemab in LTE.",
-            "Participants meeting amyloid treatment-course completion criteria could be switched to placebo (limited-duration dosing framework).",
-            "External control cohort derived from ADNI with weighting/adjustment to compare CDR-SB trajectories."
-          ],
-          results: [
-            "Early-start participants showed slower CDR-SB progression vs weighted ADNI control over 3 years; delayed-start also showed benefit after initiating therapy.",
-            "High proportion achieved amyloid clearance at ~76 weeks after starting donanemab.",
-            "Modeling suggested gradual amyloid reaccumulation after stopping (biomarker durability question)."
-          ],
-          limitations: [
-            "External control comparisons are vulnerable to residual confounding despite weighting.",
-            "LTE populations can differ from original randomized population (attrition/selection).",
-            "Clinical effect size and risk-benefit must be framed for patients and caregivers (monitoring burden, ARIA risk)."
-          ],
-          discussion: [
-            "How should clinicians choose candidates (tau, comorbidity, anticoagulation, MRI microbleeds)?",
-            "What is the optimal stop/restart strategy if amyloid reaccumulates?",
-            "Which endpoints best capture “meaningful” change for patients over years?"
-          ],
-          citations: [
-            "Zimmer JA, et al. J Prev Alzheimers Dis. 2026;13(2):100446. Epub 2025 Dec 1. doi:10.1016/j.tjpad.2025.100446."
-          ]
-        },
-        pro: {
-          kpi: [
-            { label:"Framework", value:"Biomarker-guided, limited-duration dosing" },
-            { label:"Core critique", value:"LTE + external controls ≠ RCT inference" },
-            { label:"Clinical hinge", value:"Risk-benefit + monitoring logistics" }
-          ],
-          tldr: [
-            "Three-year extension data from TRAILBLAZER-ALZ 2 support a biomarker-guided model where substantial amyloid clearance can be achieved and clinical trajectories may continue to separate with earlier initiation, while maintaining a consistent safety profile.",
-            "However, analytic dependence on external controls and the LTE structure limits causal inference; the key translational question is how to operationalize candidate selection and dosing cadence to optimize benefit and minimize ARIA-related harms."
-          ],
-          bigQuestion: [
-            "Can anti-amyloid therapy be deployed as a time-limited, biomarker-driven intervention with durable clinical benefit, and what biomarker thresholds best define treatment-course completion and re-treatment triggers?",
-            "How do tau stage, vascular comorbidity, and MRI risk features modulate marginal benefit?"
-          ],
-          methods: [
-            "LTE with early-start vs delayed-start exposure patterns; protocol allowed switching to placebo after PET-defined amyloid thresholds.",
-            "External comparator (ADNI) weighted to approximate treated cohort; repeated-measures modeling for CDR-SB trajectories.",
-            "Safety surveillance consistent with anti-amyloid programs; evaluation of amyloid kinetics including reaccumulation modeling."
-          ],
-          results: [
-            "Observed clinical slowing vs weighted external controls, plus evidence of clinical advantage for early-start vs delayed-start patterns.",
-            "High amyloid clearance rates by PET; modeled reaccumulation suggests biomarker durability is finite and potentially measurable.",
-            "No novel safety signals beyond established donanemab profile in this dataset."
-          ],
-          limitations: [
-            "Residual confounding and informative censoring are non-trivial in LTE/external-control setups.",
-            "Generalizability: trial-grade MRI/PET infrastructure and monitoring cadence may not reflect community implementation.",
-            "The clinically meaningful threshold for CDR-SB change remains debated and patient-dependent."
-          ],
-          discussion: [
-            "What is the minimal imaging/biomarker package needed to safely run limited-duration dosing in routine care?",
-            "Could adaptive dosing (based on amyloid kinetics) reduce ARIA exposure while preserving benefit?",
-            "How should health systems triage access: earliest disease, lowest tau, highest predicted response?"
-          ],
-          citations: [
-            "Zimmer JA, et al. J Prev Alzheimers Dis. 2026;13(2):100446. Epub 2025 Dec 1. doi:10.1016/j.tjpad.2025.100446."
-          ]
-        }
-      }
-    },
-
-    {
-      id: "nejm-tirzepatide-osa-2024",
-      relevance: "Relevant",
-      updated: "2026-02-15",
-      title: "Tirzepatide for the Treatment of Obstructive Sleep Apnea and Obesity",
-      journal: "N Engl J Med",
-      year: "2024",
-      design: "Two randomized trials (OSA + obesity)",
-      sample: "Adults with moderate-to-severe OSA and obesity",
-      area: "Pulm/Sleep • Obesity medicine",
-      tags: ["OSA", "Tirzepatide", "GLP-1/GIP", "Patient-reported outcomes"],
-      evidenceBadge: { tone:"good", text:"Evidence: RCTs" },
-      links: [
-        { label: "DOI", url: "https://doi.org/10.1056/NEJMoa2404881" }
-      ],
-      summaries: {
-        beginner: {
-          kpi: [
-            { label:"What problem?", value:"Sleep apnea causes repeated breathing stops at night" },
-            { label:"What did they try?", value:"A weight-loss medication (tirzepatide)" },
-            { label:"What improved?", value:"Apnea severity and related symptoms" }
-          ],
-          tldr: [
-            "These trials studied adults with obesity and obstructive sleep apnea and tested whether tirzepatide could improve sleep apnea severity.",
-            "People on tirzepatide had fewer apnea events, lost weight, and reported better sleep-related outcomes compared with placebo."
-          ],
-          bigQuestion: [
-            "If obesity drives sleep apnea, can a medication that meaningfully reduces weight also reduce apnea severity?",
-            "Can patients avoid or reduce reliance on CPAP when the underlying driver improves?"
-          ],
-          methods: [
-            "Adults with moderate-to-severe OSA and obesity were randomized to tirzepatide or placebo.",
-            "They measured apnea-hypopnea index (AHI), body weight, and patient-reported outcomes.",
-            "They also tracked cardiometabolic markers (like inflammation markers and blood pressure)."
-          ],
-          results: [
-            "Tirzepatide reduced AHI and improved measures tied to oxygen drops during sleep.",
-            "Weight decreased substantially, and multiple cardiometabolic markers improved.",
-            "Patient-reported sleep outcomes improved, suggesting the change mattered day-to-day."
-          ],
-          limitations: [
-            "Not everyone with OSA has obesity-driven disease; some will still need CPAP or other therapies.",
-            "Long-term durability depends on maintaining weight loss.",
-            "Medication side effects and access/cost can limit use."
-          ],
-          discussion: [
-            "Which patients with OSA should be offered this first vs CPAP first vs both?",
-            "How do we define success—AHI reduction, symptoms, blood pressure, or long-term cardiovascular outcomes?",
-            "What happens if the drug is stopped?"
-          ],
-          citations: [
-            "Tirzepatide for OSA and obesity. N Engl J Med. 2024. doi:10.1056/NEJMoa2404881."
-          ]
-        },
-        medium: {
-          kpi: [
-            { label:"Mechanism", value:"Weight loss + metabolic/inflammatory improvements" },
-            { label:"Endpoints", value:"AHI, hypoxic burden, PROs" },
-            { label:"Interpretation", value:"Treats a key driver, not all phenotypes" }
-          ],
-          tldr: [
-            "Across two randomized trials in adults with moderate-to-severe OSA and obesity, tirzepatide reduced AHI and hypoxic burden while improving weight, inflammation markers, BP, and sleep-related patient-reported outcomes.",
-            "Clinically, this supports a ‘treat-the-driver’ strategy for OSA in the obesity phenotype, potentially as adjunct or alternative to device-based therapies for selected patients."
-          ],
-          bigQuestion: [
-            "Does pharmacologic weight loss produce clinically meaningful OSA improvement (AHI + symptoms), and for whom?",
-            "How should tirzepatide integrate with CPAP, mandibular devices, and lifestyle interventions?"
-          ],
-          methods: [
-            "Randomized, placebo-controlled trials enrolling adults with obesity and moderate-to-severe OSA.",
-            "Primary physiologic endpoints included AHI; secondary endpoints included weight change, hypoxic burden, hsCRP, BP, and PROs.",
-            "Safety assessment included typical GI effects and discontinuation patterns."
-          ],
-          results: [
-            "Significant AHI reduction and improvements in hypoxic burden.",
-            "Substantial weight loss and favorable cardiometabolic shifts (hsCRP, systolic BP).",
-            "PRO improvements suggested symptomatic benefit beyond a purely numeric endpoint."
-          ],
-          limitations: [
-            "OSA is heterogeneous: anatomic factors and non-obesity phenotypes may have less response.",
-            "Durability depends on sustained therapy and/or sustained weight loss.",
-            "Comparative effectiveness vs CPAP or combination strategies needs continued study."
-          ],
-          discussion: [
-            "What AHI and symptom thresholds justify therapy initiation or continuation?",
-            "How should clinicians monitor response—repeat sleep study vs symptoms + wearable proxies?",
-            "What is the long-term cardiovascular outcome impact of treating OSA via weight-loss pharmacotherapy?"
-          ],
-          citations: [
-            "Tirzepatide for OSA and obesity. N Engl J Med. 2024. doi:10.1056/NEJMoa2404881."
-          ]
-        },
-        pro: {
-          kpi: [
-            { label:"Clinical frame", value:"OSA phenotype stratification (obesity-driven vs structural)" },
-            { label:"Outcome nuance", value:"AHI vs hypoxic burden vs PROs" },
-            { label:"Next step", value:"Head-to-head and CV outcomes" }
-          ],
-          tldr: [
-            "The tirzepatide OSA trials reinforce that meaningful metabolic intervention can reduce sleep-disordered breathing severity (AHI) and physiologic stress (hypoxic burden), likely via weight loss plus downstream inflammatory/hemodynamic effects.",
-            "Implementation hinges on phenotype selection, integration with standard-of-care devices, and defining clinically meaningful response beyond AHI—especially symptom and cardiovascular risk endpoints."
-          ],
-          bigQuestion: [
-            "Which OSA phenotypes derive the greatest marginal benefit from incretin-based pharmacotherapy, and can these agents reduce downstream cardiovascular events mediated by OSA?",
-            "What is the optimal combined strategy (CPAP + pharmacotherapy) and sequence of intervention?"
-          ],
-          methods: [
-            "Two RCTs in obesity-associated moderate-to-severe OSA; physiologic and patient-centered endpoints tracked longitudinally.",
-            "Secondary analyses on biomarkers and BP contextualize systemic impact.",
-            "Safety/tolerability analysis is key because adherence and discontinuation affect real-world efficacy."
-          ],
-          results: [
-            "Robust reductions in AHI and hypoxic burden consistent with improved airway mechanics and/or reduced collapsibility pressure dynamics after weight loss.",
-            "Cardiometabolic improvements align with a broader risk modification profile.",
-            "PRO gains suggest functional relevance for patients, not just polysomnography changes."
-          ],
-          limitations: [
-            "OSA is not a single disease—upper airway anatomy, loop gain, arousal threshold can modulate response independently of weight.",
-            "AHI may not fully capture cardiovascular risk reduction; hypoxic burden may correlate better but remains an evolving endpoint.",
-            "Longitudinal outcomes and pragmatic implementation studies are needed (access, dosing, maintenance)."
-          ],
-          discussion: [
-            "Should hypoxic burden be a co-primary endpoint in future OSA trials?",
-            "What patient selection algorithm maximizes response (BMI, neck circumference, baseline AHI, positional OSA features)?",
-            "How do we model cost-effectiveness when therapy impacts multiple comorbidities simultaneously?"
-          ],
-          citations: [
-            "Tirzepatide for OSA and obesity. N Engl J Med. 2024. doi:10.1056/NEJMoa2404881."
-          ]
-        }
-      }
-    },
-
-    {
-      id: "nejm-select-semaglutide-2023",
-      relevance: "Core",
-      updated: "2026-02-15",
-      title: "Semaglutide and Cardiovascular Outcomes in Obesity without Diabetes (SELECT)",
+      title: "Semaglutide and cardiovascular outcomes in obesity without diabetes (SELECT)",
       journal: "N Engl J Med",
       year: "2023",
-      design: "Cardiovascular outcomes trial (RCT)",
+      design: "Cardiovascular outcomes randomized controlled trial (CVOT)",
       sample: "n = 17,604",
       area: "Cardiology • Obesity medicine",
-      tags: ["Semaglutide", "MACE", "Obesity", "CV outcomes"],
-      evidenceBadge: { tone:"good", text:"Evidence: Large CVOT" },
+      tags: ["Semaglutide", "MACE", "Secondary prevention", "Obesity"],
+      evidenceBadge: { tone:"good", text:"Evidence: Large RCT" },
       links: [
         { label: "DOI", url: "https://doi.org/10.1056/NEJMoa2307563" },
         { label: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov/37952131/" }
@@ -785,37 +414,38 @@
       summaries: {
         beginner: {
           kpi: [
-            { label:"What problem?", value:"Heart attacks and strokes are common in obesity" },
-            { label:"What did they test?", value:"Semaglutide vs placebo in people without diabetes" },
-            { label:"Key result", value:"Fewer major heart events on semaglutide" }
+            { label:"What problem?", value:"People with obesity have a higher risk of heart attacks and strokes." },
+            { label:"What was tested?", value:"Semaglutide vs placebo in people with heart disease who do not have diabetes." },
+            { label:"Bottom line", value:"Semaglutide lowered the chance of major heart problems." }
           ],
           tldr: [
-            "This large trial tested whether semaglutide (a GLP-1 medicine) lowers heart attack and stroke risk in people with overweight/obesity who already had heart disease, even if they don’t have diabetes.",
-            "Semaglutide lowered the risk of major cardiovascular events compared with placebo."
+            "This study asked a simple question: if someone has obesity and already has heart disease, can a weight-loss medication also lower the risk of serious heart events—even if the person does not have diabetes?",
+            "In a very large group of patients, people taking semaglutide had fewer major cardiovascular events (like heart attack, stroke, or cardiovascular death) than people taking placebo.",
+            "The take-home message is that obesity treatment can overlap with heart-disease prevention, not just weight change for appearance."
           ],
           bigQuestion: [
-            "Can a weight-loss/metabolic medication directly reduce major heart events in people with obesity but no diabetes?",
-            "If yes, obesity treatment becomes cardiovascular prevention, not just cosmetics."
+            "Can treating obesity with a medication meaningfully reduce heart attacks and strokes in high-risk patients without diabetes?",
+            "If benefits are real, should this kind of therapy be viewed as part of cardiovascular prevention rather than only a weight-loss tool?"
           ],
           methods: [
-            "Adults with overweight/obesity and established cardiovascular disease, without diabetes, were randomized to semaglutide or placebo.",
-            "They were followed for major cardiovascular events (heart attack, stroke, cardiovascular death).",
-            "They also tracked weight, side effects, and treatment discontinuation."
+            "Researchers enrolled adults who had overweight/obesity and established cardiovascular disease, but did not have diabetes.",
+            "Participants were randomly assigned to receive semaglutide or placebo and were followed over time.",
+            "They tracked major cardiovascular events and also monitored weight change and side effects."
           ],
           results: [
-            "The semaglutide group had fewer major cardiovascular events than the placebo group.",
-            "Weight decreased meaningfully, and other cardiometabolic markers often improve on GLP-1 therapy.",
-            "Side effects were mainly GI-related; some people stopped medication."
+            "The semaglutide group had fewer major cardiovascular events compared with placebo.",
+            "Participants on semaglutide typically lost weight and often showed improvements in other risk factors that influence heart health.",
+            "Side effects were mostly gastrointestinal (for example, nausea), and some patients stopped treatment because of tolerability."
           ],
           limitations: [
-            "These were people who already had cardiovascular disease, so it may not apply the same way to lower-risk populations.",
-            "Long-term adherence matters; stopping can reduce benefits.",
-            "Cost and access influence real-world impact."
+            "This was a high-risk group (people who already had heart disease), so results may not automatically apply to lower-risk patients.",
+            "Long-term benefit depends on staying on therapy; many real-world patients discontinue or cycle on/off medication.",
+            "Cost, access, and insurance coverage strongly influence how much impact this could have at the population level."
           ],
           discussion: [
-            "Should semaglutide be considered a cardiovascular prevention therapy in obesity?",
-            "Which patients benefit most—those with the highest baseline risk or best tolerability?",
-            "How do we weigh benefits vs side effects and cost?"
+            "Should semaglutide be considered a cardiovascular prevention therapy in obesity, similar to how we think about statins?",
+            "Which patients are most likely to benefit, and which patients are least likely to tolerate the medication?",
+            "If someone stops the medication, how quickly do the benefits fade, and what follow-up plan makes sense?"
           ],
           citations: [
             "Lincoff AM, et al. N Engl J Med. 2023;389:2221–2232. doi:10.1056/NEJMoa2307563."
@@ -823,37 +453,38 @@
         },
         medium: {
           kpi: [
-            { label:"Design", value:"CV outcomes RCT" },
-            { label:"Population", value:"CVD + overweight/obesity, no diabetes" },
-            { label:"Endpoint", value:"MACE reduction" }
+            { label:"Design", value:"Large CVOT randomized controlled trial" },
+            { label:"Population", value:"Established CVD + overweight/obesity, without diabetes" },
+            { label:"Primary endpoint", value:"MACE (composite cardiovascular outcomes)" }
           ],
           tldr: [
-            "SELECT demonstrated that semaglutide reduced major adverse cardiovascular events in adults with established CVD and overweight/obesity but without diabetes, positioning GLP-1 therapy as cardiometabolic risk modification beyond glycemic control.",
-            "Translation requires attention to patient selection, adherence, and implementation barriers (tolerability, coverage)."
+            "SELECT tested whether a GLP-1 receptor agonist (semaglutide) reduces major adverse cardiovascular events (MACE) in adults with established cardiovascular disease and overweight/obesity, without diabetes.",
+            "The trial showed a statistically significant reduction in MACE with semaglutide versus placebo, supporting cardiometabolic benefit beyond glucose lowering.",
+            "Clinically, the study reframes obesity pharmacotherapy as risk modification in secondary prevention—while highlighting tolerability, persistence, and access as major real-world constraints."
           ],
           bigQuestion: [
             "Does GLP-1–based therapy reduce hard cardiovascular endpoints in obesity independent of diabetes status?",
-            "What mechanisms drive MACE reduction: weight loss, BP/lipids, inflammation, or direct vascular effects?"
+            "How much of the effect is mediated by weight loss versus improvements in blood pressure, lipids, inflammation, or direct vascular mechanisms?"
           ],
           methods: [
-            "Large RCT (CVOT) randomizing high-risk adults to semaglutide vs placebo with long follow-up.",
-            "Primary endpoint: composite MACE.",
-            "Safety/tolerability tracked, including discontinuation and adverse event patterns."
+            "High-risk adults with established cardiovascular disease and overweight/obesity (without diabetes) were randomized to semaglutide or placebo.",
+            "The primary outcome was time to first major adverse cardiovascular event (a composite endpoint).",
+            "Safety and tolerability were tracked with attention to gastrointestinal adverse events and discontinuation."
           ],
           results: [
-            "Lower MACE incidence in the semaglutide arm compared with placebo.",
-            "Consistent weight reduction; multiple downstream risk factors typically improve with therapy.",
-            "GI adverse effects and discontinuation are meaningful real-world considerations."
+            "Semaglutide reduced MACE compared with placebo, demonstrating benefit in a non-diabetic obesity population.",
+            "Weight reduction was substantial, and cardiometabolic risk factors generally improved in patterns consistent with GLP-1 therapy.",
+            "Discontinuation due to adverse events is clinically relevant, because persistence strongly influences effectiveness outside trials."
           ],
           limitations: [
-            "Applies primarily to secondary prevention (already-established CVD).",
-            "Efficacy depends on sustained exposure; discontinuation blunts benefit.",
-            "Broader external validity depends on coverage and patient adherence."
+            "External validity is strongest for secondary prevention; generalizing to primary prevention requires additional evidence.",
+            "Composite endpoints can obscure which components drive the signal; component-level interpretation matters.",
+            "Implementation barriers (coverage, dose escalation, patient support) may reduce observed benefit at scale."
           ],
           discussion: [
-            "What’s the incremental benefit vs other cardioprotective therapies (statins, SGLT2i where indicated)?",
-            "How should clinicians prioritize therapy when multiple cardiometabolic drugs compete for adherence?",
-            "What biomarkers best predict responders (baseline inflammation, adiposity distribution, etc.)?"
+            "How should semaglutide be prioritized alongside other evidence-based secondary-prevention therapies?",
+            "Which patient features predict maximal benefit (baseline BMI, visceral adiposity, inflammatory burden, comorbidity profile)?",
+            "What strategies improve persistence: slower titration, symptom management, or structured follow-up?"
           ],
           citations: [
             "Lincoff AM, et al. N Engl J Med. 2023;389:2221–2232. doi:10.1056/NEJMoa2307563."
@@ -861,47 +492,456 @@
         },
         pro: {
           kpi: [
-            { label:"Clinical impact", value:"Obesity pharmacotherapy → secondary CV prevention" },
-            { label:"Mechanism debate", value:"Weight loss vs direct vascular effects" },
-            { label:"Implementation", value:"Adherence + access determine real-world benefit" }
+            { label:"Clinical impact", value:"Obesity pharmacotherapy as secondary cardiovascular prevention" },
+            { label:"Mechanistic debate", value:"Weight-mediated vs direct vascular/inflammatory pathways" },
+            { label:"Pragmatics", value:"Persistence and access are the main limiting steps" }
           ],
           tldr: [
-            "SELECT redefines GLP-1 therapy as a cardiovascular risk modifier in non-diabetic obesity, demonstrating MACE reduction in a high-risk secondary prevention cohort.",
-            "The mechanistic story likely integrates adiposity reduction, BP/lipid shifts, inflammatory modulation, and potential direct vascular effects; the pragmatic story is tolerability, persistence, and equitable access."
+            "SELECT demonstrates that GLP-1 receptor agonism (semaglutide) reduces MACE in a non-diabetic cohort with established CVD and overweight/obesity, extending cardiometabolic outcome benefits beyond glycemic contexts.",
+            "The causal architecture likely integrates adiposity reduction, hemodynamic effects (blood pressure), lipid shifts, inflammatory modulation, and possibly direct vascular/endothelial pathways; disentangling mediation remains complex.",
+            "From a translational standpoint, the key determinants of real-world effect size are treatment persistence, adverse-event management, equitable coverage, and appropriate risk-based patient selection."
           ],
           bigQuestion: [
-            "What causal pathways best explain MACE reduction with semaglutide in non-diabetic obesity, and can we stratify patients by mechanistic phenotype (inflammatory, metabolic, hemodynamic)?",
-            "How should treatment be sequenced with other cardiometabolic interventions for maximal net benefit?"
+            "What mechanistic phenotype (inflammatory, metabolic, hemodynamic) best predicts MACE reduction with semaglutide in non-diabetic obesity?",
+            "How should semaglutide be sequenced with other cardioprotective therapies to maximize net benefit while minimizing treatment burden and discontinuation?"
           ],
           methods: [
-            "CVOT design with hard endpoints and robust adjudication.",
-            "Large sample enables subgroup exploration (but interpretation should remain cautious).",
-            "Safety analysis highlights discontinuation dynamics that influence effectiveness."
+            "Event-driven CVOT design with adjudicated endpoints and robust longitudinal follow-up.",
+            "Randomization minimizes confounding; secondary analyses can explore heterogeneity but must avoid overinterpretation.",
+            "Safety evaluation includes tolerability, dose escalation dynamics, and discontinuation patterns that influence effectiveness."
           ],
           results: [
-            "Demonstrated MACE reduction in a non-diabetic, CVD, obesity/overweight cohort.",
-            "Weight and risk factor improvements provide plausible mediators; causal mediation remains complex.",
-            "Adverse event profile consistent with GLP-1 class and clinically relevant for persistence."
+            "A significant reduction in MACE supports cardioprotection in non-diabetic obesity within secondary prevention.",
+            "Downstream improvements in weight and cardiometabolic markers provide plausible mediators, although mediation analysis is non-trivial.",
+            "Adverse-event–related discontinuation is not just a side note; it is central to implementation and comparative effectiveness."
           ],
           limitations: [
-            "Generalization to primary prevention or non-CVD populations is not automatic.",
-            "Effect heterogeneity may exist (age, baseline BMI, visceral adiposity, inflammatory burden), requiring careful secondary analysis.",
-            "Real-world impact may be smaller without sustained therapy and broad coverage."
+            "Generalizability to primary prevention, younger cohorts, or lower baseline risk requires dedicated studies.",
+            "The composite endpoint may mask differential effects across MI, stroke, and CV death; component-level risk reductions matter clinically.",
+            "Population-level impact is highly sensitive to real-world uptake, persistence, and payer policy."
           ],
           discussion: [
-            "Should future trials focus on primary prevention cohorts or on identifying maximal-benefit subphenotypes within secondary prevention?",
-            "How do we quantify ‘net cardiovascular benefit’ in the presence of competing risks and polypharmacy?",
-            "What policy and health-system levers matter most for population-level event reduction (coverage, adherence programs, monitoring)?"
+            "Should future trials target primary prevention or focus on identifying maximal-response subgroups within secondary prevention?",
+            "Which biomarkers (hsCRP, visceral adiposity proxies, cardiometabolic panels) best predict benefit and guide prioritization?",
+            "How should systems operationalize persistence (nurse-led titration, standardized nausea protocols, structured follow-up)?"
           ],
           citations: [
             "Lincoff AM, et al. N Engl J Med. 2023;389:2221–2232. doi:10.1056/NEJMoa2307563."
           ]
         }
       }
+    },
+
+    {
+      id: "paper-2-tirzepatide-osa",
+      relevance: "Trending",
+      updated: "2026-02-15",
+      title: "Tirzepatide for obstructive sleep apnea in adults with obesity",
+      journal: "N Engl J Med",
+      year: "2024",
+      design: "Randomized placebo-controlled trials",
+      sample: "Adults with moderate-to-severe OSA and obesity",
+      area: "Pulm/Sleep • Obesity medicine",
+      tags: ["OSA", "Tirzepatide", "GLP-1/GIP", "AHI", "Hypoxic burden"],
+      evidenceBadge: { tone:"good", text:"Evidence: RCTs" },
+      links: [
+        { label: "DOI", url: "https://doi.org/10.1056/NEJMoa2404881" }
+      ],
+      summaries: {
+        beginner: {
+          kpi: [
+            { label:"What problem?", value:"Sleep apnea causes repeated breathing pauses during sleep and leads to daytime fatigue." },
+            { label:"What was tested?", value:"A medication that produces major weight loss (tirzepatide) vs placebo." },
+            { label:"Bottom line", value:"Sleep apnea severity improved in many patients." }
+          ],
+          tldr: [
+            "Obstructive sleep apnea often gets worse with obesity because extra tissue and changes in airway mechanics make the throat more likely to collapse during sleep.",
+            "These studies tested whether tirzepatide—an injectable medication that helps people lose a meaningful amount of weight—could also improve sleep apnea.",
+            "Compared with placebo, people taking tirzepatide had fewer breathing interruptions at night and reported improvements that suggest the changes were noticeable in real life, not just on a sleep study."
+          ],
+          bigQuestion: [
+            "If obesity drives sleep apnea for many people, can weight-loss medications reduce sleep apnea severity in a meaningful way?",
+            "Could some patients reduce their dependence on devices like CPAP if the underlying driver improves?"
+          ],
+          methods: [
+            "Adults with obesity and moderate-to-severe obstructive sleep apnea were randomized to tirzepatide or placebo.",
+            "Researchers measured sleep apnea severity using standard sleep study metrics (including the apnea–hypopnea index).",
+            "They also tracked weight change, symptoms, and adverse effects."
+          ],
+          results: [
+            "Tirzepatide reduced the number of apnea/hypopnea events and improved measures related to oxygen drops during sleep.",
+            "Participants lost significant weight, which likely contributed to improved airway stability.",
+            "Side effects were mostly gastrointestinal; a portion of participants discontinued treatment."
+          ],
+          limitations: [
+            "Sleep apnea is not the same in every person; some cases are more structural/anatomic and may respond less to weight loss alone.",
+            "Long-term durability depends on maintaining weight loss and/or continuing medication.",
+            "Access and cost can limit real-world impact even when trial results are positive."
+          ],
+          discussion: [
+            "Who should get medication first, CPAP first, or both together?",
+            "What matters more to patients: fewer events on a sleep study, fewer symptoms, or better cardiovascular risk over time?",
+            "If medication is stopped, how should clinicians monitor for relapse?"
+          ],
+          citations: [
+            "Tirzepatide for the treatment of obstructive sleep apnea and obesity. N Engl J Med. 2024. doi:10.1056/NEJMoa2404881."
+          ]
+        },
+        medium: {
+          kpi: [
+            { label:"Design", value:"Randomized placebo-controlled trials" },
+            { label:"Primary readouts", value:"AHI, hypoxic burden, patient-reported outcomes" },
+            { label:"Interpretation", value:"Treats a major driver (obesity phenotype)" }
+          ],
+          tldr: [
+            "Across randomized trials enrolling adults with moderate-to-severe OSA and obesity, tirzepatide reduced AHI and hypoxic burden while producing substantial weight loss and improving sleep-related patient-reported outcomes.",
+            "The results support a “treat-the-driver” approach in obesity-associated OSA: improving airway collapsibility and physiologic stress via metabolic therapy, potentially alongside device-based treatments.",
+            "Implementation hinges on phenotype selection, tolerability, and defining clinically meaningful response beyond a single sleep metric."
+          ],
+          bigQuestion: [
+            "To what extent can incretin-based pharmacotherapy meaningfully reduce OSA severity and symptom burden in obesity-associated disease?",
+            "How should tirzepatide integrate with CPAP, mandibular devices, positional therapy, and lifestyle interventions?"
+          ],
+          methods: [
+            "Adults with obesity and moderate-to-severe OSA were randomized to tirzepatide or placebo with structured follow-up.",
+            "Endpoints included polysomnography-derived AHI, measures capturing hypoxic burden, weight change, and patient-reported outcomes.",
+            "Safety analyses emphasized GI adverse events, dose escalation, and discontinuation."
+          ],
+          results: [
+            "Tirzepatide reduced AHI and improved oxygen-related measures, consistent with reduced sleep-disordered breathing severity.",
+            "Weight loss was substantial and plausibly mediated much of the physiologic improvement.",
+            "PRO improvements suggest that benefits were clinically noticeable rather than purely numerical."
+          ],
+          limitations: [
+            "OSA heterogeneity means obesity-targeted therapy may be less effective in non-obesity phenotypes or predominantly anatomic obstruction.",
+            "AHI is an imperfect proxy for cardiovascular risk; hypoxic burden may better capture physiologic stress but is still evolving as an endpoint.",
+            "Long-term comparative effectiveness vs CPAP or combination strategies requires additional trials."
+          ],
+          discussion: [
+            "Which response threshold should guide continued therapy: symptom improvement, AHI reduction, or both?",
+            "Should future trials co-primary hypoxic burden and patient-centered outcomes rather than AHI alone?",
+            "What is the best monitoring strategy in practice: repeat sleep studies vs structured symptom and adherence tracking?"
+          ],
+          citations: [
+            "Tirzepatide for the treatment of obstructive sleep apnea and obesity. N Engl J Med. 2024. doi:10.1056/NEJMoa2404881."
+          ]
+        },
+        pro: {
+          kpi: [
+            { label:"Phenotyping", value:"Obesity-driven collapsibility vs anatomic/loop-gain/arousal phenotypes" },
+            { label:"Outcome nuance", value:"AHI vs hypoxic burden vs PROs" },
+            { label:"Next steps", value:"Pragmatic, head-to-head, and CV outcome studies" }
+          ],
+          tldr: [
+            "The tirzepatide OSA program demonstrates that large, pharmacologically induced weight loss can translate into clinically meaningful reductions in sleep-disordered breathing severity, including AHI and measures related to hypoxic burden.",
+            "Mechanistically, improvements likely reflect reduced upper-airway collapsibility pressure dynamics, altered pharyngeal fat deposition, and downstream cardiometabolic and inflammatory shifts that reduce physiologic stress during sleep.",
+            "The central translational challenge is phenotype stratification (who responds), endpoint selection (beyond AHI), and implementation (titration, persistence, and integration with device therapies)."
+          ],
+          bigQuestion: [
+            "Which OSA subphenotypes derive maximal marginal benefit from incretin pharmacotherapy, and how does this interact with CPAP adherence and net cardiovascular risk reduction?",
+            "Can hypoxic burden and autonomic arousal metrics outperform AHI as trial endpoints for long-term outcomes?"
+          ],
+          methods: [
+            "Randomized placebo-controlled designs with physiologic endpoints (polysomnography) and patient-centered endpoints (PROs).",
+            "Safety/tolerability assessments focused on class-related gastrointestinal adverse effects and discontinuation patterns.",
+            "Secondary analyses frame how weight loss correlates with physiologic improvement, but causal mediation remains multifactorial."
+          ],
+          results: [
+            "Reductions in AHI and improvements in oxygen-related measures support physiologic benefit, with symptom/PRO signals suggesting functional relevance.",
+            "Weight loss provides a dominant mechanistic mediator, but heterogeneity implies additional pathways and varying ceiling effects.",
+            "Persistence is an implementation-critical outcome: discontinuation reduces effectiveness and complicates comparative value versus CPAP."
+          ],
+          limitations: [
+            "OSA is multi-dimensional; weight loss alone may not normalize disease in many patients, especially in anatomically constrained airways.",
+            "Endpoints vary in clinical meaning: AHI reduction does not uniformly translate to cardiovascular risk reduction, and PROs can be influenced by expectations and comorbid sleep fragmentation.",
+            "Pragmatic effectiveness in community settings depends on access, follow-up infrastructure, and coordinated sleep-medicine care."
+          ],
+          discussion: [
+            "Should future OSA trials mandate phenotype stratification and use hierarchical endpoints that prioritize patient-centered function and hypoxic burden?",
+            "What is the optimal combination strategy: pharmacotherapy first, CPAP first, or parallel initiation with adaptive de-escalation?",
+            "How should health systems model cost-effectiveness when one therapy influences multiple comorbidities (weight, BP, inflammation, OSA severity)?"
+          ],
+          citations: [
+            "Tirzepatide for the treatment of obstructive sleep apnea and obesity. N Engl J Med. 2024. doi:10.1056/NEJMoa2404881."
+          ]
+        }
+      }
+    },
+
+    {
+      id: "paper-3-donanemab-lte",
+      relevance: "Relevant",
+      updated: "2026-02-15",
+      title: "Donanemab in early symptomatic Alzheimer’s disease: long-term extension findings",
+      journal: "Journal of Prevention of Alzheimer’s Disease (example)",
+      year: "2025–2026",
+      design: "Long-term extension with external comparisons (program-level evidence)",
+      sample: "Multi-year follow-up (extension framework)",
+      area: "Neurology • Alzheimer’s",
+      tags: ["Donanemab", "Anti-amyloid", "CDR-SB", "ARIA monitoring"],
+      evidenceBadge: { tone:"warn", text:"Evidence: Extension data" },
+      links: [
+        { label: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov/" }
+      ],
+      summaries: {
+        beginner: {
+          kpi: [
+            { label:"What problem?", value:"Alzheimer’s gradually worsens memory and daily function over time." },
+            { label:"What was tested?", value:"A drug that lowers amyloid plaques (donanemab) and its longer-term effects." },
+            { label:"Bottom line", value:"Earlier treatment may be associated with slower decline, but interpretation is cautious." }
+          ],
+          tldr: [
+            "Donanemab is designed to reduce amyloid plaques in the brain, which are one of the key features seen in Alzheimer’s disease.",
+            "After the original randomized trial period, some studies follow patients longer to see how people do over multiple years and whether starting earlier may matter.",
+            "These longer-term data often suggest that people treated earlier may decline more slowly, but extension studies can be harder to interpret because the comparisons are not always as clean as in the original randomized trial."
+          ],
+          bigQuestion: [
+            "Does starting anti-amyloid therapy earlier lead to a bigger long-term benefit in day-to-day function?",
+            "Can treatment be limited in duration (for example, stopping after amyloid levels are low) while keeping benefits?"
+          ],
+          methods: [
+            "Participants who completed an initial trial may enter a long-term extension phase for additional follow-up.",
+            "Some people start treatment earlier, while others start later, creating “early-start” and “delayed-start” patterns.",
+            "Researchers track cognitive and functional outcomes over time and monitor safety, often with MRI to watch for ARIA."
+          ],
+          results: [
+            "Over time, earlier exposure is often associated with slower worsening on common Alzheimer’s rating scales.",
+            "Amyloid levels can decrease substantially in many participants, and some protocols allow dosing to stop once amyloid is sufficiently reduced.",
+            "Safety concerns remain important, particularly MRI changes (ARIA) that require careful monitoring."
+          ],
+          limitations: [
+            "Extension phases are not always randomized in the same way as the original trial, so comparisons may be less certain.",
+            "Benefits are typically modest and must be weighed against monitoring burden and side effects.",
+            "Real-world patients may be older or have comorbidities that change the risk–benefit balance."
+          ],
+          discussion: [
+            "Who is the best candidate: very early disease, specific biomarker profiles, or lower baseline MRI risk?",
+            "What does “meaningful benefit” look like for patients and families over 1–3 years?",
+            "How should clinicians balance safety monitoring, cost, and access when benefits are modest?"
+          ],
+          citations: [
+            "Program-level donanemab extension publications and primary phase 3 trial reports (replace with exact citation links)."
+          ]
+        },
+        medium: {
+          kpi: [
+            { label:"Design", value:"Long-term extension + early-start vs delayed-start patterns" },
+            { label:"Endpoints", value:"Functional/cognitive trajectories (e.g., CDR-SB) + biomarker change" },
+            { label:"Caution", value:"Extension/external comparisons limit causal inference" }
+          ],
+          tldr: [
+            "Long-term extension analyses in anti-amyloid programs often evaluate whether earlier initiation of donanemab yields increasing clinical separation over multi-year horizons, alongside substantial amyloid reduction on imaging.",
+            "These datasets can inform questions about durability and dosing strategy (including limited-duration dosing after amyloid clearance), but they do not carry the same causal strength as the original randomized controlled period.",
+            "Clinically, the decision framework remains risk–benefit: modest average benefit, meaningful for some patients, with a monitoring and ARIA-risk profile that demands infrastructure."
+          ],
+          bigQuestion: [
+            "Does early initiation of anti-amyloid therapy produce larger cumulative clinical benefit, and what biomarker thresholds should guide stopping or restarting therapy?",
+            "How do tau stage, vascular comorbidity, and baseline MRI risk features modify marginal benefit and harm?"
+          ],
+          methods: [
+            "Extension designs follow original trial participants with continued structured assessment of cognition and function.",
+            "Early-start vs delayed-start exposure patterns can be compared, sometimes supplemented by external cohort comparisons.",
+            "Safety surveillance includes MRI monitoring for ARIA and standardized adverse-event capture."
+          ],
+          results: [
+            "Clinical trajectories may show increasing separation for earlier exposure patterns over time in some analyses.",
+            "Amyloid plaque burden can decrease substantially, and reaccumulation dynamics may influence stop/restart strategies.",
+            "Safety monitoring remains central: ARIA and related symptoms can drive treatment interruption or discontinuation."
+          ],
+          limitations: [
+            "Selection and attrition are common in extension phases and can bias long-term estimates.",
+            "External comparisons, even with adjustment, can leave residual confounding.",
+            "Average effect sizes are modest; patient-centered outcomes and caregiver impact remain critical to interpretation."
+          ],
+          discussion: [
+            "Which biomarker package is minimally sufficient for safe real-world deployment (PET vs plasma biomarkers vs MRI-only strategies)?",
+            "Should treatment be time-limited by protocol, or individualized by biomarker kinetics and tolerability?",
+            "How should clinicians counsel patients about uncertainty in long-term extension evidence?"
+          ],
+          citations: [
+            "Donanemab phase 3 publications and long-term extension analyses (replace with your chosen specific paper citations)."
+          ]
+        },
+        pro: {
+          kpi: [
+            { label:"Framework", value:"Biomarker-guided dosing with complex longitudinal inference" },
+            { label:"Core critique", value:"LTE/external control designs are vulnerable to residual confounding and censoring" },
+            { label:"Clinical hinge", value:"ARIA risk management + infrastructure" }
+          ],
+          tldr: [
+            "Donanemab long-horizon analyses aim to characterize whether earlier initiation yields cumulative clinical advantage and whether limited-duration dosing (after biomarker-defined amyloid clearance) is feasible without immediate loss of benefit.",
+            "Analytically, extension designs and external comparators introduce risks of informative censoring, selection effects, and residual confounding, so results should be framed as supportive rather than definitive.",
+            "Translation requires a rigorous operational model: patient selection by biomarker stage, MRI risk stratification, standardized ARIA monitoring, and shared decision-making around modest expected benefit versus burden and harm."
+          ],
+          bigQuestion: [
+            "Which longitudinal causal framework (marginal structural models, joint modeling with censoring, biomarker-informed dynamic regimes) best supports inference in extension datasets?",
+            "How should dosing cessation and retreatment be optimized using amyloid kinetics, tau stage, and ARIA susceptibility to maximize net benefit?"
+          ],
+          methods: [
+            "Longitudinal follow-up with repeated cognitive/functional endpoints and imaging/biomarker measurements.",
+            "Exposure patterns (early-start vs delayed-start) are compared, sometimes against external cohorts, requiring careful adjustment and sensitivity analyses.",
+            "Safety programs rely on MRI surveillance and protocolized management of ARIA (interruption, dose modification, discontinuation)."
+          ],
+          results: [
+            "Signals consistent with sustained amyloid reduction and possible cumulative clinical benefit with earlier exposure may be observed, depending on analytic approach and cohort definitions.",
+            "Biomarker durability and reaccumulation remain key questions that influence time-limited dosing strategies.",
+            "ARIA risk remains the central implementation barrier, shaping eligibility, monitoring cadence, and adherence."
+          ],
+          limitations: [
+            "Extension datasets are under persistent threats: selection/attrition bias, time-varying confounding, and differential follow-up.",
+            "External controls may be poorly aligned on unmeasured factors (frailty, comorbidity, practice patterns, diagnostic workup).",
+            "Clinical meaning of scale changes can be patient-dependent; average treatment effects may mask meaningful heterogeneity."
+          ],
+          discussion: [
+            "What is the most defensible stopping rule for amyloid clearance, and how should retreatment thresholds be defined?",
+            "Can plasma biomarkers safely reduce reliance on PET while preserving patient selection accuracy?",
+            "How should health systems prioritize access when infrastructure (PET/MRI capacity) is limited?"
+          ],
+          citations: [
+            "Donanemab phase 3 publications and long-term extension analyses (replace with your chosen specific paper citations)."
+          ]
+        }
+      }
+    },
+
+    {
+      id: "paper-4-hcm-mavacamten",
+      relevance: "Core",
+      updated: "2026-02-15",
+      title: "Mavacamten for obstructive hypertrophic cardiomyopathy (mechanism-targeted therapy)",
+      journal: "NEJM / program-level trials (example)",
+      year: "2020–2024",
+      design: "Randomized trials + extension data (program evidence)",
+      sample: "Symptomatic obstructive HCM cohorts",
+      area: "Cardiology • HCM",
+      tags: ["Mavacamten", "Myosin inhibitor", "LVOT gradient", "NYHA class"],
+      evidenceBadge: { tone:"good", text:"Evidence: RCT program" },
+      links: [
+        { label: "PubMed", url: "https://pubmed.ncbi.nlm.nih.gov/" }
+      ],
+      summaries: {
+        beginner: {
+          kpi: [
+            { label:"What problem?", value:"In obstructive HCM, the heart squeezes too strongly and can block blood flow out of the heart." },
+            { label:"What was tested?", value:"A medication that gently “turns down” the heart’s squeezing (mavacamten)." },
+            { label:"Bottom line", value:"Many patients had less blockage and felt better." }
+          ],
+          tldr: [
+            "Obstructive hypertrophic cardiomyopathy (HCM) can cause shortness of breath, chest pain, and exercise limitation because the thickened heart muscle and strong contraction create a dynamic blockage to blood leaving the heart.",
+            "Mavacamten is a medication designed to reduce excessive contraction by changing how the heart’s muscle proteins generate force.",
+            "Across major studies, patients often showed less obstruction and improved symptoms, but the medication must be monitored because too much “turning down” can reduce pumping strength."
+          ],
+          bigQuestion: [
+            "If we treat the core mechanism (excessive contraction), can we improve symptoms and reduce obstruction more directly than older therapies?",
+            "Can medication reduce the need for invasive procedures in selected patients?"
+          ],
+          methods: [
+            "Patients with symptomatic obstructive HCM were assigned to mavacamten or placebo in randomized trials.",
+            "Researchers measured obstruction (using echocardiography) and tracked symptoms and exercise capacity.",
+            "Safety monitoring included watching the heart’s pumping function to avoid excessive reduction in contraction."
+          ],
+          results: [
+            "Many patients showed reductions in obstruction and improvements in functional status or exercise measures.",
+            "Symptom improvement is clinically meaningful because it impacts daily life and activity tolerance.",
+            "Careful titration and follow-up imaging are used to keep the medication in a safe and effective range."
+          ],
+          limitations: [
+            "Not every HCM patient has the same mechanism; some symptoms are driven more by diastolic dysfunction or arrhythmias.",
+            "Results from trial populations may differ from community practice depending on monitoring and adherence.",
+            "Long-term outcomes and optimal sequencing with procedures are still being refined."
+          ],
+          discussion: [
+            "Which patients should start medication versus proceeding directly to a procedure?",
+            "How should clinicians balance symptom relief with the need for ongoing echocardiographic monitoring?",
+            "What outcomes matter most: symptoms, gradients, hospitalization, or long-term remodeling?"
+          ],
+          citations: [
+            "Mavacamten pivotal trials and follow-up analyses (replace with the exact paper you want to feature)."
+          ]
+        },
+        medium: {
+          kpi: [
+            { label:"Mechanism", value:"Cardiac myosin inhibition reduces hypercontractility and dynamic LVOT obstruction" },
+            { label:"Key readouts", value:"LVOT gradient, NYHA class, exercise capacity, PROs" },
+            { label:"Safety hinge", value:"EF surveillance and dose titration" }
+          ],
+          tldr: [
+            "Mavacamten targets the sarcomere by inhibiting cardiac myosin, reducing the probability of force-generating actin–myosin interactions and thereby attenuating hypercontractility in obstructive HCM.",
+            "Randomized trials show improvements in physiologic endpoints (LVOT gradients) and clinically meaningful outcomes (functional class, exercise measures, and patient-reported symptoms) compared with placebo in selected cohorts.",
+            "Clinical implementation depends on structured titration and echocardiographic monitoring because excessive negative inotropy can lower ejection fraction."
+          ],
+          bigQuestion: [
+            "Can a mechanism-targeted sarcomere therapy produce durable, patient-centered benefit while maintaining safety across real-world monitoring conditions?",
+            "Which phenotypes (baseline gradient severity, mitral anatomy, fibrosis burden) derive the greatest marginal benefit?"
+          ],
+          methods: [
+            "Randomized placebo-controlled trial designs enrolling symptomatic obstructive HCM participants with defined gradient thresholds.",
+            "Dose titration strategies guided by echocardiographic parameters and systolic function.",
+            "Outcomes include LVOT gradient changes, functional class, exercise capacity, and safety events."
+          ],
+          results: [
+            "Improvements in LVOT gradients align with the mechanistic hypothesis of reduced hypercontractility.",
+            "Functional and symptom measures improve in a meaningful proportion of patients, supporting translation beyond surrogate endpoints.",
+            "Safety signals are manageable with monitoring protocols, but implementation quality is a determinant of effectiveness."
+          ],
+          limitations: [
+            "Trial selection criteria may exclude higher-risk or more complex patients, limiting generalizability.",
+            "HCM symptomatology is multifactorial; gradient reduction is not always sufficient for full symptom relief.",
+            "Long-term comparative effectiveness versus procedures and combination therapy requires ongoing evidence."
+          ],
+          discussion: [
+            "What should be the threshold for declaring response: gradient reduction, symptom improvement, or both?",
+            "How should mavacamten be sequenced with beta-blockers, disopyramide, or septal reduction therapy?",
+            "What is the best minimal monitoring schedule that preserves safety in routine practice?"
+          ],
+          citations: [
+            "Mavacamten pivotal trials and follow-up analyses (replace with the exact paper you want to feature)."
+          ]
+        },
+        pro: {
+          kpi: [
+            { label:"Sarcomere kinetics", value:"Shift of myosin away from force-generating states reduces net cross-bridge cycling" },
+            { label:"Physiology linkage", value:"Hypercontractility → SAM/LVOT obstruction → exertional limitation" },
+            { label:"Implementation", value:"Dose-response and EF trajectory monitoring" }
+          ],
+          tldr: [
+            "Mavacamten operationalizes a sarcomere-level strategy in obstructive HCM by modulating myosin head availability and reducing force-generating cross-bridge formation, thereby decreasing contractility and dynamic obstruction (LVOT gradients) in appropriately selected patients.",
+            "Clinical benefit in trials reflects translation across a mechanistic chain (sarcomere kinetics → LVOT hemodynamics → functional capacity and symptom burden), but effect heterogeneity is expected given variation in anatomy, fibrosis, and diastolic properties.",
+            "The key practical constraint is maintaining a therapeutic window: enough myosin inhibition to reduce gradients and symptoms, without inducing clinically meaningful systolic dysfunction—hence the centrality of protocolized titration and EF surveillance."
+          ],
+          bigQuestion: [
+            "Which structural and molecular phenotypes (myofilament energetics, fibrosis burden, mitral apparatus geometry) best predict response and safety margins?",
+            "Can long-term therapy modify remodeling trajectories, arrhythmia burden, or progression to heart failure phenotypes?"
+          ],
+          methods: [
+            "Randomized programs with echo-guided titration to achieve target gradient reduction while preserving systolic function.",
+            "Composite endpoints integrate physiologic and patient-centered outcomes; careful adjudication of safety and discontinuation is required.",
+            "Longitudinal follow-up (including extensions) informs durability and retreatment/maintenance dosing strategies."
+          ],
+          results: [
+            "Hemodynamic improvement (gradient reduction) is consistent with reduced hypercontractility, with associated improvements in symptoms and exercise measures in many patients.",
+            "Safety remains primarily related to negative inotropy; monitoring protocols mitigate risk but require real-world fidelity.",
+            "Program data support mechanism-targeted therapy as a major addition to HCM management, with ongoing refinement of candidacy and sequencing."
+          ],
+          limitations: [
+            "Mechanistic benefit can be attenuated by non-obstructive drivers (diastolic dysfunction, microvascular ischemia, atrial fibrillation) that persist despite gradient improvement.",
+            "Endpoint interpretation can be complicated by placebo effects in symptom scales and variable exercise testing performance.",
+            "Long-term net benefit depends on persistence, monitoring, and integration with structural therapies in complex cases."
+          ],
+          discussion: [
+            "Should future trials incorporate advanced imaging (CMR fibrosis quantification) into response stratification?",
+            "What is the optimal algorithm for dose titration using gradients and EF without over-monitoring?",
+            "How should comparative effectiveness be measured against septal reduction therapy in matched phenotypes?"
+          ],
+          citations: [
+            "Mavacamten pivotal trials and follow-up analyses (replace with the exact paper you want to feature)."
+          ]
+        }
+      }
     }
   ];
 
-  // --- Consistent headings across levels ---
+  // Consistent headings across levels
   const SECTION_ORDER = [
     { key: "tldr", title: "TL;DR" },
     { key: "bigQuestion", title: "The Big Question" },
@@ -912,7 +952,7 @@
     { key: "citations", title: "Citations" }
   ];
 
-  // --- Elements ---
+  // Elements
   const yearEl = document.getElementById("year");
   const homeView = document.getElementById("homeView");
   const detailView = document.getElementById("detailView");
@@ -933,7 +973,6 @@
     pro: document.getElementById("panel-pro")
   };
 
-  // --- Helpers ---
   function escapeHtml(str){
     return String(str)
       .replaceAll("&","&amp;").replaceAll("<","&lt;")
@@ -942,20 +981,19 @@
   }
 
   function setHash(id){
-    // Keeps it static-site friendly: /#paper-id
     location.hash = id ? `#${id}` : "#";
   }
 
   function formatDate(iso){
-    // Simple: YYYY-MM-DD → MMM DD, YYYY (no localization needed for demo)
     const d = new Date(iso + "T00:00:00");
     const opts = { year:"numeric", month:"short", day:"2-digit" };
     return d.toLocaleDateString(undefined, opts);
   }
 
-  function badgeTone(relevance){
+  function relevanceTone(relevance){
     if (relevance === "Hot") return "good";
     if (relevance === "Trending") return "warn";
+    if (relevance === "Core") return "good";
     return "good";
   }
 
@@ -982,12 +1020,12 @@
             </p>
           </div>
           <div class="row" style="align-items:flex-start; justify-content:flex-end;">
-            <span class="badge ${badgeTone(p.relevance)}">● ${escapeHtml(p.relevance)}</span>
+            <span class="badge ${relevanceTone(p.relevance)}">● ${escapeHtml(p.relevance)}</span>
             <span class="badge ${escapeHtml(ev.tone)}">${escapeHtml(ev.text)}</span>
           </div>
         </div>
         <div class="row">
-          ${p.tags.slice(0,4).map(t => `<span class="pill">${escapeHtml(t)}</span>`).join("")}
+          ${(p.tags || []).slice(0,4).map(t => `<span class="pill">${escapeHtml(t)}</span>`).join("")}
         </div>
       `;
       paperListEl.appendChild(item);
@@ -996,8 +1034,8 @@
     if (!items.length){
       paperListEl.innerHTML = `
         <div class="paperItem" style="cursor:default;">
-          <h3 class="paperTitle">No matches</h3>
-          <p class="paperSub">Try a different keyword (e.g., “OSA”, “T1D”, “GLP-1”, “Alzheimer’s”).</p>
+          <h3 class="paperTitle">No matches found</h3>
+          <p class="paperSub">Try a different keyword (for example, “OSA”, “MACE”, “HCM”, or “amyloid”).</p>
         </div>
       `;
     }
@@ -1023,18 +1061,22 @@
       const list = Array.isArray(content) ? content : [content];
 
       if (s.key === "citations"){
+        const linksHtml = (paper.links && paper.links.length)
+          ? `
+            <p class="small" style="margin-top:10px;">
+              Links:
+              ${paper.links.map(l => `<a href="${l.url}" target="_blank" rel="noreferrer">${escapeHtml(l.label)}</a>`).join(" • ")}
+            </p>
+          `
+          : "";
+
         return `
           <div class="section">
             <h2>${escapeHtml(s.title)}</h2>
             <ol class="list">
               ${list.map(li => `<li>${escapeHtml(li)}</li>`).join("")}
             </ol>
-            ${paper.links?.length ? `
-              <p class="small" style="margin-top:10px;">
-                Links:
-                ${paper.links.map(l => `<a href="${l.url}" target="_blank" rel="noreferrer">${escapeHtml(l.label)}</a>`).join(" • ")}
-              </p>
-            ` : ""}
+            ${linksHtml}
           </div>
         `;
       }
@@ -1053,13 +1095,11 @@
   }
 
   function setActiveLevel(level, paper){
-    // Tabs ARIA
     tabButtons.forEach(btn => {
       const isSelected = btn.dataset.level === level;
       btn.setAttribute("aria-selected", isSelected ? "true" : "false");
     });
 
-    // Panels
     Object.entries(panels).forEach(([k, el]) => {
       el.classList.toggle("hidden", k !== level);
       if (k === level){
@@ -1072,11 +1112,9 @@
     const paper = PAPERS.find(p => p.id === id);
     if (!paper) return;
 
-    // Switch views
     homeView.classList.add("hidden");
     detailView.classList.remove("hidden");
 
-    // Header content
     paperTitleEl.textContent = paper.title;
 
     paperMetaEl.innerHTML = `
@@ -1087,18 +1125,14 @@
       <span>🏥 <strong>Area:</strong> ${escapeHtml(paper.area)}</span>
     `;
 
-    paperTagsEl.innerHTML = paper.tags.map(t => `<span class="pill">${escapeHtml(t)}</span>`).join("");
+    paperTagsEl.innerHTML = (paper.tags || []).map(t => `<span class="pill">${escapeHtml(t)}</span>`).join("");
 
-    const ev = paper.evidenceBadge || { tone:"warn", text:"Evidence: —" };
-    paperStatusEl.className = `badge ${badgeTone(paper.relevance)}`;
+    paperStatusEl.className = `badge ${relevanceTone(paper.relevance)}`;
     paperStatusEl.textContent = `● ${paper.relevance}`;
 
     paperDateEl.textContent = `Updated: ${formatDate(paper.updated)}`;
 
-    // Default level
     setActiveLevel("beginner", paper);
-
-    // Update hash
     setHash(paper.id);
   }
 
@@ -1116,7 +1150,6 @@
     else goHome();
   }
 
-  // --- Events ---
   homeBtn.addEventListener("click", goHome);
 
   tabButtons.forEach(btn => {
@@ -1128,7 +1161,6 @@
     });
   });
 
-  // Keyboard shortcuts: 1/2/3 switch levels; Esc returns home
   document.addEventListener("keydown", (e) => {
     const inInput = e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA");
     if (inInput) return;
@@ -1144,7 +1176,6 @@
     if (e.key === "3") setActiveLevel("pro", paper);
   });
 
-  // Search filter on Home
   function applySearch(){
     const q = (searchInput.value || "").trim().toLowerCase();
     if (!q){ renderPaperList(PAPERS); return; }
@@ -1160,10 +1191,8 @@
   }
   searchInput.addEventListener("input", applySearch);
 
-  // Router
   window.addEventListener("hashchange", onHashRoute);
 
-  // Init
   yearEl.textContent = new Date().getFullYear();
   renderPaperList(PAPERS);
   onHashRoute();
