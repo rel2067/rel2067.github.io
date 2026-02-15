@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>PaperLite — Simplified Scientific Paper Summaries</title>
-  <meta name="description" content="Static website layout for summarizing and simplifying scientific papers." />
+  <title>MinuteMed.ai — Paper Summaries</title>
+  <meta name="description" content="MinuteMed.ai: approachable, med-focused summaries of scientific papers with Beginner, Medium, and Pro views." />
 
   <style>
     :root{
@@ -20,39 +20,54 @@
       --bad:#fca5a5;
       --radius:16px;
       --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --max: 1100px;
+      --max: 1140px;
     }
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 10% 0%, rgba(125,211,252,.15), transparent 60%),
-                  radial-gradient(1000px 600px at 90% 10%, rgba(134,239,172,.12), transparent 55%),
-                  var(--bg);
+      background:
+        radial-gradient(1200px 650px at 15% 0%, rgba(125,211,252,.14), transparent 60%),
+        radial-gradient(900px 600px at 85% 10%, rgba(134,239,172,.10), transparent 55%),
+        var(--bg);
       color:var(--text);
       line-height:1.55;
     }
     a{color:var(--accent); text-decoration:none}
     a:hover{text-decoration:underline}
-    .container{max-width:var(--max); margin:0 auto; padding:24px}
+    .container{max-width:var(--max); margin:0 auto; padding:22px}
+
+    /* Top bar */
     header{
-      position:sticky; top:0;
+      position:sticky; top:0; z-index:20;
       backdrop-filter: blur(10px);
-      background: rgba(11,15,20,.6);
+      background: rgba(11,15,20,.65);
       border-bottom:1px solid rgba(35,49,67,.6);
-      z-index:10;
     }
     .topbar{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:14px 22px;
       display:flex; gap:12px; align-items:center; justify-content:space-between;
-      padding:14px 24px;
-      max-width:var(--max); margin:0 auto;
     }
-    .brand{display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px}
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
     .logo{
-      width:34px; height:34px; border-radius:10px;
+      width:36px; height:36px; border-radius:12px;
       background: linear-gradient(135deg, rgba(125,211,252,.95), rgba(134,239,172,.9));
-      box-shadow: 0 6px 18px rgba(125,211,252,.18);
+      box-shadow: 0 10px 24px rgba(125,211,252,.15);
     }
+    .brand small{
+      display:block;
+      font-weight:600;
+      color:var(--muted);
+      letter-spacing:0;
+      margin-top:2px;
+      font-size:12px;
+    }
+
     .search{
       flex:1; max-width:560px;
       display:flex; gap:10px; align-items:center;
@@ -69,25 +84,31 @@
       padding:6px 10px; border:1px solid var(--border);
       border-radius:999px; color:var(--muted); font-size:12px;
       background: rgba(17,24,35,.75);
+      white-space:nowrap;
     }
     .btn{
-      padding:9px 12px; border-radius:12px;
+      padding:10px 12px; border-radius:14px;
       border:1px solid var(--border);
       background: rgba(17,24,35,.9);
       color:var(--text);
       cursor:pointer;
     }
     .btn:hover{border-color:#335074}
+    @media (max-width: 980px){
+      .topbar{flex-wrap:wrap}
+      .search{order:3; flex-basis:100%; max-width:none}
+    }
+
+    /* Layout */
     .grid{
       display:grid; gap:18px;
-      grid-template-columns: 1.2fr .8fr;
+      grid-template-columns: 1.25fr .75fr;
       align-items:start;
     }
     @media (max-width: 980px){
       .grid{grid-template-columns: 1fr}
-      .topbar{flex-wrap:wrap}
-      .search{order:3; flex-basis:100%; max-width:none}
     }
+
     .card{
       background: linear-gradient(180deg, rgba(17,24,35,.95), rgba(15,22,32,.95));
       border:1px solid var(--border);
@@ -95,7 +116,9 @@
       box-shadow: var(--shadow);
       overflow:hidden;
     }
-    .card .pad{padding:18px}
+    .pad{padding:18px}
+
+    /* Paper header */
     .title{
       font-size:22px; line-height:1.2; margin:0 0 10px;
       letter-spacing:.2px;
@@ -120,8 +143,40 @@
     .score.good{color:var(--good)}
     .score.warn{color:var(--warn)}
     .score.bad{color:var(--bad)}
+    .divider{height:1px; background:rgba(35,49,67,.9); margin:14px 0}
+
+    /* Tabs */
+    .tabs{
+      display:flex; gap:8px; flex-wrap:wrap;
+      border:1px solid var(--border);
+      background: rgba(17,24,35,.55);
+      padding:8px;
+      border-radius: 999px;
+      width:fit-content;
+    }
+    .tab{
+      border:1px solid transparent;
+      background: transparent;
+      color: var(--muted);
+      padding:8px 12px;
+      border-radius:999px;
+      cursor:pointer;
+      font-weight:650;
+      font-size:13px;
+    }
+    .tab[aria-selected="true"]{
+      background: rgba(125,211,252,.12);
+      color: var(--text);
+      border-color: rgba(125,211,252,.28);
+    }
+    .tab:focus{
+      outline:2px solid rgba(125,211,252,.35);
+      outline-offset:2px;
+    }
+
+    /* Sections */
     .section h2{
-      font-size:14px; letter-spacing:.15em; text-transform:uppercase;
+      font-size:13px; letter-spacing:.15em; text-transform:uppercase;
       color:var(--muted);
       margin:0 0 10px;
     }
@@ -136,9 +191,7 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       margin-top:12px;
     }
-    @media (max-width: 650px){
-      .kpi{grid-template-columns: 1fr}
-    }
+    @media (max-width: 650px){ .kpi{grid-template-columns: 1fr} }
     .kpi .box{
       border:1px solid var(--border);
       background: rgba(17,24,35,.65);
@@ -146,22 +199,13 @@
       padding:12px;
     }
     .kpi .label{color:var(--muted); font-size:12px}
-    .kpi .value{font-size:16px; font-weight:700; margin-top:4px}
-    .list{
-      margin:0; padding-left:18px;
-      color:var(--text);
-    }
+    .kpi .value{font-size:16px; font-weight:800; margin-top:4px}
+    .list{margin:0; padding-left:18px}
     .list li{margin:6px 0}
-    .two-col{
-      display:grid; grid-template-columns: 1fr 1fr; gap:14px;
-    }
-    @media (max-width: 650px){.two-col{grid-template-columns: 1fr}}
-    .tagrow{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px}
-    .divider{height:1px; background:rgba(35,49,67,.9); margin:14px 0}
     .small{font-size:13px; color:var(--muted)}
-    .paperlist{
-      display:grid; gap:12px;
-    }
+
+    /* Sidebar */
+    .paperlist{display:grid; gap:12px}
     .paperitem{
       border:1px solid var(--border);
       background: rgba(17,24,35,.65);
@@ -170,7 +214,7 @@
     }
     .paperitem h3{margin:0 0 6px; font-size:14px}
     .paperitem p{margin:0; color:var(--muted); font-size:13px}
-    footer{padding:32px 0; color:var(--muted); font-size:13px}
+    footer{padding:26px 0; color:var(--muted); font-size:13px}
     .kbd{
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
       border:1px solid var(--border);
@@ -180,6 +224,16 @@
       font-size:12px;
       color:var(--muted);
     }
+
+    /* Accessibility helpers */
+    .sr-only{
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+      overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+
+    /* Hide/Show panels */
+    [data-panel]{display:none}
+    [data-panel].active{display:block}
   </style>
 </head>
 
@@ -188,13 +242,16 @@
     <div class="topbar">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
-        <div>PaperLite</div>
+        <div>
+          minutemed.ai
+          <small>Paper → practice, in minutes</small>
+        </div>
       </div>
 
-      <div class="search" role="search">
-        <span class="small">🔎</span>
-        <input type="search" placeholder="Search papers, topics, authors… (static demo)" />
-        <span class="chip">Try: “mavacamten”</span>
+      <div class="search" role="search" aria-label="Search papers (static demo)">
+        <span class="small" aria-hidden="true">🔎</span>
+        <input type="search" placeholder="Search papers, conditions, drugs… (static demo)" />
+        <span class="chip">Try: “HCM”</span>
       </div>
 
       <button class="btn" type="button">Submit a Paper</button>
@@ -203,23 +260,24 @@
 
   <main class="container">
     <div class="grid">
-      <!-- MAIN CONTENT -->
-      <section>
-        <!-- Paper Header -->
+      <!-- MAIN -->
+      <section aria-label="Paper summary">
+        <!-- Paper header -->
         <article class="card">
           <div class="pad">
-            <h1 class="title">Mavacamten reduces left ventricular outflow tract obstruction in hypertrophic cardiomyopathy</h1>
+            <h1 class="title">Mavacamten in obstructive hypertrophic cardiomyopathy: improving symptoms by reducing LVOT obstruction</h1>
 
             <div class="meta">
-              <span>🧾 Journal: <strong>NEJM</strong></span>
-              <span>📅 Year: <strong>2020</strong></span>
-              <span>👥 Sample: <strong>n = 251</strong></span>
-              <span>🧪 Design: <strong>Randomized, placebo-controlled</strong></span>
+              <span>🧾 <strong>Journal:</strong> NEJM</span>
+              <span>📅 <strong>Year:</strong> 2020</span>
+              <span>🧪 <strong>Design:</strong> RCT</span>
+              <span>👥 <strong>Sample:</strong> n = 251</span>
+              <span>🎯 <strong>Population:</strong> Symptomatic obstructive HCM</span>
             </div>
 
             <div class="divider"></div>
 
-            <div class="tagrow">
+            <div style="display:flex; gap:10px; flex-wrap:wrap;">
               <span class="pill">Cardiology</span>
               <span class="pill">HCM</span>
               <span class="pill">Myosin inhibitor</span>
@@ -230,180 +288,217 @@
           </div>
         </article>
 
-        <!-- TL;DR -->
+        <!-- Level Tabs -->
         <article class="card section" style="margin-top:18px;">
           <div class="pad">
-            <h2>TL;DR (30 seconds)</h2>
-            <div class="callout">
-              <p style="margin:0">
-                This trial tested whether a cardiac myosin inhibitor (mavacamten) improves symptoms and reduces obstruction in
-                obstructive hypertrophic cardiomyopathy. Patients on mavacamten had better functional outcomes and lower
-                LVOT gradients compared with placebo.
-              </p>
+            <h2>Choose your level</h2>
 
-              <div class="kpi">
-                <div class="box">
-                  <div class="label">Primary endpoint</div>
-                  <div class="value">Met more often</div>
-                </div>
-                <div class="box">
-                  <div class="label">Key mechanism</div>
-                  <div class="value">↓ Actin–myosin cross-bridging</div>
-                </div>
-                <div class="box">
-                  <div class="label">Clinical meaning</div>
-                  <div class="value">Less obstruction, better exercise tolerance</div>
-                </div>
-              </div>
+            <div class="tabs" role="tablist" aria-label="Knowledge level">
+              <button class="tab" role="tab" id="tab-beginner" aria-controls="panel-beginner" aria-selected="true" data-tab="beginner">
+                Beginner
+              </button>
+              <button class="tab" role="tab" id="tab-medium" aria-controls="panel-medium" aria-selected="false" data-tab="medium">
+                Medium
+              </button>
+              <button class="tab" role="tab" id="tab-pro" aria-controls="panel-pro" aria-selected="false" data-tab="pro">
+                Pro
+              </button>
             </div>
+
+            <p class="small" style="margin:12px 0 0;">
+              Switch the same paper summary between <strong>beginner</strong>, <strong>medium</strong>, and <strong>pro</strong> detail.
+              (Works without any framework — just a tiny script.)
+            </p>
           </div>
         </article>
 
-        <!-- Big Question + Hypothesis -->
+        <!-- Panels: Beginner / Medium / Pro -->
         <article class="card section" style="margin-top:18px;">
           <div class="pad">
-            <h2>The Big Question</h2>
-            <p style="margin:0 0 10px;">
-              Does inhibiting cardiac myosin reduce hypercontractility enough to improve symptoms and hemodynamics in obstructive HCM?
-            </p>
+            <h2>Summary</h2>
 
-            <div class="two-col">
-              <div>
-                <h2 style="margin-top:0;">Hypothesis</h2>
-                <ul class="list">
-                  <li>Myosin inhibition will decrease LVOT obstruction and improve functional capacity.</li>
-                  <li>Benefits will translate into symptom improvement (NYHA class, exercise capacity).</li>
-                </ul>
+            <!-- BEGINNER PANEL -->
+            <div id="panel-beginner" class="active" role="tabpanel" aria-labelledby="tab-beginner" data-panel="beginner">
+              <div class="callout">
+                <p style="margin:0;">
+                  <strong>In one sentence:</strong> This study tested a medicine that “turns down” heart squeezing in a specific
+                  heart condition (obstructive HCM) and found it helped many patients breathe and exercise better.
+                </p>
+
+                <div class="kpi">
+                  <div class="box">
+                    <div class="label">What problem?</div>
+                    <div class="value">Blocked blood flow out of the heart</div>
+                  </div>
+                  <div class="box">
+                    <div class="label">What did the drug do?</div>
+                    <div class="value">Reduced the blockage</div>
+                  </div>
+                  <div class="box">
+                    <div class="label">Why it matters</div>
+                    <div class="value">Better symptoms + activity</div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <h2 style="margin-top:0;">Why it matters</h2>
-                <ul class="list">
-                  <li>HCM symptoms often stem from obstruction + diastolic dysfunction.</li>
-                  <li>Direct sarcomere-targeting therapy is a new treatment strategy.</li>
-                </ul>
-              </div>
+
+              <div class="divider"></div>
+
+              <h2>The basics</h2>
+              <ul class="list">
+                <li><strong>Who:</strong> People with obstructive hypertrophic cardiomyopathy (HCM) who had symptoms.</li>
+                <li><strong>What:</strong> Mavacamten vs placebo.</li>
+                <li><strong>Main idea:</strong> If the heart squeezes too strongly, it can create a “dynamic blockage.” Reducing squeeze can help.</li>
+                <li><strong>Bottom line:</strong> More people improved on the drug than on placebo.</li>
+              </ul>
             </div>
+
+            <!-- MEDIUM PANEL -->
+            <div id="panel-medium" role="tabpanel" aria-labelledby="tab-medium" data-panel="medium">
+              <div class="callout">
+                <p style="margin:0;">
+                  <strong>TL;DR:</strong> In a randomized trial of symptomatic obstructive HCM, mavacamten (a cardiac myosin inhibitor)
+                  improved functional outcomes and reduced LVOT gradients versus placebo, consistent with reduced sarcomere hypercontractility.
+                </p>
+
+                <div class="kpi">
+                  <div class="box">
+                    <div class="label">Design</div>
+                    <div class="value">Randomized, placebo-controlled</div>
+                  </div>
+                  <div class="box">
+                    <div class="label">Mechanism</div>
+                    <div class="value">↓ myosin-actin cross-bridges</div>
+                  </div>
+                  <div class="box">
+                    <div class="label">Signal</div>
+                    <div class="value">↓ LVOT gradient + ↑ function</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <h2>Key details</h2>
+              <ul class="list">
+                <li><strong>Clinical question:</strong> Can targeted sarcomere inhibition relieve dynamic obstruction and improve symptoms?</li>
+                <li><strong>Primary endpoint:</strong> Composite functional improvement (e.g., exercise capacity + NYHA class).</li>
+                <li><strong>Major finding:</strong> Treatment arm met endpoints more often; hemodynamics improved.</li>
+                <li><strong>Safety lens:</strong> Monitor EF / systolic function because too much inhibition can reduce contractility.</li>
+              </ul>
+
+              <div class="divider"></div>
+
+              <h2>What to say in journal club</h2>
+              <ul class="list">
+                <li>Is the improvement clinically meaningful to patients (symptoms/quality of life), not just numbers?</li>
+                <li>How durable is the benefit beyond trial follow-up?</li>
+                <li>Who should *not* get it (baseline EF, comorbidities, drug interactions)?</li>
+              </ul>
+            </div>
+
+            <!-- PRO PANEL -->
+            <div id="panel-pro" role="tabpanel" aria-labelledby="tab-pro" data-panel="pro">
+              <div class="callout">
+                <p style="margin:0;">
+                  <strong>Summary:</strong> This RCT in symptomatic obstructive HCM supports sarcomere-level pharmacologic “de-powering”
+                  via cardiac myosin inhibition. By shifting myosin away from force-generating states and reducing net cross-bridge cycling,
+                  mavacamten lowers LVOT gradients and improves functional endpoints relative to placebo; safety hinges on titration and EF surveillance.
+                </p>
+
+                <div class="kpi">
+                  <div class="box">
+                    <div class="label">Pathophysiology target</div>
+                    <div class="value">Hypercontractility → SAM/LVOT obstruction</div>
+                  </div>
+                  <div class="box">
+                    <div class="label">Mechanistic readouts</div>
+                    <div class="value">LVOT gradient, echo parameters</div>
+                  </div>
+                  <div class="box">
+                    <div class="label">Clinical readouts</div>
+                    <div class="value">pVO₂ / NYHA / PROs</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="divider"></div>
+
+              <h2>Mechanism-first framing</h2>
+              <ul class="list">
+                <li><strong>Drug class:</strong> Cardiac myosin inhibitor; reduces actin–myosin interaction probability and downstream force production.</li>
+                <li><strong>Hemodynamic hypothesis:</strong> Reduced contractility → less SAM-mediated dynamic obstruction → improved forward flow and filling.</li>
+                <li><strong>Biology-to-clinic linkage:</strong> Sarcomere kinetics → LVOT gradient → exercise tolerance and symptom burden.</li>
+              </ul>
+
+              <div class="divider"></div>
+
+              <h2>Critical appraisal checklist</h2>
+              <ul class="list">
+                <li><strong>Endpoint integrity:</strong> Composite endpoints (how weighted? clinically interpretable?)</li>
+                <li><strong>Titration strategy:</strong> Dose adjustments anchored to echo/physiology (reproducibility in practice?)</li>
+                <li><strong>Bias & generalizability:</strong> Enrichment for obstructive phenotype; external validity to broader HCM spectrum?</li>
+                <li><strong>Safety signal:</strong> EF reduction risk; monitoring burden; discontinuation criteria.</li>
+              </ul>
+
+              <div class="divider"></div>
+
+              <h2>Next studies you’d want</h2>
+              <ul class="list">
+                <li>Long-term outcomes: hospitalization, arrhythmia burden, remodeling markers.</li>
+                <li>Head-to-head vs standard therapies (beta-blocker, disopyramide) in defined subgroups.</li>
+                <li>Real-world implementation: monitoring cadence, adherence, drug–drug interactions.</li>
+              </ul>
+            </div>
+
           </div>
         </article>
 
-        <!-- Methods -->
-        <article class="card section" style="margin-top:18px;">
-          <div class="pad">
-            <h2>How they tested it (Methods)</h2>
-            <ul class="list">
-              <li><strong>Population:</strong> Adults with symptomatic obstructive HCM</li>
-              <li><strong>Intervention:</strong> Mavacamten with dose titration (targeting physiology)</li>
-              <li><strong>Comparator:</strong> Placebo</li>
-              <li><strong>Outcomes:</strong> Exercise capacity + symptoms + LVOT gradient</li>
-              <li><strong>Timeframe:</strong> ~weeks to months (fill in per paper)</li>
-            </ul>
-            <p class="small" style="margin-top:10px;">
-              Tip: replace these bullets with the exact inclusion criteria + endpoints from the paper.
-            </p>
-          </div>
-        </article>
-
-        <!-- Results -->
-        <article class="card section" style="margin-top:18px;">
-          <div class="pad">
-            <h2>What they found (Results)</h2>
-            <ul class="list">
-              <li><strong>Primary outcome:</strong> Favored mavacamten vs placebo (directional improvement)</li>
-              <li><strong>Hemodynamics:</strong> Lower LVOT gradients</li>
-              <li><strong>Symptoms:</strong> Improved functional class and/or patient-reported outcomes</li>
-              <li><strong>Safety:</strong> Watch for transient systolic dysfunction risk (EF monitoring)</li>
-            </ul>
-
-            <div class="divider"></div>
-
-            <h2>So what?</h2>
-            <p style="margin:0">
-              Mechanistically, reducing myosin’s ability to form force-producing cross-bridges can “turn down” hypercontractility,
-              which may relieve dynamic obstruction and improve filling—translating into better exercise tolerance.
-            </p>
-          </div>
-        </article>
-
-        <!-- Limitations -->
-        <article class="card section" style="margin-top:18px;">
-          <div class="pad">
-            <h2>Limitations & caveats</h2>
-            <ul class="list">
-              <li><strong>Selection bias:</strong> Trial participants may not represent all real-world HCM patients.</li>
-              <li><strong>Duration:</strong> Short follow-up may miss long-term outcomes.</li>
-              <li><strong>Endpoints:</strong> Surrogate/functional endpoints ≠ mortality benefit.</li>
-              <li><strong>Safety monitoring:</strong> Requires echocardiography/EF checks.</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- Discussion Questions -->
-        <article class="card section" style="margin-top:18px;">
-          <div class="pad">
-            <h2>Discussion questions</h2>
-            <ul class="list">
-              <li>If LVOT gradient improves but symptoms don’t, what other mechanisms might dominate?</li>
-              <li>How might chronic myosin inhibition remodel the ventricle over time?</li>
-              <li>Which subgroups (genotype, baseline EF, obstruction severity) benefit most?</li>
-            </ul>
-          </div>
-        </article>
-
-        <!-- Citations -->
+        <!-- Shared sections (same across levels) -->
         <article class="card section" style="margin-top:18px;">
           <div class="pad">
             <h2>Citations</h2>
             <ol class="list">
-              <li><a href="#">Primary paper link (DOI / PubMed)</a> — Authors. Journal (Year).</li>
-              <li><a href="#">Review paper</a> — Helpful background on mechanism.</li>
+              <li><a href="#" aria-label="Primary paper link">Primary paper (DOI / PubMed)</a> — Authors. Journal (Year).</li>
+              <li><a href="#" aria-label="Review paper link">Review: cardiac myosin inhibition in HCM</a> — Authors. Journal (Year).</li>
             </ol>
             <p class="small" style="margin-top:10px;">
-              Static site idea: keep citations as simple link lists; don’t embed PDFs.
+              Static tip: keep citations as links + short metadata; avoid embedding PDFs.
             </p>
           </div>
         </article>
       </section>
 
       <!-- SIDEBAR -->
-      <aside>
+      <aside aria-label="Sidebar">
         <div class="card">
           <div class="pad section">
             <h2>Quick skim</h2>
             <ul class="list">
               <li><strong>Field:</strong> Cardiology</li>
-              <li><strong>Level:</strong> Premed-friendly</li>
-              <li><strong>Read time:</strong> ~4 min</li>
-              <li><strong>Best for:</strong> Journal club, exams, quick refresh</li>
+              <li><strong>Audience:</strong> Premed → resident</li>
+              <li><strong>Read time:</strong> ~2–6 min (by level)</li>
+              <li><strong>Use:</strong> Journal club, rotations, exams</li>
             </ul>
 
             <div class="divider"></div>
 
             <h2>Key terms</h2>
-            <div class="tagrow">
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
               <span class="pill">LVOT</span>
-              <span class="pill">Sarcomere</span>
-              <span class="pill">Cross-bridge</span>
+              <span class="pill">SAM</span>
               <span class="pill">NYHA</span>
-              <span class="pill">VO₂</span>
+              <span class="pill">pVO₂</span>
+              <span class="pill">Echo</span>
             </div>
 
             <div class="divider"></div>
 
-            <h2>Controls</h2>
-            <p class="small" style="margin:0 0 10px;">
-              (Static demo) Add these later with JS:
-            </p>
-            <div class="tagrow">
-              <span class="pill">Difficulty: Intro</span>
-              <span class="pill">Topic: HCM</span>
-              <span class="pill">Type: RCT</span>
-            </div>
-
-            <div class="divider"></div>
-
-            <h2>Keyboard tips</h2>
+            <h2>Shortcuts</h2>
             <p class="small" style="margin:0;">
-              Press <span class="kbd">/</span> to focus search (when you add JS).
+              Press <span class="kbd">1</span> Beginner,
+              <span class="kbd">2</span> Medium,
+              <span class="kbd">3</span> Pro
+              (enabled by the script below).
             </p>
           </div>
         </div>
@@ -413,16 +508,16 @@
             <h2>More summaries</h2>
             <div class="paperlist">
               <div class="paperitem">
-                <h3>Cardiac myosin inhibitors — mechanism overview</h3>
-                <p>Simple mechanism-first explainer with diagrams (add later).</p>
+                <h3>Myosin inhibitors: mechanism in 5 minutes</h3>
+                <p>Why “turning down” cross-bridges can improve obstruction.</p>
               </div>
               <div class="paperitem">
-                <h3>HCM: obstruction vs diastolic dysfunction</h3>
-                <p>What actually drives symptoms and how to measure it.</p>
+                <h3>HCM workup essentials</h3>
+                <p>Echo findings, gradients, symptoms, risk stratification.</p>
               </div>
               <div class="paperitem">
-                <h3>Safety monitoring: EF changes & dose titration</h3>
-                <p>How trials handled risk and what it means clinically.</p>
+                <h3>Safety monitoring playbook</h3>
+                <p>EF checks, titration logic, common pitfalls.</p>
               </div>
             </div>
           </div>
@@ -433,13 +528,37 @@
     <footer class="container" style="padding-left:0; padding-right:0;">
       <div class="divider"></div>
       <p style="margin:0;">
-        © <span id="year"></span> PaperLite — Static layout template. Built for clean, premed-friendly paper summaries.
+        © <span id="year"></span> minutemed.ai — Static layout template. Beginner / Medium / Pro summaries.
       </p>
     </footer>
   </main>
 
   <script>
-    // Optional tiny script for the footer year (safe for static hosting)
+    // Tabs: switch content panels + update aria-selected
+    const tabs = Array.from(document.querySelectorAll("[data-tab]"));
+    const panels = Array.from(document.querySelectorAll("[data-panel]"));
+
+    function activate(level){
+      tabs.forEach(t => {
+        const selected = t.dataset.tab === level;
+        t.setAttribute("aria-selected", selected ? "true" : "false");
+      });
+      panels.forEach(p => {
+        p.classList.toggle("active", p.dataset.panel === level);
+      });
+    }
+
+    tabs.forEach(t => t.addEventListener("click", () => activate(t.dataset.tab)));
+
+    // Keyboard shortcuts: 1/2/3
+    document.addEventListener("keydown", (e) => {
+      if (e.target && (e.target.tagName === "INPUT" || e.target.tagName === "TEXTAREA")) return;
+      if (e.key === "1") activate("beginner");
+      if (e.key === "2") activate("medium");
+      if (e.key === "3") activate("pro");
+    });
+
+    // Footer year
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
