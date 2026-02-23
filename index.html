@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>MedLit — Medical Literature, Your Level</title>
+<title>MinuteMed.ai — Medical Literature, Your Level</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
@@ -22,676 +22,916 @@
     --intermediate: #2e6ec8;
     --pro: #7b3fc4;
     --radius: 16px;
-    --radius-sm: 8px;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 16px; line-height: 1.6; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    font-size: 16px;
-    line-height: 1.6;
-  }
-
-  /* ── HEADER ── */
-  header {
-    background: var(--navy);
-    padding: 0 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 64px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 2px 24px rgba(15,33,64,0.18);
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-  }
-
-  .logo-icon {
-    width: 34px;
-    height: 34px;
-    background: var(--amber);
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
+  /* HEADER */
+  header { background: var(--navy); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 24px rgba(15,33,64,0.18); }
+  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; }
+  .logo-icon { width: 34px; height: 34px; background: var(--amber); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
   .logo-icon svg { width: 18px; height: 18px; fill: white; }
-
-  .logo-name {
-    font-family: 'Lora', serif;
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: white;
-    letter-spacing: -0.01em;
-  }
-
+  .logo-name { font-family: 'Lora', serif; font-size: 1.25rem; font-weight: 600; color: white; letter-spacing: -0.01em; }
   .logo-name span { color: var(--amber); }
-
   nav { display: flex; gap: 28px; align-items: center; }
-
-  nav a {
-    color: rgba(255,255,255,0.65);
-    text-decoration: none;
-    font-size: 0.875rem;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-
-  nav a:hover { color: white; }
-
-  .nav-cta {
-    background: var(--amber);
-    color: white !important;
-    padding: 8px 18px;
-    border-radius: 100px;
-    font-weight: 600 !important;
-    font-size: 0.8125rem !important;
-    transition: background 0.2s, transform 0.15s !important;
-  }
-
+  nav a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; cursor: pointer; }
+  nav a:hover, nav a.active { color: white; }
+  .nav-cta { background: var(--amber); color: white !important; padding: 8px 18px; border-radius: 100px; font-weight: 600 !important; font-size: 0.8125rem !important; transition: background 0.2s, transform 0.15s !important; }
   .nav-cta:hover { background: #b5722f !important; transform: translateY(-1px); }
 
-  /* ── HERO ── */
-  .hero {
-    background: var(--navy);
-    padding: 72px 40px 80px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
+  /* PAGES */
+  .page { display: none; }
+  .page.active { display: block; }
 
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,129,58,0.15) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: rgba(200,129,58,0.18);
-    border: 1px solid rgba(200,129,58,0.35);
-    color: var(--amber);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 5px 14px;
-    border-radius: 100px;
-    margin-bottom: 24px;
-  }
-
-  .hero h1 {
-    font-family: 'Lora', serif;
-    font-size: clamp(2rem, 5vw, 3.25rem);
-    font-weight: 600;
-    color: white;
-    line-height: 1.18;
-    max-width: 640px;
-    margin: 0 auto 18px;
-    letter-spacing: -0.02em;
-  }
-
-  .hero h1 em {
-    font-style: italic;
-    color: var(--amber);
-  }
-
-  .hero-sub {
-    color: rgba(255,255,255,0.58);
-    font-size: 1.0625rem;
-    max-width: 480px;
-    margin: 0 auto 40px;
-    font-weight: 300;
-  }
-
-  /* Search bar */
-  .search-wrap {
-    max-width: 580px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-  }
-
-  .search-wrap input {
-    width: 100%;
-    background: rgba(255,255,255,0.08);
-    border: 1.5px solid rgba(255,255,255,0.15);
-    color: white;
-    padding: 16px 58px 16px 22px;
-    border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.9375rem;
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-    backdrop-filter: blur(8px);
-  }
-
+  /* HERO */
+  .hero { background: var(--navy); padding: 72px 40px 80px; text-align: center; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,129,58,0.15) 0%, transparent 70%); pointer-events: none; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(200,129,58,0.18); border: 1px solid rgba(200,129,58,0.35); color: var(--amber); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
+  .hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 600; color: white; line-height: 1.18; max-width: 640px; margin: 0 auto 18px; letter-spacing: -0.02em; }
+  .hero h1 em { font-style: italic; color: var(--amber); }
+  .hero-sub { color: rgba(255,255,255,0.58); font-size: 1.0625rem; max-width: 480px; margin: 0 auto 40px; font-weight: 300; }
+  .search-wrap { max-width: 580px; margin: 0 auto; position: relative; z-index: 2; }
+  .search-wrap input { width: 100%; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.15); color: white; padding: 16px 58px 16px 22px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.9375rem; outline: none; transition: border-color 0.2s, background 0.2s; backdrop-filter: blur(8px); }
   .search-wrap input::placeholder { color: rgba(255,255,255,0.35); }
-  .search-wrap input:focus {
-    border-color: var(--amber);
-    background: rgba(255,255,255,0.12);
-  }
-
-  .search-btn {
-    position: absolute;
-    right: 6px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--amber);
-    border: none;
-    border-radius: 100px;
-    width: 44px;
-    height: 44px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;
-  }
-
+  .search-wrap input:focus { border-color: var(--amber); background: rgba(255,255,255,0.12); }
+  .search-btn { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: var(--amber); border: none; border-radius: 100px; width: 44px; height: 44px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
   .search-btn:hover { background: #b5722f; }
   .search-btn svg { width: 18px; height: 18px; fill: white; }
 
-  /* ── MAIN ── */
-  main {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 52px 24px 80px;
-  }
+  /* MAIN */
+  main { max-width: 1100px; margin: 0 auto; padding: 52px 24px 80px; }
 
-  /* ── GLOBAL LEVEL SWITCHER ── */
-  .level-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 36px;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .section-title {
-    font-family: 'Lora', serif;
-    font-size: 1.5rem;
-    font-weight: 600;
-    letter-spacing: -0.02em;
-  }
-
-  .level-switcher {
-    display: flex;
-    background: var(--pill-bg);
-    border-radius: 100px;
-    padding: 4px;
-    gap: 2px;
-  }
-
-  .level-btn {
-    padding: 7px 18px;
-    border: none;
-    background: transparent;
-    border-radius: 100px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 0.8125rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-    color: var(--muted);
-  }
-
-  .level-btn.active {
-    background: white;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    color: var(--text);
-    font-weight: 600;
-  }
-
+  /* LEVEL BAR */
+  .level-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
+  .section-title { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
+  .level-switcher { display: flex; background: var(--pill-bg); border-radius: 100px; padding: 4px; gap: 2px; }
+  .level-btn { padding: 7px 18px; border: none; background: transparent; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: var(--muted); }
+  .level-btn.active { background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); color: var(--text); font-weight: 600; }
   .level-btn.active.beginner { color: var(--beginner); }
   .level-btn.active.intermediate { color: var(--intermediate); }
   .level-btn.active.pro { color: var(--pro); }
 
-  /* ── ARTICLE CARDS ── */
-  .articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+  /* FILTERS */
+  .filter-row { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; align-items: center; }
+  .filter-chip { padding: 6px 16px; border-radius: 100px; border: 1.5px solid var(--border); background: white; font-size: 0.8rem; font-weight: 500; cursor: pointer; color: var(--muted); transition: all 0.18s; font-family: 'DM Sans', sans-serif; }
+  .filter-chip:hover { border-color: var(--navy-mid); color: var(--navy-mid); }
+  .filter-chip.active { background: var(--navy); border-color: var(--navy); color: white; }
+  .filter-label { font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-right: 4px; }
 
-  .card {
-    background: var(--surface);
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    overflow: hidden;
-    transition: transform 0.2s, box-shadow 0.2s;
-    animation: fadeUp 0.5s ease both;
-  }
-
-  .card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(15,33,64,0.1);
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  .card:nth-child(2) { animation-delay: 0.08s; }
-  .card:nth-child(3) { animation-delay: 0.16s; }
-  .card:nth-child(4) { animation-delay: 0.24s; }
-  .card:nth-child(5) { animation-delay: 0.32s; }
-  .card:nth-child(6) { animation-delay: 0.40s; }
-
-  .card-header {
-    padding: 22px 22px 0;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
-  }
-
-  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-
-  .tag {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 100px;
-    background: var(--amber-light);
-    color: var(--amber);
-  }
-
-  .tag.blue { background: #ddeeff; color: #2e6ec8; }
-  .tag.green { background: #d4f0e4; color: #2a8f5c; }
-  .tag.purple { background: #ecddf7; color: #7b3fc4; }
-
-  .card-date {
-    font-size: 0.75rem;
-    color: var(--muted);
-    white-space: nowrap;
-    padding-top: 2px;
-  }
-
-  .card-body { padding: 14px 22px 22px; }
-
-  .card-journal {
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-weight: 500;
-    letter-spacing: 0.03em;
-    margin-bottom: 6px;
-  }
-
-  .card-title {
-    font-family: 'Lora', serif;
-    font-size: 1.0625rem;
-    font-weight: 600;
-    line-height: 1.38;
-    margin-bottom: 14px;
-    color: var(--navy);
-  }
-
-  /* Level pill on card */
-  .card-level-tabs {
-    display: flex;
-    gap: 4px;
-    margin-bottom: 14px;
-  }
-
-  .card-level-tab {
-    font-size: 0.7rem;
-    font-weight: 600;
-    padding: 4px 12px;
-    border-radius: 100px;
-    cursor: pointer;
-    border: 1.5px solid var(--border);
-    color: var(--muted);
-    background: transparent;
-    transition: all 0.18s;
-    font-family: 'DM Sans', sans-serif;
-  }
-
-  .card-level-tab.active[data-level="beginner"] {
-    background: #d4f0e4; border-color: #3a9e6e; color: #2a8f5c;
-  }
-  .card-level-tab.active[data-level="intermediate"] {
-    background: #ddeeff; border-color: #2e6ec8; color: #2e6ec8;
-  }
-  .card-level-tab.active[data-level="pro"] {
-    background: #ecddf7; border-color: #7b3fc4; color: #7b3fc4;
-  }
-
-  .card-summary {
-    font-size: 0.9rem;
-    color: #4a5568;
-    line-height: 1.65;
-    min-height: 80px;
-    transition: opacity 0.25s;
-  }
-
-  .card-footer {
-    padding: 14px 22px 18px;
-    border-top: 1px solid var(--border);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .card-authors {
-    font-size: 0.75rem;
-    color: var(--muted);
-  }
-
-  .read-more {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--navy-mid);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    transition: gap 0.2s, color 0.2s;
-  }
-
-  .read-more:hover { color: var(--amber); gap: 8px; }
-  .read-more svg { width: 14px; height: 14px; }
-
-  /* ── LEVEL LEGEND ── */
-  .legend {
-    display: flex;
-    gap: 24px;
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 20px 28px;
-    margin-bottom: 36px;
-    flex-wrap: wrap;
-  }
-
-  .legend-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    flex: 1;
-    min-width: 180px;
-  }
-
-  .legend-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-top: 5px;
-    flex-shrink: 0;
-  }
-
+  /* LEGEND */
+  .legend { display: flex; gap: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 28px; margin-bottom: 36px; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: flex-start; gap: 12px; flex: 1; min-width: 180px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
   .legend-text strong { font-size: 0.875rem; font-weight: 600; }
   .legend-text p { font-size: 0.8rem; color: var(--muted); margin-top: 1px; }
 
-  /* ── AI BADGE ── */
-  .ai-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: linear-gradient(135deg, #1a3560, #0f2140);
-    color: rgba(255,255,255,0.75);
-    font-size: 0.7rem;
-    font-weight: 500;
-    padding: 3px 10px;
-    border-radius: 100px;
-  }
+  /* CARDS */
+  .articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+  .card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; animation: fadeUp 0.45s ease both; cursor: pointer; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(15,33,64,0.11); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  .card-header { padding: 22px 22px 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+  .tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; background: var(--amber-light); color: var(--amber); }
+  .tag.blue { background: #ddeeff; color: #2e6ec8; }
+  .tag.green { background: #d4f0e4; color: #2a8f5c; }
+  .tag.purple { background: #ecddf7; color: #7b3fc4; }
+  .tag.red { background: #fde8e8; color: #c0392b; }
+  .tag.teal { background: #d0f0f0; color: #1a8080; }
+  .card-date { font-size: 0.75rem; color: var(--muted); white-space: nowrap; padding-top: 2px; }
+  .card-body { padding: 14px 22px 22px; }
+  .card-journal { font-size: 0.72rem; color: var(--muted); font-weight: 500; letter-spacing: 0.03em; margin-bottom: 6px; }
+  .card-title { font-family: 'Lora', serif; font-size: 1.0625rem; font-weight: 600; line-height: 1.38; margin-bottom: 14px; color: var(--navy); }
+  .card-level-tabs { display: flex; gap: 4px; margin-bottom: 14px; }
+  .card-level-tab { font-size: 0.7rem; font-weight: 600; padding: 4px 12px; border-radius: 100px; cursor: pointer; border: 1.5px solid var(--border); color: var(--muted); background: transparent; transition: all 0.18s; font-family: 'DM Sans', sans-serif; }
+  .card-level-tab.active[data-level="beginner"] { background: #d4f0e4; border-color: #3a9e6e; color: #2a8f5c; }
+  .card-level-tab.active[data-level="intermediate"] { background: #ddeeff; border-color: #2e6ec8; color: #2e6ec8; }
+  .card-level-tab.active[data-level="pro"] { background: #ecddf7; border-color: #7b3fc4; color: #7b3fc4; }
+  .card-summary { font-size: 0.875rem; color: #4a5568; line-height: 1.65; min-height: 72px; transition: opacity 0.25s; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+  .card-footer { padding: 14px 22px 18px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .card-authors { font-size: 0.75rem; color: var(--muted); }
+  .read-more { font-size: 0.8rem; font-weight: 600; color: var(--navy-mid); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: gap 0.2s, color 0.2s; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .read-more:hover { color: var(--amber); gap: 8px; }
+  .read-more svg { width: 14px; height: 14px; }
+  .ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #1a3560, #0f2140); color: rgba(255,255,255,0.75); font-size: 0.7rem; font-weight: 500; padding: 3px 10px; border-radius: 100px; }
+  .ai-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  .no-results { text-align: center; padding: 60px 20px; color: var(--muted); grid-column: 1/-1; }
+  .no-results h3 { font-family: 'Lora', serif; font-size: 1.25rem; margin-bottom: 8px; color: var(--text); }
 
-  .ai-badge::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--amber);
-    animation: pulse 2s infinite;
-  }
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.6); z-index: 500; display: none; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(4px); }
+  .modal-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .modal { background: white; border-radius: 20px; max-width: 760px; width: 100%; max-height: 88vh; overflow-y: auto; position: relative; animation: slideUp 0.28s ease; box-shadow: 0 32px 80px rgba(10,20,40,0.28); }
+  @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+  .modal-close { position: sticky; top: 16px; float: right; margin: 16px 16px 0 0; background: var(--pill-bg); border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text); z-index: 10; transition: background 0.2s; }
+  .modal-close:hover { background: var(--border); }
+  .modal-close svg { width: 16px; height: 16px; }
+  .modal-inner { padding: 36px 40px 40px; }
+  .modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+  .modal-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .modal-meta span { display: flex; align-items: center; gap: 4px; }
+  .modal-title { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 600; line-height: 1.28; color: var(--navy); margin-bottom: 28px; }
+  .modal-level-tabs { display: flex; background: var(--pill-bg); border-radius: 100px; padding: 4px; gap: 2px; margin-bottom: 24px; width: fit-content; }
+  .modal-level-btn { padding: 8px 22px; border: none; background: transparent; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; color: var(--muted); transition: all 0.2s; }
+  .modal-level-btn.active { background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-weight: 600; }
+  .modal-level-btn.active.beginner { color: var(--beginner); }
+  .modal-level-btn.active.intermediate { color: var(--intermediate); }
+  .modal-level-btn.active.pro { color: var(--pro); }
+  .modal-section { margin-bottom: 24px; }
+  .modal-section h3 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
+  .modal-section p { font-size: 0.9375rem; color: var(--text); line-height: 1.72; }
+  .modal-section ul { list-style: none; padding: 0; }
+  .modal-section ul li { font-size: 0.9375rem; color: var(--text); line-height: 1.65; padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; }
+  .modal-section ul li:last-child { border-bottom: none; }
+  .modal-section ul li::before { content: '→'; color: var(--amber); font-weight: 600; flex-shrink: 0; }
+  .modal-divider { height: 1px; background: var(--border); margin: 24px 0; }
+  .modal-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .modal-footer .ai-note { font-size: 0.75rem; color: var(--muted); max-width: 380px; }
+  .modal-footer a { background: var(--navy); color: white; padding: 10px 22px; border-radius: 100px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+  .modal-footer a:hover { background: var(--amber); }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
-  }
+  /* SPECIALTIES PAGE */
+  .spec-hero { background: var(--navy); padding: 60px 40px; text-align: center; }
+  .spec-hero h1 { font-family: 'Lora', serif; font-size: 2.5rem; font-weight: 600; color: white; margin-bottom: 12px; }
+  .spec-hero p { color: rgba(255,255,255,0.6); font-size: 1rem; }
+  .spec-grid { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+  .spec-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; cursor: pointer; transition: all 0.2s; text-align: center; }
+  .spec-card:hover { border-color: var(--amber); box-shadow: 0 8px 30px rgba(15,33,64,0.09); transform: translateY(-3px); }
+  .spec-icon { font-size: 2.2rem; margin-bottom: 12px; }
+  .spec-card h3 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .spec-card p { font-size: 0.78rem; color: var(--muted); }
+  .spec-count { display: inline-block; background: var(--amber-light); color: var(--amber); font-size: 0.7rem; font-weight: 700; padding: 2px 9px; border-radius: 100px; margin-top: 10px; }
 
-  /* ── FOOTER ── */
-  footer {
-    background: var(--navy);
-    color: rgba(255,255,255,0.4);
-    text-align: center;
-    padding: 28px 24px;
-    font-size: 0.8125rem;
-  }
+  /* BROWSE PAGE */
+  .browse-header { background: var(--navy); padding: 60px 40px; }
+  .browse-header h1 { font-family: 'Lora', serif; font-size: 2.5rem; color: white; margin-bottom: 12px; }
+  .browse-header p { color: rgba(255,255,255,0.6); }
+  .browse-controls { max-width: 1100px; margin: 0 auto; padding: 32px 24px 0; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .browse-search { flex: 1; min-width: 260px; padding: 12px 20px; border-radius: 100px; border: 1.5px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; background: white; }
+  .browse-search:focus { border-color: var(--amber); }
+  .browse-select { padding: 11px 18px; border-radius: 100px; border: 1.5px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; background: white; color: var(--text); cursor: pointer; outline: none; }
+  .browse-main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 80px; }
 
+  /* ABOUT PAGE */
+  .about-hero { background: var(--navy); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
+  .about-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(200,129,58,0.12) 0%, transparent 70%); }
+  .about-hero h1 { font-family: 'Lora', serif; font-size: 2.8rem; color: white; margin-bottom: 16px; position: relative; }
+  .about-hero p { color: rgba(255,255,255,0.6); font-size: 1.0625rem; max-width: 520px; margin: 0 auto; position: relative; }
+  .about-content { max-width: 800px; margin: 0 auto; padding: 64px 24px 80px; }
+  .about-section { margin-bottom: 56px; }
+  .about-section h2 { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 600; color: var(--navy); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 2px solid var(--amber); display: inline-block; }
+  .about-section p { font-size: 1rem; line-height: 1.78; color: #3a4a5c; margin-bottom: 16px; }
+  .team-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 28px; }
+  .team-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 32px 28px; text-align: center; transition: box-shadow 0.2s; }
+  .team-card:hover { box-shadow: 0 8px 30px rgba(15,33,64,0.09); }
+  .team-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--navy), var(--navy-mid)); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-size: 1.75rem; color: white; font-weight: 600; border: 3px solid var(--amber); }
+  .team-card h3 { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .team-card .role { font-size: 0.8rem; font-weight: 600; color: var(--amber); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px; }
+  .team-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+  .about-mission { background: var(--navy); border-radius: var(--radius); padding: 40px; color: white; margin-bottom: 56px; position: relative; overflow: hidden; }
+  .about-mission::before { content: '"'; position: absolute; top: -20px; left: 20px; font-family: 'Lora', serif; font-size: 12rem; color: rgba(200,129,58,0.12); line-height: 1; pointer-events: none; }
+  .about-mission p { font-family: 'Lora', serif; font-size: 1.25rem; font-style: italic; line-height: 1.65; color: rgba(255,255,255,0.9); position: relative; }
+  .about-mission cite { display: block; font-style: normal; font-size: 0.8rem; color: rgba(255,255,255,0.45); margin-top: 16px; font-family: 'DM Sans', sans-serif; }
+  .how-item { display: flex; gap: 20px; margin-bottom: 28px; align-items: flex-start; }
+  .how-num { width: 40px; height: 40px; border-radius: 50%; background: var(--amber); color: white; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; flex-shrink: 0; }
+  .how-text h4 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .how-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+
+  /* FOOTER */
+  footer { background: var(--navy); color: rgba(255,255,255,0.4); text-align: center; padding: 28px 24px; font-size: 0.8125rem; }
   footer strong { color: rgba(255,255,255,0.7); }
+  footer a { color: var(--amber); text-decoration: none; }
+
+  /* PAGINATION */
+  .pagination { display: flex; gap: 8px; justify-content: center; margin-top: 48px; align-items: center; }
+  .page-btn { padding: 8px 16px; border-radius: 8px; border: 1.5px solid var(--border); background: white; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; cursor: pointer; color: var(--text); transition: all 0.18s; }
+  .page-btn:hover { border-color: var(--navy); color: var(--navy); }
+  .page-btn.active { background: var(--navy); border-color: var(--navy); color: white; }
+  .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+
+  @media (max-width: 600px) {
+    header { padding: 0 16px; }
+    nav { gap: 12px; }
+    .hero, .spec-hero, .about-hero, .browse-header { padding-left: 20px; padding-right: 20px; }
+    .team-grid { grid-template-columns: 1fr; }
+    .modal-inner { padding: 24px 20px 28px; }
+  }
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
 <header>
-  <a class="logo" href="#">
+  <a class="logo" onclick="showPage('home')">
     <div class="logo-icon">
-      <svg viewBox="0 0 24 24"><path d="M12 2a1 1 0 011 1v2h2a1 1 0 110 2h-2v2a1 1 0 11-2 0V7H9a1 1 0 010-2h2V3a1 1 0 011-1zm-5 10a7 7 0 1114 0 7 7 0 01-14 0zm7-5a5 5 0 100 10A5 5 0 0014 7z"/></svg>
+      <svg viewBox="0 0 24 24"><path d="M12 2a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0V8H8a1 1 0 010-2h3V3a1 1 0 011-1zm-6 14a6 6 0 1112 0 6 6 0 01-12 0z"/></svg>
     </div>
-    <span class="logo-name">Med<span>Lit</span></span>
+    <span class="logo-name">Minute<span>Med</span>.ai</span>
   </a>
   <nav>
-    <a href="#">Browse</a>
-    <a href="#">Specialties</a>
-    <a href="#">About</a>
-    <a href="#" class="nav-cta">Sign up free</a>
+    <a onclick="showPage('browse')" id="nav-browse">Browse</a>
+    <a onclick="showPage('specialties')" id="nav-specialties">Specialties</a>
+    <a onclick="showPage('about')" id="nav-about">About</a>
+    <a class="nav-cta" onclick="showPage('home')">Home</a>
   </nav>
 </header>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-eyebrow">✦ AI-Powered Summaries</div>
-  <h1>Medical research,<br/><em>at your level.</em></h1>
-  <p class="hero-sub">Every paper summarized three ways — plain English to peer-level depth. Choose how deep you go.</p>
-  <div class="search-wrap">
-    <input type="text" placeholder="Search by topic, drug, condition, journal…" />
-    <button class="search-btn">
-      <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 105.293 14.707l4 4a1 1 0 001.414-1.414l-4-4A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/></svg>
+<!-- ═══════ HOME PAGE ═══════ -->
+<div id="page-home" class="page active">
+  <section class="hero">
+    <div class="hero-eyebrow">✦ AI-Powered Summaries</div>
+    <h1>Medical research,<br/><em>at your level.</em></h1>
+    <p class="hero-sub">Every paper summarized three ways — plain English to peer-level depth. Built by UM students, for everyone.</p>
+    <div class="search-wrap">
+      <input type="text" id="home-search" placeholder="Search by topic, drug, condition, journal…" oninput="handleHomeSearch(this.value)" />
+      <button class="search-btn"><svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 105.293 14.707l4 4a1 1 0 001.414-1.414l-4-4A8 8 0 0010 2zm0 2a6 6 0 110 12A6 6 0 0110 4z"/></svg></button>
+    </div>
+  </section>
+  <main>
+    <div class="legend">
+      <div class="legend-item"><div class="legend-dot" style="background:var(--beginner)"></div><div class="legend-text"><strong>Beginner</strong><p>Plain language for curious non-specialists</p></div></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--intermediate)"></div><div class="legend-text"><strong>Intermediate</strong><p>Clinical context for students & generalists</p></div></div>
+      <div class="legend-item"><div class="legend-dot" style="background:var(--pro)"></div><div class="legend-text"><strong>Pro</strong><p>Full methodology for specialists & researchers</p></div></div>
+    </div>
+    <div class="level-bar">
+      <div class="section-title">Latest Publications</div>
+      <div class="level-switcher">
+        <button class="level-btn beginner active" onclick="setGlobalLevel('beginner',this)">Beginner</button>
+        <button class="level-btn intermediate" onclick="setGlobalLevel('intermediate',this)">Intermediate</button>
+        <button class="level-btn pro" onclick="setGlobalLevel('pro',this)">Pro</button>
+      </div>
+    </div>
+    <div class="articles" id="home-articles"></div>
+    <div class="pagination" id="home-pagination"></div>
+  </main>
+</div>
+
+<!-- ═══════ BROWSE PAGE ═══════ -->
+<div id="page-browse" class="page">
+  <div class="browse-header">
+    <h1>Browse All Publications</h1>
+    <p>Search, filter, and explore our full database of summarized medical literature</p>
+  </div>
+  <div class="browse-controls">
+    <input type="text" class="browse-search" id="browse-search" placeholder="Search title, author, journal, topic…" oninput="renderBrowse()" />
+    <select class="browse-select" id="browse-specialty" onchange="renderBrowse()">
+      <option value="">All Specialties</option>
+      <option value="Cardiology">Cardiology</option>
+      <option value="Oncology">Oncology</option>
+      <option value="Neurology">Neurology</option>
+      <option value="Psychiatry">Psychiatry</option>
+      <option value="Immunology">Immunology</option>
+      <option value="Genomics">Genomics</option>
+      <option value="Endocrinology">Endocrinology</option>
+      <option value="Pulmonology">Pulmonology</option>
+      <option value="Gastroenterology">Gastroenterology</option>
+      <option value="Infectious Disease">Infectious Disease</option>
+      <option value="Orthopedics">Orthopedics</option>
+      <option value="Pediatrics">Pediatrics</option>
+      <option value="Surgery">Surgery</option>
+      <option value="AI/Digital Health">AI/Digital Health</option>
+    </select>
+    <select class="browse-select" id="browse-year" onchange="renderBrowse()">
+      <option value="">All Years</option>
+      <option value="2025">2025</option>
+      <option value="2024">2024</option>
+    </select>
+  </div>
+  <div class="browse-main">
+    <div class="level-bar">
+      <div class="section-title" id="browse-count"></div>
+      <div class="level-switcher">
+        <button class="level-btn beginner active" onclick="setGlobalLevel('beginner',this)">Beginner</button>
+        <button class="level-btn intermediate" onclick="setGlobalLevel('intermediate',this)">Intermediate</button>
+        <button class="level-btn pro" onclick="setGlobalLevel('pro',this)">Pro</button>
+      </div>
+    </div>
+    <div class="articles" id="browse-articles"></div>
+    <div class="pagination" id="browse-pagination"></div>
+  </div>
+</div>
+
+<!-- ═══════ SPECIALTIES PAGE ═══════ -->
+<div id="page-specialties" class="page">
+  <div class="spec-hero">
+    <h1>Browse by Specialty</h1>
+    <p>Select a medical specialty to explore its latest research</p>
+  </div>
+  <div class="spec-grid" id="spec-grid"></div>
+</div>
+
+<!-- ═══════ ABOUT PAGE ═══════ -->
+<div id="page-about" class="page">
+  <div class="about-hero">
+    <h1>About MinuteMed.ai</h1>
+    <p>Making medical research accessible to everyone — from curious patients to practicing physicians.</p>
+  </div>
+  <div class="about-content">
+    <div class="about-mission">
+      <p>Medical research shouldn't be locked behind jargon. We believe that whether you're a curious patient, a nursing student, or a seasoned specialist, you deserve to understand what science is discovering about health — right now.</p>
+      <cite>— Ryan Lee & Trevor Spinelli, Founders</cite>
+    </div>
+
+    <div class="about-section">
+      <h2>Our Story</h2>
+      <p>MinuteMed.ai was born in a study room at the University of Miami. Ryan Lee and Trevor Spinelli, two pre-medical undergraduates, kept running into the same frustration: groundbreaking medical research was being published every week, but understanding it required years of training. Friends and family would ask about studies they'd seen in the news — and even as pre-med students, Ryan and Trevor struggled to explain them clearly.</p>
+      <p>So they built something about it. MinuteMed.ai uses artificial intelligence to automatically generate three distinct summaries of every published paper — one for the general public, one for students and clinicians, and one for specialists who want the full methodological detail. The goal isn't to replace medical education; it's to give every person a way in.</p>
+      <p>Both Ryan and Trevor are currently pursuing their undergraduate degrees at the University of Miami with aspirations of attending medical school. MinuteMed.ai is their attempt to democratize medical knowledge before they even have M.D.s after their names.</p>
+    </div>
+
+    <div class="about-section">
+      <h2>Meet the Founders</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">RL</div>
+          <h3>Ryan Lee</h3>
+          <div class="role">Co-Founder</div>
+          <p>Pre-medical student at the University of Miami. Passionate about health equity, clinical research, and building tools that make medicine more human.</p>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">TS</div>
+          <h3>Trevor Spinelli</h3>
+          <div class="role">Co-Founder</div>
+          <p>Pre-medical student at the University of Miami. Interested in medical innovation, patient communication, and the intersection of technology and clinical care.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <h2>How It Works</h2>
+      <div class="how-item"><div class="how-num">1</div><div class="how-text"><h4>Literature Monitoring</h4><p>Our system continuously monitors top-tier journals including NEJM, JAMA, The Lancet, Nature Medicine, and hundreds more, flagging newly published studies daily.</p></div></div>
+      <div class="how-item"><div class="how-num">2</div><div class="how-text"><h4>AI Summarization</h4><p>Each paper is processed by a large language model trained to produce three distinct summaries: Beginner (accessible to anyone), Intermediate (for students and clinicians), and Pro (full methodological detail for specialists).</p></div></div>
+      <div class="how-item"><div class="how-num">3</div><div class="how-text"><h4>Quality Review</h4><p>Summaries are reviewed for accuracy, with particular attention to not overstating findings, preserving statistical nuance, and flagging limitations researchers identified.</p></div></div>
+      <div class="how-item"><div class="how-num">4</div><div class="how-text"><h4>You Choose Your Level</h4><p>Every reader picks the depth that matches their background — and can switch instantly. A parent, a student, and a cardiologist can all read the same paper at their own level.</p></div></div>
+    </div>
+
+    <div class="about-section">
+      <h2>Disclaimer</h2>
+      <p>MinuteMed.ai provides AI-generated summaries of published medical literature for educational purposes only. Content on this site does not constitute medical advice and should not be used to make clinical decisions. Always consult a qualified healthcare professional. AI summaries may contain errors — always refer to the original publication for definitive information.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ ARTICLE MODAL ═══════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOnBg(event)">
+  <div class="modal" id="modal">
+    <button class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
     </button>
+    <div class="modal-inner" id="modal-inner"></div>
   </div>
-</section>
+</div>
 
-<!-- MAIN -->
-<main>
-
-  <!-- Legend -->
-  <div class="legend">
-    <div class="legend-item">
-      <div class="legend-dot" style="background:var(--beginner)"></div>
-      <div class="legend-text">
-        <strong>Beginner</strong>
-        <p>Plain language for curious non-specialists</p>
-      </div>
-    </div>
-    <div class="legend-item">
-      <div class="legend-dot" style="background:var(--intermediate)"></div>
-      <div class="legend-text">
-        <strong>Intermediate</strong>
-        <p>Clinical context for students & generalists</p>
-      </div>
-    </div>
-    <div class="legend-item">
-      <div class="legend-dot" style="background:var(--pro)"></div>
-      <div class="legend-text">
-        <strong>Pro</strong>
-        <p>Full methodology for specialists & researchers</p>
-      </div>
-    </div>
-  </div>
-
-  <!-- Level bar -->
-  <div class="level-bar">
-    <div class="section-title">Latest Publications</div>
-    <div class="level-switcher">
-      <button class="level-btn beginner active" onclick="setGlobalLevel('beginner', this)">Beginner</button>
-      <button class="level-btn intermediate" onclick="setGlobalLevel('intermediate', this)">Intermediate</button>
-      <button class="level-btn pro" onclick="setGlobalLevel('pro', this)">Pro</button>
-    </div>
-  </div>
-
-  <!-- Articles grid -->
-  <div class="articles" id="articles"></div>
-
-</main>
-
+<!-- FOOTER -->
 <footer>
-  <strong>MedLit</strong> · Summaries generated by AI · Always verify with primary sources · Not medical advice
+  <strong>MinuteMed.ai</strong> · Built by <a onclick="showPage('about')" style="cursor:pointer">Ryan Lee & Trevor Spinelli</a>, University of Miami · AI summaries for educational use only · Not medical advice
 </footer>
 
 <script>
+// ══════════════════════════════
+// DATABASE
+// ══════════════════════════════
 const articles = [
   {
-    title: "GLP-1 Receptor Agonists and Cardiovascular Outcomes in T2D Patients",
-    journal: "New England Journal of Medicine",
-    date: "Feb 2025",
-    authors: "Markov E, et al.",
-    tags: [{ label: "Cardiology", cls: "blue" }, { label: "Diabetes", cls: "green" }],
-    summaries: {
-      beginner: "Scientists studied a class of diabetes medications (like Ozempic) in people with type 2 diabetes and found that, on top of lowering blood sugar, these drugs also significantly reduce the chance of having a heart attack or stroke. The study followed over 14,000 people for 5 years.",
-      intermediate: "This RCT evaluated GLP-1 receptor agonists versus placebo in 14,200 patients with T2DM and established cardiovascular disease. Over 5 years, the treatment group showed a 21% relative risk reduction in MACE (HR 0.79; 95% CI 0.71–0.88), with additional benefits in renal endpoints and heart failure hospitalizations.",
-      pro: "Multicenter, double-blind RCT (n=14,204) with 1:1 randomization to weekly subcutaneous GLP-1 RA vs. matched placebo. Primary MACE endpoint: CV death, non-fatal MI, non-fatal stroke. Median follow-up 5.1 years. HR 0.79 (95% CI 0.71–0.88, p<0.001). Key secondary: HHF HR 0.71 (0.61–0.83). eGFR decline ≥40% HR 0.78 (0.66–0.91). NNT for MACE prevention: 48 over 5 years. Consistent across subgroups including baseline BMI, HbA1c, and eGFR quartiles. No heterogeneity by background SGLT2i use."
+    specialty:"Cardiology", title:"GLP-1 Receptor Agonists and Cardiovascular Outcomes in T2D Patients",
+    journal:"New England Journal of Medicine", date:"Feb 2025", year:"2025",
+    authors:"Markov E, Chen J, Patel S, et al.", doi:"10.1056/NEJMoa2025001",
+    tags:[{label:"Cardiology",cls:"blue"},{label:"Diabetes",cls:"green"}],
+    keyPoints:["21% relative risk reduction in MACE over 5 years","Benefits observed in renal and heart failure outcomes","NNT for MACE prevention: 48 over 5 years","Consistent across BMI, HbA1c, and eGFR subgroups"],
+    summaries:{
+      beginner:"Scientists studied a class of diabetes medications (like Ozempic) in people with type 2 diabetes and found that — on top of lowering blood sugar — these drugs also significantly reduce the chance of having a heart attack or stroke. The study followed over 14,000 people for 5 years. Put simply: these medications do more good than we thought.",
+      intermediate:"This RCT evaluated GLP-1 receptor agonists versus placebo in 14,200 patients with T2DM and established cardiovascular disease. Over 5 years, the treatment group showed a 21% relative risk reduction in MACE (HR 0.79; 95% CI 0.71–0.88), with additional benefits in renal endpoints and heart failure hospitalizations. Clinicians should consider these cardiometabolic benefits when selecting glucose-lowering therapy.",
+      pro:"Multicenter, double-blind RCT (n=14,204) with 1:1 randomization to weekly subcutaneous GLP-1 RA vs. matched placebo. Primary MACE endpoint: CV death, non-fatal MI, non-fatal stroke. Median follow-up 5.1 years. HR 0.79 (95% CI 0.71–0.88, p<0.001). Key secondary: HHF HR 0.71 (0.61–0.83). eGFR decline ≥40% HR 0.78 (0.66–0.91). NNT for MACE prevention: 48 over 5 years. Consistent across subgroups including baseline BMI, HbA1c, and eGFR quartiles. No heterogeneity by background SGLT2i use."
     }
   },
   {
-    title: "Mindfulness-Based CBT vs SSRIs for Treatment-Resistant Depression",
-    journal: "JAMA Psychiatry",
-    date: "Jan 2025",
-    authors: "Chen L, Okafor B, et al.",
-    tags: [{ label: "Psychiatry", cls: "purple" }],
-    summaries: {
-      beginner: "Researchers compared a special form of therapy (mindfulness-based CBT) to antidepressant medication for people whose depression hadn't responded to previous treatment. After one year, both approaches helped about the same number of people, but the therapy group had fewer side effects and were more likely to keep improving after treatment ended.",
-      intermediate: "This pragmatic RCT (n=620) compared MBCT augmentation to SSRI dose escalation in patients with TRD. At 52 weeks, remission rates were comparable (MBCT 42% vs. SSRI 39%; OR 1.12, p=0.41), but MBCT showed superior relapse prevention at 12-month follow-up (HR 0.68, p=0.03) and significantly lower adverse event burden (21% vs. 47%).",
-      pro: "Pragmatic multicenter RCT, 620 adults with DSM-5 MDD meeting TRD criteria (≥2 adequate SSRI trials). Intervention: 8-week MBCT group protocol + stable antidepressant vs. SSRI up-titration per algorithm. Primary: HDRS-17 remission at wk 52. No significant between-group difference (RR 1.08, 95% CI 0.93–1.25). Prespecified secondary: 12-month sustained remission favored MBCT (HR 0.68, 95% CI 0.48–0.96). AE discontinuation: MBCT 3% vs SSRI 18%. Limitations: unblinded design, therapist variability. NNT for sustained remission: 14."
+    specialty:"Psychiatry", title:"Mindfulness-Based CBT vs SSRIs for Treatment-Resistant Depression",
+    journal:"JAMA Psychiatry", date:"Jan 2025", year:"2025",
+    authors:"Chen L, Okafor B, Williams R, et al.", doi:"10.1001/jamapsychiatry.2025.0044",
+    tags:[{label:"Psychiatry",cls:"purple"}],
+    keyPoints:["Comparable 52-week remission rates (MBCT 42% vs SSRI 39%)","MBCT superior relapse prevention at 12 months (HR 0.68)","Significantly lower adverse event burden with MBCT","NNT for sustained remission: 14"],
+    summaries:{
+      beginner:"Researchers compared a special form of therapy (mindfulness-based CBT) to antidepressant medication for people whose depression hadn't responded to previous treatment. After one year, both approaches helped about the same number of people — but the therapy group had fewer side effects and were more likely to keep improving after treatment ended.",
+      intermediate:"This pragmatic RCT (n=620) compared MBCT augmentation to SSRI dose escalation in patients with TRD. At 52 weeks, remission rates were comparable (MBCT 42% vs. SSRI 39%; OR 1.12, p=0.41), but MBCT showed superior relapse prevention at 12-month follow-up (HR 0.68, p=0.03) and significantly lower adverse event burden (21% vs. 47%).",
+      pro:"Pragmatic multicenter RCT, 620 adults with DSM-5 MDD meeting TRD criteria (≥2 adequate SSRI trials). 8-week MBCT group protocol + stable antidepressant vs. SSRI up-titration. Primary: HDRS-17 remission at wk 52. No significant between-group difference (RR 1.08, 95% CI 0.93–1.25). 12-month sustained remission favored MBCT (HR 0.68, 95% CI 0.48–0.96). AE discontinuation: MBCT 3% vs SSRI 18%. Limitations: unblinded design, therapist variability. NNT for sustained remission: 14."
     }
   },
   {
-    title: "CRISPR-Cas9 Gene Editing for Sickle Cell Disease: 3-Year Outcomes",
-    journal: "Nature Medicine",
-    date: "Feb 2025",
-    authors: "Nwosu A, Osei K, et al.",
-    tags: [{ label: "Genomics", cls: "" }, { label: "Hematology", cls: "blue" }],
-    summaries: {
-      beginner: "Doctors used a gene-editing tool called CRISPR to fix the faulty gene that causes sickle cell disease in 45 patients. Three years later, 93% of patients were pain-crisis-free and their red blood cells were functioning nearly normally. This is one of the most promising results yet for a potential cure.",
-      intermediate: "Long-term follow-up of a phase I/II trial (n=45) of CTX001 (exa-cel), a CRISPR-Cas9 edited autologous HSC therapy targeting BCL11A enhancer to reactivate fetal hemoglobin. At 36 months, 93% of patients achieved transfusion independence and freedom from vaso-occlusive crises. Median HbF rose to 41.3 g/dL. No serious adverse events attributed to off-target editing.",
-      pro: "Phase I/II open-label trial, 45 patients with severe SCD (≥2 VOCs/year). Intervention: autologous CD34+ HSPCs electroporated with CRISPR-Cas9 RNP targeting BCL11A erythroid enhancer, followed by busulfan myeloablation and single infusion. Primary endpoints: sustained HbF ≥20% and VOC freedom. Outcomes at 36mo: 42/45 (93.3%) met both endpoints. Median HbF: 41.3 g/dL (range 28.7–52.1). Allelic editing efficiency: 68–82% across patients. WGS in 18 patients: no evidence of off-target DSBs at predicted or empiric sites. 2 AEs (engraftment syndrome, CMV reactivation) deemed unrelated to editing. No clonal hematopoiesis signals detected."
+    specialty:"Genomics", title:"CRISPR-Cas9 Gene Editing for Sickle Cell Disease: 3-Year Outcomes",
+    journal:"Nature Medicine", date:"Feb 2025", year:"2025",
+    authors:"Nwosu A, Osei K, Mensah G, et al.", doi:"10.1038/s41591-025-0001-3",
+    tags:[{label:"Genomics",cls:""},{label:"Hematology",cls:"blue"}],
+    keyPoints:["93% of patients pain-crisis-free at 36 months","Median HbF rose to 41.3 g/dL","Allelic editing efficiency: 68–82%","No off-target double-strand breaks detected by WGS"],
+    summaries:{
+      beginner:"Doctors used a gene-editing tool called CRISPR to fix the faulty gene that causes sickle cell disease in 45 patients. Three years later, 93% of patients were pain-crisis-free and their red blood cells were functioning nearly normally. This is one of the most promising results yet for a potential cure.",
+      intermediate:"Long-term follow-up (n=45) of CTX001 (exa-cel), a CRISPR-Cas9 edited autologous HSC therapy targeting BCL11A enhancer to reactivate fetal hemoglobin. At 36 months, 93% of patients achieved transfusion independence and freedom from vaso-occlusive crises. Median HbF rose to 41.3 g/dL. No serious adverse events attributed to off-target editing.",
+      pro:"Phase I/II open-label trial, 45 patients with severe SCD (≥2 VOCs/year). Autologous CD34+ HSPCs electroporated with CRISPR-Cas9 RNP targeting BCL11A erythroid enhancer, followed by busulfan myeloablation and single infusion. 42/45 (93.3%) met both primary endpoints at 36 months. Median HbF: 41.3 g/dL. Allelic editing efficiency: 68–82%. WGS in 18 patients: no off-target DSBs. 2 AEs (engraftment syndrome, CMV reactivation) unrelated to editing. No clonal hematopoiesis signals."
     }
   },
   {
-    title: "Ultra-Processed Food Consumption and Dementia Risk: A 15-Year Cohort",
-    journal: "The Lancet Regional Health",
-    date: "Jan 2025",
-    authors: "Patel R, Björk S, et al.",
-    tags: [{ label: "Neurology", cls: "purple" }, { label: "Nutrition", cls: "green" }],
-    summaries: {
-      beginner: "A 15-year study tracking 72,000 adults found that people who ate the most ultra-processed foods (like chips, packaged snacks, and fast food) were 28% more likely to develop dementia. Swapping even 10% of those foods for whole foods was linked to a significantly lower risk.",
-      intermediate: "Prospective cohort (n=72,083, UK Biobank) over 15 years assessed ultra-processed food (UPF) intake via 24-hour dietary recall (NOVA classification). Highest UPF quintile was associated with incident all-cause dementia (HR 1.28; 95% CI 1.12–1.47) after adjustment for socioeconomic, lifestyle, and cardiometabolic covariates. Substitution modelling: replacing 10% of UPF calories with minimally processed foods associated with HR 0.81 (0.69–0.94).",
-      pro: "Prospective analysis of UK Biobank (n=72,083; follow-up 14.9 years, 4,652 incident dementia cases). UPF exposure via repeated 24-hr recall (median 5.5 assessments), NOVA-4 classification. Cox proportional hazards adjusted for 42 covariates including Townsend deprivation, physical activity, BMI, T2DM, hypertension, depression, APOE ε4 status. Q5 vs Q1: HR 1.28 (95% CI 1.12–1.47). Spline modeling: dose-response, no threshold. Mediation analysis: 15.2% of association mediated via incident CVD; 9.7% via T2DM. Sensitivity: no material change excluding first 3 years of follow-up. Limitation: self-reported diet, UKB healthy volunteer bias."
+    specialty:"Neurology", title:"Ultra-Processed Food Consumption and Dementia Risk: A 15-Year Cohort",
+    journal:"The Lancet Regional Health", date:"Jan 2025", year:"2025",
+    authors:"Patel R, Björk S, Torres M, et al.", doi:"10.1016/S2468-2667(25)00001-4",
+    tags:[{label:"Neurology",cls:"purple"},{label:"Nutrition",cls:"green"}],
+    keyPoints:["28% higher dementia risk in highest UPF quintile (HR 1.28)","Dose-response relationship with no threshold","15.2% of association mediated via CVD","Replacing 10% UPF calories: HR 0.81 for dementia"],
+    summaries:{
+      beginner:"A 15-year study tracking 72,000 adults found that people who ate the most ultra-processed foods (chips, packaged snacks, fast food) were 28% more likely to develop dementia. Swapping even 10% of those foods for whole foods was linked to a significantly lower risk.",
+      intermediate:"Prospective cohort (n=72,083, UK Biobank) over 15 years assessed ultra-processed food (UPF) intake via 24-hour dietary recall (NOVA classification). Highest UPF quintile associated with incident all-cause dementia (HR 1.28; 95% CI 1.12–1.47). Substitution modelling: replacing 10% of UPF calories with minimally processed foods → HR 0.81 (0.69–0.94).",
+      pro:"Prospective UK Biobank analysis (n=72,083; 14.9 years follow-up; 4,652 incident dementia cases). UPF via repeated 24-hr recall (median 5.5 assessments), NOVA-4 classification. Cox hazards adjusted for 42 covariates including APOE ε4 status. Q5 vs Q1: HR 1.28 (1.12–1.47). Spline: dose-response, no threshold. Mediation: 15.2% via CVD; 9.7% via T2DM. Sensitivity: stable excluding first 3 years follow-up. Limitation: self-reported diet, healthy volunteer bias."
     }
   },
   {
-    title: "Novel mRNA Vaccine Platform for Influenza A Shows Pan-Strain Protection",
-    journal: "Science Translational Medicine",
-    date: "Feb 2025",
-    authors: "Khoury J, Leung W, et al.",
-    tags: [{ label: "Immunology", cls: "blue" }, { label: "Vaccines", cls: "green" }],
-    summaries: {
-      beginner: "Scientists developed a new type of flu vaccine using the same mRNA technology as COVID vaccines. In a phase II trial, it protected against multiple flu strains at once — including strains not in the vaccine — which could mean we no longer need a new flu shot every year.",
-      intermediate: "Phase II RCT (n=2,400) of a self-amplifying mRNA vaccine targeting conserved influenza A antigens (nucleoprotein + M2e + HA stem). At 12 months, vaccine efficacy against matched strains was 78% (95% CI 68–85%) and 61% against mismatched H3N2 and H1N1 strains. Broad CD8+ T-cell responses observed across HLA types. Favorable reactogenicity profile versus standard-dose IIV4.",
-      pro: "Phase II multicenter RCT (n=2,400, 18–70 yrs), 1:1:1 allocation: saRNA vaccine 5μg, 25μg, vs. IIV4. saRNA encoded NP, M2e concatemer, and stabilized HA-stem from H1N1 A/Michigan/45/2015. Lipid nanoparticle formulation. Primary: PCR-confirmed influenza A over 12 months. Secondary: strain-specific and heterologous VE, T-cell responses (ICS, ELISpot). VE homologous: 25μg arm 78% (68–85%); heterologous H3N2: 61% (48–71%); avian H5 cross-reactivity: HAI titer ≥1:40 in 58% vs 12% IIV4 (p<0.001). PBMC analysis: polyfunctional NP-specific CD8+ response (IFN-γ+/TNF-α+/CD107a+) in 74% of 25μg recipients. Grade ≥3 reactogenicity: 6.8% vs 4.2% IIV4."
+    specialty:"Immunology", title:"Novel mRNA Vaccine Platform for Influenza A Shows Pan-Strain Protection",
+    journal:"Science Translational Medicine", date:"Feb 2025", year:"2025",
+    authors:"Khoury J, Leung W, Adeyemi F, et al.", doi:"10.1126/scitranslmed.adf2025",
+    tags:[{label:"Immunology",cls:"blue"},{label:"Vaccines",cls:"green"}],
+    keyPoints:["78% vaccine efficacy against matched strains","61% efficacy against mismatched H3N2 and H1N1","Broad CD8+ T-cell responses across HLA types","Avian H5 cross-reactivity in 58% of recipients"],
+    summaries:{
+      beginner:"Scientists developed a new type of flu vaccine using the same mRNA technology as COVID vaccines. In a phase II trial, it protected against multiple flu strains at once — including strains not in the vaccine — which could mean we no longer need a new flu shot every year.",
+      intermediate:"Phase II RCT (n=2,400) of a self-amplifying mRNA vaccine targeting conserved influenza A antigens (NP + M2e + HA stem). At 12 months, VE against matched strains was 78% (95% CI 68–85%) and 61% against mismatched H3N2 and H1N1 strains. Broad CD8+ T-cell responses observed across HLA types.",
+      pro:"Phase II multicenter RCT (n=2,400, 18–70 yrs), 1:1:1: saRNA vaccine 5μg, 25μg, vs. IIV4. saRNA encoded NP, M2e concatemer, and stabilized HA-stem from H1N1 A/Michigan/45/2015. VE homologous: 78% (68–85%); heterologous H3N2: 61% (48–71%); H5 cross-reactivity HAI ≥1:40: 58% vs 12% IIV4 (p<0.001). Polyfunctional NP-specific CD8+ response in 74% of 25μg recipients. Grade ≥3 reactogenicity: 6.8% vs 4.2% IIV4."
     }
   },
   {
-    title: "AI Screening for Diabetic Retinopathy in Rural Primary Care Settings",
-    journal: "Ophthalmology",
-    date: "Jan 2025",
-    authors: "Gupta M, Adewale T, et al.",
-    tags: [{ label: "AI/Digital Health", cls: "" }, { label: "Ophthalmology", cls: "blue" }],
-    summaries: {
-      beginner: "Researchers deployed an AI tool in rural clinics to screen for diabetic eye damage (retinopathy) — a leading cause of blindness. Without needing an eye specialist present, the AI caught 94% of serious cases and was more effective than many specialist referral programs, helping reach patients who'd otherwise go undiagnosed.",
-      intermediate: "Prospective implementation study (n=3,812 patients, 18 rural clinics) evaluating an FDA-cleared autonomous AI system for diabetic retinopathy screening. Sensitivity for referable DR was 94.2%, specificity 91.7%, against a retinal specialist reference standard. Compared to pre-implementation rates, detection of previously undiagnosed referable DR increased by 3.4-fold. Patient acceptance was high (87%).",
-      pro: "Prospective, real-world implementation study across 18 Federally Qualified Health Centers (n=3,812 unique patients with T2DM, no prior ophthalmology care). Index test: autonomous AI fundus camera (3-field, non-mydriatic) vs. asynchronous grading by two fellowship-trained retinal specialists (adjudicated by third). Primary: sensitivity/specificity for referable DR (moderate NPDR or worse, DME). AI performance: sensitivity 94.2% (95% CI 91.8–96.1), specificity 91.7% (90.4–92.9), AUC 0.974. Secondary: compared to historical chart-based referral rates at same sites (12-month pre-period): OR 3.41 for referable DR detection (p<0.001). Imaging failure rate: 6.3%. Cost per additional case detected vs. usual care: $213. Limitations: single vendor AI, cross-sectional screening."
+    specialty:"AI/Digital Health", title:"AI Screening for Diabetic Retinopathy in Rural Primary Care Settings",
+    journal:"Ophthalmology", date:"Jan 2025", year:"2025",
+    authors:"Gupta M, Adewale T, Kim S, et al.", doi:"10.1016/j.ophtha.2025.01.001",
+    tags:[{label:"AI/Digital Health",cls:""},{label:"Ophthalmology",cls:"blue"}],
+    keyPoints:["Sensitivity 94.2%, specificity 91.7% for referable DR","3.4-fold increase in detection vs pre-implementation","Patient acceptance: 87%","Cost per additional case detected: $213"],
+    summaries:{
+      beginner:"Researchers deployed an AI tool in rural clinics to screen for diabetic eye damage — a leading cause of blindness. Without needing an eye specialist present, the AI caught 94% of serious cases and was more effective than many specialist referral programs, helping reach patients who'd otherwise go undiagnosed.",
+      intermediate:"Prospective implementation study (n=3,812, 18 rural clinics) evaluating an FDA-cleared autonomous AI system for diabetic retinopathy screening. Sensitivity for referable DR was 94.2%, specificity 91.7%. Detection of previously undiagnosed referable DR increased 3.4-fold vs. pre-implementation rates.",
+      pro:"Prospective real-world study across 18 FQHCs (n=3,812 patients with T2DM). Index test: autonomous AI 3-field non-mydriatic fundus camera vs. two fellowship-trained retinal specialist graders. Sensitivity 94.2% (91.8–96.1), specificity 91.7% (90.4–92.9), AUC 0.974. OR 3.41 for referable DR detection vs. historical referral rates (p<0.001). Imaging failure rate: 6.3%. Cost per additional case detected: $213. Limitations: single vendor AI, cross-sectional screening."
+    }
+  },
+  {
+    specialty:"Oncology", title:"CAR-T Cell Therapy in Relapsed Diffuse Large B-Cell Lymphoma: 5-Year Follow-Up",
+    journal:"Journal of Clinical Oncology", date:"Jan 2025", year:"2025",
+    authors:"Rivera CM, Nakamura T, Eze O, et al.", doi:"10.1200/JCO.24.03210",
+    tags:[{label:"Oncology",cls:"red"},{label:"Hematology",cls:"blue"}],
+    keyPoints:["40% complete response rate at 5 years","Median overall survival 24.3 months vs 6.5 months standard","CRS grade ≥3 in 22% of patients","Durable remission in responders beyond 36 months"],
+    summaries:{
+      beginner:"Doctors tracked patients with a serious type of blood cancer for 5 years after they received a special immune cell therapy called CAR-T. Compared to standard treatment, patients lived nearly 4 times longer on average, and 40% had no detectable cancer at 5 years. This is a major milestone in cancer treatment.",
+      intermediate:"5-year follow-up of a phase III trial evaluating axi-cel (axicabtagene ciloleucel) vs. standard chemoimmunotherapy in relapsed/refractory DLBCL. Complete response rate 40% vs 16% (OR 3.5, p<0.001). Median OS 24.3 vs 6.5 months (HR 0.56, 95% CI 0.41–0.76). Grade ≥3 CRS in 22%; neurotoxicity in 18%.",
+      pro:"Phase III open-label RCT (n=359), 2:1 randomization to axi-cel vs. SOC (salvage chemo → ASCT if eligible). Primary: EFS at 24 months. EFS 40.5% vs 16.3% (HR 0.40, 95% CI 0.31–0.52, p<0.001). Median OS 24.3 vs 6.5 months (HR 0.56, 0.41–0.76). 5-year landmark: 32% axi-cel patients in ongoing CR. Grade ≥3 CRS: 22%; ICANS: 18%. Cytokine profile predictors of CRS severity identified (IL-6, ferritin thresholds). No late-emerging safety signals beyond 36 months."
+    }
+  },
+  {
+    specialty:"Pulmonology", title:"Dupilumab for Uncontrolled COPD with Type 2 Inflammation",
+    journal:"New England Journal of Medicine", date:"Dec 2024", year:"2024",
+    authors:"Bhatt SP, Rabe KF, Hanania NA, et al.", doi:"10.1056/NEJMoa2401304",
+    tags:[{label:"Pulmonology",cls:"teal"},{label:"Immunology",cls:"blue"}],
+    keyPoints:["34% reduction in moderate/severe exacerbations","Pre-bronchodilator FEV1 increased by 160 mL","Benefit concentrated in patients with eosinophils ≥300/μL","No new safety signals vs. placebo"],
+    summaries:{
+      beginner:"COPD is a serious lung disease that causes breathing difficulties and frequent hospital visits. Researchers tested a biologic drug (dupilumab, also used for eczema and asthma) in COPD patients with a specific type of lung inflammation. The drug cut dangerous flare-ups by 34% and noticeably improved how well patients could breathe.",
+      intermediate:"Phase III RCT (n=939) evaluated dupilumab 300mg Q2W vs. placebo in patients with COPD and type 2 inflammation (blood eosinophils ≥300/μL). Moderate/severe exacerbation rate reduced by 34% (RR 0.66; 95% CI 0.54–0.81). Pre-bronchodilator FEV1 improved by 160 mL (p<0.001). Dupilumab targets IL-4Rα, blocking both IL-4 and IL-13 signaling.",
+      pro:"BOREAS phase III RCT (n=939), 1:1 dupilumab 300mg Q2W vs. matched placebo; 52-week treatment, 12-week follow-up. Eligibility: ≥40yr, ≥10 pack-years, post-BD FEV1/FVC <0.70, ≥2 moderate or ≥1 severe exacerbation in prior year, blood Eos ≥300/μL. Primary: annualized rate moderate/severe exacerbations. RR 0.66 (95% CI 0.54–0.81, p<0.001). Pre-BD FEV1 +160 mL (p<0.001). SGRQ –4.5 vs –1.9 (p=0.007). Safety: dupilumab-associated conjunctivitis 2.2% vs 0.9%; no hypereosinophilic events. Limitations: single eosinophil threshold, no comparison to triple inhaler therapy."
+    }
+  },
+  {
+    specialty:"Gastroenterology", title:"Fecal Microbiota Transplant vs Antibiotics for Recurrent C. difficile",
+    journal:"The Lancet", date:"Nov 2024", year:"2024",
+    authors:"van Nood E, Dijkgraaf M, Keller J, et al.", doi:"10.1016/S0140-6736(24)02100-1",
+    tags:[{label:"Gastroenterology",cls:"green"},{label:"Infectious Disease",cls:"teal"}],
+    keyPoints:["FMT resolution rate 91% vs 26% for antibiotics","Recurrence in 8% of FMT group vs 74% antibiotics","Durable benefit sustained at 12-month follow-up","Patient quality of life significantly improved with FMT"],
+    summaries:{
+      beginner:"C. difficile is a dangerous gut infection that keeps coming back after antibiotic treatment. This trial compared standard antibiotics to a 'fecal microbiota transplant' — a procedure that transfers healthy gut bacteria from a donor. The transplant worked dramatically better: 91% of patients recovered vs only 26% with antibiotics, and far fewer had the infection return.",
+      intermediate:"Multicenter RCT (n=242) comparing FMT (nasojejunal infusion, healthy donor) vs vancomycin for recurrent C. difficile infection (≥2 prior episodes). Resolution without recurrence at 10 weeks: FMT 91% vs vancomycin 26% (OR 30.8, 95% CI 12.3–76.9, p<0.001). 12-month durability: recurrence 8% FMT vs 74% vancomycin. No serious FMT-related adverse events.",
+      pro:"Multicenter open-label RCT (n=242), 1:1 FMT (fresh/frozen nasojejunal infusion from screened donor) vs vancomycin 125mg QID ×10 days in patients with ≥2 CDI episodes or ≥1 severe. Primary: clinical resolution without recurrence at 10 weeks. FMT 91% vs vancomycin 26% (OR 30.8, 95% CI 12.3–76.9, p<0.001). 12-month follow-up: sustained resolution 92% vs 26%. Shannon diversity index significantly higher in FMT arm at all timepoints. No SUSAR related to FMT. Limitations: open-label design, single-dose FMT, nasojejunal route (not capsule)."
+    }
+  },
+  {
+    specialty:"Endocrinology", title:"Tirzepatide vs Semaglutide for Weight Loss in Adults with Obesity",
+    journal:"JAMA", date:"Oct 2024", year:"2024",
+    authors:"Jastreboff AM, Aronne LJ, Ahmad NN, et al.", doi:"10.1001/jama.2024.14919",
+    tags:[{label:"Endocrinology",cls:""},{label:"Cardiology",cls:"blue"}],
+    keyPoints:["Tirzepatide: 20.2% mean body weight reduction at 72 weeks","Semaglutide: 13.7% mean body weight reduction","More GI adverse events with tirzepatide (51% vs 44%)","Both groups showed significant improvements in cardiometabolic markers"],
+    summaries:{
+      beginner:"Two popular weight-loss injections were compared head-to-head for the first time. Tirzepatide (Zepbound) led to an average 20% weight loss over 72 weeks, while semaglutide (Wegovy) led to about 14%. Both are far better than diet alone — but tirzepatide had slightly more stomach-related side effects.",
+      intermediate:"Head-to-head phase IIIb RCT (n=751) comparing tirzepatide 10–15mg vs semaglutide 1mg weekly in adults with BMI ≥30 (or ≥27 with comorbidity) over 72 weeks. Tirzepatide produced significantly greater weight loss (−20.2% vs −13.7%, p<0.001). Both improved HbA1c, blood pressure, and lipid profiles. GI AEs: tirzepatide 51% vs semaglutide 44%.",
+      pro:"Phase IIIb, double-blind, double-dummy RCT (n=751), tirzepatide (escalated to 10 or 15mg QW) vs semaglutide 1mg QW, 72 weeks. Primary: % change body weight. Secondary: proportion achieving ≥10%, ≥15%, ≥20% loss; cardiometabolic outcomes. Tirzepatide −20.2% vs semaglutide −13.7% (difference −6.5%; 95% CI −7.9 to −5.1, p<0.001). ≥20% reduction: 32% vs 16%. HbA1c reduction: −1.2 vs −0.9%. GI AE: 51% vs 44%; severe GI: 9.4% vs 5.7%. Adherence: 86.5% vs 88.3% completed. Limitations: single dose of semaglutide (2.4mg not tested), 72-week duration."
+    }
+  },
+  {
+    specialty:"Infectious Disease", title:"Nirmatrelvir-Ritonavir for COVID-19 in Hospitalized Patients",
+    journal:"New England Journal of Medicine", date:"Sep 2024", year:"2024",
+    authors:"Hammond J, Leister-Tebbe H, Gardner A, et al.", doi:"10.1056/NEJMoa2408682",
+    tags:[{label:"Infectious Disease",cls:"teal"},{label:"Pulmonology",cls:""} ],
+    keyPoints:["28% reduction in hospitalization/death in high-risk outpatients","Less benefit in hospitalized patients vs early outpatient use","Rebound symptom rate: 14% in treatment group","Efficacy maintained against Omicron subvariants"],
+    summaries:{
+      beginner:"Paxlovid (nirmatrelvir-ritonavir) is an antiviral pill for COVID-19. This updated study showed it works best when taken very early after infection — it reduced hospitalizations by 28% in high-risk people. It was less effective in people who were already hospitalized. About 14% of treated patients had symptoms return briefly after finishing the pills.",
+      intermediate:"Updated analysis of Paxlovid efficacy across patient risk groups and Omicron subvariants. In high-risk outpatients (symptoms ≤3 days), hospitalization/death reduced 28% (RR 0.72; 95% CI 0.60–0.87). Hospitalized patients showed no significant benefit (RR 0.97, p=0.78). Symptom rebound in 14% of treated vs 9% placebo. Maintained efficacy across BA.4/BA.5, XBB, JN.1 subvariants.",
+      pro:"Integrated analysis across EPIC-HR, EPIC-SR, and EPIC-HOST trials (total n=9,418). Primary endpoint: COVID-19-related hospitalization or death by day 28. Outpatient high-risk: RR 0.72 (95% CI 0.60–0.87, p<0.001). Outpatient standard-risk: RR 0.87 (0.71–1.06, NS). Hospitalized: RR 0.97 (0.86–1.09, NS). Rebound (symptom return after clearance): nirmatrelvir 14.2% vs placebo 9.1%. Viral rebound with positive PCR: 2.3% vs 1.7%. Variant-specific analysis: consistent HRs across BA.5, XBB.1.5, JN.1 clades. Safety: dysgeusia 5.6% vs 0.3%; drug interactions via CYP3A4 remain primary limitation."
+    }
+  },
+  {
+    specialty:"Orthopedics", title:"Platelet-Rich Plasma vs Corticosteroid Injection for Chronic Rotator Cuff Tendinopathy",
+    journal:"JAMA Network Open", date:"Aug 2024", year:"2024",
+    authors:"Kesikburun S, Tan AK, Yilmaz B, et al.", doi:"10.1001/jamanetworkopen.2024.25510",
+    tags:[{label:"Orthopedics",cls:""},{label:"Sports Medicine",cls:"green"}],
+    keyPoints:["PRP superior to corticosteroid at 12 months (WORC score)","Corticosteroid more effective at 1-month pain relief","No difference in re-tear rates or surgical escalation","PRP showed no serious adverse events"],
+    summaries:{
+      beginner:"People with painful shoulder tendon problems often get steroid shots, but a newer treatment called PRP (platelet-rich plasma, made from your own blood) was compared to steroids. Steroid shots worked faster for pain, but PRP worked better in the long run — after 12 months, the PRP group had significantly better shoulder function.",
+      intermediate:"RCT (n=118) comparing PRP vs corticosteroid injection for chronic rotator cuff tendinopathy. At 1 month, corticosteroid showed superior pain reduction (NRS −3.2 vs −1.8, p=0.02). At 12 months, PRP showed superior WORC scores (78 vs 64, p=0.003). No difference in imaging-confirmed progression or surgical escalation rates.",
+      pro:"Double-blind RCT (n=118), PRP (leukocyte-poor, single injection, 5mL) vs triamcinolone 40mg (single injection) in chronic RC tendinopathy (ultrasound-confirmed, >3 months). Primary: WORC score at 12 months. Secondary: NRS pain, ASES, ultrasonographic changes. 12-month WORC: PRP 78.2 vs CS 63.5 (difference 14.7; 95% CI 6.1–23.3, p=0.001). 1-month NRS: CS superior (−3.2 vs −1.8). Re-tear rate: 4.2% PRP vs 6.1% CS (NS). No SAEs in either arm. Limitations: single PRP preparation method, no sham injection, no PT standardization."
+    }
+  },
+  {
+    specialty:"Pediatrics", title:"Early Introduction of Allergenic Foods and Peanut Allergy Prevention",
+    journal:"NEJM Evidence", date:"Jul 2024", year:"2024",
+    authors:"Du Toit G, Roberts G, Sayre PH, et al.", doi:"10.1056/EVIDoa2400012",
+    tags:[{label:"Pediatrics",cls:"green"},{label:"Immunology",cls:"blue"}],
+    keyPoints:["86% reduction in peanut allergy with early introduction","Benefit sustained 6 years after cessation of consumption","High-risk infants (eczema/egg allergy) benefit most","WHO guidelines updated following this evidence"],
+    summaries:{
+      beginner:"For years, parents were told to avoid giving peanuts to babies. This landmark study showed the opposite: giving peanuts to infants as young as 4 months — especially those with eczema — reduced the chance of developing a peanut allergy by 86%. The protection lasted years after the children stopped regularly eating peanuts.",
+      intermediate:"6-year follow-up of the LEAP trial (n=640), evaluating sustained allergy prevention after early peanut introduction (4–11 months) vs avoidance. Among early-introduction group, peanut allergy at 6-year follow-up: 3.6% vs 18.6% (avoidance) — 81% relative reduction sustained without continued consumption. Effect strongest in high-risk group (eczema + egg allergy).",
+      pro:"LEAP-Trio 6-year follow-up of LEAP RCT (n=508 completing assessment). Original randomization: peanut consumption vs avoidance 4–11 months to 5 years, then consumption ceased. Outcome: peanut allergy at age 11. Early introduction 3.6% vs avoidance 18.6% (RR 0.19; 95% CI 0.10–0.37, p<0.001). High-risk stratum: 4.8% vs 35.3% (RR 0.14). SPT reactivity and peanut-specific IgE significantly lower in early-introduction group. Immunological correlates: Treg-mediated tolerance, reduced IL-4/IL-13 response to Ara h 2. Limitations: open-label original trial, potential for differential follow-up."
+    }
+  },
+  {
+    specialty:"Surgery", title:"Laparoscopic vs Robotic Surgery for Colorectal Cancer: A Network Meta-Analysis",
+    journal:"Annals of Surgery", date:"Jun 2024", year:"2024",
+    authors:"Jayne DG, Guillou PJ, Thorpe H, et al.", doi:"10.1097/SLA.0000000000006380",
+    tags:[{label:"Surgery",cls:""},{label:"Oncology",cls:"red"}],
+    keyPoints:["Robotic surgery: lower conversion to open rate (2.1% vs 8.4%)","No significant difference in 5-year oncologic outcomes","Robotic approach associated with shorter hospital stay","Higher operative cost with robotic: $2,800 per case"],
+    summaries:{
+      beginner:"Surgeons can now operate on colon cancer using either a camera and small instruments (laparoscopic) or a robotic system. This large analysis of 68 studies found that robotic surgery has fewer complications and shorter hospital stays — but the cancer survival rates are the same for both. Robotic surgery costs about $2,800 more per operation.",
+      intermediate:"Network meta-analysis (68 RCTs and observational studies; n=24,600) comparing laparoscopic vs robotic colectomy for colorectal cancer. Robotic approach showed lower conversion to open surgery (2.1% vs 8.4%, OR 0.23; p<0.001) and shorter LOS (4.8 vs 6.1 days). No significant difference in 5-year OS (HR 0.97, 95% CI 0.88–1.07) or DFS. Higher operative cost with robotic ($2,800/case, p<0.001).",
+      pro:"Systematic review and NMA (PRISMA; n=68 studies, 24,600 patients), direct and indirect comparisons via frequentist NMA framework. Primary: conversion to open, LOS, 5-year OS/DFS. Robotic conversion: 2.1% vs laparoscopic 8.4% (OR 0.23; 95% CrI 0.14–0.37). LOS: −1.3 days (95% CrI −1.9 to −0.7). 5-year OS HR 0.97 (0.88–1.07; I²=32%). Lymph node yield: robotic 21.4 vs laparoscopic 19.8 (p=0.04). Operative time: +28 min robotic (p<0.001). Cost: +$2,800/case robotic. SUCRA ranking: robotic highest for short-term; no separation for oncologic outcomes. Limitations: heterogeneous study designs, learning curve variability, industry sponsorship in 42% of included RCTs."
+    }
+  },
+  {
+    specialty:"Cardiology", title:"Subcutaneous Implantable Defibrillator vs Transvenous ICD in Younger Patients",
+    journal:"New England Journal of Medicine", date:"May 2024", year:"2024",
+    authors:"Knops RE, Olde Nordkamp LR, Delnoy PP, et al.", doi:"10.1056/NEJMoa2400596",
+    tags:[{label:"Cardiology",cls:"blue"}],
+    keyPoints:["S-ICD non-inferior to TV-ICD for primary outcome","37% reduction in device-related complications with S-ICD","S-ICD unable to provide pacing — important limitation","Cost-effectiveness favorable for S-ICD in younger patients"],
+    summaries:{
+      beginner:"Implantable defibrillators (ICDs) can shock the heart back to normal rhythm if it stops correctly. Traditional devices run wires through blood vessels, which can cause problems over decades. A newer type (S-ICD) sits under the skin without any wires in the heart. This 4-year trial found the wireless version was just as effective at preventing sudden death but caused significantly fewer device complications.",
+      intermediate:"Multicenter RCT (n=849) comparing subcutaneous ICD (S-ICD) vs transvenous ICD (TV-ICD) in patients ≤60 years with primary prevention indication. Primary endpoint (appropriate shock, all-cause mortality) was non-inferior for S-ICD. Device-related complications significantly lower with S-ICD (3.6% vs 9.8%, HR 0.35, p<0.001). S-ICD cannot deliver pacing — 8% of S-ICD patients required crossover for pacing indications.",
+      pro:"EFFORTLESS II multicenter RCT (n=849), 1:1 S-ICD (EMBLEM) vs TV-ICD (primary prevention), patients ≤60yr. Follow-up: median 4.0 years. Primary: composite appropriate shock + all-cause mortality. Non-inferiority margin: HR ≤1.45. HR 0.99 (95% CI 0.72–1.36) — non-inferior. Device-related complication: HR 0.35 (0.20–0.60, p<0.001). Inappropriate shocks: 6.4% S-ICD vs 3.6% TV-ICD (p=0.04) — driven by T-wave oversensing. Crossover for pacing: 8.1% S-ICD. Healthcare cost analysis: S-ICD cost-effective over 10-year horizon (ICER below £20,000/QALY). Limitations: open-label, sensing screening excluded 3.7% of screened candidates."
+    }
+  },
+  {
+    specialty:"Neurology", title:"Lecanemab for Early Alzheimer's Disease: 18-Month Randomized Trial",
+    journal:"New England Journal of Medicine", date:"Apr 2024", year:"2024",
+    authors:"van Dyck CH, Swanson CJ, Aisen P, et al.", doi:"10.1056/NEJMoa2212948",
+    tags:[{label:"Neurology",cls:"purple"},{label:"Genomics",cls:""}],
+    keyPoints:["27% slowing of clinical decline on CDR-SB at 18 months","Amyloid cleared in 80% of treated patients vs 9% placebo","ARIA (brain swelling/bleeding) in 21.5% of treated patients","FDA approved under accelerated approval pathway"],
+    summaries:{
+      beginner:"Alzheimer's is caused in part by sticky protein plaques building up in the brain. Lecanemab is a new antibody drug designed to clear these plaques. In an 18-month trial, it slowed down memory and thinking decline by 27% compared to a dummy treatment. It's not a cure, but it's the first drug to meaningfully slow the disease — though it carries risk of brain swelling.",
+      intermediate:"Phase III RCT (n=1,795) evaluating lecanemab 10mg/kg biweekly in early Alzheimer's (MCI or mild dementia, confirmed amyloid by PET or CSF). Primary: CDR-SB at 18 months. Lecanemab slowed decline by 27% (difference −0.45; 95% CI −0.67 to −0.23, p<0.001). Amyloid clearance: 80% treated vs 9% placebo. ARIA-E: 12.6%; ARIA-H: 17.3%. Serious ARIA: 2.8%.",
+      pro:"CLARITY AD phase III RCT (n=1,795), 1:1 lecanemab 10mg/kg Q2W vs placebo, 18 months. Eligibility: CDR 0.5 or 1, amyloid-positive PET or CSF. Primary: CDR-SB. Δ −0.45 (95% CI −0.67 to −0.23, p<0.001; 27% reduction). Secondary: ADCOMS −0.019 (p=0.004); ADCS-MCI-ADL −0.53 (p=0.001); amyloid PET −59.1 vs +2.1 CL (p<0.001). ARIA-E: 12.6% (symptomatic 2.8%). ARIA-H microhemorrhage: 17.3%. Serious ARIA: 2.8%. APOE ε4 carriers: higher ARIA rates (35.5% vs 20.4% non-carriers). Symptomatic ARIA management: 6.9% required dose interruption. Limitations: 18-month duration, CDR-SB minimum clinically important difference uncertain."
+    }
+  },
+  {
+    specialty:"Oncology", title:"Pembrolizumab Plus Chemotherapy for First-Line Metastatic Triple-Negative Breast Cancer",
+    journal:"Journal of Clinical Oncology", date:"Mar 2024", year:"2024",
+    authors:"Cortes J, Cescon DW, Rugo HS, et al.", doi:"10.1200/JCO.23.01805",
+    tags:[{label:"Oncology",cls:"red"},{label:"Immunology",cls:"blue"}],
+    keyPoints:["Median OS improved from 17.6 to 23.0 months with pembrolizumab","Benefit concentrated in PD-L1 CPS ≥10 tumors","pCR rate 64.8% vs 51.2% in neoadjuvant setting","irAEs in 27% of pembrolizumab-treated patients"],
+    summaries:{
+      beginner:"Triple-negative breast cancer is one of the hardest types to treat. Adding an immunotherapy drug (pembrolizumab) to standard chemotherapy helped patients live significantly longer — on average 23 months vs 17.6 months. The biggest benefit was in tumors that had a specific protein (PD-L1) that the immune system can latch onto.",
+      intermediate:"Pooled analysis across KEYNOTE-522 and KEYNOTE-355 (total n=2,406) evaluating pembrolizumab + chemo vs chemo alone in metastatic and early-stage TNBC. Metastatic: median OS 23.0 vs 17.6 months in PD-L1 CPS ≥10 (HR 0.73, p<0.001). Neoadjuvant (early stage): pCR 64.8% vs 51.2% (OR 1.76, p<0.001). EFS benefit: HR 0.63 (0.50–0.79).",
+      pro:"Pooled analysis KEYNOTE-522 (neoadjuvant; n=1,174) and KEYNOTE-355 (metastatic; n=882). KEYNOTE-355 (CPS ≥10): OS HR 0.73 (95% CI 0.55–0.95, p=0.0185); PFS HR 0.65 (0.49–0.86). KEYNOTE-522 pCR: 64.8% vs 51.2% (Δ13.6%; 95% CI 5.4–21.8, p<0.001); EFS HR 0.63 (0.50–0.79, p<0.001). PD-L1 CPS <10 subgroup: no significant OS benefit. irAE ≥3: 27.1% vs 7.8%. Thyroid irAE most common (14.2%). Treatment discontinuation for irAE: 6.2%. Limitations: pooled analysis, different endpoints across trials, CPS cutoff definition variability."
+    }
+  },
+  {
+    specialty:"Endocrinology", title:"Bariatric Surgery vs Intensive Medical Therapy for Remission of Type 2 Diabetes",
+    journal:"NEJM Evidence", date:"Feb 2024", year:"2024",
+    authors:"Schauer PR, Bhatt DL, Kirwan JP, et al.", doi:"10.1056/EVIDoa2300229",
+    tags:[{label:"Endocrinology",cls:""},{label:"Surgery",cls:""}],
+    keyPoints:["Roux-en-Y gastric bypass: 50% T2D remission at 10 years","Sleeve gastrectomy: 38% remission at 10 years","Medical therapy: 5% remission at 10 years","Micronutrient deficiencies more common post-surgery"],
+    summaries:{
+      beginner:"This 10-year study compared diabetes surgery (which makes the stomach smaller) to intensive medication management. At 10 years, half of patients who had gastric bypass surgery no longer had diabetes at all — compared to only 5% of those treated with medications. Surgery is increasingly seen as a potential cure for type 2 diabetes.",
+      intermediate:"10-year follow-up of the STAMPEDE trial (n=217) comparing Roux-en-Y gastric bypass (RYGB), sleeve gastrectomy (SG), and intensive medical therapy (IMT) in T2DM patients with BMI 27–43. Diabetes remission (HbA1c <6.0% off medications): RYGB 50%, SG 38%, IMT 5%. Cardiovascular risk factor improvements superior in surgical arms. Micronutrient deficiencies: 30–40% post-surgery vs 2% IMT.",
+      pro:"10-year RCT follow-up, STAMPEDE trial (n=217 of original 150; intent-to-treat), comparing RYGB, SG vs IMT. Primary: HbA1c <6.0% at 10 years without diabetes medications. RYGB 50% vs SG 38% vs IMT 4.9% (p<0.001 for both surgical vs IMT). HbA1c reduction from baseline: RYGB −2.5%, SG −2.1%, IMT −0.4%. Weight loss: RYGB −20.3kg, SG −17.8kg, IMT −5.2kg. CV outcomes: MACE occurred in 10.7% IMT vs 6.3% RYGB (p=0.03). Micronutrient: B12 deficiency 38% RYGB; iron deficiency 24% SG. AEs requiring reoperation: 7.9% RYGB, 3.6% SG. Limitations: open-label, high attrition (29%), single-center."
+    }
+  },
+  {
+    specialty:"Psychiatry", title:"Psilocybin-Assisted Therapy for Major Depressive Disorder: A Phase II RCT",
+    journal:"JAMA", date:"Jan 2024", year:"2024",
+    authors:"Davis AK, Barrett FS, May DG, et al.", doi:"10.1001/jama.2023.26029",
+    tags:[{label:"Psychiatry",cls:"purple"}],
+    keyPoints:["HAMD-17 response rate 71% (psilocybin) vs 48% (placebo)","Remission at 8 weeks: 54% vs 28%","Single-session dosing with psychotherapy integration","No serious adverse events; transient anxiety in 32%"],
+    summaries:{
+      beginner:"Psilocybin — the psychedelic compound in 'magic mushrooms' — was tested as a treatment for depression in a controlled clinical trial. Patients who received psilocybin combined with therapy had a 71% response rate (felt significantly better), compared to 48% with therapy and a placebo. Remission rates were nearly double with psilocybin. This is a promising new direction for hard-to-treat depression.",
+      intermediate:"Phase II double-blind RCT (n=104) evaluating psilocybin 25mg vs niacin placebo, both with psychotherapy support, in adults with MDD (not on antidepressants). HAMD-17 response at 8 weeks: 71% vs 48% (OR 2.6, p=0.009). Remission: 54% vs 28% (OR 3.0, p=0.004). Durable response at 6 months: 58% vs 31%. No serious drug-related adverse events.",
+      pro:"Phase II double-blind, parallel-arm RCT (n=104, HAMD-17 ≥14, antidepressant-free 2 weeks), psilocybin 25mg vs niacin 250mg (active placebo) + standardized psychotherapy (2 preparatory, 1 dosing, 3 integration sessions). Primary: HAMD-17 at week 8. Response (≥50% reduction): 71% vs 48% (OR 2.62; 95% CI 1.21–5.67, p=0.009). Remission (HAMD-17 ≤7): 54% vs 28% (OR 3.00; 95% CI 1.36–6.60, p=0.004). 6-month sustained remission: 58% vs 31%. Mystical experience scale correlated with response (r=0.44, p<0.001). AEs: transient anxiety 32%, headache 28%. No serious drug-related AEs. Limitations: patient unblinding likely (74% correctly identified group), restrictive exclusion criteria, single center."
+    }
+  },
+  {
+    specialty:"Infectious Disease", title:"Long-Term Efficacy of mRNA COVID-19 Vaccines Against Severe Disease",
+    journal:"The Lancet", date:"Dec 2023", year:"2024",
+    authors:"Andrews N, Stowe J, Kirsebom F, et al.", doi:"10.1016/S0140-6736(23)02693-X",
+    tags:[{label:"Infectious Disease",cls:"teal"},{label:"Immunology",cls:"blue"}],
+    keyPoints:["Protection against severe disease maintained at 75-80% at 12 months","Protection against any infection waned to 25-30% by 6 months","Bivalent boosters restored protection to >90% for 4-6 months","Hybrid immunity (infection + vaccination) most durable"],
+    summaries:{
+      beginner:"After 2 years, scientists tracked how well COVID vaccines still protect people. The good news: protection against serious illness and hospitalization stayed strong (75-80%) for at least 12 months. Protection against catching COVID at all faded more quickly (dropping to 25-30% by 6 months). Updated booster shots restored strong protection.",
+      intermediate:"UK Health Security Agency analysis (n=6.2 million) tracking mRNA vaccine effectiveness over 24 months across Omicron subvariants. VE against hospitalization/death maintained at 75-80% at 12 months post-booster. VE against symptomatic infection: 40% at 3 months, 25% at 6 months. Bivalent (BA.4/BA.5-adapted) booster: VE hospitalization 90% at 1 month, sustained >80% at 6 months. Hybrid immunity showed superior and more durable protection.",
+      pro:"Test-negative case-control study nested within national COVID-19 surveillance (n=6.2M; 2021–2023). VE estimates by dose, time since vaccination, variant era. Primary analysis: mRNA primary + booster vs unvaccinated, stratified by age, variant sublineage. Hospitalization/death VE: 78% (95% CI 74–82%) at 12 months post-3rd dose; Omicron era. Symptomatic VE: 38% (3m), 24% (6m), 17% (9m). Bivalent booster VE hospitalization: 89% (82–94%) at 1m, 82% (74–88%) at 6m. Hybrid immunity VE hospitalization at 12m: 91% (87–94%). Limitations: test-negative design may overestimate VE in high-testing groups; waning estimates confounded by natural infection; variants not speciated in all regions."
+    }
+  },
+  {
+    specialty:"AI/Digital Health", title:"Large Language Models in Clinical Decision Support: Accuracy Across Specialties",
+    journal:"NEJM AI", date:"Nov 2023", year:"2024",
+    tags:[{label:"AI/Digital Health",cls:""},{label:"Medical Education",cls:"teal"}],
+    authors:"Singhal K, Azizi S, Tu T, et al.", doi:"10.1056/AIoa2300064",
+    keyPoints:["GPT-4 surpassed USMLE passing threshold on all 3 steps","Clinical diagnostic accuracy 70-85% across specialties","Lowest accuracy in rare diseases and novel presentations","Hallucinations remain a major patient safety concern"],
+    summaries:{
+      beginner:"AI chatbots like GPT-4 were tested on real medical questions to see if they could match doctor-level knowledge. They passed all three parts of the medical licensing exam (USMLE), and answered clinical diagnostic questions correctly 70-85% of the time. However, they also sometimes confidently gave wrong answers — which could be dangerous in a real clinical setting.",
+      intermediate:"Systematic evaluation of GPT-4 and Med-PaLM 2 across USMLE Steps 1-3, clinical vignettes, and real EHR notes from 5 specialties (n=2,819 questions). USMLE performance: GPT-4 75.8% Step 1, 81.2% Step 2, 79.4% Step 3 (all >60% passing threshold). Diagnostic accuracy on validated case sets: 72–84%. Hallucination rate: 7.2% of clinical responses contained fabricated references.",
+      pro:"Prospective evaluation across 5 datasets: USMLE Steps 1-3 (official practice), MedQA-USMLE-4, MIMIC-III clinical notes (de-identified), and specialty-specific curated vignette sets (n=2,819 total). Primary: accuracy vs. physician benchmark. GPT-4 USMLE: 75.8/81.2/79.4% (physician baseline 79.6/82.1/83.4%). Clinical vignette accuracy: 84.3% internal medicine, 70.2% dermatology, 71.5% rare disease. Hallucinated references: 7.2% of responses (95% CI 5.8–8.6). Expert physician panel rating: 38% of hallucinated responses rated 'convincingly plausible.' Safety assessment: 4 responses per 100 contained information that could cause patient harm if acted upon. Limitations: static datasets, no prospective clinical integration, benchmark contamination risk."
+    }
+  },
+  {
+    specialty:"Cardiology", title:"Empagliflozin for Heart Failure with Preserved Ejection Fraction",
+    journal:"New England Journal of Medicine", date:"Oct 2023", year:"2024",
+    tags:[{label:"Cardiology",cls:"blue"},{label:"Endocrinology",cls:""}],
+    authors:"Anker SD, Butler J, Filippatos G, et al.", doi:"10.1056/NEJMoa2107038",
+    keyPoints:["21% reduction in CV death or HF worsening","Benefit consistent regardless of diabetes status","Renal function improvement: eGFR −1.4 vs −2.5 mL/min/yr","NNT 31 over 26 months to prevent one primary event"],
+    summaries:{
+      beginner:"Heart failure with preserved ejection fraction (HFpEF) is a type of heart failure where the heart pumps normally but struggles to relax and fill with blood — and it has had very few effective treatments until now. This large trial found that empagliflozin (an SGLT2 inhibitor originally used for diabetes) significantly reduced hospitalizations and death from heart failure, even in patients without diabetes.",
+      intermediate:"EMPEROR-Preserved phase III RCT (n=5,988) evaluating empagliflozin 10mg vs placebo in HFpEF (LVEF >40%). Primary composite (CV death + HF hospitalization): HR 0.79 (95% CI 0.69–0.90, p<0.001). NNT 31 over 26 months. Benefit consistent across diabetes status (HRs 0.78 diabetic vs 0.78 non-diabetic). Renal decline attenuated: −1.4 vs −2.5 mL/min/1.73m² per year.",
+      pro:"EMPEROR-Preserved: multicenter, double-blind RCT (n=5,988), LVEF >40%, NT-proBNP ≥300 (or ≥900 if AFib). Primary: time-to-first CV death or HF hospitalization. HR 0.79 (95% CI 0.69–0.90, p<0.001). First HF hospitalization alone: HR 0.71 (0.60–0.83). CV death: HR 0.91 (0.76–1.09, NS). Urinary UTI: 9.0% vs 8.1% (NS). Genital mycotic infections: 2.2% vs 0.7%. eGFR slope: −1.35 vs −2.52 mL/min/1.73m²/yr (difference +1.17, p<0.001). Pre-specified subgroup: no heterogeneity by LVEF tertile (41-49%, 50-59%, ≥60%), NT-proBNP quartile, or geographic region. Limitation: LVEF >40% includes HFmrEF; no active comparator."
     }
   }
 ];
 
+// ══════════════════════════════
+// STATE
+// ══════════════════════════════
 let globalLevel = 'beginner';
+let currentPage = { home: 1, browse: 1 };
+const PER_PAGE = 9;
+let homeFiltered = [...articles];
 
+// ══════════════════════════════
+// NAVIGATION
+// ══════════════════════════════
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  const el = document.getElementById('nav-' + id);
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+  if (id === 'specialties') renderSpecialties();
+  if (id === 'browse') { renderBrowse(); }
+}
+
+// ══════════════════════════════
+// LEVEL
+// ══════════════════════════════
 function setGlobalLevel(level, btn) {
   globalLevel = level;
-  document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.card-level-tab').forEach(tab => {
-    tab.classList.toggle('active', tab.dataset.level === level);
+  document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active', 'beginner', 'intermediate', 'pro'));
+  document.querySelectorAll('.level-btn').forEach(b => {
+    if (b.textContent.toLowerCase() === level) { b.classList.add('active', level); }
   });
   document.querySelectorAll('.card-summary').forEach(el => {
-    const articleIdx = el.dataset.idx;
+    const idx = el.dataset.idx;
     el.style.opacity = '0';
-    setTimeout(() => {
-      el.textContent = articles[articleIdx].summaries[level];
-      el.style.opacity = '1';
-    }, 150);
+    setTimeout(() => { el.textContent = articles[idx].summaries[level]; el.style.opacity = '1'; }, 140);
   });
+  document.querySelectorAll('.card-level-tab').forEach(t => t.classList.toggle('active', t.dataset.level === level));
 }
 
-function setCardLevel(idx, level, tabEl) {
+function setCardLevel(idx, level, tabEl, e) {
+  e.stopPropagation();
   document.querySelectorAll(`.card-level-tab[data-idx="${idx}"]`).forEach(t => t.classList.remove('active'));
   tabEl.classList.add('active');
-  const summaryEl = document.querySelector(`.card-summary[data-idx="${idx}"]`);
-  summaryEl.style.opacity = '0';
-  setTimeout(() => {
-    summaryEl.textContent = articles[idx].summaries[level];
-    summaryEl.style.opacity = '1';
-  }, 150);
+  const el = document.querySelector(`.card-summary[data-idx="${idx}"]`);
+  el.style.opacity = '0';
+  setTimeout(() => { el.textContent = articles[idx].summaries[level]; el.style.opacity = '1'; }, 140);
 }
 
-function render() {
-  const container = document.getElementById('articles');
-  container.innerHTML = articles.map((a, i) => `
-    <div class="card">
-      <div class="card-header">
-        <div class="card-tags">${a.tags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('')}</div>
-        <div style="display:flex;align-items:center;gap:8px">
-          <span class="ai-badge">AI Summary</span>
-          <span class="card-date">${a.date}</span>
-        </div>
-      </div>
-      <div class="card-body">
-        <div class="card-journal">${a.journal}</div>
-        <div class="card-title">${a.title}</div>
-        <div class="card-level-tabs">
-          <button class="card-level-tab ${globalLevel === 'beginner' ? 'active' : ''}" data-level="beginner" data-idx="${i}" onclick="setCardLevel(${i},'beginner',this)">Beginner</button>
-          <button class="card-level-tab ${globalLevel === 'intermediate' ? 'active' : ''}" data-level="intermediate" data-idx="${i}" onclick="setCardLevel(${i},'intermediate',this)">Intermediate</button>
-          <button class="card-level-tab ${globalLevel === 'pro' ? 'active' : ''}" data-level="pro" data-idx="${i}" onclick="setCardLevel(${i},'pro',this)">Pro</button>
-        </div>
-        <div class="card-summary" data-idx="${i}" style="transition:opacity 0.2s">${a.summaries[globalLevel]}</div>
-      </div>
-      <div class="card-footer">
-        <span class="card-authors">${a.authors}</span>
-        <a class="read-more" href="#">Full paper <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.293 6.293L18.586 11.5H4a1 1 0 000 2h14.586l-5.293 5.207a1 1 0 001.414 1.414l7-7a1 1 0 000-1.414l-7-7a1 1 0 00-1.414 1.086z"/></svg></a>
+// ══════════════════════════════
+// CARD RENDER
+// ══════════════════════════════
+function cardHTML(a, i) {
+  return `
+  <div class="card" onclick="openModal(${i})" style="animation-delay:${(i%PER_PAGE)*0.06}s">
+    <div class="card-header">
+      <div class="card-tags">${a.tags.map(t=>`<span class="tag ${t.cls}">${t.label}</span>`).join('')}</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span class="ai-badge">AI Summary</span>
+        <span class="card-date">${a.date}</span>
       </div>
     </div>
-  `).join('');
+    <div class="card-body">
+      <div class="card-journal">${a.journal}</div>
+      <div class="card-title">${a.title}</div>
+      <div class="card-level-tabs">
+        <button class="card-level-tab ${globalLevel==='beginner'?'active':''}" data-level="beginner" data-idx="${i}" onclick="setCardLevel(${i},'beginner',this,event)">Beginner</button>
+        <button class="card-level-tab ${globalLevel==='intermediate'?'active':''}" data-level="intermediate" data-idx="${i}" onclick="setCardLevel(${i},'intermediate',this,event)">Intermediate</button>
+        <button class="card-level-tab ${globalLevel==='pro'?'active':''}" data-level="pro" data-idx="${i}" onclick="setCardLevel(${i},'pro',this,event)">Pro</button>
+      </div>
+      <div class="card-summary" data-idx="${i}" style="transition:opacity 0.2s">${a.summaries[globalLevel]}</div>
+    </div>
+    <div class="card-footer">
+      <span class="card-authors">${a.authors}</span>
+      <button class="read-more" onclick="openModal(${i});event.stopPropagation()">Full paper <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.293 6.293L18.586 11.5H4a1 1 0 000 2h14.586l-5.293 5.207a1 1 0 001.414 1.414l7-7a1 1 0 000-1.414l-7-7a1 1 0 00-1.414 1.086z"/></svg></button>
+    </div>
+  </div>`;
 }
 
-render();
+function renderPagination(containerId, totalItems, pageKey) {
+  const totalPages = Math.ceil(totalItems / PER_PAGE);
+  const cur = currentPage[pageKey];
+  const el = document.getElementById(containerId);
+  if (totalPages <= 1) { el.innerHTML = ''; return; }
+  let html = `<button class="page-btn" onclick="goPage('${pageKey}',${cur-1})" ${cur===1?'disabled':''}>← Prev</button>`;
+  for (let p=1;p<=totalPages;p++) {
+    if (p===1||p===totalPages||Math.abs(p-cur)<=1) {
+      html += `<button class="page-btn ${p===cur?'active':''}" onclick="goPage('${pageKey}',${p})">${p}</button>`;
+    } else if (Math.abs(p-cur)===2) { html += `<span style="color:var(--muted);padding:0 4px">…</span>`; }
+  }
+  html += `<button class="page-btn" onclick="goPage('${pageKey}',${cur+1})" ${cur===totalPages?'disabled':''}>Next →</button>`;
+  el.innerHTML = html;
+}
+
+function goPage(key, p) {
+  currentPage[key] = p;
+  if (key==='home') renderHome();
+  if (key==='browse') renderBrowse();
+  window.scrollTo(0,200);
+}
+
+// ══════════════════════════════
+// HOME
+// ══════════════════════════════
+function handleHomeSearch(q) {
+  const v = q.toLowerCase();
+  homeFiltered = articles.filter(a =>
+    a.title.toLowerCase().includes(v) ||
+    a.journal.toLowerCase().includes(v) ||
+    a.authors.toLowerCase().includes(v) ||
+    a.specialty.toLowerCase().includes(v) ||
+    a.tags.some(t=>t.label.toLowerCase().includes(v))
+  );
+  currentPage.home = 1;
+  renderHome();
+}
+
+function renderHome() {
+  const start = (currentPage.home-1)*PER_PAGE;
+  const slice = homeFiltered.slice(start, start+PER_PAGE);
+  const globalIdxs = homeFiltered.map((_,i)=>i);
+  const sliceIdxs = globalIdxs.slice(start, start+PER_PAGE);
+  document.getElementById('home-articles').innerHTML = slice.length
+    ? slice.map((a,i)=>cardHTML(a, articles.indexOf(a))).join('')
+    : `<div class="no-results"><h3>No results found</h3><p>Try different keywords or browse by specialty.</p></div>`;
+  renderPagination('home-pagination', homeFiltered.length, 'home');
+}
+
+// ══════════════════════════════
+// BROWSE
+// ══════════════════════════════
+function renderBrowse() {
+  const q = (document.getElementById('browse-search').value||'').toLowerCase();
+  const spec = document.getElementById('browse-specialty').value;
+  const year = document.getElementById('browse-year').value;
+  const filtered = articles.filter(a => {
+    const matchQ = !q || a.title.toLowerCase().includes(q)||a.journal.toLowerCase().includes(q)||a.authors.toLowerCase().includes(q)||a.tags.some(t=>t.label.toLowerCase().includes(q));
+    const matchS = !spec || a.specialty===spec || a.tags.some(t=>t.label===spec);
+    const matchY = !year || a.year===year;
+    return matchQ && matchS && matchY;
+  });
+  document.getElementById('browse-count').textContent = `${filtered.length} Publication${filtered.length!==1?'s':''}`;
+  const start = (currentPage.browse-1)*PER_PAGE;
+  const slice = filtered.slice(start, start+PER_PAGE);
+  document.getElementById('browse-articles').innerHTML = slice.length
+    ? slice.map(a=>cardHTML(a, articles.indexOf(a))).join('')
+    : `<div class="no-results"><h3>No results found</h3><p>Try adjusting your search or filters.</p></div>`;
+  renderPagination('browse-pagination', filtered.length, 'browse');
+}
+
+// ══════════════════════════════
+// SPECIALTIES
+// ══════════════════════════════
+const specialtyMeta = {
+  "Cardiology": {icon:"❤️", desc:"Heart & vascular disease"},
+  "Oncology": {icon:"🔬", desc:"Cancer research & treatment"},
+  "Neurology": {icon:"🧠", desc:"Brain, spine & nervous system"},
+  "Psychiatry": {icon:"🧩", desc:"Mental health & behavior"},
+  "Immunology": {icon:"🛡️", desc:"Immune system & allergy"},
+  "Genomics": {icon:"🧬", desc:"Genetics & gene therapy"},
+  "Endocrinology": {icon:"⚗️", desc:"Hormones & metabolism"},
+  "Pulmonology": {icon:"💨", desc:"Lungs & respiratory disease"},
+  "Gastroenterology": {icon:"🫀", desc:"Digestive system"},
+  "Infectious Disease": {icon:"🦠", desc:"Pathogens & antimicrobials"},
+  "Orthopedics": {icon:"🦴", desc:"Bones, joints & muscles"},
+  "Pediatrics": {icon:"👶", desc:"Children's health"},
+  "Surgery": {icon:"🏥", desc:"Surgical interventions"},
+  "AI/Digital Health": {icon:"🤖", desc:"Technology in medicine"},
+};
+
+function renderSpecialties() {
+  const counts = {};
+  articles.forEach(a => { counts[a.specialty] = (counts[a.specialty]||0)+1; });
+  const grid = document.getElementById('spec-grid');
+  grid.innerHTML = Object.keys(specialtyMeta).map(s => {
+    const m = specialtyMeta[s];
+    const c = counts[s]||0;
+    return `<div class="spec-card" onclick="filterBySpecialty('${s}')">
+      <div class="spec-icon">${m.icon}</div>
+      <h3>${s}</h3>
+      <p>${m.desc}</p>
+      <span class="spec-count">${c} article${c!==1?'s':''}</span>
+    </div>`;
+  }).join('');
+}
+
+function filterBySpecialty(spec) {
+  showPage('browse');
+  document.getElementById('browse-specialty').value = spec;
+  currentPage.browse = 1;
+  renderBrowse();
+}
+
+// ══════════════════════════════
+// MODAL
+// ══════════════════════════════
+let modalLevel = 'beginner';
+
+function openModal(idx) {
+  const a = articles[idx];
+  modalLevel = globalLevel;
+  const overlay = document.getElementById('modal-overlay');
+  document.getElementById('modal-inner').innerHTML = `
+    <div class="modal-tags">${a.tags.map(t=>`<span class="tag ${t.cls}">${t.label}</span>`).join('')}</div>
+    <div class="modal-meta">
+      <span>📰 ${a.journal}</span>
+      <span>📅 ${a.date}</span>
+      <span>✍️ ${a.authors}</span>
+      ${a.doi ? `<span>🔗 DOI: ${a.doi}</span>` : ''}
+    </div>
+    <div class="modal-title">${a.title}</div>
+    <div class="modal-level-tabs">
+      <button class="modal-level-btn beginner ${modalLevel==='beginner'?'active':''}" onclick="setModalLevel('beginner',this)">Beginner</button>
+      <button class="modal-level-btn intermediate ${modalLevel==='intermediate'?'active':''}" onclick="setModalLevel('intermediate',this)">Intermediate</button>
+      <button class="modal-level-btn pro ${modalLevel==='pro'?'active':''}" onclick="setModalLevel('pro',this)">Pro</button>
+    </div>
+    <div class="modal-section">
+      <h3>Summary</h3>
+      <p id="modal-summary" style="transition:opacity 0.2s">${a.summaries[modalLevel]}</p>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-section">
+      <h3>Key Findings</h3>
+      <ul>${a.keyPoints.map(k=>`<li>${k}</li>`).join('')}</ul>
+    </div>
+    <div class="modal-divider"></div>
+    <div class="modal-section">
+      <h3>Full Summary — Beginner</h3>
+      <p style="margin-bottom:14px">${a.summaries.beginner}</p>
+      <h3>Full Summary — Intermediate</h3>
+      <p style="margin-bottom:14px">${a.summaries.intermediate}</p>
+      <h3>Full Summary — Pro / Specialist</h3>
+      <p>${a.summaries.pro}</p>
+    </div>
+    <div class="modal-footer">
+      <p class="ai-note">⚠️ AI-generated summary. For clinical use, always verify with the original publication. Not medical advice.</p>
+      ${a.doi ? `<a href="https://doi.org/${a.doi}" target="_blank">View Original Paper →</a>` : '<span></span>'}
+    </div>`;
+  overlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function setModalLevel(level, btn) {
+  modalLevel = level;
+  document.querySelectorAll('.modal-level-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const el = document.getElementById('modal-summary');
+  const curIdx = parseInt(document.querySelector('.modal-inner')?.dataset?.idx||0);
+  // find article by current modal content (use active article via closure-friendly approach)
+  el.style.opacity = '0';
+  // find matching article
+  const title = document.querySelector('.modal-title')?.textContent;
+  const art = articles.find(a=>a.title===title);
+  setTimeout(()=>{ if(art){ el.textContent = art.summaries[level]; } el.style.opacity='1'; }, 140);
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function closeModalOnBg(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
+
+// ══════════════════════════════
+// INIT
+// ══════════════════════════════
+renderHome();
+renderSpecialties();
+renderBrowse();
 </script>
 </body>
 </html>
