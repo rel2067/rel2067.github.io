@@ -8,25 +8,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg: #f7f4ef;
-    --surface: #ffffff;
-    --navy: #0f2140;
-    --navy-mid: #1a3560;
-    --amber: #c8813a;
-    --amber-light: #f0d5b5;
-    --muted: #7a8598;
-    --border: #e2ddd5;
-    --text: #1c2b3a;
-    --pill-bg: #eceae5;
-    --beginner: #3a9e6e;
-    --intermediate: #2e6ec8;
-    --pro: #7b3fc4;
+    --bg: #f7f4ef; --surface: #ffffff; --navy: #0f2140; --navy-mid: #1a3560;
+    --amber: #c8813a; --amber-light: #f0d5b5; --muted: #7a8598; --border: #e2ddd5;
+    --text: #1c2b3a; --pill-bg: #eceae5;
+    --beginner: #3a9e6e; --intermediate: #2e6ec8; --pro: #7b3fc4;
     --radius: 16px;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 16px; line-height: 1.6; }
 
-  /* HEADER */
   header { background: var(--navy); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 24px rgba(15,33,64,0.18); }
   .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; }
   .logo-icon { width: 34px; height: 34px; background: var(--amber); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
@@ -39,11 +29,8 @@
   .nav-cta { background: var(--amber); color: white !important; padding: 8px 18px; border-radius: 100px; font-weight: 600 !important; font-size: 0.8125rem !important; transition: background 0.2s, transform 0.15s !important; }
   .nav-cta:hover { background: #b5722f !important; transform: translateY(-1px); }
 
-  /* PAGES */
-  .page { display: none; }
-  .page.active { display: block; }
+  .page { display: none; } .page.active { display: block; }
 
-  /* HERO */
   .hero { background: var(--navy); padding: 72px 40px 80px; text-align: center; position: relative; overflow: hidden; }
   .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,129,58,0.15) 0%, transparent 70%); pointer-events: none; }
   .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(200,129,58,0.18); border: 1px solid rgba(200,129,58,0.35); color: var(--amber); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
@@ -58,34 +45,20 @@
   .search-btn:hover { background: #b5722f; }
   .search-btn svg { width: 18px; height: 18px; fill: white; }
 
-  /* MAIN */
   main { max-width: 1100px; margin: 0 auto; padding: 52px 24px 80px; }
 
-  /* LEVEL BAR */
   .level-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
   .section-title { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
   .level-switcher { display: flex; background: var(--pill-bg); border-radius: 100px; padding: 4px; gap: 2px; }
   .level-btn { padding: 7px 18px; border: none; background: transparent; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: var(--muted); }
   .level-btn.active { background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); color: var(--text); font-weight: 600; }
-  .level-btn.active.beginner { color: var(--beginner); }
-  .level-btn.active.intermediate { color: var(--intermediate); }
-  .level-btn.active.pro { color: var(--pro); }
+  .level-btn.active.beginner { color: var(--beginner); } .level-btn.active.intermediate { color: var(--intermediate); } .level-btn.active.pro { color: var(--pro); }
 
-  /* FILTERS */
-  .filter-row { display: flex; gap: 8px; margin-bottom: 28px; flex-wrap: wrap; align-items: center; }
-  .filter-chip { padding: 6px 16px; border-radius: 100px; border: 1.5px solid var(--border); background: white; font-size: 0.8rem; font-weight: 500; cursor: pointer; color: var(--muted); transition: all 0.18s; font-family: 'DM Sans', sans-serif; }
-  .filter-chip:hover { border-color: var(--navy-mid); color: var(--navy-mid); }
-  .filter-chip.active { background: var(--navy); border-color: var(--navy); color: white; }
-  .filter-label { font-size: 0.8rem; font-weight: 600; color: var(--muted); margin-right: 4px; }
-
-  /* LEGEND */
   .legend { display: flex; gap: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 28px; margin-bottom: 36px; flex-wrap: wrap; }
   .legend-item { display: flex; align-items: flex-start; gap: 12px; flex: 1; min-width: 180px; }
   .legend-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
-  .legend-text strong { font-size: 0.875rem; font-weight: 600; }
-  .legend-text p { font-size: 0.8rem; color: var(--muted); margin-top: 1px; }
+  .legend-text strong { font-size: 0.875rem; font-weight: 600; } .legend-text p { font-size: 0.8rem; color: var(--muted); margin-top: 1px; }
 
-  /* CARDS */
   .articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
   .card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; animation: fadeUp 0.45s ease both; cursor: pointer; }
   .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(15,33,64,0.11); }
@@ -93,10 +66,8 @@
   .card-header { padding: 22px 22px 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
   .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
   .tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; background: var(--amber-light); color: var(--amber); }
-  .tag.blue { background: #ddeeff; color: #2e6ec8; }
-  .tag.green { background: #d4f0e4; color: #2a8f5c; }
-  .tag.purple { background: #ecddf7; color: #7b3fc4; }
-  .tag.red { background: #fde8e8; color: #c0392b; }
+  .tag.blue { background: #ddeeff; color: #2e6ec8; } .tag.green { background: #d4f0e4; color: #2a8f5c; }
+  .tag.purple { background: #ecddf7; color: #7b3fc4; } .tag.red { background: #fde8e8; color: #c0392b; }
   .tag.teal { background: #d0f0f0; color: #1a8080; }
   .card-date { font-size: 0.75rem; color: var(--muted); white-space: nowrap; padding-top: 2px; }
   .card-body { padding: 14px 22px 22px; }
@@ -110,61 +81,56 @@
   .card-summary { font-size: 0.875rem; color: #4a5568; line-height: 1.65; min-height: 72px; transition: opacity 0.25s; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
   .card-footer { padding: 14px 22px 18px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
   .card-authors { font-size: 0.75rem; color: var(--muted); }
-  .read-more { font-size: 0.8rem; font-weight: 600; color: var(--navy-mid); text-decoration: none; display: flex; align-items: center; gap: 4px; transition: gap 0.2s, color 0.2s; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .read-more { font-size: 0.8rem; font-weight: 600; color: var(--navy-mid); display: flex; align-items: center; gap: 4px; transition: gap 0.2s, color 0.2s; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
   .read-more:hover { color: var(--amber); gap: 8px; }
   .read-more svg { width: 14px; height: 14px; }
   .ai-badge { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg, #1a3560, #0f2140); color: rgba(255,255,255,0.75); font-size: 0.7rem; font-weight: 500; padding: 3px 10px; border-radius: 100px; }
   .ai-badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); animation: pulse 2s infinite; }
-  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+  @keyframes pulse { 0%,100%{opacity:1}50%{opacity:0.4} }
+  .new-badge { background: #e65100; color: white; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 100px; letter-spacing: 0.05em; text-transform: uppercase; display:inline-block; }
   .no-results { text-align: center; padding: 60px 20px; color: var(--muted); grid-column: 1/-1; }
   .no-results h3 { font-family: 'Lora', serif; font-size: 1.25rem; margin-bottom: 8px; color: var(--text); }
 
-  /* MODAL */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.6); z-index: 500; display: none; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(4px); }
+  .modal-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.65); z-index: 500; display: none; align-items: flex-start; justify-content: center; padding: 24px; backdrop-filter: blur(4px); overflow-y: auto; }
   .modal-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-  .modal { background: white; border-radius: 20px; max-width: 760px; width: 100%; max-height: 88vh; overflow-y: auto; position: relative; animation: slideUp 0.28s ease; box-shadow: 0 32px 80px rgba(10,20,40,0.28); }
-  @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-  .modal-close { position: sticky; top: 16px; float: right; margin: 16px 16px 0 0; background: var(--pill-bg); border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--text); z-index: 10; transition: background 0.2s; }
-  .modal-close:hover { background: var(--border); }
+  @keyframes fadeIn { from{opacity:0}to{opacity:1} }
+  .modal { background: white; border-radius: 20px; max-width: 820px; width: 100%; margin: auto; position: relative; animation: slideUp 0.28s ease; box-shadow: 0 32px 80px rgba(10,20,40,0.28); }
+  @keyframes slideUp { from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)} }
+  .modal-close { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.15); border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; z-index: 10; transition: background 0.2s; }
+  .modal-close:hover { background: rgba(255,255,255,0.25); }
   .modal-close svg { width: 16px; height: 16px; }
-  .modal-inner { padding: 36px 40px 40px; }
-  .modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
-  .modal-meta { font-size: 0.8rem; color: var(--muted); margin-bottom: 20px; display: flex; gap: 16px; flex-wrap: wrap; }
-  .modal-meta span { display: flex; align-items: center; gap: 4px; }
-  .modal-title { font-family: 'Lora', serif; font-size: 1.6rem; font-weight: 600; line-height: 1.28; color: var(--navy); margin-bottom: 28px; }
-  .modal-level-tabs { display: flex; background: var(--pill-bg); border-radius: 100px; padding: 4px; gap: 2px; margin-bottom: 24px; width: fit-content; }
+  .modal-top { background: var(--navy); border-radius: 20px 20px 0 0; padding: 36px 44px 32px; position: relative; }
+  .modal-top::before { content: ''; position: absolute; inset: 0; border-radius: 20px 20px 0 0; background: radial-gradient(ellipse 80% 60% at 0% 100%, rgba(200,129,58,0.12) 0%, transparent 70%); pointer-events: none; }
+  .modal-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
+  .modal-meta { font-size: 0.8rem; color: rgba(255,255,255,0.5); margin-bottom: 18px; display: flex; gap: 20px; flex-wrap: wrap; }
+  .modal-title { font-family: 'Lora', serif; font-size: 1.55rem; font-weight: 600; line-height: 1.28; color: white; }
+  .modal-body { padding: 36px 44px 44px; }
+  .modal-level-tabs { display: flex; background: var(--pill-bg); border-radius: 100px; padding: 4px; gap: 2px; margin-bottom: 32px; width: fit-content; }
   .modal-level-btn { padding: 8px 22px; border: none; background: transparent; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; font-weight: 500; cursor: pointer; color: var(--muted); transition: all 0.2s; }
   .modal-level-btn.active { background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); font-weight: 600; }
-  .modal-level-btn.active.beginner { color: var(--beginner); }
-  .modal-level-btn.active.intermediate { color: var(--intermediate); }
-  .modal-level-btn.active.pro { color: var(--pro); }
-  .modal-section { margin-bottom: 24px; }
-  .modal-section h3 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-  .modal-section p { font-size: 0.9375rem; color: var(--text); line-height: 1.72; }
-  .modal-section ul { list-style: none; padding: 0; }
-  .modal-section ul li { font-size: 0.9375rem; color: var(--text); line-height: 1.65; padding: 6px 0; border-bottom: 1px solid var(--border); display: flex; gap: 10px; }
-  .modal-section ul li:last-child { border-bottom: none; }
-  .modal-section ul li::before { content: '→'; color: var(--amber); font-weight: 600; flex-shrink: 0; }
-  .modal-divider { height: 1px; background: var(--border); margin: 24px 0; }
-  .modal-footer { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); }
-  .modal-footer .ai-note { font-size: 0.75rem; color: var(--muted); max-width: 380px; }
-  .modal-footer a { background: var(--navy); color: white; padding: 10px 22px; border-radius: 100px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
-  .modal-footer a:hover { background: var(--amber); }
+  .modal-level-btn.active.beginner{color:var(--beginner)} .modal-level-btn.active.intermediate{color:var(--intermediate)} .modal-level-btn.active.pro{color:var(--pro)}
+  .modal-summary-box { background: var(--bg); border-radius: 12px; border-left: 4px solid var(--amber); padding: 24px 28px; margin-bottom: 32px; transition: opacity 0.2s; }
+  .modal-summary-box h3 { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); margin-bottom: 12px; }
+  .modal-summary-box p { font-size: 0.9375rem; line-height: 1.78; color: var(--text); }
+  .modal-section { margin-bottom: 28px; }
+  .modal-section-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+  .modal-section p { font-size: 0.9375rem; line-height: 1.75; color: #3a4a5c; margin-bottom: 12px; }
+  .modal-section p:last-child { margin-bottom: 0; }
+  .key-points { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .key-point { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 12px 16px; font-size: 0.85rem; line-height: 1.5; color: var(--text); display: flex; gap: 10px; align-items: flex-start; }
+  .key-point::before { content: '→'; color: var(--amber); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+  .stat-box { background: white; border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .stat-box .stat-val { font-family: 'Lora', serif; font-size: 1.4rem; font-weight: 600; color: var(--navy); }
+  .stat-box .stat-label { font-size: 0.72rem; color: var(--muted); margin-top: 2px; line-height: 1.3; }
+  .all-levels-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 28px; }
+  .all-levels-grid > div { padding: 20px; }
+  .all-levels-grid > div + div { border-left: 1px solid var(--border); }
+  .modal-footer-bar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border); }
+  .ai-note { font-size: 0.75rem; color: var(--muted); max-width: 400px; line-height: 1.5; }
+  .modal-footer-bar a { background: var(--navy); color: white; padding: 11px 24px; border-radius: 100px; font-size: 0.875rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+  .modal-footer-bar a:hover { background: var(--amber); }
 
-  /* SPECIALTIES PAGE */
-  .spec-hero { background: var(--navy); padding: 60px 40px; text-align: center; }
-  .spec-hero h1 { font-family: 'Lora', serif; font-size: 2.5rem; font-weight: 600; color: white; margin-bottom: 12px; }
-  .spec-hero p { color: rgba(255,255,255,0.6); font-size: 1rem; }
-  .spec-grid { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
-  .spec-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; cursor: pointer; transition: all 0.2s; text-align: center; }
-  .spec-card:hover { border-color: var(--amber); box-shadow: 0 8px 30px rgba(15,33,64,0.09); transform: translateY(-3px); }
-  .spec-icon { font-size: 2.2rem; margin-bottom: 12px; }
-  .spec-card h3 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
-  .spec-card p { font-size: 0.78rem; color: var(--muted); }
-  .spec-count { display: inline-block; background: var(--amber-light); color: var(--amber); font-size: 0.7rem; font-weight: 700; padding: 2px 9px; border-radius: 100px; margin-top: 10px; }
-
-  /* BROWSE PAGE */
   .browse-header { background: var(--navy); padding: 60px 40px; }
   .browse-header h1 { font-family: 'Lora', serif; font-size: 2.5rem; color: white; margin-bottom: 12px; }
   .browse-header p { color: rgba(255,255,255,0.6); }
@@ -174,7 +140,17 @@
   .browse-select { padding: 11px 18px; border-radius: 100px; border: 1.5px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 0.875rem; background: white; color: var(--text); cursor: pointer; outline: none; }
   .browse-main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 80px; }
 
-  /* ABOUT PAGE */
+  .spec-hero { background: var(--navy); padding: 60px 40px; text-align: center; }
+  .spec-hero h1 { font-family: 'Lora', serif; font-size: 2.5rem; font-weight: 600; color: white; margin-bottom: 12px; }
+  .spec-hero p { color: rgba(255,255,255,0.6); }
+  .spec-grid { max-width: 1100px; margin: 0 auto; padding: 48px 24px 80px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; }
+  .spec-card { background: white; border: 1px solid var(--border); border-radius: var(--radius); padding: 28px 24px; cursor: pointer; transition: all 0.2s; text-align: center; }
+  .spec-card:hover { border-color: var(--amber); box-shadow: 0 8px 30px rgba(15,33,64,0.09); transform: translateY(-3px); }
+  .spec-icon { font-size: 2.2rem; margin-bottom: 12px; }
+  .spec-card h3 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .spec-card p { font-size: 0.78rem; color: var(--muted); }
+  .spec-count { display: inline-block; background: var(--amber-light); color: var(--amber); font-size: 0.7rem; font-weight: 700; padding: 2px 9px; border-radius: 100px; margin-top: 10px; }
+
   .about-hero { background: var(--navy); padding: 80px 40px; text-align: center; position: relative; overflow: hidden; }
   .about-hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 70% 50% at 50% 100%, rgba(200,129,58,0.12) 0%, transparent 70%); }
   .about-hero h1 { font-family: 'Lora', serif; font-size: 2.8rem; color: white; margin-bottom: 16px; position: relative; }
@@ -189,7 +165,7 @@
   .team-avatar { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--navy), var(--navy-mid)); margin: 0 auto 16px; display: flex; align-items: center; justify-content: center; font-family: 'Lora', serif; font-size: 1.75rem; color: white; font-weight: 600; border: 3px solid var(--amber); }
   .team-card h3 { font-family: 'Lora', serif; font-size: 1.2rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
   .team-card .role { font-size: 0.8rem; font-weight: 600; color: var(--amber); letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 12px; }
-  .team-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; }
+  .team-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.6; text-align: left; }
   .about-mission { background: var(--navy); border-radius: var(--radius); padding: 40px; color: white; margin-bottom: 56px; position: relative; overflow: hidden; }
   .about-mission::before { content: '"'; position: absolute; top: -20px; left: 20px; font-family: 'Lora', serif; font-size: 12rem; color: rgba(200,129,58,0.12); line-height: 1; pointer-events: none; }
   .about-mission p { font-family: 'Lora', serif; font-size: 1.25rem; font-style: italic; line-height: 1.65; color: rgba(255,255,255,0.9); position: relative; }
@@ -199,35 +175,31 @@
   .how-text h4 { font-family: 'Lora', serif; font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
   .how-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
 
-  /* FOOTER */
-  footer { background: var(--navy); color: rgba(255,255,255,0.4); text-align: center; padding: 28px 24px; font-size: 0.8125rem; }
-  footer strong { color: rgba(255,255,255,0.7); }
-  footer a { color: var(--amber); text-decoration: none; }
-
-  /* PAGINATION */
-  .pagination { display: flex; gap: 8px; justify-content: center; margin-top: 48px; align-items: center; }
+  .pagination { display: flex; gap: 8px; justify-content: center; margin-top: 48px; align-items: center; flex-wrap: wrap; }
   .page-btn { padding: 8px 16px; border-radius: 8px; border: 1.5px solid var(--border); background: white; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; cursor: pointer; color: var(--text); transition: all 0.18s; }
   .page-btn:hover { border-color: var(--navy); color: var(--navy); }
   .page-btn.active { background: var(--navy); border-color: var(--navy); color: white; }
   .page-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-  @media (max-width: 600px) {
-    header { padding: 0 16px; }
-    nav { gap: 12px; }
-    .hero, .spec-hero, .about-hero, .browse-header { padding-left: 20px; padding-right: 20px; }
-    .team-grid { grid-template-columns: 1fr; }
-    .modal-inner { padding: 24px 20px 28px; }
+  footer { background: var(--navy); color: rgba(255,255,255,0.4); text-align: center; padding: 28px 24px; font-size: 0.8125rem; }
+  footer strong { color: rgba(255,255,255,0.7); }
+  footer a { color: var(--amber); text-decoration: none; cursor: pointer; }
+
+  @media(max-width:640px){
+    header{padding:0 16px} nav{gap:12px}
+    .hero,.spec-hero,.about-hero,.browse-header{padding-left:20px;padding-right:20px}
+    .team-grid{grid-template-columns:1fr}
+    .modal-body,.modal-top{padding:24px 20px}
+    .key-points,.all-levels-grid{grid-template-columns:1fr}
+    .modal-top{padding:28px 24px 24px}
   }
 </style>
 </head>
 <body>
 
-<!-- HEADER -->
 <header>
   <a class="logo" onclick="showPage('home')">
-    <div class="logo-icon">
-      <svg viewBox="0 0 24 24"><path d="M12 2a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0V8H8a1 1 0 010-2h3V3a1 1 0 011-1zm-6 14a6 6 0 1112 0 6 6 0 01-12 0z"/></svg>
-    </div>
+    <div class="logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0V8H8a1 1 0 010-2h3V3a1 1 0 011-1zm-6 14a6 6 0 1112 0 6 6 0 01-12 0z"/></svg></div>
     <span class="logo-name">Minute<span>Med</span>.ai</span>
   </a>
   <nav>
@@ -238,7 +210,7 @@
   </nav>
 </header>
 
-<!-- ═══════ HOME PAGE ═══════ -->
+<!-- HOME -->
 <div id="page-home" class="page active">
   <section class="hero">
     <div class="hero-eyebrow">✦ AI-Powered Summaries</div>
@@ -268,35 +240,22 @@
   </main>
 </div>
 
-<!-- ═══════ BROWSE PAGE ═══════ -->
+<!-- BROWSE -->
 <div id="page-browse" class="page">
-  <div class="browse-header">
-    <h1>Browse All Publications</h1>
-    <p>Search, filter, and explore our full database of summarized medical literature</p>
-  </div>
+  <div class="browse-header"><h1>Browse All Publications</h1><p>Search, filter, and explore our full database of summarized medical literature</p></div>
   <div class="browse-controls">
     <input type="text" class="browse-search" id="browse-search" placeholder="Search title, author, journal, topic…" oninput="renderBrowse()" />
     <select class="browse-select" id="browse-specialty" onchange="renderBrowse()">
       <option value="">All Specialties</option>
-      <option value="Cardiology">Cardiology</option>
-      <option value="Oncology">Oncology</option>
-      <option value="Neurology">Neurology</option>
-      <option value="Psychiatry">Psychiatry</option>
-      <option value="Immunology">Immunology</option>
-      <option value="Genomics">Genomics</option>
-      <option value="Endocrinology">Endocrinology</option>
-      <option value="Pulmonology">Pulmonology</option>
-      <option value="Gastroenterology">Gastroenterology</option>
-      <option value="Infectious Disease">Infectious Disease</option>
-      <option value="Orthopedics">Orthopedics</option>
-      <option value="Pediatrics">Pediatrics</option>
-      <option value="Surgery">Surgery</option>
-      <option value="AI/Digital Health">AI/Digital Health</option>
+      <option>Cardiology</option><option>Oncology</option><option>Neurology</option><option>Psychiatry</option>
+      <option>Immunology</option><option>Genomics</option><option>Endocrinology</option><option>Pulmonology</option>
+      <option>Gastroenterology</option><option>Infectious Disease</option><option>Orthopedics</option>
+      <option>Pediatrics</option><option>Surgery</option><option>AI/Digital Health</option>
+      <option>Nephrology</option><option>Dermatology</option><option>Neuroscience</option>
     </select>
     <select class="browse-select" id="browse-year" onchange="renderBrowse()">
       <option value="">All Years</option>
-      <option value="2025">2025</option>
-      <option value="2024">2024</option>
+      <option>2026</option><option>2025</option><option>2024</option><option>2023</option><option>2021</option><option>2018</option><option>2013</option>
     </select>
   </div>
   <div class="browse-main">
@@ -313,16 +272,13 @@
   </div>
 </div>
 
-<!-- ═══════ SPECIALTIES PAGE ═══════ -->
+<!-- SPECIALTIES -->
 <div id="page-specialties" class="page">
-  <div class="spec-hero">
-    <h1>Browse by Specialty</h1>
-    <p>Select a medical specialty to explore its latest research</p>
-  </div>
+  <div class="spec-hero"><h1>Browse by Specialty</h1><p>Select a medical specialty to explore its latest research</p></div>
   <div class="spec-grid" id="spec-grid"></div>
 </div>
 
-<!-- ═══════ ABOUT PAGE ═══════ -->
+<!-- ABOUT -->
 <div id="page-about" class="page">
   <div class="about-hero">
     <h1>About MinuteMed.ai</h1>
@@ -330,17 +286,14 @@
   </div>
   <div class="about-content">
     <div class="about-mission">
-      <p>Medical research shouldn't be locked behind jargon. We believe that whether you're a curious patient, a nursing student, or a seasoned specialist, you deserve to understand what science is discovering about health — right now.</p>
-      <cite>— Ryan Lee & Trevor Spinelli, Founders</cite>
+      <p>Medical research shouldn't be locked behind jargon. Whether you're a curious patient, a pre-med student, or a seasoned specialist — you deserve to understand what science is discovering about health, right now.</p>
+      <cite>— Ryan Lee & Trevor Spinelli, Co-Founders, University of Miami</cite>
     </div>
-
     <div class="about-section">
       <h2>Our Story</h2>
-      <p>MinuteMed.ai was born in a study room at the University of Miami. Ryan Lee and Trevor Spinelli, two pre-medical undergraduates, kept running into the same frustration: groundbreaking medical research was being published every week, but understanding it required years of training. Friends and family would ask about studies they'd seen in the news — and even as pre-med students, Ryan and Trevor struggled to explain them clearly.</p>
-      <p>So they built something about it. MinuteMed.ai uses artificial intelligence to automatically generate three distinct summaries of every published paper — one for the general public, one for students and clinicians, and one for specialists who want the full methodological detail. The goal isn't to replace medical education; it's to give every person a way in.</p>
-      <p>Both Ryan and Trevor are currently pursuing their undergraduate degrees at the University of Miami with aspirations of attending medical school. MinuteMed.ai is their attempt to democratize medical knowledge before they even have M.D.s after their names.</p>
+      <p>MinuteMed.ai was born in a study room at the University of Miami. Ryan Lee and Trevor Spinelli, two pre-medical undergraduates, kept running into the same frustration: groundbreaking medical research was being published every week, but understanding it required years of specialized training. Friends and family would ask about studies they'd seen in the news — and even as pre-med students, explaining them clearly was a challenge.</p>
+      <p>So they built something about it. MinuteMed.ai uses artificial intelligence to generate three distinct summaries of every published paper — one for the general public, one for students and clinicians, and one for specialists who want full methodological detail. The goal isn't to replace medical education; it's to give every person a meaningful way in.</p>
     </div>
-
     <div class="about-section">
       <h2>Meet the Founders</h2>
       <div class="team-grid">
@@ -348,25 +301,25 @@
           <div class="team-avatar">RL</div>
           <h3>Ryan Lee</h3>
           <div class="role">Co-Founder</div>
-          <p>Pre-medical student at the University of Miami. Passionate about health equity, clinical research, and building tools that make medicine more human.</p>
+          <p>Ryan is a pre-medical student at the University of Miami with a deep passion for the translational aspect of medicine — the bridge between scientific discovery and real patient care. He actively participates in research at UM, exploring how findings at the bench can be transformed into meaningful clinical interventions.</p>
+          <p style="margin-top:10px">Ryan believes that scientific literacy is a form of healthcare equity, and that the gap between published research and public understanding is one of the most solvable problems in modern medicine. MinuteMed.ai is his attempt to close it.</p>
         </div>
         <div class="team-card">
           <div class="team-avatar">TS</div>
           <h3>Trevor Spinelli</h3>
           <div class="role">Co-Founder</div>
-          <p>Pre-medical student at the University of Miami. Interested in medical innovation, patient communication, and the intersection of technology and clinical care.</p>
+          <p>Trevor is a Neuroscience major and certified EMT at the University of Miami. His time on the ambulance has given him a frontline perspective on how quickly medical knowledge — or the lack of it — shapes outcomes for real patients in critical moments.</p>
+          <p style="margin-top:10px">His background in neuroscience fuels a particular fascination with brain research, neurological disease, and emerging therapies at the intersection of mind and medicine. As an EMT, Trevor knows firsthand that good medicine starts with good communication — and MinuteMed.ai is built on that belief.</p>
         </div>
       </div>
     </div>
-
     <div class="about-section">
       <h2>How It Works</h2>
-      <div class="how-item"><div class="how-num">1</div><div class="how-text"><h4>Literature Monitoring</h4><p>Our system continuously monitors top-tier journals including NEJM, JAMA, The Lancet, Nature Medicine, and hundreds more, flagging newly published studies daily.</p></div></div>
-      <div class="how-item"><div class="how-num">2</div><div class="how-text"><h4>AI Summarization</h4><p>Each paper is processed by a large language model trained to produce three distinct summaries: Beginner (accessible to anyone), Intermediate (for students and clinicians), and Pro (full methodological detail for specialists).</p></div></div>
-      <div class="how-item"><div class="how-num">3</div><div class="how-text"><h4>Quality Review</h4><p>Summaries are reviewed for accuracy, with particular attention to not overstating findings, preserving statistical nuance, and flagging limitations researchers identified.</p></div></div>
-      <div class="how-item"><div class="how-num">4</div><div class="how-text"><h4>You Choose Your Level</h4><p>Every reader picks the depth that matches their background — and can switch instantly. A parent, a student, and a cardiologist can all read the same paper at their own level.</p></div></div>
+      <div class="how-item"><div class="how-num">1</div><div class="how-text"><h4>Literature Monitoring</h4><p>Our system continuously monitors top-tier journals — NEJM, JAMA, The Lancet, Nature Medicine, Science, and hundreds more — flagging newly published studies as they appear.</p></div></div>
+      <div class="how-item"><div class="how-num">2</div><div class="how-text"><h4>AI Summarization</h4><p>Each paper is processed by a large language model that generates three summaries: Beginner (accessible to anyone), Intermediate (for students and clinicians), and Pro (full methodological depth for specialists).</p></div></div>
+      <div class="how-item"><div class="how-num">3</div><div class="how-text"><h4>Quality Review</h4><p>Summaries are reviewed for accuracy, with attention to not overstating findings, preserving key nuances, and flagging study limitations.</p></div></div>
+      <div class="how-item"><div class="how-num">4</div><div class="how-text"><h4>You Choose Your Level</h4><p>Every reader picks the depth that fits their background and can switch levels instantly on any article. A parent, a nursing student, and a cardiologist can all read the same paper in their own language.</p></div></div>
     </div>
-
     <div class="about-section">
       <h2>Disclaimer</h2>
       <p>MinuteMed.ai provides AI-generated summaries of published medical literature for educational purposes only. Content on this site does not constitute medical advice and should not be used to make clinical decisions. Always consult a qualified healthcare professional. AI summaries may contain errors — always refer to the original publication for definitive information.</p>
@@ -374,303 +327,444 @@
   </div>
 </div>
 
-<!-- ═══════ ARTICLE MODAL ═══════ -->
+<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOnBg(event)">
   <div class="modal" id="modal">
-    <button class="modal-close" onclick="closeModal()">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    </button>
-    <div class="modal-inner" id="modal-inner"></div>
+    <button class="modal-close" onclick="closeModal()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+    <div id="modal-content"></div>
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
-  <strong>MinuteMed.ai</strong> · Built by <a onclick="showPage('about')" style="cursor:pointer">Ryan Lee & Trevor Spinelli</a>, University of Miami · AI summaries for educational use only · Not medical advice
+  <strong>MinuteMed.ai</strong> · Built by <a onclick="showPage('about')">Ryan Lee & Trevor Spinelli</a>, University of Miami · AI summaries for educational use only · Not medical advice
 </footer>
 
 <script>
-// ══════════════════════════════
-// DATABASE
-// ══════════════════════════════
-const articles = [
-  {
-    specialty:"Cardiology", title:"GLP-1 Receptor Agonists and Cardiovascular Outcomes in T2D Patients",
-    journal:"New England Journal of Medicine", date:"Feb 2025", year:"2025",
-    authors:"Markov E, Chen J, Patel S, et al.", doi:"10.1056/NEJMoa2025001",
-    tags:[{label:"Cardiology",cls:"blue"},{label:"Diabetes",cls:"green"}],
-    keyPoints:["21% relative risk reduction in MACE over 5 years","Benefits observed in renal and heart failure outcomes","NNT for MACE prevention: 48 over 5 years","Consistent across BMI, HbA1c, and eGFR subgroups"],
-    summaries:{
-      beginner:"Scientists studied a class of diabetes medications (like Ozempic) in people with type 2 diabetes and found that — on top of lowering blood sugar — these drugs also significantly reduce the chance of having a heart attack or stroke. The study followed over 14,000 people for 5 years. Put simply: these medications do more good than we thought.",
-      intermediate:"This RCT evaluated GLP-1 receptor agonists versus placebo in 14,200 patients with T2DM and established cardiovascular disease. Over 5 years, the treatment group showed a 21% relative risk reduction in MACE (HR 0.79; 95% CI 0.71–0.88), with additional benefits in renal endpoints and heart failure hospitalizations. Clinicians should consider these cardiometabolic benefits when selecting glucose-lowering therapy.",
-      pro:"Multicenter, double-blind RCT (n=14,204) with 1:1 randomization to weekly subcutaneous GLP-1 RA vs. matched placebo. Primary MACE endpoint: CV death, non-fatal MI, non-fatal stroke. Median follow-up 5.1 years. HR 0.79 (95% CI 0.71–0.88, p<0.001). Key secondary: HHF HR 0.71 (0.61–0.83). eGFR decline ≥40% HR 0.78 (0.66–0.91). NNT for MACE prevention: 48 over 5 years. Consistent across subgroups including baseline BMI, HbA1c, and eGFR quartiles. No heterogeneity by background SGLT2i use."
-    }
-  },
-  {
-    specialty:"Psychiatry", title:"Mindfulness-Based CBT vs SSRIs for Treatment-Resistant Depression",
-    journal:"JAMA Psychiatry", date:"Jan 2025", year:"2025",
-    authors:"Chen L, Okafor B, Williams R, et al.", doi:"10.1001/jamapsychiatry.2025.0044",
-    tags:[{label:"Psychiatry",cls:"purple"}],
-    keyPoints:["Comparable 52-week remission rates (MBCT 42% vs SSRI 39%)","MBCT superior relapse prevention at 12 months (HR 0.68)","Significantly lower adverse event burden with MBCT","NNT for sustained remission: 14"],
-    summaries:{
-      beginner:"Researchers compared a special form of therapy (mindfulness-based CBT) to antidepressant medication for people whose depression hadn't responded to previous treatment. After one year, both approaches helped about the same number of people — but the therapy group had fewer side effects and were more likely to keep improving after treatment ended.",
-      intermediate:"This pragmatic RCT (n=620) compared MBCT augmentation to SSRI dose escalation in patients with TRD. At 52 weeks, remission rates were comparable (MBCT 42% vs. SSRI 39%; OR 1.12, p=0.41), but MBCT showed superior relapse prevention at 12-month follow-up (HR 0.68, p=0.03) and significantly lower adverse event burden (21% vs. 47%).",
-      pro:"Pragmatic multicenter RCT, 620 adults with DSM-5 MDD meeting TRD criteria (≥2 adequate SSRI trials). 8-week MBCT group protocol + stable antidepressant vs. SSRI up-titration. Primary: HDRS-17 remission at wk 52. No significant between-group difference (RR 1.08, 95% CI 0.93–1.25). 12-month sustained remission favored MBCT (HR 0.68, 95% CI 0.48–0.96). AE discontinuation: MBCT 3% vs SSRI 18%. Limitations: unblinded design, therapist variability. NNT for sustained remission: 14."
-    }
-  },
-  {
-    specialty:"Genomics", title:"CRISPR-Cas9 Gene Editing for Sickle Cell Disease: 3-Year Outcomes",
-    journal:"Nature Medicine", date:"Feb 2025", year:"2025",
-    authors:"Nwosu A, Osei K, Mensah G, et al.", doi:"10.1038/s41591-025-0001-3",
-    tags:[{label:"Genomics",cls:""},{label:"Hematology",cls:"blue"}],
-    keyPoints:["93% of patients pain-crisis-free at 36 months","Median HbF rose to 41.3 g/dL","Allelic editing efficiency: 68–82%","No off-target double-strand breaks detected by WGS"],
-    summaries:{
-      beginner:"Doctors used a gene-editing tool called CRISPR to fix the faulty gene that causes sickle cell disease in 45 patients. Three years later, 93% of patients were pain-crisis-free and their red blood cells were functioning nearly normally. This is one of the most promising results yet for a potential cure.",
-      intermediate:"Long-term follow-up (n=45) of CTX001 (exa-cel), a CRISPR-Cas9 edited autologous HSC therapy targeting BCL11A enhancer to reactivate fetal hemoglobin. At 36 months, 93% of patients achieved transfusion independence and freedom from vaso-occlusive crises. Median HbF rose to 41.3 g/dL. No serious adverse events attributed to off-target editing.",
-      pro:"Phase I/II open-label trial, 45 patients with severe SCD (≥2 VOCs/year). Autologous CD34+ HSPCs electroporated with CRISPR-Cas9 RNP targeting BCL11A erythroid enhancer, followed by busulfan myeloablation and single infusion. 42/45 (93.3%) met both primary endpoints at 36 months. Median HbF: 41.3 g/dL. Allelic editing efficiency: 68–82%. WGS in 18 patients: no off-target DSBs. 2 AEs (engraftment syndrome, CMV reactivation) unrelated to editing. No clonal hematopoiesis signals."
-    }
-  },
-  {
-    specialty:"Neurology", title:"Ultra-Processed Food Consumption and Dementia Risk: A 15-Year Cohort",
-    journal:"The Lancet Regional Health", date:"Jan 2025", year:"2025",
-    authors:"Patel R, Björk S, Torres M, et al.", doi:"10.1016/S2468-2667(25)00001-4",
-    tags:[{label:"Neurology",cls:"purple"},{label:"Nutrition",cls:"green"}],
-    keyPoints:["28% higher dementia risk in highest UPF quintile (HR 1.28)","Dose-response relationship with no threshold","15.2% of association mediated via CVD","Replacing 10% UPF calories: HR 0.81 for dementia"],
-    summaries:{
-      beginner:"A 15-year study tracking 72,000 adults found that people who ate the most ultra-processed foods (chips, packaged snacks, fast food) were 28% more likely to develop dementia. Swapping even 10% of those foods for whole foods was linked to a significantly lower risk.",
-      intermediate:"Prospective cohort (n=72,083, UK Biobank) over 15 years assessed ultra-processed food (UPF) intake via 24-hour dietary recall (NOVA classification). Highest UPF quintile associated with incident all-cause dementia (HR 1.28; 95% CI 1.12–1.47). Substitution modelling: replacing 10% of UPF calories with minimally processed foods → HR 0.81 (0.69–0.94).",
-      pro:"Prospective UK Biobank analysis (n=72,083; 14.9 years follow-up; 4,652 incident dementia cases). UPF via repeated 24-hr recall (median 5.5 assessments), NOVA-4 classification. Cox hazards adjusted for 42 covariates including APOE ε4 status. Q5 vs Q1: HR 1.28 (1.12–1.47). Spline: dose-response, no threshold. Mediation: 15.2% via CVD; 9.7% via T2DM. Sensitivity: stable excluding first 3 years follow-up. Limitation: self-reported diet, healthy volunteer bias."
-    }
-  },
-  {
-    specialty:"Immunology", title:"Novel mRNA Vaccine Platform for Influenza A Shows Pan-Strain Protection",
-    journal:"Science Translational Medicine", date:"Feb 2025", year:"2025",
-    authors:"Khoury J, Leung W, Adeyemi F, et al.", doi:"10.1126/scitranslmed.adf2025",
-    tags:[{label:"Immunology",cls:"blue"},{label:"Vaccines",cls:"green"}],
-    keyPoints:["78% vaccine efficacy against matched strains","61% efficacy against mismatched H3N2 and H1N1","Broad CD8+ T-cell responses across HLA types","Avian H5 cross-reactivity in 58% of recipients"],
-    summaries:{
-      beginner:"Scientists developed a new type of flu vaccine using the same mRNA technology as COVID vaccines. In a phase II trial, it protected against multiple flu strains at once — including strains not in the vaccine — which could mean we no longer need a new flu shot every year.",
-      intermediate:"Phase II RCT (n=2,400) of a self-amplifying mRNA vaccine targeting conserved influenza A antigens (NP + M2e + HA stem). At 12 months, VE against matched strains was 78% (95% CI 68–85%) and 61% against mismatched H3N2 and H1N1 strains. Broad CD8+ T-cell responses observed across HLA types.",
-      pro:"Phase II multicenter RCT (n=2,400, 18–70 yrs), 1:1:1: saRNA vaccine 5μg, 25μg, vs. IIV4. saRNA encoded NP, M2e concatemer, and stabilized HA-stem from H1N1 A/Michigan/45/2015. VE homologous: 78% (68–85%); heterologous H3N2: 61% (48–71%); H5 cross-reactivity HAI ≥1:40: 58% vs 12% IIV4 (p<0.001). Polyfunctional NP-specific CD8+ response in 74% of 25μg recipients. Grade ≥3 reactogenicity: 6.8% vs 4.2% IIV4."
-    }
-  },
-  {
-    specialty:"AI/Digital Health", title:"AI Screening for Diabetic Retinopathy in Rural Primary Care Settings",
-    journal:"Ophthalmology", date:"Jan 2025", year:"2025",
-    authors:"Gupta M, Adewale T, Kim S, et al.", doi:"10.1016/j.ophtha.2025.01.001",
-    tags:[{label:"AI/Digital Health",cls:""},{label:"Ophthalmology",cls:"blue"}],
-    keyPoints:["Sensitivity 94.2%, specificity 91.7% for referable DR","3.4-fold increase in detection vs pre-implementation","Patient acceptance: 87%","Cost per additional case detected: $213"],
-    summaries:{
-      beginner:"Researchers deployed an AI tool in rural clinics to screen for diabetic eye damage — a leading cause of blindness. Without needing an eye specialist present, the AI caught 94% of serious cases and was more effective than many specialist referral programs, helping reach patients who'd otherwise go undiagnosed.",
-      intermediate:"Prospective implementation study (n=3,812, 18 rural clinics) evaluating an FDA-cleared autonomous AI system for diabetic retinopathy screening. Sensitivity for referable DR was 94.2%, specificity 91.7%. Detection of previously undiagnosed referable DR increased 3.4-fold vs. pre-implementation rates.",
-      pro:"Prospective real-world study across 18 FQHCs (n=3,812 patients with T2DM). Index test: autonomous AI 3-field non-mydriatic fundus camera vs. two fellowship-trained retinal specialist graders. Sensitivity 94.2% (91.8–96.1), specificity 91.7% (90.4–92.9), AUC 0.974. OR 3.41 for referable DR detection vs. historical referral rates (p<0.001). Imaging failure rate: 6.3%. Cost per additional case detected: $213. Limitations: single vendor AI, cross-sectional screening."
-    }
-  },
-  {
-    specialty:"Oncology", title:"CAR-T Cell Therapy in Relapsed Diffuse Large B-Cell Lymphoma: 5-Year Follow-Up",
-    journal:"Journal of Clinical Oncology", date:"Jan 2025", year:"2025",
-    authors:"Rivera CM, Nakamura T, Eze O, et al.", doi:"10.1200/JCO.24.03210",
-    tags:[{label:"Oncology",cls:"red"},{label:"Hematology",cls:"blue"}],
-    keyPoints:["40% complete response rate at 5 years","Median overall survival 24.3 months vs 6.5 months standard","CRS grade ≥3 in 22% of patients","Durable remission in responders beyond 36 months"],
-    summaries:{
-      beginner:"Doctors tracked patients with a serious type of blood cancer for 5 years after they received a special immune cell therapy called CAR-T. Compared to standard treatment, patients lived nearly 4 times longer on average, and 40% had no detectable cancer at 5 years. This is a major milestone in cancer treatment.",
-      intermediate:"5-year follow-up of a phase III trial evaluating axi-cel (axicabtagene ciloleucel) vs. standard chemoimmunotherapy in relapsed/refractory DLBCL. Complete response rate 40% vs 16% (OR 3.5, p<0.001). Median OS 24.3 vs 6.5 months (HR 0.56, 95% CI 0.41–0.76). Grade ≥3 CRS in 22%; neurotoxicity in 18%.",
-      pro:"Phase III open-label RCT (n=359), 2:1 randomization to axi-cel vs. SOC (salvage chemo → ASCT if eligible). Primary: EFS at 24 months. EFS 40.5% vs 16.3% (HR 0.40, 95% CI 0.31–0.52, p<0.001). Median OS 24.3 vs 6.5 months (HR 0.56, 0.41–0.76). 5-year landmark: 32% axi-cel patients in ongoing CR. Grade ≥3 CRS: 22%; ICANS: 18%. Cytokine profile predictors of CRS severity identified (IL-6, ferritin thresholds). No late-emerging safety signals beyond 36 months."
-    }
-  },
-  {
-    specialty:"Pulmonology", title:"Dupilumab for Uncontrolled COPD with Type 2 Inflammation",
-    journal:"New England Journal of Medicine", date:"Dec 2024", year:"2024",
-    authors:"Bhatt SP, Rabe KF, Hanania NA, et al.", doi:"10.1056/NEJMoa2401304",
-    tags:[{label:"Pulmonology",cls:"teal"},{label:"Immunology",cls:"blue"}],
-    keyPoints:["34% reduction in moderate/severe exacerbations","Pre-bronchodilator FEV1 increased by 160 mL","Benefit concentrated in patients with eosinophils ≥300/μL","No new safety signals vs. placebo"],
-    summaries:{
-      beginner:"COPD is a serious lung disease that causes breathing difficulties and frequent hospital visits. Researchers tested a biologic drug (dupilumab, also used for eczema and asthma) in COPD patients with a specific type of lung inflammation. The drug cut dangerous flare-ups by 34% and noticeably improved how well patients could breathe.",
-      intermediate:"Phase III RCT (n=939) evaluated dupilumab 300mg Q2W vs. placebo in patients with COPD and type 2 inflammation (blood eosinophils ≥300/μL). Moderate/severe exacerbation rate reduced by 34% (RR 0.66; 95% CI 0.54–0.81). Pre-bronchodilator FEV1 improved by 160 mL (p<0.001). Dupilumab targets IL-4Rα, blocking both IL-4 and IL-13 signaling.",
-      pro:"BOREAS phase III RCT (n=939), 1:1 dupilumab 300mg Q2W vs. matched placebo; 52-week treatment, 12-week follow-up. Eligibility: ≥40yr, ≥10 pack-years, post-BD FEV1/FVC <0.70, ≥2 moderate or ≥1 severe exacerbation in prior year, blood Eos ≥300/μL. Primary: annualized rate moderate/severe exacerbations. RR 0.66 (95% CI 0.54–0.81, p<0.001). Pre-BD FEV1 +160 mL (p<0.001). SGRQ –4.5 vs –1.9 (p=0.007). Safety: dupilumab-associated conjunctivitis 2.2% vs 0.9%; no hypereosinophilic events. Limitations: single eosinophil threshold, no comparison to triple inhaler therapy."
-    }
-  },
-  {
-    specialty:"Gastroenterology", title:"Fecal Microbiota Transplant vs Antibiotics for Recurrent C. difficile",
-    journal:"The Lancet", date:"Nov 2024", year:"2024",
-    authors:"van Nood E, Dijkgraaf M, Keller J, et al.", doi:"10.1016/S0140-6736(24)02100-1",
-    tags:[{label:"Gastroenterology",cls:"green"},{label:"Infectious Disease",cls:"teal"}],
-    keyPoints:["FMT resolution rate 91% vs 26% for antibiotics","Recurrence in 8% of FMT group vs 74% antibiotics","Durable benefit sustained at 12-month follow-up","Patient quality of life significantly improved with FMT"],
-    summaries:{
-      beginner:"C. difficile is a dangerous gut infection that keeps coming back after antibiotic treatment. This trial compared standard antibiotics to a 'fecal microbiota transplant' — a procedure that transfers healthy gut bacteria from a donor. The transplant worked dramatically better: 91% of patients recovered vs only 26% with antibiotics, and far fewer had the infection return.",
-      intermediate:"Multicenter RCT (n=242) comparing FMT (nasojejunal infusion, healthy donor) vs vancomycin for recurrent C. difficile infection (≥2 prior episodes). Resolution without recurrence at 10 weeks: FMT 91% vs vancomycin 26% (OR 30.8, 95% CI 12.3–76.9, p<0.001). 12-month durability: recurrence 8% FMT vs 74% vancomycin. No serious FMT-related adverse events.",
-      pro:"Multicenter open-label RCT (n=242), 1:1 FMT (fresh/frozen nasojejunal infusion from screened donor) vs vancomycin 125mg QID ×10 days in patients with ≥2 CDI episodes or ≥1 severe. Primary: clinical resolution without recurrence at 10 weeks. FMT 91% vs vancomycin 26% (OR 30.8, 95% CI 12.3–76.9, p<0.001). 12-month follow-up: sustained resolution 92% vs 26%. Shannon diversity index significantly higher in FMT arm at all timepoints. No SUSAR related to FMT. Limitations: open-label design, single-dose FMT, nasojejunal route (not capsule)."
-    }
-  },
-  {
-    specialty:"Endocrinology", title:"Tirzepatide vs Semaglutide for Weight Loss in Adults with Obesity",
-    journal:"JAMA", date:"Oct 2024", year:"2024",
-    authors:"Jastreboff AM, Aronne LJ, Ahmad NN, et al.", doi:"10.1001/jama.2024.14919",
-    tags:[{label:"Endocrinology",cls:""},{label:"Cardiology",cls:"blue"}],
-    keyPoints:["Tirzepatide: 20.2% mean body weight reduction at 72 weeks","Semaglutide: 13.7% mean body weight reduction","More GI adverse events with tirzepatide (51% vs 44%)","Both groups showed significant improvements in cardiometabolic markers"],
-    summaries:{
-      beginner:"Two popular weight-loss injections were compared head-to-head for the first time. Tirzepatide (Zepbound) led to an average 20% weight loss over 72 weeks, while semaglutide (Wegovy) led to about 14%. Both are far better than diet alone — but tirzepatide had slightly more stomach-related side effects.",
-      intermediate:"Head-to-head phase IIIb RCT (n=751) comparing tirzepatide 10–15mg vs semaglutide 1mg weekly in adults with BMI ≥30 (or ≥27 with comorbidity) over 72 weeks. Tirzepatide produced significantly greater weight loss (−20.2% vs −13.7%, p<0.001). Both improved HbA1c, blood pressure, and lipid profiles. GI AEs: tirzepatide 51% vs semaglutide 44%.",
-      pro:"Phase IIIb, double-blind, double-dummy RCT (n=751), tirzepatide (escalated to 10 or 15mg QW) vs semaglutide 1mg QW, 72 weeks. Primary: % change body weight. Secondary: proportion achieving ≥10%, ≥15%, ≥20% loss; cardiometabolic outcomes. Tirzepatide −20.2% vs semaglutide −13.7% (difference −6.5%; 95% CI −7.9 to −5.1, p<0.001). ≥20% reduction: 32% vs 16%. HbA1c reduction: −1.2 vs −0.9%. GI AE: 51% vs 44%; severe GI: 9.4% vs 5.7%. Adherence: 86.5% vs 88.3% completed. Limitations: single dose of semaglutide (2.4mg not tested), 72-week duration."
-    }
-  },
-  {
-    specialty:"Infectious Disease", title:"Nirmatrelvir-Ritonavir for COVID-19 in Hospitalized Patients",
-    journal:"New England Journal of Medicine", date:"Sep 2024", year:"2024",
-    authors:"Hammond J, Leister-Tebbe H, Gardner A, et al.", doi:"10.1056/NEJMoa2408682",
-    tags:[{label:"Infectious Disease",cls:"teal"},{label:"Pulmonology",cls:""} ],
-    keyPoints:["28% reduction in hospitalization/death in high-risk outpatients","Less benefit in hospitalized patients vs early outpatient use","Rebound symptom rate: 14% in treatment group","Efficacy maintained against Omicron subvariants"],
-    summaries:{
-      beginner:"Paxlovid (nirmatrelvir-ritonavir) is an antiviral pill for COVID-19. This updated study showed it works best when taken very early after infection — it reduced hospitalizations by 28% in high-risk people. It was less effective in people who were already hospitalized. About 14% of treated patients had symptoms return briefly after finishing the pills.",
-      intermediate:"Updated analysis of Paxlovid efficacy across patient risk groups and Omicron subvariants. In high-risk outpatients (symptoms ≤3 days), hospitalization/death reduced 28% (RR 0.72; 95% CI 0.60–0.87). Hospitalized patients showed no significant benefit (RR 0.97, p=0.78). Symptom rebound in 14% of treated vs 9% placebo. Maintained efficacy across BA.4/BA.5, XBB, JN.1 subvariants.",
-      pro:"Integrated analysis across EPIC-HR, EPIC-SR, and EPIC-HOST trials (total n=9,418). Primary endpoint: COVID-19-related hospitalization or death by day 28. Outpatient high-risk: RR 0.72 (95% CI 0.60–0.87, p<0.001). Outpatient standard-risk: RR 0.87 (0.71–1.06, NS). Hospitalized: RR 0.97 (0.86–1.09, NS). Rebound (symptom return after clearance): nirmatrelvir 14.2% vs placebo 9.1%. Viral rebound with positive PCR: 2.3% vs 1.7%. Variant-specific analysis: consistent HRs across BA.5, XBB.1.5, JN.1 clades. Safety: dysgeusia 5.6% vs 0.3%; drug interactions via CYP3A4 remain primary limitation."
-    }
-  },
-  {
-    specialty:"Orthopedics", title:"Platelet-Rich Plasma vs Corticosteroid Injection for Chronic Rotator Cuff Tendinopathy",
-    journal:"JAMA Network Open", date:"Aug 2024", year:"2024",
-    authors:"Kesikburun S, Tan AK, Yilmaz B, et al.", doi:"10.1001/jamanetworkopen.2024.25510",
-    tags:[{label:"Orthopedics",cls:""},{label:"Sports Medicine",cls:"green"}],
-    keyPoints:["PRP superior to corticosteroid at 12 months (WORC score)","Corticosteroid more effective at 1-month pain relief","No difference in re-tear rates or surgical escalation","PRP showed no serious adverse events"],
-    summaries:{
-      beginner:"People with painful shoulder tendon problems often get steroid shots, but a newer treatment called PRP (platelet-rich plasma, made from your own blood) was compared to steroids. Steroid shots worked faster for pain, but PRP worked better in the long run — after 12 months, the PRP group had significantly better shoulder function.",
-      intermediate:"RCT (n=118) comparing PRP vs corticosteroid injection for chronic rotator cuff tendinopathy. At 1 month, corticosteroid showed superior pain reduction (NRS −3.2 vs −1.8, p=0.02). At 12 months, PRP showed superior WORC scores (78 vs 64, p=0.003). No difference in imaging-confirmed progression or surgical escalation rates.",
-      pro:"Double-blind RCT (n=118), PRP (leukocyte-poor, single injection, 5mL) vs triamcinolone 40mg (single injection) in chronic RC tendinopathy (ultrasound-confirmed, >3 months). Primary: WORC score at 12 months. Secondary: NRS pain, ASES, ultrasonographic changes. 12-month WORC: PRP 78.2 vs CS 63.5 (difference 14.7; 95% CI 6.1–23.3, p=0.001). 1-month NRS: CS superior (−3.2 vs −1.8). Re-tear rate: 4.2% PRP vs 6.1% CS (NS). No SAEs in either arm. Limitations: single PRP preparation method, no sham injection, no PT standardization."
-    }
-  },
-  {
-    specialty:"Pediatrics", title:"Early Introduction of Allergenic Foods and Peanut Allergy Prevention",
-    journal:"NEJM Evidence", date:"Jul 2024", year:"2024",
-    authors:"Du Toit G, Roberts G, Sayre PH, et al.", doi:"10.1056/EVIDoa2400012",
-    tags:[{label:"Pediatrics",cls:"green"},{label:"Immunology",cls:"blue"}],
-    keyPoints:["86% reduction in peanut allergy with early introduction","Benefit sustained 6 years after cessation of consumption","High-risk infants (eczema/egg allergy) benefit most","WHO guidelines updated following this evidence"],
-    summaries:{
-      beginner:"For years, parents were told to avoid giving peanuts to babies. This landmark study showed the opposite: giving peanuts to infants as young as 4 months — especially those with eczema — reduced the chance of developing a peanut allergy by 86%. The protection lasted years after the children stopped regularly eating peanuts.",
-      intermediate:"6-year follow-up of the LEAP trial (n=640), evaluating sustained allergy prevention after early peanut introduction (4–11 months) vs avoidance. Among early-introduction group, peanut allergy at 6-year follow-up: 3.6% vs 18.6% (avoidance) — 81% relative reduction sustained without continued consumption. Effect strongest in high-risk group (eczema + egg allergy).",
-      pro:"LEAP-Trio 6-year follow-up of LEAP RCT (n=508 completing assessment). Original randomization: peanut consumption vs avoidance 4–11 months to 5 years, then consumption ceased. Outcome: peanut allergy at age 11. Early introduction 3.6% vs avoidance 18.6% (RR 0.19; 95% CI 0.10–0.37, p<0.001). High-risk stratum: 4.8% vs 35.3% (RR 0.14). SPT reactivity and peanut-specific IgE significantly lower in early-introduction group. Immunological correlates: Treg-mediated tolerance, reduced IL-4/IL-13 response to Ara h 2. Limitations: open-label original trial, potential for differential follow-up."
-    }
-  },
-  {
-    specialty:"Surgery", title:"Laparoscopic vs Robotic Surgery for Colorectal Cancer: A Network Meta-Analysis",
-    journal:"Annals of Surgery", date:"Jun 2024", year:"2024",
-    authors:"Jayne DG, Guillou PJ, Thorpe H, et al.", doi:"10.1097/SLA.0000000000006380",
-    tags:[{label:"Surgery",cls:""},{label:"Oncology",cls:"red"}],
-    keyPoints:["Robotic surgery: lower conversion to open rate (2.1% vs 8.4%)","No significant difference in 5-year oncologic outcomes","Robotic approach associated with shorter hospital stay","Higher operative cost with robotic: $2,800 per case"],
-    summaries:{
-      beginner:"Surgeons can now operate on colon cancer using either a camera and small instruments (laparoscopic) or a robotic system. This large analysis of 68 studies found that robotic surgery has fewer complications and shorter hospital stays — but the cancer survival rates are the same for both. Robotic surgery costs about $2,800 more per operation.",
-      intermediate:"Network meta-analysis (68 RCTs and observational studies; n=24,600) comparing laparoscopic vs robotic colectomy for colorectal cancer. Robotic approach showed lower conversion to open surgery (2.1% vs 8.4%, OR 0.23; p<0.001) and shorter LOS (4.8 vs 6.1 days). No significant difference in 5-year OS (HR 0.97, 95% CI 0.88–1.07) or DFS. Higher operative cost with robotic ($2,800/case, p<0.001).",
-      pro:"Systematic review and NMA (PRISMA; n=68 studies, 24,600 patients), direct and indirect comparisons via frequentist NMA framework. Primary: conversion to open, LOS, 5-year OS/DFS. Robotic conversion: 2.1% vs laparoscopic 8.4% (OR 0.23; 95% CrI 0.14–0.37). LOS: −1.3 days (95% CrI −1.9 to −0.7). 5-year OS HR 0.97 (0.88–1.07; I²=32%). Lymph node yield: robotic 21.4 vs laparoscopic 19.8 (p=0.04). Operative time: +28 min robotic (p<0.001). Cost: +$2,800/case robotic. SUCRA ranking: robotic highest for short-term; no separation for oncologic outcomes. Limitations: heterogeneous study designs, learning curve variability, industry sponsorship in 42% of included RCTs."
-    }
-  },
-  {
-    specialty:"Cardiology", title:"Subcutaneous Implantable Defibrillator vs Transvenous ICD in Younger Patients",
-    journal:"New England Journal of Medicine", date:"May 2024", year:"2024",
-    authors:"Knops RE, Olde Nordkamp LR, Delnoy PP, et al.", doi:"10.1056/NEJMoa2400596",
-    tags:[{label:"Cardiology",cls:"blue"}],
-    keyPoints:["S-ICD non-inferior to TV-ICD for primary outcome","37% reduction in device-related complications with S-ICD","S-ICD unable to provide pacing — important limitation","Cost-effectiveness favorable for S-ICD in younger patients"],
-    summaries:{
-      beginner:"Implantable defibrillators (ICDs) can shock the heart back to normal rhythm if it stops correctly. Traditional devices run wires through blood vessels, which can cause problems over decades. A newer type (S-ICD) sits under the skin without any wires in the heart. This 4-year trial found the wireless version was just as effective at preventing sudden death but caused significantly fewer device complications.",
-      intermediate:"Multicenter RCT (n=849) comparing subcutaneous ICD (S-ICD) vs transvenous ICD (TV-ICD) in patients ≤60 years with primary prevention indication. Primary endpoint (appropriate shock, all-cause mortality) was non-inferior for S-ICD. Device-related complications significantly lower with S-ICD (3.6% vs 9.8%, HR 0.35, p<0.001). S-ICD cannot deliver pacing — 8% of S-ICD patients required crossover for pacing indications.",
-      pro:"EFFORTLESS II multicenter RCT (n=849), 1:1 S-ICD (EMBLEM) vs TV-ICD (primary prevention), patients ≤60yr. Follow-up: median 4.0 years. Primary: composite appropriate shock + all-cause mortality. Non-inferiority margin: HR ≤1.45. HR 0.99 (95% CI 0.72–1.36) — non-inferior. Device-related complication: HR 0.35 (0.20–0.60, p<0.001). Inappropriate shocks: 6.4% S-ICD vs 3.6% TV-ICD (p=0.04) — driven by T-wave oversensing. Crossover for pacing: 8.1% S-ICD. Healthcare cost analysis: S-ICD cost-effective over 10-year horizon (ICER below £20,000/QALY). Limitations: open-label, sensing screening excluded 3.7% of screened candidates."
-    }
-  },
-  {
-    specialty:"Neurology", title:"Lecanemab for Early Alzheimer's Disease: 18-Month Randomized Trial",
-    journal:"New England Journal of Medicine", date:"Apr 2024", year:"2024",
-    authors:"van Dyck CH, Swanson CJ, Aisen P, et al.", doi:"10.1056/NEJMoa2212948",
-    tags:[{label:"Neurology",cls:"purple"},{label:"Genomics",cls:""}],
-    keyPoints:["27% slowing of clinical decline on CDR-SB at 18 months","Amyloid cleared in 80% of treated patients vs 9% placebo","ARIA (brain swelling/bleeding) in 21.5% of treated patients","FDA approved under accelerated approval pathway"],
-    summaries:{
-      beginner:"Alzheimer's is caused in part by sticky protein plaques building up in the brain. Lecanemab is a new antibody drug designed to clear these plaques. In an 18-month trial, it slowed down memory and thinking decline by 27% compared to a dummy treatment. It's not a cure, but it's the first drug to meaningfully slow the disease — though it carries risk of brain swelling.",
-      intermediate:"Phase III RCT (n=1,795) evaluating lecanemab 10mg/kg biweekly in early Alzheimer's (MCI or mild dementia, confirmed amyloid by PET or CSF). Primary: CDR-SB at 18 months. Lecanemab slowed decline by 27% (difference −0.45; 95% CI −0.67 to −0.23, p<0.001). Amyloid clearance: 80% treated vs 9% placebo. ARIA-E: 12.6%; ARIA-H: 17.3%. Serious ARIA: 2.8%.",
-      pro:"CLARITY AD phase III RCT (n=1,795), 1:1 lecanemab 10mg/kg Q2W vs placebo, 18 months. Eligibility: CDR 0.5 or 1, amyloid-positive PET or CSF. Primary: CDR-SB. Δ −0.45 (95% CI −0.67 to −0.23, p<0.001; 27% reduction). Secondary: ADCOMS −0.019 (p=0.004); ADCS-MCI-ADL −0.53 (p=0.001); amyloid PET −59.1 vs +2.1 CL (p<0.001). ARIA-E: 12.6% (symptomatic 2.8%). ARIA-H microhemorrhage: 17.3%. Serious ARIA: 2.8%. APOE ε4 carriers: higher ARIA rates (35.5% vs 20.4% non-carriers). Symptomatic ARIA management: 6.9% required dose interruption. Limitations: 18-month duration, CDR-SB minimum clinically important difference uncertain."
-    }
-  },
-  {
-    specialty:"Oncology", title:"Pembrolizumab Plus Chemotherapy for First-Line Metastatic Triple-Negative Breast Cancer",
-    journal:"Journal of Clinical Oncology", date:"Mar 2024", year:"2024",
-    authors:"Cortes J, Cescon DW, Rugo HS, et al.", doi:"10.1200/JCO.23.01805",
-    tags:[{label:"Oncology",cls:"red"},{label:"Immunology",cls:"blue"}],
-    keyPoints:["Median OS improved from 17.6 to 23.0 months with pembrolizumab","Benefit concentrated in PD-L1 CPS ≥10 tumors","pCR rate 64.8% vs 51.2% in neoadjuvant setting","irAEs in 27% of pembrolizumab-treated patients"],
-    summaries:{
-      beginner:"Triple-negative breast cancer is one of the hardest types to treat. Adding an immunotherapy drug (pembrolizumab) to standard chemotherapy helped patients live significantly longer — on average 23 months vs 17.6 months. The biggest benefit was in tumors that had a specific protein (PD-L1) that the immune system can latch onto.",
-      intermediate:"Pooled analysis across KEYNOTE-522 and KEYNOTE-355 (total n=2,406) evaluating pembrolizumab + chemo vs chemo alone in metastatic and early-stage TNBC. Metastatic: median OS 23.0 vs 17.6 months in PD-L1 CPS ≥10 (HR 0.73, p<0.001). Neoadjuvant (early stage): pCR 64.8% vs 51.2% (OR 1.76, p<0.001). EFS benefit: HR 0.63 (0.50–0.79).",
-      pro:"Pooled analysis KEYNOTE-522 (neoadjuvant; n=1,174) and KEYNOTE-355 (metastatic; n=882). KEYNOTE-355 (CPS ≥10): OS HR 0.73 (95% CI 0.55–0.95, p=0.0185); PFS HR 0.65 (0.49–0.86). KEYNOTE-522 pCR: 64.8% vs 51.2% (Δ13.6%; 95% CI 5.4–21.8, p<0.001); EFS HR 0.63 (0.50–0.79, p<0.001). PD-L1 CPS <10 subgroup: no significant OS benefit. irAE ≥3: 27.1% vs 7.8%. Thyroid irAE most common (14.2%). Treatment discontinuation for irAE: 6.2%. Limitations: pooled analysis, different endpoints across trials, CPS cutoff definition variability."
-    }
-  },
-  {
-    specialty:"Endocrinology", title:"Bariatric Surgery vs Intensive Medical Therapy for Remission of Type 2 Diabetes",
-    journal:"NEJM Evidence", date:"Feb 2024", year:"2024",
-    authors:"Schauer PR, Bhatt DL, Kirwan JP, et al.", doi:"10.1056/EVIDoa2300229",
-    tags:[{label:"Endocrinology",cls:""},{label:"Surgery",cls:""}],
-    keyPoints:["Roux-en-Y gastric bypass: 50% T2D remission at 10 years","Sleeve gastrectomy: 38% remission at 10 years","Medical therapy: 5% remission at 10 years","Micronutrient deficiencies more common post-surgery"],
-    summaries:{
-      beginner:"This 10-year study compared diabetes surgery (which makes the stomach smaller) to intensive medication management. At 10 years, half of patients who had gastric bypass surgery no longer had diabetes at all — compared to only 5% of those treated with medications. Surgery is increasingly seen as a potential cure for type 2 diabetes.",
-      intermediate:"10-year follow-up of the STAMPEDE trial (n=217) comparing Roux-en-Y gastric bypass (RYGB), sleeve gastrectomy (SG), and intensive medical therapy (IMT) in T2DM patients with BMI 27–43. Diabetes remission (HbA1c <6.0% off medications): RYGB 50%, SG 38%, IMT 5%. Cardiovascular risk factor improvements superior in surgical arms. Micronutrient deficiencies: 30–40% post-surgery vs 2% IMT.",
-      pro:"10-year RCT follow-up, STAMPEDE trial (n=217 of original 150; intent-to-treat), comparing RYGB, SG vs IMT. Primary: HbA1c <6.0% at 10 years without diabetes medications. RYGB 50% vs SG 38% vs IMT 4.9% (p<0.001 for both surgical vs IMT). HbA1c reduction from baseline: RYGB −2.5%, SG −2.1%, IMT −0.4%. Weight loss: RYGB −20.3kg, SG −17.8kg, IMT −5.2kg. CV outcomes: MACE occurred in 10.7% IMT vs 6.3% RYGB (p=0.03). Micronutrient: B12 deficiency 38% RYGB; iron deficiency 24% SG. AEs requiring reoperation: 7.9% RYGB, 3.6% SG. Limitations: open-label, high attrition (29%), single-center."
-    }
-  },
-  {
-    specialty:"Psychiatry", title:"Psilocybin-Assisted Therapy for Major Depressive Disorder: A Phase II RCT",
-    journal:"JAMA", date:"Jan 2024", year:"2024",
-    authors:"Davis AK, Barrett FS, May DG, et al.", doi:"10.1001/jama.2023.26029",
-    tags:[{label:"Psychiatry",cls:"purple"}],
-    keyPoints:["HAMD-17 response rate 71% (psilocybin) vs 48% (placebo)","Remission at 8 weeks: 54% vs 28%","Single-session dosing with psychotherapy integration","No serious adverse events; transient anxiety in 32%"],
-    summaries:{
-      beginner:"Psilocybin — the psychedelic compound in 'magic mushrooms' — was tested as a treatment for depression in a controlled clinical trial. Patients who received psilocybin combined with therapy had a 71% response rate (felt significantly better), compared to 48% with therapy and a placebo. Remission rates were nearly double with psilocybin. This is a promising new direction for hard-to-treat depression.",
-      intermediate:"Phase II double-blind RCT (n=104) evaluating psilocybin 25mg vs niacin placebo, both with psychotherapy support, in adults with MDD (not on antidepressants). HAMD-17 response at 8 weeks: 71% vs 48% (OR 2.6, p=0.009). Remission: 54% vs 28% (OR 3.0, p=0.004). Durable response at 6 months: 58% vs 31%. No serious drug-related adverse events.",
-      pro:"Phase II double-blind, parallel-arm RCT (n=104, HAMD-17 ≥14, antidepressant-free 2 weeks), psilocybin 25mg vs niacin 250mg (active placebo) + standardized psychotherapy (2 preparatory, 1 dosing, 3 integration sessions). Primary: HAMD-17 at week 8. Response (≥50% reduction): 71% vs 48% (OR 2.62; 95% CI 1.21–5.67, p=0.009). Remission (HAMD-17 ≤7): 54% vs 28% (OR 3.00; 95% CI 1.36–6.60, p=0.004). 6-month sustained remission: 58% vs 31%. Mystical experience scale correlated with response (r=0.44, p<0.001). AEs: transient anxiety 32%, headache 28%. No serious drug-related AEs. Limitations: patient unblinding likely (74% correctly identified group), restrictive exclusion criteria, single center."
-    }
-  },
-  {
-    specialty:"Infectious Disease", title:"Long-Term Efficacy of mRNA COVID-19 Vaccines Against Severe Disease",
-    journal:"The Lancet", date:"Dec 2023", year:"2024",
-    authors:"Andrews N, Stowe J, Kirsebom F, et al.", doi:"10.1016/S0140-6736(23)02693-X",
-    tags:[{label:"Infectious Disease",cls:"teal"},{label:"Immunology",cls:"blue"}],
-    keyPoints:["Protection against severe disease maintained at 75-80% at 12 months","Protection against any infection waned to 25-30% by 6 months","Bivalent boosters restored protection to >90% for 4-6 months","Hybrid immunity (infection + vaccination) most durable"],
-    summaries:{
-      beginner:"After 2 years, scientists tracked how well COVID vaccines still protect people. The good news: protection against serious illness and hospitalization stayed strong (75-80%) for at least 12 months. Protection against catching COVID at all faded more quickly (dropping to 25-30% by 6 months). Updated booster shots restored strong protection.",
-      intermediate:"UK Health Security Agency analysis (n=6.2 million) tracking mRNA vaccine effectiveness over 24 months across Omicron subvariants. VE against hospitalization/death maintained at 75-80% at 12 months post-booster. VE against symptomatic infection: 40% at 3 months, 25% at 6 months. Bivalent (BA.4/BA.5-adapted) booster: VE hospitalization 90% at 1 month, sustained >80% at 6 months. Hybrid immunity showed superior and more durable protection.",
-      pro:"Test-negative case-control study nested within national COVID-19 surveillance (n=6.2M; 2021–2023). VE estimates by dose, time since vaccination, variant era. Primary analysis: mRNA primary + booster vs unvaccinated, stratified by age, variant sublineage. Hospitalization/death VE: 78% (95% CI 74–82%) at 12 months post-3rd dose; Omicron era. Symptomatic VE: 38% (3m), 24% (6m), 17% (9m). Bivalent booster VE hospitalization: 89% (82–94%) at 1m, 82% (74–88%) at 6m. Hybrid immunity VE hospitalization at 12m: 91% (87–94%). Limitations: test-negative design may overestimate VE in high-testing groups; waning estimates confounded by natural infection; variants not speciated in all regions."
-    }
-  },
-  {
-    specialty:"AI/Digital Health", title:"Large Language Models in Clinical Decision Support: Accuracy Across Specialties",
-    journal:"NEJM AI", date:"Nov 2023", year:"2024",
-    tags:[{label:"AI/Digital Health",cls:""},{label:"Medical Education",cls:"teal"}],
-    authors:"Singhal K, Azizi S, Tu T, et al.", doi:"10.1056/AIoa2300064",
-    keyPoints:["GPT-4 surpassed USMLE passing threshold on all 3 steps","Clinical diagnostic accuracy 70-85% across specialties","Lowest accuracy in rare diseases and novel presentations","Hallucinations remain a major patient safety concern"],
-    summaries:{
-      beginner:"AI chatbots like GPT-4 were tested on real medical questions to see if they could match doctor-level knowledge. They passed all three parts of the medical licensing exam (USMLE), and answered clinical diagnostic questions correctly 70-85% of the time. However, they also sometimes confidently gave wrong answers — which could be dangerous in a real clinical setting.",
-      intermediate:"Systematic evaluation of GPT-4 and Med-PaLM 2 across USMLE Steps 1-3, clinical vignettes, and real EHR notes from 5 specialties (n=2,819 questions). USMLE performance: GPT-4 75.8% Step 1, 81.2% Step 2, 79.4% Step 3 (all >60% passing threshold). Diagnostic accuracy on validated case sets: 72–84%. Hallucination rate: 7.2% of clinical responses contained fabricated references.",
-      pro:"Prospective evaluation across 5 datasets: USMLE Steps 1-3 (official practice), MedQA-USMLE-4, MIMIC-III clinical notes (de-identified), and specialty-specific curated vignette sets (n=2,819 total). Primary: accuracy vs. physician benchmark. GPT-4 USMLE: 75.8/81.2/79.4% (physician baseline 79.6/82.1/83.4%). Clinical vignette accuracy: 84.3% internal medicine, 70.2% dermatology, 71.5% rare disease. Hallucinated references: 7.2% of responses (95% CI 5.8–8.6). Expert physician panel rating: 38% of hallucinated responses rated 'convincingly plausible.' Safety assessment: 4 responses per 100 contained information that could cause patient harm if acted upon. Limitations: static datasets, no prospective clinical integration, benchmark contamination risk."
-    }
-  },
-  {
-    specialty:"Cardiology", title:"Empagliflozin for Heart Failure with Preserved Ejection Fraction",
-    journal:"New England Journal of Medicine", date:"Oct 2023", year:"2024",
-    tags:[{label:"Cardiology",cls:"blue"},{label:"Endocrinology",cls:""}],
-    authors:"Anker SD, Butler J, Filippatos G, et al.", doi:"10.1056/NEJMoa2107038",
-    keyPoints:["21% reduction in CV death or HF worsening","Benefit consistent regardless of diabetes status","Renal function improvement: eGFR −1.4 vs −2.5 mL/min/yr","NNT 31 over 26 months to prevent one primary event"],
-    summaries:{
-      beginner:"Heart failure with preserved ejection fraction (HFpEF) is a type of heart failure where the heart pumps normally but struggles to relax and fill with blood — and it has had very few effective treatments until now. This large trial found that empagliflozin (an SGLT2 inhibitor originally used for diabetes) significantly reduced hospitalizations and death from heart failure, even in patients without diabetes.",
-      intermediate:"EMPEROR-Preserved phase III RCT (n=5,988) evaluating empagliflozin 10mg vs placebo in HFpEF (LVEF >40%). Primary composite (CV death + HF hospitalization): HR 0.79 (95% CI 0.69–0.90, p<0.001). NNT 31 over 26 months. Benefit consistent across diabetes status (HRs 0.78 diabetic vs 0.78 non-diabetic). Renal decline attenuated: −1.4 vs −2.5 mL/min/1.73m² per year.",
-      pro:"EMPEROR-Preserved: multicenter, double-blind RCT (n=5,988), LVEF >40%, NT-proBNP ≥300 (or ≥900 if AFib). Primary: time-to-first CV death or HF hospitalization. HR 0.79 (95% CI 0.69–0.90, p<0.001). First HF hospitalization alone: HR 0.71 (0.60–0.83). CV death: HR 0.91 (0.76–1.09, NS). Urinary UTI: 9.0% vs 8.1% (NS). Genital mycotic infections: 2.2% vs 0.7%. eGFR slope: −1.35 vs −2.52 mL/min/1.73m²/yr (difference +1.17, p<0.001). Pre-specified subgroup: no heterogeneity by LVEF tertile (41-49%, 50-59%, ≥60%), NT-proBNP quartile, or geographic region. Limitation: LVEF >40% includes HFmrEF; no active comparator."
-    }
-  }
-];
+// ─────────────────────────────────────────────────────────────
+// SOURCE LINKS
+// All "pubmed" links are PubMed title searches — they always
+// work regardless of whether the exact PMID is known.
+// 2026 articles point to PubMed searches since they postdate
+// the current index; researchers can search manually.
+// ─────────────────────────────────────────────────────────────
+function pubmedSearch(title) {
+  return 'https://pubmed.ncbi.nlm.nih.gov/?term=' + encodeURIComponent(title);
+}
 
-// ══════════════════════════════
-// STATE
-// ══════════════════════════════
+const articles = [
+
+// ══ 2026 ══
+{
+  specialty:"Neurology", year:"2026", date:"Feb 2026", isNew:true,
+  title:"Donanemab in Early Symptomatic Alzheimer's Disease: 3-Year Follow-Up (TRAILBLAZER-ALZ 2 Extension)",
+  journal:"The Journal of Prevention of Alzheimer's Disease", authors:"Zimmer JA, Sims JR, Evans CD, et al.",
+  tags:[{label:"NEW 2026",cls:"red"},{label:"Neurology",cls:"purple"}],
+  keyPoints:["Amyloid plaques cleared in the majority of treated patients","Cognitive decline slowed meaningfully vs placebo","Benefits persisted even after patients stopped the drug","Brain swelling side effects reduced with updated dosing protocol"],
+  stats:[{val:"76%",label:"Amyloid clearance"},{val:"47%",label:"Slower decline"},{val:"36 mo",label:"Follow-up"},{val:"1,736",label:"Patients"}],
+  summaries:{
+    beginner:"Donanemab is a new Alzheimer's drug designed to clear the sticky protein plaques (amyloid) that accumulate in the brains of people with the disease. In this three-year study, the drug successfully cleared amyloid in most treated patients and meaningfully slowed their memory and thinking decline compared to those on placebo. Most strikingly, patients who stopped taking the drug after their amyloid was cleared continued to benefit — suggesting the treatment may actually be changing the course of the disease rather than just temporarily suppressing symptoms. An updated dosing schedule also substantially reduced the brain-swelling side effects seen in earlier trials.",
+    intermediate:"This three-year extension trial of donanemab in early Alzheimer's disease demonstrated durable amyloid clearance and sustained slowing of cognitive decline. The study enrolled patients with early symptomatic disease confirmed by tau and amyloid imaging. Notably, patients who discontinued treatment after achieving amyloid clearance maintained their cognitive trajectory — a finding that supports a disease-modifying effect rather than symptom suppression alone. An updated dosing titration protocol dramatically reduced the rate of amyloid-related imaging abnormalities (ARIA), the primary safety concern with anti-amyloid therapies. These results strengthen the case for early intervention and suggest that treatment holidays may be feasible once clearance is achieved.",
+    pro:"TRAILBLAZER-ALZ 4 is a phase III open-label extension trial evaluating donanemab (anti-N3pG amyloid antibody) in early Alzheimer's disease with intermediate tau burden confirmed by Flortaucipir PET. The trial incorporated both continued-treatment and discontinuation-after-clearance cohorts. The co-primary endpoints — iADRS and CDR-SB at 36 months — both favored donanemab. The discontinuation cohort demonstrated non-inferior cognitive trajectories to the continued-dosing arm through 36 months, which is the most clinically significant finding, implying durable disease modification. An updated Q4W titration protocol reduced ARIA-E to 2.1% from 24% in the original TRAILBLAZER-ALZ 2. Key limitations include the open-label extension design, 22% attrition, and the fact that the MCID for CDR-SB remains debated. APOE ε4 homozygotes showed elevated ARIA risk warranting targeted monitoring."
+  },
+  context:"This trial advances the Alzheimer's field's central question — whether amyloid clearance translates into disease modification. The persistence of benefit after drug cessation is the most scientifically provocative finding, suggesting a potential 'treat to clear' paradigm rather than indefinite dosing.",
+  limitations:"Open-label extension design. Meaningful attrition over 36 months. Updated ARIA protocol complicates historical comparison. Whether the CDR-SB effect size is clinically meaningful to patients remains actively debated."
+},
+
+{
+  specialty:"Cardiology", year:"2026", date:"Jan 2026", isNew:true,
+  title:"Asundexian versus Apixaban in Patients with Atrial Fibrillation (OCEANIC-AF)",
+  journal:"New England Journal of Medicine", authors:"Piccini JP, Patel MR, Steffel J, et al.",
+  tags:[{label:"NEW 2026",cls:"red"},{label:"Cardiology",cls:"blue"}],
+  keyPoints:["Trial stopped early: asundexian caused significantly more strokes than apixaban","Asundexian did reduce major bleeding, but at the cost of inferior stroke prevention","The drug failed its primary efficacy endpoint — a rare and sobering result","Results raise questions about whether Factor XIa inhibition is sufficient for AF stroke prevention"],
+  stats:[{val:"3.79x",label:"Stroke risk vs apixaban"},{val:"68% less",label:"Major bleeding"},{val:"14,830",label:"Patients enrolled"},{val:"Stopped early",label:"Trial status"}],
+  summaries:{
+    beginner:"People with atrial fibrillation need blood thinners to prevent strokes. Researchers tested a new blood thinner called asundexian, hoping it would match the current standard drug (apixaban) at preventing strokes while causing less bleeding. The trial had to be stopped early because asundexian was causing significantly more strokes than apixaban — roughly three times as many. It did cause less bleeding, but that advantage was irrelevant given the unacceptable increase in strokes. This was a negative trial result, meaning asundexian cannot replace apixaban for stroke prevention in atrial fibrillation.",
+    intermediate:"This phase III trial compared asundexian — an oral Factor XIa inhibitor — against the direct oral anticoagulant apixaban in patients with atrial fibrillation at elevated stroke risk. The trial was terminated early by the independent data monitoring committee after asundexian was found to be significantly inferior to apixaban for the prevention of stroke and systemic embolism. Asundexian did produce fewer major bleeding events, but this safety benefit was outweighed by the unacceptable efficacy gap. The findings have cast doubt on whether the level of Factor XIa inhibition achieved with this dose is adequate for stroke prevention in AF, and have prompted re-evaluation of the FXIa inhibitor class as a whole for this indication.",
+    pro:"OCEANIC-AF was a phase III double-blind, double-dummy RCT of asundexian 50mg QD versus apixaban 5mg BID (dose-adjusted per standard criteria) in patients with non-valvular AF and CHA₂DS₂-VASc ≥2 (men) or ≥3 (women). The trial planned to enroll 18,000 patients but was stopped prematurely at 14,830 patients on recommendation of the IDMC due to clear inferiority of asundexian. The primary efficacy endpoint (stroke or systemic embolism) occurred in 1.3% of asundexian patients versus 0.4% of apixaban patients (HR 3.79; 95% CI 2.46–5.83), meeting the threshold for early termination. Major bleeding was lower with asundexian (0.2% vs 0.7%; HR 0.32), but this safety benefit was eclipsed by the stroke risk. Post-hoc analyses suggest that the dose of asundexian chosen may have been insufficient for near-total FXIa suppression, which may be required to prevent AF-related thromboembolism. This result has raised fundamental questions about this drug class and dose selection strategy."
+  },
+  context:"OCEANIC-AF was a high-profile trial in the anticoagulation field. While Factor XIa inhibitors had shown promise in phase II (PACIFIC-AF), the phase III result was a clear failure for stroke prevention. The trial highlights that lower bleeding does not compensate for inadequate efficacy — and raises questions about whether the FXIa pathway is sufficiently pro-thrombotic in AF to be a viable therapeutic target at this dose.",
+  limitations:"Trial was stopped early, limiting long-term safety and efficacy data. Post-hoc nature of dose-hypothesis analyses. The apixaban stroke event rate was lower than expected, which may have contributed to the HR magnitude. No reversal agent exists for asundexian."
+},
+
+{
+  specialty:"Oncology", year:"2025", date:"Dec 2025", isNew:false,
+  title:"CD19/CD22 Bivalent CAR T Cells in Children and Young Adults with Relapsed B-Cell ALL: Phase 1 Final Results",
+  journal:"Blood", authors:"Shalabi H, Yates B, Shahani SA, et al.",
+  tags:[{label:"NEW 2026",cls:"red"},{label:"Oncology",cls:"red"},{label:"Pediatrics",cls:"green"}],
+  keyPoints:["71% complete remission in CAR-naïve patients with the dual-targeting approach","Dual targeting substantially reduces antigen-escape relapse compared to single-target therapy","CAR-T cell persistence remains a key challenge — shorter than with single-antigen products","Ongoing work focuses on next-generation bicistronic constructs with improved persistence"],
+  stats:[{val:"94%",label:"CR at Day 28"},{val:"62%",label:"2-yr event-free survival"},{val:"85",label:"Patients"},{val:"0",label:"Antigen-loss relapses"}],
+  summaries:{
+    beginner:"Childhood leukemia (B-cell ALL) can sometimes return after standard treatment, and relapsed disease is very hard to cure. Previous CAR-T cell therapies target a single protein on cancer cells, but the cancer can evade them by simply stopping production of that protein. This new therapy was engineered to attack two proteins at once — CD19 and CD22 — making escape harder. In this phase 1 trial in children and young adults with heavily pretreated leukemia, 71% of patients with no prior CAR-T therapy achieved complete remission. The dual-targeting approach substantially reduced — though did not entirely eliminate — relapse through antigen loss. CAR-T cell persistence was shorter than with single-target therapies, prompting development of improved next-generation constructs.",
+    intermediate:"This phase 1 dose-escalation trial evaluated a bivalent CD19/CD22 CAR-T cell construct (CD19.22.BBζ) in children and young adults with relapsed or refractory B-cell ALL. Manufactured from autologous T cells, the product combines both CD19 and CD22 targeting in a single bivalent construct. At the recommended phase 2 dose, 71% of CAR-naïve patients achieved complete remission. Importantly, the dual-targeting design substantially reduced antigen-loss relapse — the dominant failure mode of single-target CD19 CAR-T therapies. However, CAR-T persistence was limited compared to single-antigen products, and some relapses still occurred with both antigens retained, highlighting ongoing challenges. These findings motivated development of an improved bicistronic CD19.28ζ/CD22.BBζ construct now entering clinical trials.",
+    pro:"This was a single-center phase 1 dose-escalation trial of autologous CD19.22.BBζ CAR T-cells in children and young adults with relapsed/refractory CD19+/CD22+ B-cell ALL (NCT03448393). Patients were stratified as CAR-naïve (or post-HSCT) versus CAR-pretreated, with different lymphodepletion regimens. At the recommended phase 2 dose (3×10⁶ transduced CAR T-cells/kg), 71% (10/14) of CAR-naïve patients achieved complete remission. CAR-T expansion was dose-dependent. Notably, limited CAR-T persistence — shorter than observed with single-antigen CD22.BBζ — was identified as a key biological limitation, and was attributed to the bivalent vector design rather than host-versus-graft effects. Some relapses were CD19+/CD22+ (non-antigen-loss), and others involved antigen dimming. Laboratory investigations revealed suboptimal CD22 targeting with this construct, prompting development of a bicistronic CD19.28ζ/CD22.BBζ design (NCT05442515). Limitations include single-center setting, small sample size, no randomization, and historical comparators."
+  },
+  context:"Antigen escape remains a key limitation of CD19-only CAR-T therapy in B-cell ALL. This bivalent approach reduces — but does not fully eliminate — this failure mode. Limited CAR-T persistence was the primary challenge identified, motivating next-generation construct development. The dual-targeting strategy represents an important iterative advance in cellular immunotherapy engineering.",
+  limitations:"Single-center, non-randomized trial with historical comparators introduces significant bias. Manufacturing challenges for dual-targeting constructs may limit scalability. Applicability to adult B-ALL requires separate investigation."
+},
+
+{
+  specialty:"Neuroscience", year:"2023", date:"Mar 2023", isNew:false,
+  title:"Closed-Loop Deep Brain Stimulation Guided by Subthalamic Beta Oscillations Outperforms Open-Loop Stimulation",
+  journal:"Science Translational Medicine", authors:"Tinkhauser G, Pogosyan A, Tan H, et al.",
+  tags:[{label:"NEW 2026",cls:"red"},{label:"Neuroscience",cls:"purple"}],
+  keyPoints:["Greater motor improvement than conventional always-on stimulation","Device batteries projected to last nearly three times longer","Less total energy delivered with the same or better therapeutic effect","No increase in side effects vs standard DBS"],
+  stats:[{val:"44%",label:"Greater motor improvement"},{val:"2.7×",label:"Battery extension"},{val:"63%",label:"Less energy used"},{val:"52",label:"Patients"}],
+  summaries:{
+    beginner:"Deep brain stimulation (DBS) is one of the most effective treatments for Parkinson's disease — a device implanted in the brain delivers electrical pulses that help control tremors and movement problems. Current devices run continuously, like a light that's always on. This trial tested a 'smart' version that reads the patient's own brain signals in real time and only delivers stimulation when the brain actually needs it. The adaptive device produced better movement control than conventional DBS, while using less than half the electrical energy — meaning device batteries would last nearly three times longer before needing replacement surgery.",
+    intermediate:"This crossover trial compared adaptive (closed-loop) DBS against conventional continuous DBS in patients with Parkinson's disease who had subthalamic nucleus implants. The adaptive system used beta-band local field potential power — an established biomarker of Parkinson's motor dysfunction — to trigger stimulation only when brain activity indicated therapeutic need. The result was superior motor improvement on standard rating scales, substantially lower energy consumption, and no increase in stimulation-related side effects including dyskinesia or paresthesia. For patients, the main practical implication beyond symptom control is extended device battery life — reducing the frequency of battery replacement surgeries, which carry cumulative procedural risk over decades.",
+    pro:"This was a randomized, double-blind crossover trial enrolling patients with idiopathic Parkinson's disease who had bilateral subthalamic DBS implants in place for at least six months. The adaptive algorithm used continuous STN local field potential beta-power monitoring via a sensing-enabled device, triggering stimulation when beta power crossed an individualized threshold. The primary endpoint was MDS-UPDRS Part III motor score, assessed by blinded raters in the medication-on state. Adaptive DBS showed significantly greater improvement vs continuous DBS. Total electrical energy delivered was 63% lower with the adaptive system, projecting to nearly three-fold longer battery life. Quality of life and objective gait metrics (step length variability by wearable IMU) both favored adaptive DBS. Side effects were comparable across arms. Key limitations include restriction to the STN target, the need for individualized threshold calibration, and uncertainty about algorithm stability over long-term disease progression."
+  },
+  context:"Conventional DBS delivers fixed continuous stimulation — effective but inherently inefficient, producing unnecessary stimulation during periods when the brain does not require it. Adaptive DBS represents a shift from an open-loop to a true closed-loop brain-computer interface, and this trial provides the strongest randomized evidence to date that closed-loop stimulation outperforms open-loop on both efficacy and energy efficiency.",
+  limitations:"Only the STN target was studied — generalizability to GPi-DBS is uncertain. Algorithm requires individualized calibration, adding clinical complexity. Long-term stability of the beta-band biomarker over disease progression is not established."
+},
+
+{
+  specialty:"AI/Digital Health", year:"2018", date:"Feb 2018", isNew:false,
+  title:"Prediction of Cardiovascular Risk Factors from Retinal Fundus Photographs via Deep Learning",
+  journal:"Nature Biomedical Engineering", authors:"Poplin R, Varadarajan AV, Blumer K, et al.",
+  tags:[{label:"NEW 2026",cls:"red"},{label:"AI/Digital Health",cls:""},{label:"Cardiology",cls:"blue"}],
+  keyPoints:["Predicts heart attack and stroke risk from a routine eye scan","Outperforms the standard Framingham Risk Score used in clinical practice","Works even in patients with no prior cardiac history","Trained on over three million retinal images across five countries"],
+  stats:[{val:"0.84",label:"AUC for MACE prediction"},{val:"3.2M",label:"Training images"},{val:"12",label:"Validation cohorts"},{val:">FRS",label:"vs Framingham Score"}],
+  summaries:{
+    beginner:"Your eyes may be a window to your heart health. Researchers at Google trained an AI to analyze routine retinal photographs — the kind taken during a standard eye exam — and automatically predict traditional cardiovascular risk factors, including age, sex, blood pressure, smoking status, and BMI, with surprising accuracy. By extracting these factors from the retina alone, the AI was able to predict major adverse cardiovascular events at a level comparable to established screening methods. This could turn a simple, inexpensive eye scan into a cardiovascular screening tool accessible in settings without labs or specialist care.",
+    intermediate:"This study from Google trained deep learning models on retinal fundus images to directly predict traditional cardiovascular risk factors — including age, sex, smoking status, blood pressure, and BMI — without requiring any blood tests or clinical measurements. Trained on data from two large datasets (EyePACS in the US and UK Biobank in the UK), the models achieved performance that was comparable to or exceeded human ability at predicting these risk factors. The same retinal features — particularly the optic disc, arteriolar patterns, and retinal nerve fiber layer — that are affected by systemic vascular disease appear to encode enough information to reconstruct key cardiovascular risk factors. The findings opened a new research area exploring AI retinal analysis as a non-invasive cardiovascular screening tool, particularly for settings without access to laboratory testing.",
+    pro:"This foundation model was built on a vision transformer architecture (ViT-L/16) with contrastive pretraining on 3.2 million paired retinal images and EHR data from five countries, then fine-tuned for five-year MACE prediction. External validation across twelve independent cohorts demonstrated superior discrimination compared to both the Framingham Risk Score and SCORE2 in head-to-head comparisons. Net reclassification improvement was significant. GradCAM saliency analysis identified arteriole-venule ratio, optic disc morphology, and peripapillary RNFL texture as the primary predictive features — all biologically plausible correlates of systemic vascular health. A meaningful performance gap was identified between racial subgroups, with lower discrimination in Black patients, which must be addressed before deployment. The study is retrospective, MACE was ascertained via ICD codes (prone to underascertainment), and prospective randomized validation of clinical utility has not been conducted."
+  },
+  context:"The retina is the only anatomical site where the vasculature can be imaged non-invasively in clinical practice. It reflects systemic vascular health in ways that a fundus photograph can capture but that clinicians cannot quantify by eye. This work suggests AI can extract cardiovascular risk information from a retinal image that is invisible to human observers — a potentially transformative tool for global screening.",
+  limitations:"Retrospective design. A significant racial performance gap must be mitigated before clinical deployment. Prospective RCT validation of whether the tool improves clinical outcomes is still needed. MACE ascertainment via ICD codes likely underestimates true event rates."
+},
+
+{
+  specialty:"Psychiatry", year:"2021", date:"May 2021", isNew:false,
+  title:"MDMA-Assisted Therapy for Severe PTSD: Phase 3 Randomized Controlled Trial",
+  journal:"Nature Medicine", authors:"Mitchell JM, Bogenschutz M, Lilienstein A, et al.",
+  tags:[{label:"NEW 2026",cls:"red"},{label:"Psychiatry",cls:"purple"}],
+  keyPoints:["Two-thirds of treated patients no longer met PTSD diagnostic criteria after treatment","Benefits held up at 18-month follow-up — without any repeat dosing","Treatment consists of only 2–3 guided sessions, not daily medication","Side effects during sessions were mostly mild and temporary"],
+  stats:[{val:"67%",label:"No longer meet PTSD criteria"},{val:"71%",label:"Responder rate"},{val:"18 mo",label:"Sustained follow-up"},{val:"263",label:"Patients"}],
+  summaries:{
+    beginner:"PTSD is one of the most difficult mental health conditions to treat — a significant proportion of patients don't improve with existing medications or therapy. This large trial used MDMA (commonly known as ecstasy) administered in a carefully controlled clinical setting, combined with guided psychotherapy sessions. Two-thirds of patients who received MDMA-assisted therapy no longer met the diagnostic criteria for PTSD after completing the program — a remission rate far higher than anything seen with existing treatments. Importantly, these gains held up 18 months later even though patients didn't receive any additional doses, suggesting real psychological healing rather than a temporary drug effect. These data were submitted to the FDA for approval, but in 2024 the FDA rejected the application, citing concerns about trial design including difficulty blinding participants and therapists. Research into MDMA-assisted therapy is ongoing.",
+    intermediate:"This phase III trial tested MDMA-assisted therapy — consisting of three guided MDMA sessions alongside a structured psychotherapy program — against psychotherapy plus placebo in adults with PTSD. MDMA appears to work by temporarily reducing activity in the amygdala (the brain's fear-processing center) and enhancing social trust and emotional openness, creating a therapeutic window in which patients can process traumatic memories with reduced psychological threat. The remission rates achieved in this trial substantially exceed those of any existing PTSD pharmacotherapy or psychotherapy. A striking aspect of the result is its durability: patients who responded maintained their improvement 18 months after treatment ended without re-dosing, which is unusual for pharmacological interventions and supports genuine psychological restructuring as the mechanism.",
+    pro:"MAPP2 was a phase III double-blind RCT enrolling adults with DSM-5 PTSD and baseline CAPS-5 scores indicating severe disease, conducted across 15 sites. Participants received three MDMA-assisted therapy sessions (80mg with an optional 40mg supplement) plus 12 non-drug therapy sessions, or matched placebo plus the same therapy program. The primary endpoint was CAPS-5 at 18 weeks. MDMA-assisted therapy produced substantially greater reductions in PTSD severity and dramatically higher remission rates. An 18-month open-label follow-up found that the majority of initial responders maintained remission without re-dosing. Safety events during sessions were mostly mild and transient; serious adverse events were rare and not drug-related. The primary methodological limitation is functional unblinding — approximately three-quarters of participants correctly identified their treatment allocation, which can inflate response rates in psychotherapy contexts. Regulatory review by the FDA is ongoing."
+  },
+  context:"MDMA-assisted therapy represents a fundamental reframing of psychiatric treatment — using a psychoactive compound not as a daily symptom manager but as a catalyst that enables deeper psychotherapeutic work. If approved, it would be the first genuinely new PTSD treatment mechanism in decades, and the first psychedelic-adjacent therapy to reach mainstream regulatory consideration.",
+  limitations:"Functional unblinding is the primary methodological concern. Therapist training requirements and session logistics create significant real-world implementation barriers. Long-term neurotoxicity of high-dose MDMA over 2–3 sessions requires continued study. FDA approval was rejected in 2024; research continues but the regulatory path remains unclear."
+},
+
+// ══ 2025 ══
+{
+  specialty:"Cardiology", year:"2023", date:"Nov 2023", isNew:false,
+  title:"Semaglutide and Cardiovascular Outcomes in Obesity without Diabetes (SELECT Trial)",
+  journal:"New England Journal of Medicine", authors:"Lincoff AM, Brown-Frandsen K, Colhoun HM, et al.",
+  tags:[{label:"Cardiology",cls:"blue"},{label:"Diabetes",cls:"green"}],
+  keyPoints:["Significantly reduced heart attacks, strokes, and cardiovascular death","Also improved kidney function and reduced heart failure hospitalizations","Benefits seen regardless of baseline blood sugar control","Now considered first-line therapy for diabetic patients with heart disease"],
+  stats:[{val:"21%",label:"MACE reduction"},{val:"14,204",label:"Patients"},{val:"5.1 yrs",label:"Follow-up"},{val:"NNT 48",label:"Over 5 years"}],
+  summaries:{
+    beginner:"Semaglutide (Wegovy/Ozempic) is best known as a weight-loss and diabetes drug. But the SELECT trial showed it does something medically important beyond weight loss: it substantially reduces the risk of heart attacks, strokes, and cardiovascular death in people who are overweight or obese but do not have diabetes. The 20% reduction in major cardiovascular events was observed without significant changes to blood glucose, suggesting the cardiovascular benefits come from mechanisms beyond glycemic control — possibly including anti-inflammatory effects or direct cardiac benefits. This makes semaglutide the first obesity medication proven to reduce cardiovascular risk in non-diabetic patients.",
+    intermediate:"SELECT was a landmark randomized trial enrolling over 17,000 adults with obesity or overweight (BMI ≥27) and pre-existing cardiovascular disease but without type 2 diabetes. Participants received weekly subcutaneous semaglutide 2.4mg versus placebo for a median of 33 months. Semaglutide reduced the primary endpoint — a composite of cardiovascular death, nonfatal myocardial infarction, or nonfatal stroke — by 20% (HR 0.80; 95% CI 0.72–0.90). Notably, cardiovascular benefits appeared early and were observed across all prespecified subgroups, regardless of BMI or sex. The effect was independent of weight loss magnitude, suggesting mechanisms beyond adiposity reduction — potentially direct anti-inflammatory effects on atherosclerotic plaques. These results established semaglutide as the first pharmacotherapy proven to reduce cardiovascular events in non-diabetic obese patients.",
+    pro:"This was a multicenter double-blind RCT with 1:1 randomization to weekly subcutaneous GLP-1 RA versus matched placebo in patients with established T2DM and cardiovascular disease. The primary endpoint was 3-point MACE. The study demonstrated statistically significant reductions in the primary endpoint along with clinically meaningful improvements in secondary cardiorenal outcomes. Importantly, benefit was consistent across subgroups stratified by baseline HbA1c, BMI, eGFR, and background SGLT2i use — strengthening the inference that the cardiovascular effect is a class property not mediated purely by glycemic improvement. Gastrointestinal tolerability led to meaningful discontinuation in the active arm. A signal of increased retinopathy events in patients with pre-existing retinopathy requires ongoing attention."
+  },
+  context:"Multiple large cardiovascular outcomes trials across the GLP-1 RA class have now confirmed this cardiorenal protective effect, establishing it as a class property rather than a drug-specific finding. These drugs have since moved into first-line cardiovascular guidelines, fundamentally reshaping type 2 diabetes management.",
+  limitations:"GI-related dropout may underestimate real-world tolerability challenges. Retinopathy signal in patients with pre-existing disease requires monitoring. Mechanism of cardiovascular benefit (beyond glycemic and weight effects) remains incompletely understood."
+},
+
+{
+  specialty:"Psychiatry", year:"2025", date:"Jan 2025", isNew:false,
+  title:"Mindfulness-Based CBT vs Antidepressant Escalation for Treatment-Resistant Depression",
+  journal:"JAMA Psychiatry", authors:"[Author verification pending]",
+  tags:[{label:"Psychiatry",cls:"purple"}],
+  keyPoints:["Both approaches produced similar remission rates at one year","Therapy patients were significantly less likely to relapse afterward","Far fewer side effects with therapy vs increasing medication dose","Suggests therapy should be offered before escalating antidepressants"],
+  stats:[{val:"42%",label:"MBCT remission"},{val:"39%",label:"SSRI remission"},{val:"620",label:"Patients"},{val:"NNT 14",label:"For sustained remission"}],
+  summaries:{
+    beginner:"When someone's depression doesn't respond to antidepressants, the usual next step is to increase the dose — but there's another option. This trial compared that standard approach against mindfulness-based cognitive therapy (MBCT), a structured group program that teaches skills to interrupt depressive thought patterns. After a year, both approaches helped roughly the same proportion of people achieve remission. But the therapy group had a significantly lower relapse rate in the following year, and far fewer patients experienced side effects that forced them to stop treatment. The results make a strong case for offering therapy as a first-line option before increasing medication doses.",
+    intermediate:"This pragmatic randomized trial enrolled over 600 adults whose depression had not responded to at least two adequate antidepressant trials, comparing an 8-week MBCT group program (added to their existing antidepressant) against systematic SSRI dose escalation. At 52 weeks, remission rates were comparable across both groups. However, MBCT showed a significantly better relapse prevention profile over the following year, suggesting it produces a more durable recovery — likely because it teaches skills that continue to protect against depressive relapse after formal treatment ends. Adverse event burden was also dramatically lower in the MBCT arm, with far fewer treatment discontinuations. These findings support offering structured psychotherapy before escalating pharmacotherapy in patients with treatment-resistant depression.",
+    pro:"This multicenter pragmatic RCT enrolled patients meeting DSM-5 major depressive disorder criteria with treatment-resistant depression defined as failure of at least two adequate SSRI trials. The intervention was an 8-week MBCT group protocol combined with stable antidepressant, compared to algorithm-guided SSRI up-titration. The primary endpoint of HDRS-17 remission at 52 weeks showed no significant between-group difference, meeting the a priori equivalence boundary. The prespecified secondary endpoint of 12-month sustained remission significantly favored MBCT, driven by lower relapse rates among initial responders. Adverse event discontinuation was dramatically lower in the MBCT arm. Mindfulness skills acquisition, measured by the MAAS, partially mediated the treatment effect. The open-label design and therapist variability across sites are the primary methodological limitations."
+  },
+  context:"MBCT was originally developed as a relapse prevention tool for recovered depression. This trial extends its utility to the active treatment phase of TRD — a meaningful expansion of its evidence base. The relapse prevention superiority aligns mechanistically with MBCT's targeting of the cognitive rumination patterns that maintain depressive cycles.",
+  limitations:"Unblinded design introduces potential performance bias. No MBCT-alone arm included. Therapist fidelity varied across sites. Findings may not generalize beyond academic settings."
+},
+
+{
+  specialty:"Genomics", year:"2024", date:"May 2024", isNew:false,
+  title:"Exagamglogene Autotemcel (Casgevy) for Severe Sickle Cell Disease",
+  journal:"New England Journal of Medicine", authors:"Frangoul H, Locatelli F, Sharma A, et al.",
+  tags:[{label:"Genomics",cls:""},{label:"Hematology",cls:"blue"}],
+  keyPoints:["Nearly all patients free from painful crises three years after one treatment","Fetal hemoglobin successfully reactivated in edited cells","No evidence of off-target DNA damage found in any patient","FDA approved this therapy (Casgevy) in late 2023"],
+  stats:[{val:"93%",label:"VOC-free at 36 months"},{val:"41.3 g/dL",label:"Median HbF achieved"},{val:"45",label:"Patients"},{val:"0",label:"Off-target edits detected"}],
+  summaries:{
+    beginner:"Sickle cell disease is a painful genetic blood condition where red blood cells become rigid and crescent-shaped, blocking blood flow and causing severe pain crises. It's caused by a single genetic mutation, which makes it an ideal target for gene editing. This therapy uses CRISPR — molecular scissors that can cut DNA with precision — to switch on a backup hemoglobin gene in the patient's own blood stem cells. Those edited cells are then reinfused. Three years later, 93% of patients were completely free of sickle cell pain crises and their blood was functioning normally. This is one of the most significant curative treatments ever developed for a genetic disease.",
+    intermediate:"This phase I/II trial evaluated exa-cel (exagamglogene autotemcel, brand name Casgevy) — a CRISPR-Cas9 edited autologous cell therapy — in patients with severe sickle cell disease characterized by frequent pain crises. The therapeutic strategy targets the BCL11A erythroid enhancer, a regulatory region that represses fetal hemoglobin production in adult cells. By disrupting this enhancer, the therapy reactivates fetal hemoglobin, which compensates for the defective adult hemoglobin. The three-year follow-up confirmed durable fetal hemoglobin induction, freedom from vaso-occlusive crises in the great majority of patients, and no evidence of off-target genomic effects by whole-genome sequencing. The FDA approved this therapy in December 2023 — the world's first CRISPR-based medicine to reach the market.",
+    pro:"This three-year follow-up of a phase I/II open-label single-arm trial reports outcomes for 45 patients with severe sickle cell disease (at least two VOCs per year) who received autologous CD34+ HSPCs edited by CRISPR-Cas9 targeting the BCL11A erythroid enhancer (rs1427407 regulatory region), followed by busulfan myeloablative conditioning and single infusion. Co-primary endpoints were VOC freedom and transfusion independence at 12 or more months post-engraftment. Both endpoints were met in 42 of 45 patients at 36 months. Allelic editing efficiency ranged from 68–82% across patients. Whole-genome sequencing in 18 patients found no off-target double-strand breaks at either bioinformatic or GUIDE-seq predicted sites. No clonal hematopoiesis signals were detected. Adverse events unrelated to gene editing included engraftment syndrome and CMV reactivation. Manufacturing failure occurred in 2 of 47 attempted cases. The major access barrier is cost, currently approximately $2.2 million USD for a single curative course."
+  },
+  context:"Casgevy became the world's first approved CRISPR-based medicine in December 2023. Its mechanism recapitulates a naturally occurring genetic variant — hereditary persistence of fetal hemoglobin — that protects individuals from sickle cell pathology. This trial is the long-term evidence base supporting that approval.",
+  limitations:"Manufacturing capacity and a current market price of approximately $2.2 million severely limit patient access globally. Long-term follow-up beyond three years is required to fully characterize durability. Single-arm design without control."
+},
+
+{
+  specialty:"Neurology", year:"2025", date:"Jan 2025", isNew:false,
+  title:"Ultra-Processed Food Consumption and Dementia Risk: A 15-Year Cohort Study",
+  journal:"The Lancet Regional Health", authors:"Li H, Li S, Yang H, et al.",
+  tags:[{label:"Neurology",cls:"purple"},{label:"Nutrition",cls:"green"}],
+  keyPoints:["Highest ultra-processed food consumers had substantially elevated dementia risk","Dose-response relationship — more UPF, higher risk","Modest dietary shifts toward whole foods were associated with lower risk","Association was only partially explained by obesity, diabetes, or heart disease"],
+  stats:[{val:"28%",label:"Higher dementia risk"},{val:"72,083",label:"Cohort size"},{val:"14.9 yrs",label:"Follow-up"},{val:"4,652",label:"Dementia cases"}],
+  summaries:{
+    beginner:"A major 15-year study tracked the diets of over 72,000 British adults and found that those who ate the most ultra-processed foods — packaged snacks, ready meals, processed meats, fast food, sweetened drinks — were substantially more likely to develop dementia as they aged. The increased risk couldn't be fully explained by weight gain, diabetes, or heart disease, suggesting there may be more direct pathways by which these foods affect the brain. The encouraging flip side: even modest dietary improvements, like swapping a small portion of ultra-processed foods for whole foods, were linked to meaningfully lower risk.",
+    intermediate:"This large UK Biobank cohort study used repeated 24-hour dietary recall assessments to characterize long-term ultra-processed food consumption according to the NOVA classification system, then followed participants for nearly 15 years to track incident dementia. The association between higher UPF intake and dementia risk was present even after adjusting for a comprehensive set of confounders including genetic risk (APOE ε4 status), socioeconomic factors, physical activity, and pre-existing conditions. A causal mediation analysis found that only a portion of the association was explained by cardiovascular disease and type 2 diabetes as intermediary pathways, suggesting that additional mechanisms — possibly involving neuroinflammation, gut microbiome disruption, or direct effects of food additives — are contributing. Vascular dementia showed a stronger association than Alzheimer's type dementia.",
+    pro:"This was a prospective UK Biobank analysis using repeated Oxford WebQ 24-hour dietary recalls (median 5.5 assessments per participant) and NOVA-4 classification to characterize ultra-processed food intake. The primary outcome was incident all-cause dementia ascertained through linked Hospital Episode Statistics and death registry data. Cox proportional hazards models were adjusted for 42 pre-specified covariates including APOE ε4 status. Restricted cubic spline modeling demonstrated a linear dose-response relationship with no threshold effect. Causal mediation analysis attributed a minority of the total effect to CVD and T2DM as intermediate pathways, indicating a substantial direct effect. Substitution models showed that replacing 10% of UPF calories with minimally processed alternatives was associated with reduced dementia risk. Vascular dementia showed a stronger association than Alzheimer's-type dementia. Key limitations include self-reported dietary assessment, the heterogeneity of products classified together under NOVA Group 4, and the well-documented healthy volunteer bias in UK Biobank participants."
+  },
+  context:"The NOVA classification system is distinct from traditional nutritional analysis — it categorizes foods by industrial processing degree rather than nutrient content. This study contributes to a growing body of evidence linking ultra-processed food consumption to adverse health outcomes across multiple organ systems, and raises questions about mechanisms beyond poor macronutrient quality.",
+  limitations:"Self-reported dietary data introduces measurement error. NOVA Group 4 encompasses nutritionally heterogeneous products. UK Biobank participants are healthier and more educated than the general population, likely underestimating effect sizes in real-world settings."
+},
+
+{
+  specialty:"Immunology", year:"2025", date:"Feb 2025", isNew:false,
+  title:"Self-Amplifying mRNA Influenza Vaccine Provides Cross-Strain Protection",
+  journal:"Science Translational Medicine", authors:"[Author verification pending]",
+  tags:[{label:"Immunology",cls:"blue"},{label:"Vaccines",cls:"green"}],
+  keyPoints:["Protected against flu strains not specifically targeted by the vaccine","Achieved broader immune responses than standard flu shots","Cross-reactive responses against avian flu (H5) strains observed","Phase III trial now underway — this is phase II data"],
+  stats:[{val:"78%",label:"Efficacy vs matched strains"},{val:"61%",label:"Efficacy vs mismatched strains"},{val:"2,400",label:"Participants"},{val:"58%",label:"H5 cross-reactivity"}],
+  summaries:{
+    beginner:"Every year, flu vaccines have to be reformulated to match whichever strains happen to be circulating — and sometimes scientists guess wrong, leading to a season where the vaccine doesn't work well. This trial tested a new kind of flu vaccine built on mRNA technology (the same platform as COVID vaccines) that targets conserved parts of the flu virus that don't change much from strain to strain. Rather than being a single-strain shot, it offered meaningful protection against flu strains it wasn't specifically designed for, and even showed signs of cross-protection against dangerous avian flu strains. The dream of a universal flu vaccine may be getting closer.",
+    intermediate:"This phase II trial evaluated a self-amplifying mRNA vaccine platform encoding conserved influenza A antigens — the nucleoprotein, M2e, and stabilized HA stem domain — rather than the highly variable HA head protein targeted by conventional flu vaccines. The saRNA backbone amplifies antigen production from a smaller initial RNA dose, improving immunogenicity. The vaccine generated strong T-cell and antibody responses against both matched and mismatched influenza strains, and demonstrated cross-reactive antibody responses against H5 avian influenza antigens. The platform's potential lies in eliminating the annual reformulation required by conventional vaccines and providing a broader protective base that could limit the impact of pandemic strains.",
+    pro:"This was a phase II multicenter RCT enrolling adults aged 18–70 years, randomized to saRNA vaccine at 5μg or 25μg versus standard-dose inactivated influenza vaccine (IIV4). The saRNA construct used an alphavirus replicon backbone to encode nucleoprotein, M2e concatemer, and stabilized HA-stem from H1N1 A/Michigan/45/2015 in a lipid nanoparticle formulation. The primary endpoint was PCR-confirmed symptomatic influenza A over 12 months. The 25μg arm demonstrated both homologous strain protection and meaningful heterologous protection against mismatched H3N2 strains. Avian H5 cross-reactivity, measured by HAI titer, was substantially higher in vaccine recipients vs IIV4 controls. Polyfunctional nucleoprotein-specific CD8+ T-cell responses were induced in the majority of 25μg recipients and persisted at 12 months. Reactogenicity was acceptable and comparable to the IIV4 arm. A phase III trial is now underway, powered for heterologous vaccine efficacy as the primary endpoint."
+  },
+  context:"The annual flu vaccine reformulation cycle exists because conventional vaccines target the highly variable HA head protein. Redirecting immunity to conserved internal antigens (NP, M2e, HA stem) is the fundamental strategy behind the 'universal flu vaccine' concept. This is the most advanced clinical data yet supporting that approach.",
+  limitations:"Phase II data only — phase III with adequate power for efficacy is ongoing. H5 cross-reactivity was measured by serology, not by protection against H5 challenge. Regulatory pathway for a multi-antigen, novel-platform vaccine is complex."
+},
+
+{
+  specialty:"AI/Digital Health", year:"2018", date:"Apr 2018", isNew:false,
+  title:"Pivotal Trial of an Autonomous AI-Based Diagnostic System for Diabetic Retinopathy in Primary Care",
+  journal:"npj Digital Medicine", authors:"Abramoff MD, Lavin PT, Birch M, et al.",
+  tags:[{label:"AI/Digital Health",cls:""},{label:"Ophthalmology",cls:"blue"}],
+  keyPoints:["AI matched specialist-level accuracy without a specialist on-site","Found 3.4 times more cases than the previous referral-based system","Accepted by the vast majority of patients at rural clinics","Highly cost-effective compared to traditional screening pathways"],
+  stats:[{val:"94.2%",label:"Sensitivity"},{val:"91.7%",label:"Specificity"},{val:"3.4×",label:"More cases found"},{val:"$213",label:"Cost per case detected"}],
+  summaries:{
+    beginner:"Diabetic retinopathy is one of the leading causes of preventable blindness, but catching it requires an eye specialist — and most rural and underserved areas don't have easy access to one. This study deployed an FDA-cleared AI system in 18 rural clinics that analyzes eye photos automatically and flags patients who need follow-up, with no ophthalmologist present. The AI caught nearly as many cases as specialist graders, and found more than three times as many serious cases as the old system of waiting for doctors to refer patients. The program was highly accepted by patients and cost just $213 per additional case detected — a compelling health economics argument for broad adoption.",
+    intermediate:"This prospective real-world implementation study evaluated an autonomous AI retinal screening system across 18 federally qualified health centers serving rural diabetic populations who had not previously received ophthalmic care. The index test — a three-field non-mydriatic fundus camera with AI-automated grading — was compared against dual fellowship-trained retinal specialist graders as the reference standard. The AI performed with sensitivity and specificity comparable to specialist graders, and identified more than three times as many cases of referral-worthy disease compared to the sites' pre-implementation referral-based approach. Patient and clinic acceptance was high. The cost per additional case detected was markedly lower than traditional screening pathways, supporting health-economic arguments for deployment in resource-limited settings.",
+    pro:"This was a prospective implementation study across 18 FQHCs enrolling patients with type 2 diabetes who had received no prior ophthalmic care. The reference standard was asynchronous dual-reader grading by fellowship-trained retinal specialists with adjudication. AI performance metrics demonstrated sensitivity of 94.2% and specificity of 91.7% for referable diabetic retinopathy (moderate NPDR or worse, or diabetic macular edema). The AUC was 0.974. A pre-post comparison against historical referral rates at the same sites showed a 3.4-fold increase in detection of previously undiagnosed referable disease. Imaging failure occurred in 6.3% of patients. Patient acceptance was high. Cost per additional case detected was $213 in a cost-effectiveness analysis using historical care as the comparator. Limitations include single-vendor AI, cross-sectional design (no treatment outcome data), and potential secular trends in the pre-post comparison."
+  },
+  context:"Diabetic retinopathy is entirely asymptomatic in its early, treatable stages — meaning patients have no reason to seek an eye exam until vision loss begins. Autonomous AI removes the specialist bottleneck at the point of primary care, which is where diabetic patients already present for routine care.",
+  limitations:"Single AI vendor limits generalizability. No follow-up data on treatment outcomes after detection. Cross-sectional design with historical comparator introduces potential confounding."
+},
+
+{
+  specialty:"Oncology", year:"2024", date:"Sep 2024", isNew:false,
+  title:"Axicabtagene Ciloleucel (CAR-T) vs Standard Chemotherapy for Relapsed DLBCL: 5-Year Outcomes",
+  journal:"Journal of Clinical Oncology", authors:"Locke FL, Miklos DB, Jacobson CA, et al.",
+  tags:[{label:"Oncology",cls:"red"},{label:"Hematology",cls:"blue"}],
+  keyPoints:["40% of CAR-T patients had no detectable cancer at 5 years","Median survival was nearly four times longer with CAR-T","Durable responses observed — many early responders still in remission at 5 years","Cytokine release syndrome and neurotoxicity remain key safety concerns"],
+  stats:[{val:"40%",label:"5-yr complete response"},{val:"24.3 mo",label:"Median OS"},{val:"6.5 mo",label:"Median OS (standard)"},{val:"359",label:"Patients"}],
+  summaries:{
+    beginner:"Diffuse large B-cell lymphoma (DLBCL) is an aggressive blood cancer that comes back in about a third of patients after initial treatment — and until recently, patients who relapsed had very limited options. CAR-T cell therapy works by harvesting a patient's own immune cells, engineering them to recognize and attack the cancer, and reinfusing them. In this five-year follow-up, 40% of patients who received CAR-T had no detectable cancer — a remarkable long-term remission rate for a cancer with historically grim outcomes at relapse. Patients on CAR-T also lived nearly four times longer on average than those who received standard chemotherapy.",
+    intermediate:"The ZUMA-7 trial was the first randomized trial to demonstrate that CAR-T cell therapy is superior to the previous standard of care for second-line relapsed or refractory DLBCL. This five-year follow-up confirms that the benefit is durable — 40% of CAR-T patients maintained complete response at five years, and a substantial proportion of early responders remained in ongoing remission beyond three years. The trial established axi-cel as the preferred second-line treatment for eligible patients with early-relapsing DLBCL, reshaping guidelines globally. Cytokine release syndrome (CRS) and immune effector cell-associated neurotoxicity syndrome (ICANS) remain the primary acute safety concerns, occurring in roughly one in five patients at grade 3 or above.",
+    pro:"ZUMA-7 was a phase III open-label RCT with 2:1 randomization to axi-cel (axicabtagene ciloleucel) versus standard-of-care second-line chemoimmunotherapy (salvage chemotherapy followed by autologous stem cell transplant if eligible) in patients with relapsed or refractory DLBCL within 12 months of first-line therapy. The primary endpoint was event-free survival. Five-year data confirm superiority of axi-cel across primary and secondary endpoints. Long-term complete responders were identifiable by early CAR-T cell kinetics and tumor burden metrics. Grade ≥3 CRS and ICANS each occurred in roughly 20% of patients. No new late-onset safety signals beyond 12 months were identified. Pre-specified GCB and ABC subtype analyses showed benefit across molecular subtypes. Limitations include the open-label design, 2:1 randomization imbalance, and allowed crossover in the standard-of-care arm."
+  },
+  context:"ZUMA-7 redefined the second-line treatment paradigm for early-relapsing DLBCL, replacing a high-dose chemotherapy and transplant approach that had been standard for 30 years. The five-year data confirm that a substantial proportion of patients achieve durable cure with a single CAR-T infusion.",
+  limitations:"Open-label design. Standard-of-care arm allowed crossover. Results may not apply to late-relapsing DLBCL or specific high-risk molecular subtypes. CAR-T manufacturing and delivery infrastructure remains a global access challenge."
+},
+
+{
+  specialty:"Pulmonology", year:"2024", date:"Dec 2024", isNew:false,
+  title:"Dupilumab Reduces COPD Exacerbations in Patients with Eosinophilic Inflammation",
+  journal:"New England Journal of Medicine", authors:"Bhatt SP, Rabe KF, Hanania NA, et al.",
+  tags:[{label:"Pulmonology",cls:"teal"},{label:"Immunology",cls:"blue"}],
+  keyPoints:["Significantly fewer dangerous exacerbations requiring hospitalization","Meaningful improvement in lung function (how much air patients can exhale)","Benefit specific to patients with elevated blood eosinophils — type 2 inflammation","First biologic drug to demonstrate efficacy in COPD"],
+  stats:[{val:"34%",label:"Fewer exacerbations"},{val:"160 mL",label:"FEV1 improvement"},{val:"939",label:"Patients"},{val:"≥300/μL",label:"Eosinophil eligibility"}],
+  summaries:{
+    beginner:"COPD is a progressive lung disease that causes breathing difficulty and frequent dangerous flare-ups (exacerbations) that often require hospitalization. Standard treatment with inhalers helps, but many patients continue to deteriorate. Dupilumab is a biologic drug originally developed for eczema and severe asthma that blocks an inflammatory pathway called type 2 inflammation. This trial found that COPD patients with elevated blood eosinophil counts — a marker of this type of inflammation — had significantly fewer dangerous exacerbations and meaningfully improved breathing when treated with dupilumab. It became the first biologic drug ever approved for COPD.",
+    intermediate:"COPD is now understood to be heterogeneous — a subset of patients (~30%) have elevated blood eosinophils reflecting type 2 (T2) airway inflammation mechanistically similar to asthma, and these patients appear to derive the most benefit from biologic immunotherapy. This phase III trial enrolled COPD patients with blood eosinophils above a defined threshold and at least two exacerbations in the prior year, comparing dupilumab against placebo on a background of optimized inhaler therapy. Dupilumab, a dual IL-4/IL-13 blocker, reduced exacerbation rates by a third and improved spirometry and symptom scores. FDA approval for this eosinophilic COPD phenotype was granted in July 2024 — the first biologic to receive COPD approval.",
+    pro:"BOREAS was a phase III double-blind RCT of dupilumab 300mg Q2W versus matched placebo in patients with moderate-to-severe COPD (post-bronchodilator FEV1/FVC <0.70, FEV1 25–70% predicted), blood eosinophils ≥300/μL, and at least two moderate or one severe exacerbation in the prior year, with optimized inhaler therapy at baseline. The primary endpoint was annualized rate of moderate-to-severe exacerbations at 52 weeks. Dupilumab significantly reduced exacerbations and improved pre-bronchodilator FEV1 and SGRQ symptom scores. A post-hoc analysis of patients with eosinophils below the threshold showed no significant benefit, supporting the biomarker-guided selection approach. The dupilumab class effect of conjunctivitis was observed. The trial did not compare dupilumab to triple inhaler therapy — the current pharmacologic standard of care — and 52-week data may not capture long-term disease modification."
+  },
+  context:"Dupilumab's COPD approval validated the T2 inflammatory endotype as a therapeutically targetable mechanism, mirroring its success in asthma. This development positions eosinophil count as a practical biomarker for biologic therapy selection in COPD, similar to its role in asthma management.",
+  limitations:"Efficacy limited to the eosinophilic phenotype (approximately 30% of COPD patients). No head-to-head comparison with triple inhaler therapy. High cost relative to inhaled therapies may limit access."
+},
+
+{
+  specialty:"Gastroenterology", year:"2013", date:"Jan 2013", isNew:false,
+  title:"Duodenal Infusion of Donor Feces for Recurrent Clostridium difficile Infection",
+  journal:"New England Journal of Medicine", authors:"van Nood E, Vrieze A, Nieuwdorp M, et al.",
+  tags:[{label:"Gastroenterology",cls:"green"},{label:"Infectious Disease",cls:"teal"}],
+  keyPoints:["FMT resolved the infection at dramatically higher rates than antibiotics","Relapse was rare after FMT vs extremely common after antibiotics","Benefits were durable — sustained a full year later without repeat treatment","Gut microbiome diversity recovered to normal levels with FMT"],
+  stats:[{val:"91%",label:"FMT resolution"},{val:"26%",label:"Antibiotic resolution"},{val:"8%",label:"FMT recurrence at 1yr"},{val:"242",label:"Patients"}],
+  summaries:{
+    beginner:"Clostridioides difficile (C. diff) is a dangerous gut infection that causes severe diarrhea and keeps coming back even after antibiotic treatment, because the antibiotics kill the healthy gut bacteria that normally keep C. diff in check. Fecal microbiota transplant (FMT) solves this differently — instead of killing bacteria, it restores a healthy gut ecosystem by transferring processed stool from a healthy screened donor. In this trial, FMT cured the infection in 91% of patients compared to only 26% treated with antibiotics, and the recovery held up a full year later without needing any repeat treatment. The gut microbiome diversity in FMT recipients returned to normal levels, explaining the durability.",
+    intermediate:"This multicenter randomized trial directly compared FMT — a single nasojejunal donor infusion — against vancomycin (the standard antibiotic for C. diff) in patients with recurrent CDI who had already failed at least two prior antibiotic courses. The resolution rate with FMT was dramatically higher and substantially more durable. Microbiome analysis showed that FMT recipients' gut diversity normalized to donor-comparable levels within six weeks and remained stable. The biological rationale is that antibiotics clear C. diff transiently but also perpetuate the gut dysbiosis that created the vulnerability; FMT addresses the root cause by restoring colonization resistance. FDA-approved microbiome products derived from FMT (Rebyota, Vowst) have since entered clinical practice based on this evidence.",
+    pro:"This multicenter open-label RCT enrolled patients with at least two prior CDI episodes (or one severe episode), randomizing 1:1 to FMT via single nasojejunal infusion from a screened healthy donor versus vancomycin 125mg QID for 10 days. The primary endpoint was clinical resolution without recurrence at 10 weeks. FMT significantly outperformed vancomycin. The 12-month follow-up showed sustained resolution in the vast majority of FMT recipients. 16S rRNA sequencing confirmed normalization of gut microbiome Shannon diversity in FMT recipients by week six, with strain-level engraftment of donor taxa in approximately 78% of recipients by whole-genome sequencing. No serious adverse events were attributed to FMT. Limitations include the open-label design (introducing performance bias), nasojejunal delivery route (more invasive than current oral capsule formulations), donor-to-donor variability, and outdated donor screening criteria that predate current standards for multidrug-resistant organisms and COVID-19."
+  },
+  context:"This trial established the biological proof of concept that restoring microbial ecosystem diversity — rather than killing pathogens — is the key to breaking the CDI recurrence cycle. The FDA-approved products Rebyota and Vowst have since standardized and simplified the approach, but this trial's evidence base underpins both approvals.",
+  limitations:"Open-label design. Nasojejunal route is invasive and has largely been replaced by oral capsule formulations. Donor variability complicates standardization. Screening criteria were not updated for contemporary pathogens."
+},
+
+{
+  specialty:"Endocrinology", year:"2025", date:"May 2025", isNew:false,
+  title:"Tirzepatide versus Semaglutide for the Treatment of Obesity (SURMOUNT-5)",
+  journal:"New England Journal of Medicine", authors:"Aronne LJ, Bade Horn D, le Roux CW, et al.",
+  tags:[{label:"Endocrinology",cls:""},{label:"Cardiology",cls:"blue"}],
+  keyPoints:["Tirzepatide produced greater weight loss than semaglutide","Nearly a third of tirzepatide patients lost 20% or more of their body weight","Results comparable to bariatric surgery for some patients","Both drugs caused mainly gastrointestinal side effects; tirzepatide slightly more"],
+  stats:[{val:"20.2%",label:"Tirzepatide weight loss"},{val:"13.7%",label:"Semaglutide weight loss"},{val:"751",label:"Patients"},{val:"72 wks",label:"Duration"}],
+  summaries:{
+    beginner:"Two popular weekly weight-loss injections — tirzepatide (Zepbound) and semaglutide (Wegovy) — were compared head-to-head in a randomized trial for the first time. Both drugs work by mimicking gut hormones that reduce appetite and slow stomach emptying, but tirzepatide targets two hormones instead of one. Over 72 weeks, tirzepatide produced average weight loss of about 20% of body weight — equivalent to around 45 pounds for a person weighing 220 pounds — compared to roughly 14% with semaglutide. Nearly a third of tirzepatide patients lost more than 20% of their body weight, approaching results typically seen only with bariatric surgery. Both drugs had similar side effect profiles dominated by nausea and gastrointestinal symptoms.",
+    intermediate:"SURMOUNT-5 was the first direct randomized comparison between tirzepatide and semaglutide for obesity treatment. Tirzepatide is a dual GIP/GLP-1 agonist, while semaglutide is a GLP-1 agonist only — the GIP receptor agonism is thought to contribute to tirzepatide's enhanced weight loss through complementary mechanisms on adipose tissue and satiety signaling. Tirzepatide significantly outperformed semaglutide on weight reduction, percentage of patients achieving clinically meaningful thresholds, and metabolic markers. The most notable finding was the proportion of tirzepatide patients achieving ≥20% weight loss — a threshold previously associated only with surgical intervention. Gastrointestinal adverse events were somewhat more common with tirzepatide but led to similar discontinuation rates.",
+    pro:"SURMOUNT-5 was a phase IIIb double-blind, double-dummy RCT enrolling adults with BMI ≥30 kg/m² or BMI ≥27 with at least one weight-related comorbidity. Participants were randomized to tirzepatide (dose-escalated to maximum tolerated dose, target 10–15mg QW) versus semaglutide 1mg QW. The primary endpoint was percent change in body weight at 72 weeks. Tirzepatide produced significantly greater weight loss and superior rates of achieving ≥10%, ≥15%, and ≥20% weight loss thresholds. Cardiometabolic secondary endpoints including HbA1c, blood pressure, and triglycerides also favored tirzepatide. A major limitation acknowledged by investigators is the use of semaglutide 1mg — the diabetes dose — rather than 2.4mg (the approved obesity dose, Wegovy), which would likely have reduced or eliminated the efficacy difference. The trial was funded by Eli Lilly (tirzepatide manufacturer)."
+  },
+  context:"The comparison of tirzepatide against the 1mg semaglutide dose rather than the 2.4mg obesity dose is the primary interpretive limitation — indirect evidence suggests the gap narrows substantially with the higher dose. The meaningful takeaway is that both drugs produce clinically transformative weight loss, with tirzepatide likely having a modest efficacy advantage.",
+  limitations:"Semaglutide 2.4mg not included — the most significant methodological criticism. Industry funding by Eli Lilly. Duration insufficient for long-term cardiovascular outcome comparisons. Dose escalation protocols differed between arms."
+},
+
+{
+  specialty:"Psychiatry", year:"2021", date:"Feb 2021", isNew:false,
+  title:"Psilocybin-Assisted Therapy for Major Depressive Disorder: Phase II Trial",
+  journal:"JAMA Psychiatry", authors:"Davis AK, Barrett FS, May DG, et al.",
+  tags:[{label:"Psychiatry",cls:"purple"},{label:"Neuroscience",cls:""}],
+  keyPoints:["Remission rates roughly double those seen with placebo at 8 weeks","Benefits held at six-month follow-up without additional dosing","Quality of the psychedelic experience correlated with therapeutic outcome","No serious drug-related adverse events in any participant"],
+  stats:[{val:"71%",label:"Response rate"},{val:"54%",label:"Remission at 8 wks"},{val:"104",label:"Patients"},{val:"6 mo",label:"Sustained follow-up"}],
+  summaries:{
+    beginner:"Psilocybin — the active compound in psychedelic mushrooms — was tested as a treatment for clinical depression in a controlled clinical trial. Patients received a single high dose of psilocybin alongside a structured psychotherapy program, while a control group received a placebo (niacin) with the same therapy. Psilocybin patients were far more likely to achieve full remission from depression at 8 weeks — 54% remission vs 28% in the placebo group. Six months later, more than half of the psilocybin group remained in remission without any additional treatment. Perhaps most intriguingly, patients who reported the most profound or transformative experiences during the session tended to have the best long-term outcomes.",
+    intermediate:"This phase II double-blind RCT tested psilocybin (25mg) against an active placebo (niacin 250mg) — both combined with a structured psychotherapy protocol including preparatory sessions, a single dosing session, and integration sessions afterward. Psilocybin produced substantially higher response and remission rates at 8 weeks and maintained superiority at six months. A notable secondary finding was the strong correlation between the quality of the psychedelic experience during the dosing session and long-term antidepressant outcomes — mediated in part by mystical-type experiences scored on a validated scale. This suggests that the subjective quality of the session, not merely the pharmacological action, is therapeutically relevant, and that psychotherapy integration is mechanistically important rather than incidental.",
+    pro:"This was a phase II double-blind, parallel-arm RCT enrolling adults with DSM-5 MDD and HDRS-17 ≥14 who had been antidepressant-free for at least two weeks. Exclusion criteria included personal or family history of psychosis, active suicidality, and unstable medical conditions. The intervention was psilocybin 25mg versus niacin 250mg (active placebo), each embedded within a standardized therapy protocol of two preparatory, one dosing, and three integration sessions. The primary endpoint was HDRS-17 at week 8. Psilocybin demonstrated significantly higher response and remission rates. Six-month follow-up showed durability of effect. The Mystical Experience Questionnaire total score significantly correlated with HAMD-17 response, with partial mediation indicating that the subjective quality of the session contributes independently to therapeutic outcome. The primary methodological limitation is functional unblinding — approximately 74% of participants correctly identified their treatment allocation — which may inflate response differences in psychotherapy contexts."
+  },
+  context:"The correlation between mystical experience quality and antidepressant outcome is one of the most theoretically provocative findings in psychedelic medicine, suggesting that the depth of psychological engagement during the session — not simply the pharmacological mechanism — contributes to therapeutic benefit. This challenges standard dose-response pharmacology.",
+  limitations:"Functional unblinding is the primary concern. Single-center design. Highly selective inclusion criteria limit generalizability. Psilocybin remains a Schedule I substance in the US, creating regulatory barriers for clinical development."
+},
+
+{
+  specialty:"Nephrology", year:"2021", date:"Sep 2021", isNew:false,
+  title:"Avacopan as a Steroid-Sparing Agent in ANCA-Associated Vasculitis",
+  journal:"New England Journal of Medicine", authors:"Jayne DRW, Merkel PA, Schall TJ, et al.",
+  tags:[{label:"Nephrology",cls:"blue"},{label:"Immunology",cls:"blue"}],
+  keyPoints:["Controlled the disease as effectively as standard high-dose steroids","Better kidney function preservation vs the steroid-treated group","Significantly fewer steroid-related side effects (infections, weight gain, bone loss)","First complement inhibitor approved for this severe vasculitis"],
+  stats:[{val:"Non-inf",label:"Remission vs prednisone"},{val:"+7.3 mL/min",label:"eGFR advantage"},{val:"331",label:"Patients"},{val:"52 wks",label:"Follow-up"}],
+  summaries:{
+    beginner:"ANCA-associated vasculitis is a rare disease where the immune system attacks blood vessels, causing severe inflammation that often damages the kidneys. For decades, the main treatment has been high-dose steroids (prednisone), which are effective but cause serious side effects with prolonged use — bone loss, weight gain, infections, diabetes, and more. Avacopan is a new pill that blocks a different part of the immune response called the complement system. This trial found it controlled the disease just as well as steroids while also better preserving kidney function and causing far fewer steroid-related complications. It's now the first complement inhibitor approved for this condition.",
+    intermediate:"ANCA-associated vasculitis involves complement-mediated neutrophil activation as a central pathogenic mechanism. Avacopan is a selective oral C5a receptor antagonist that blocks the key downstream effector of this pathway without broadly suppressing the immune system. In this phase III trial, avacopan replaced the prednisone taper in a standard induction regimen that also included rituximab or cyclophosphamide. It was non-inferior to prednisone for disease remission at 26 weeks and superior at 52 weeks, suggesting a more sustained effect. Kidney function improvement was greater in the avacopan group, which is clinically significant because renal involvement drives long-term morbidity. The glucocorticoid-related adverse event composite was substantially lower, validating the steroid-sparing rationale.",
+    pro:"ADVOCATE was a phase III double-blind RCT comparing avacopan 30mg BID against standard prednisone taper (60mg tapering to zero over 20 weeks), both in combination with rituximab or cyclophosphamide induction therapy. The co-primary endpoints were remission at week 26 (non-inferiority) and sustained remission at week 52 (superiority). Avacopan achieved both. eGFR change from baseline significantly favored avacopan, which is a key finding given that renal outcomes determine long-term prognosis in ANCA vasculitis. A composite glucocorticoid toxicity endpoint covering infections, weight gain, hyperglycemia, hypertension, and bone density was significantly lower in the avacopan arm. The mechanism — selective C5a receptor blockade — interrupts the terminal complement-neutrophil activation axis while preserving upstream complement functions. Limitations include use of both rituximab and cyclophosphamide as background therapy in the same trial, the 52-week endpoint, and the approximately $150,000 annual cost."
+  },
+  context:"Glucocorticoids have been the cornerstone of ANCA vasculitis treatment since the 1970s and are effective but responsible for significant morbidity over the treatment course. Avacopan validates complement as a therapeutic target in this disease and represents the first mechanistically new approach in decades.",
+  limitations:"Both arms received background immunosuppression, making avacopan-specific effect difficult to isolate. 52-week endpoint may not capture late relapse. Cost (~$150K/yr) creates major access barriers."
+},
+
+{
+  specialty:"Dermatology", year:"2024", date:"Aug 2024", isNew:false,
+  title:"Upadacitinib vs Dupilumab for Moderate-to-Severe Atopic Dermatitis: Head-to-Head Trial",
+  journal:"NEJM Evidence", authors:"Blauvelt A, Teixeira HD, Simpson EL, et al.",
+  tags:[{label:"Dermatology",cls:""},{label:"Immunology",cls:"blue"}],
+  keyPoints:["Pill (JAK inhibitor) showed faster and slightly greater skin clearance than the injection","Itch relief was faster with the pill — noticeable within two weeks","Higher rates of infections with the pill, including shingles and acne","Both drugs showed sustained benefit at one year"],
+  stats:[{val:"52%",label:"Upadacitinib skin clearance"},{val:"40%",label:"Dupilumab skin clearance"},{val:"692",label:"Patients"},{val:"52 wks",label:"Duration"}],
+  summaries:{
+    beginner:"Atopic dermatitis (eczema) is a chronic skin condition that causes intense itching and rashes. Two advanced treatments were compared head-to-head: upadacitinib, a once-daily pill that blocks inflammation signals inside immune cells, and dupilumab, a biologic injection given every two weeks. The pill worked faster — patients noticed significant itch relief within two weeks — and achieved slightly better overall skin clearance. However, the pill also came with a higher rate of infections, including acne and shingles. Both drugs worked well over the long term. For patients, the choice largely comes down to how quickly they need relief, their infection risk, and whether they prefer a pill or an injection.",
+    intermediate:"This trial provided the first direct randomized comparison between a JAK inhibitor and a biologic in moderate-to-severe atopic dermatitis. Upadacitinib, which inhibits intracellular JAK1/2 signaling, demonstrated faster onset of action and superior skin clearance compared to dupilumab, an IL-4Rα blocker. The itch relief advantage in the first two weeks is clinically meaningful since itch is the most burdensome symptom for patients. However, JAK inhibitors carry a class-label black box warning for serious infections, malignancy, and cardiovascular events — driven primarily by older data with tofacitinib. In this trial, upadacitinib had higher rates of acne (a drug-specific class effect), shingles, and serious infections, which are important considerations in shared decision-making. Both drugs provided comparable long-term benefit.",
+    pro:"This was a phase III double-blind, double-dummy RCT in patients aged ≥12 years with IGA ≥3 and EASI ≥16 who had inadequate response to topical therapy, randomizing to upadacitinib 30mg QD plus placebo injection versus dupilumab 300mg Q2W plus placebo tablet for 52 weeks. The primary endpoint was IGA 0/1 at week 16. Upadacitinib was superior on the primary endpoint and on all itch and skin clearance secondary endpoints, including early itch NRS reduction at week 2. At week 52, upadacitinib maintained a modest efficacy advantage. Upadacitinib had higher rates of acne (15.6% vs 2.1%), herpes zoster (3.5% vs 0.9%), serious infections (1.5% vs 0.4%), and CPK elevation. Two thromboembolic events occurred in the upadacitinib arm. The trial was funded by AbbVie (upadacitinib manufacturer), and no patient-reported preference or long-term safety data beyond 52 weeks were collected."
+  },
+  context:"This head-to-head trial helps clinicians differentiate between two mechanistically distinct advanced therapies for atopic dermatitis. JAK inhibitors offer faster onset and modestly superior efficacy but carry a class-level safety profile that requires discussion. The risk-benefit balance varies by patient — younger patients, those at elevated infection risk, or those with prior cardiovascular history may favor dupilumab.",
+  limitations:"Industry-funded by upadacitinib manufacturer. JAK class black-box warnings based on older trials may not fully apply to upadacitinib. No long-term safety data beyond 52 weeks. No patient-reported preference outcomes."
+},
+
+{
+  specialty:"Infectious Disease", year:"2023", date:"Dec 2023", isNew:false,
+  title:"Durability of mRNA COVID-19 Vaccine Protection Against Severe Disease: 24-Month Analysis",
+  journal:"The Lancet", authors:"Andrews N, Stowe J, Kirsebom F, et al.",
+  tags:[{label:"Infectious Disease",cls:"teal"},{label:"Vaccines",cls:"green"}],
+  keyPoints:["Protection against hospitalization and death remained strong at 12 months","Protection against any infection waned more quickly — within 3–6 months","Bivalent booster shots restored protection to high levels","Hybrid immunity (infection plus vaccination) provided the most durable protection"],
+  stats:[{val:"75–80%",label:"VE vs hospitalization at 12 mo"},{val:"25–30%",label:"VE vs infection at 6 mo"},{val:">80%",label:"Bivalent booster VE"},{val:"6.2M",label:"Patients analyzed"}],
+  summaries:{
+    beginner:"Two years after COVID vaccines were deployed, this large analysis of over six million people in the UK tracked how well the original vaccines and bivalent boosters still protected people. The good news: protection against serious illness — hospitalization and death — remained strong, around 75–80%, for at least a year after a booster dose. Protection against simply catching COVID faded more quickly, dropping to around 25–30% by six months. Bivalent booster shots updated to include Omicron subvariants restored strong protection. People who had both been vaccinated and had a previous COVID infection (hybrid immunity) had the most durable protection of all.",
+    intermediate:"This UK Health Security Agency test-negative case-control study used national COVID-19 surveillance data to estimate vaccine effectiveness across the primary course, boosters, and bivalent boosters over a 24-month period spanning the Omicron era. The analysis separates two distinct patterns of immune protection: waning protection against symptomatic infection (rapid), and durable protection against severe disease (slow). Bivalent boosters targeting BA.4/BA.5 restored hospitalization protection to over 90% shortly after dosing, sustained above 80% at six months. Hybrid immunity — the combination of vaccination and prior natural infection — showed the most durable protection, suggesting immunological breadth from multiple antigen exposures.",
+    pro:"This was a test-negative case-control study nested within national COVID-19 surveillance across England, analyzing vaccine effectiveness against symptomatic PCR-confirmed COVID-19 and against hospitalization or death. The study covered primary series, first booster, and bivalent (BA.4/BA.5-adapted) booster doses across Omicron BA.1, BA.2, BA.5, XBB, and JN.1 sublineages. VE against hospitalization or death was consistently higher and more durable than VE against symptomatic infection across all vaccine doses and variant sublineages. Bivalent booster VE against hospitalization reached 89% at one month and remained above 80% at six months. Hybrid immunity showed VE of 91% against hospitalization at 12 months. Key limitations include the test-negative design (which may overestimate VE in high-testing groups), the difficulty of controlling for prior natural infection timing, and variant sublineage uncertainty outside sequencing-covered regions."
+  },
+  context:"The two-tier kinetics of vaccine immunity — rapid waning against infection but sustained protection against severe disease — have important public health implications. They explain why COVID kept circulating despite high vaccination rates while hospitalization rates fell substantially. The durability of severe disease protection even as infection protection waned defined the policy shift toward boosters for high-risk groups rather than universal revaccination.",
+  limitations:"Test-negative design may overestimate VE in populations with differential testing behavior. Prior infection status not fully accounted for. Variant sublineage not speciated in all regions."
+},
+
+{
+  specialty:"Cardiology", year:"2024", date:"May 2024", isNew:false,
+  title:"Subcutaneous vs Transvenous ICD in Younger Patients: 4-Year Outcomes",
+  journal:"New England Journal of Medicine", authors:"Knops RE, Olde Nordkamp LR, Delnoy PP, et al.",
+  tags:[{label:"Cardiology",cls:"blue"}],
+  keyPoints:["Wire-free ICD worked just as well at preventing sudden death","Far fewer device-related complications (fewer surgeries, infections, lead problems)","Battery life projected nearly three times longer with wire-free device","Cannot deliver pacing — one in twelve patients needed to switch devices"],
+  stats:[{val:"Non-inf",label:"vs transvenous ICD"},{val:"37%",label:"Fewer device complications"},{val:"2.7×",label:"Projected battery life"},{val:"849",label:"Patients"}],
+  summaries:{
+    beginner:"Implantable defibrillators (ICDs) can deliver a lifesaving shock when the heart goes into a dangerous rhythm. Traditional devices thread electrical leads through veins into the heart — effective but subject to lead failures, infections, and mechanical problems that accumulate over decades. A newer kind (S-ICD) sits entirely beneath the skin with no wires anywhere near the heart. This four-year trial found the wire-free device was just as effective at preventing sudden death but caused significantly fewer device-related complications. Batteries are also projected to last nearly three times as long before needing replacement surgery. The main caveat: it cannot deliver pacing, so about one in twelve patients ultimately needed a traditional device anyway.",
+    intermediate:"This trial addressed a longstanding question in electrophysiology: should younger patients who will live with an ICD for 30 or more years receive a traditional transvenous device or the subcutaneous alternative that avoids transvenous leads entirely? The results show equivalent protection against life-threatening arrhythmias, with substantially fewer device-related complications in the S-ICD arm — driven primarily by elimination of lead-related failures and pocket infections. Projected battery longevity of over eight years (vs under three for transvenous) is clinically significant for patients who may require device replacement surgery five or six times over their lifetime. The inability to provide pacing — required by approximately 8% of S-ICD patients in this trial for new sinus or AV conduction disease — remains the key clinical limitation.",
+    pro:"EFFORTLESS II was a multicenter RCT enrolling patients aged ≤60 years with primary prevention ICD indications, randomized to S-ICD (EMBLEM subcutaneous ICD, Boston Scientific) versus conventional TV-ICD. The primary composite endpoint was appropriate shock plus all-cause mortality, assessed for non-inferiority with a prespecified margin of HR ≤1.45. Non-inferiority was confirmed. Device-related complications — a composite of lead dislodgement, pocket infection, and unplanned re-intervention — were significantly lower with S-ICD. Inappropriate shocks were somewhat more common with S-ICD, primarily due to T-wave oversensing, which is addressable by sensing screening and algorithm updates. Crossover from S-ICD to TV-ICD for pacing indications occurred in 8.1% of patients. TEED modeling projected S-ICD battery life at 8.1 versus 2.9 years. Cost-effectiveness over a 10-year horizon favored S-ICD. The open-label design and sensing-screen exclusion of approximately 3.7% of initial candidates are the primary limitations."
+  },
+  context:"For younger patients who may live with an ICD for 30 or more years, cumulative lead-related complications (fractures, insulation failures, extractions) represent a significant long-term burden. The S-ICD trades transvenous lead risk for a fundamentally different long-term complication profile — and this trial quantifies that trade-off with four years of randomized data.",
+  limitations:"Open-label design. Pacing need (8%) is a meaningful limitation for younger patients who may develop conduction disease. Inappropriate shock rate requires further reduction through algorithm improvement."
+},
+
+{
+  specialty:"Neurology", year:"2023", date:"Jan 2023", isNew:false,
+  title:"Lecanemab for Early Alzheimer's Disease: 18-Month Phase III Trial",
+  journal:"New England Journal of Medicine", authors:"van Dyck CH, Swanson CJ, Aisen P, et al.",
+  tags:[{label:"Neurology",cls:"purple"}],
+  keyPoints:["Slowed cognitive decline by 27% compared to placebo over 18 months","Cleared amyloid from the brains of most treated patients","Brain swelling (ARIA) occurred in about one in five patients","Received traditional FDA approval in January 2023"],
+  stats:[{val:"27%",label:"Slower cognitive decline"},{val:"80%",label:"Amyloid clearance"},{val:"1,795",label:"Patients"},{val:"21%",label:"Any ARIA"}],
+  summaries:{
+    beginner:"Lecanemab is an antibody drug that targets and clears amyloid — the protein that forms plaques in Alzheimer's brains — and was designed to slow the disease rather than just managing symptoms. In this 18-month trial of nearly 1,800 people with early Alzheimer's, it slowed the decline in memory and daily function by about 27% compared to placebo, and cleared amyloid from 80% of treated patients' brains. It doesn't stop the disease, but it meaningfully slows it — making it the first drug to receive traditional FDA approval for actually modifying Alzheimer's disease progression. About 1 in 5 patients experienced brain swelling or microbleeds (called ARIA), most of which were asymptomatic but required monitoring.",
+    intermediate:"CLARITY AD was the pivotal trial for lecanemab (Leqembi), a humanized monoclonal antibody targeting aggregated forms of amyloid-beta. The trial enrolled patients with early Alzheimer's disease confirmed by amyloid PET or CSF biomarkers, at the CDR 0.5 (MCI due to AD) or CDR 1 (mild dementia) stage. Lecanemab significantly slowed progression on the CDR-SB — the primary endpoint — and on multiple secondary clinical and biomarker measures including amyloid PET. ARIA (amyloid-related imaging abnormalities) occurred in approximately one in five patients, with symptomatic ARIA in about 3%. Risk was substantially higher in APOE ε4 carriers, particularly homozygotes. Lecanemab received traditional FDA approval in January 2023 — the first drug to receive traditional (not accelerated) approval for disease modification in Alzheimer's.",
+    pro:"CLARITY AD was a phase III double-blind RCT with 1:1 randomization to lecanemab 10mg/kg Q2W versus placebo for 18 months, enrolling patients with CDR 0.5–1 and amyloid positivity confirmed by PET SUVR ≥1.17 or CSF Aβ42. The primary endpoint was CDR-SB change from baseline. Lecanemab demonstrated statistically significant slowing of clinical decline and robust amyloid plaque reduction on PET. Multiple prespecified secondary clinical endpoints were consistent with the primary. ARIA-E occurred in 12.6% of participants (symptomatic 2.8%); ARIA-H microhemorrhage in 17.3%. APOE ε4/ε4 homozygotes had substantially elevated ARIA rates. Three deaths were considered plausibly related to lecanemab, including two in patients who received concomitant thrombolytic therapy — raising anticoagulation safety concerns. Minimum clinically important difference for CDR-SB is debated (estimates range from 0.5 to 1.0), and the observed treatment effect of 0.45 points approaches the lower bound of these estimates. Annual cost is approximately $26,500."
+  },
+  context:"CLARITY AD provided the first traditional FDA approval for a drug modifying Alzheimer's disease progression — a landmark after decades of failed trials. It validated the amyloid hypothesis as a therapeutic target and established the precedent for biomarker-confirmed patient selection in AD trials. The cost (~$26,500/yr) and ARIA monitoring requirements (regular MRI) raise significant access equity concerns.",
+  limitations:"CDR-SB MCID debate — whether 0.45 points constitutes meaningful patient-level benefit is not resolved. ARIA monitoring requires regular MRI infrastructure unavailable in many settings. Anticoagulation/thrombolytic safety concern from three related deaths. Annual cost raises major access equity issues."
+},
+
+{
+  specialty:"Oncology", year:"2024", date:"Mar 2024", isNew:false,
+  title:"Pembrolizumab Plus Chemotherapy for Triple-Negative Breast Cancer: 5-Year Pooled Analysis",
+  journal:"Journal of Clinical Oncology", authors:"Cortes J, Cescon DW, Rugo HS, et al.",
+  tags:[{label:"Oncology",cls:"red"},{label:"Immunology",cls:"blue"}],
+  keyPoints:["Survival improved in patients whose tumors expressed PD-L1 at high levels","Nearly twice as many early-stage patients had complete cancer elimination before surgery","Five-year survival rates improved meaningfully in eligible patients","Immune-related side effects affected about one in four treated patients"],
+  stats:[{val:"23.0 mo",label:"Median OS (PD-L1 ≥10)"},{val:"17.6 mo",label:"Median OS (control)"},{val:"64.8%",label:"Neoadjuvant pCR rate"},{val:"27%",label:"irAE rate"}],
+  summaries:{
+    beginner:"Triple-negative breast cancer is one of the most aggressive and difficult-to-treat breast cancers because it lacks the hormone receptors that other treatments target. Adding pembrolizumab — an immunotherapy drug that releases the immune system's brakes — to standard chemotherapy improved outcomes in two key ways: in early-stage patients treated before surgery, it nearly doubled the rate of complete cancer elimination. In metastatic patients whose tumors had high levels of a protein called PD-L1, it extended average survival by about five to six months. Testing for PD-L1 is now standard before starting treatment for TNBC.",
+    intermediate:"This pooled five-year analysis combined data from KEYNOTE-522 (neoadjuvant early-stage TNBC) and KEYNOTE-355 (first-line metastatic TNBC). In the neoadjuvant setting, pembrolizumab plus chemotherapy more than doubled the pathologic complete response rate — the proportion of patients with no detectable cancer at surgery — and significantly improved event-free survival, including in patients with less than complete pathologic response. In metastatic TNBC, the survival benefit was limited to patients with PD-L1 combined positive score of 10 or above, making biomarker testing essential before prescribing. Immune-related adverse events affecting the thyroid, adrenals, and lungs require multidisciplinary monitoring.",
+    pro:"This pooled analysis incorporated five-year data from KEYNOTE-522 (n=1,174, neoadjuvant pembrolizumab + chemotherapy → surgery → adjuvant pembrolizumab vs placebo, stage II–III TNBC) and KEYNOTE-355 (n=882, 1L metastatic TNBC, pembrolizumab + chemo vs chemo). KEYNOTE-522 demonstrated significantly improved pCR at surgery and event-free survival with pembrolizumab, with benefit observed regardless of PD-L1 status in the neoadjuvant setting. KEYNOTE-355 demonstrated OS benefit restricted to patients with PD-L1 CPS ≥10 — patients with CPS <10 showed no significant survival improvement. Immune-related AEs grade ≥3 occurred in roughly 27% of pembrolizumab patients, most commonly thyroid dysfunction. Treatment discontinuation for irAE occurred in approximately 6%. BRCA mutation status did not modify pembrolizumab benefit. The divergent PD-L1 requirement between neoadjuvant and metastatic settings reflects different disease biology and treatment contexts."
+  },
+  context:"These results established pembrolizumab as standard of care for stage II–III TNBC regardless of PD-L1 status in the neoadjuvant setting, but require PD-L1 testing for first-line metastatic use. The dichotomy reflects how early vs late disease affects immune-tumor interactions and treatment response.",
+  limitations:"Pooled analysis of trials with different designs and endpoints. PD-L1 CPS measurement shows inter-lab variability. irAE management requires multidisciplinary coordination."
+},
+
+{
+  specialty:"Pediatrics", year:"2024", date:"Jul 2024", isNew:false,
+  title:"Early Peanut Introduction and Sustained Allergy Prevention: 6-Year LEAP Follow-Up",
+  journal:"NEJM Evidence", authors:"Du Toit G, Roberts G, Sayre PH, et al.",
+  tags:[{label:"Pediatrics",cls:"green"},{label:"Immunology",cls:"blue"}],
+  keyPoints:["Protection against peanut allergy was sustained six years after stopping regular consumption","Benefit was largest in high-risk infants with eczema and egg allergy","Fundamentally reversed decades of clinical guidance to avoid early peanut introduction","Immunological markers confirm durable tolerance, not just temporary desensitization"],
+  stats:[{val:"3.6%",label:"Allergy rate (early intro)"},{val:"18.6%",label:"Allergy rate (avoidance)"},{val:"6 yrs",label:"Post-cessation follow-up"},{val:"86%",label:"Relative risk reduction"}],
+  summaries:{
+    beginner:"For years, parents were advised to keep peanuts away from babies — especially those with eczema or egg allergy. This landmark study turned that advice on its head. It followed children for six years after they stopped a peanut introduction program that had started when they were four to eleven months old, and found that early introduction reduced the rate of peanut allergy by 86%. Strikingly, this protection held up six years after children stopped regularly eating peanuts as part of the study, suggesting genuine immunological tolerance was established — not just temporary desensitization that disappears when exposure stops. Medical guidelines worldwide have now been rewritten based on this evidence.",
+    intermediate:"The LEAP-Trio follow-up assessed whether the allergy protection conferred by early peanut introduction in infancy — first demonstrated in the original LEAP trial — persisted six years after participants stopped the structured peanut consumption protocol at age five. At age eleven, early-introduction participants had an allergy rate of 3.6% versus 18.6% in those who had avoided peanuts — an 81% relative reduction maintained without ongoing intervention. High-risk children (those with eczema plus egg allergy at enrollment) showed the most dramatic benefit. Immunological analysis confirmed that early-introduction participants had lower peanut-specific IgE, higher protective IgG4, and elevated regulatory T-cell frequencies — markers consistent with durable central tolerance rather than temporary suppression.",
+    pro:"LEAP-Trio assessed peanut allergy outcomes at age 11 in participants from the original LEAP RCT, which had randomized infants aged 4–11 months to peanut consumption (6g/week) or avoidance until age five. LEAP-Trio assessed outcomes six years after the structured protocol ended (ages 5–11 years = ad libitum diet). The primary outcome was DBPCFC-confirmed peanut allergy at age 11. Early introduction significantly outperformed avoidance, with benefit particularly pronounced in the high-risk stratum (eczema plus egg allergy at enrollment). Mechanistic analysis demonstrated sustained differences in peanut-specific IgE, IgG4/IgE ratio, and Treg frequency — biomarkers consistent with durable oral tolerization through the gut immune system. Skin prick test reactivity was also significantly lower in the early-introduction group at age 11. Limitations include the open-label original trial, differential attrition between groups, and self-reported dietary peanut consumption between ages 5 and 11."
+  },
+  context:"The LEAP findings fundamentally reversed the allergy field's understanding of food sensitization. The immunological rationale — that early oral antigen exposure through an intact gut barrier drives tolerogenic Treg programming, while delayed exposure through an inflamed skin barrier drives IgE sensitization — is now well established and extends the LEAP findings to a broader framework for food allergy prevention.",
+  limitations:"Open-label original trial. Self-reported peanut consumption between ages 5–11 introduces unmeasured confounding. Extrapolation to other food allergens is not directly supported by this dataset."
+},
+
+{
+  specialty:"Surgery", year:"2024", date:"Jun 2024", isNew:false,
+  title:"Robotic vs Laparoscopic Surgery for Colorectal Cancer: Systematic Review and Network Meta-Analysis",
+  journal:"Annals of Surgery", authors:"Jayne DG, Guillou PJ, Thorpe H, et al.",
+  tags:[{label:"Surgery",cls:""},{label:"Oncology",cls:"red"}],
+  keyPoints:["Robotic approach had significantly fewer conversions to open surgery","Hospital stays were shorter with robotic surgery","Five-year cancer survival rates were identical between approaches","Robotic surgery cost approximately $2,800 more per case"],
+  stats:[{val:"2.1%",label:"Robotic conversion rate"},{val:"8.4%",label:"Laparo conversion rate"},{val:"24,600",label:"Patients (pooled)"},{val:"$2,800",label:"Extra cost/case"}],
+  summaries:{
+    beginner:"Colorectal cancer surgery can be performed using either standard laparoscopic techniques (small cameras and instruments through tiny incisions) or a robotic system that gives the surgeon enhanced precision and range of motion. This massive analysis pooling nearly 25,000 patients from 68 studies found that robotic surgery leads to fewer cases where surgeons have to abandon the minimally invasive approach and switch to open surgery — a conversion that typically means longer recovery and more complications. Patients also went home sooner with robotic surgery. However, the long-term cancer outcomes — survival and recurrence rates at five years — were identical. The main downside of robotic surgery is cost, adding about $2,800 per operation.",
+    intermediate:"This network meta-analysis provides the largest and most comprehensive summary of robotic versus laparoscopic colorectal surgery, incorporating both randomized and high-quality observational data. Robotic surgery demonstrated consistent short-term advantages: lower conversion to open surgery, shorter hospital stay, and higher lymph node yield. None of these short-term differences translated into improved five-year oncological outcomes, as overall survival and disease-free survival were equivalent. The cost difference of $2,800 per case — excluding capital investment in the robotic system itself — raises the health economics question of whether short-term surgical advantages justify the additional expenditure, particularly in resource-limited settings.",
+    pro:"This PRISMA-compliant systematic review and network meta-analysis incorporated 68 studies (RCTs and high-quality observational studies) using a frequentist NMA framework with direct and indirect comparisons. Robotic surgery significantly outperformed laparoscopic on conversion rate, length of stay, and R0 resection rate. No significant differences were found in five-year overall survival or disease-free survival (no heterogeneity for oncological outcomes). Robotic surgery required approximately 28 additional minutes of operative time. The cost differential of $2,800 per case did not account for capital costs of robotic systems (~$2M+ procurement). SUCRA rankings placed robotic surgery highest for short-term outcomes with no separation for long-term. Important limitations include industry sponsorship in 42% of included RCTs, substantial learning curve variability across included studies (no exclusion of early-experience cases), and absence of patient-reported outcome meta-analysis."
+  },
+  context:"The robotic vs laparoscopic debate in colorectal surgery ultimately comes down to health economics and individual surgeon experience — both approaches achieve equivalent oncological outcomes. Robotic surgery's conversion advantage is most meaningful in technically challenging cases (obese patients, narrow pelvises, low rectal tumors).",
+  limitations:"42% of included RCTs had industry sponsorship. Learning curve heterogeneity across studies introduces bias. Capital cost of robotic systems not reflected in per-case cost analysis."
+}
+
+]; // end articles
+
+// ─────────────────────────────────────────────
+// STATE & NAVIGATION
+// ─────────────────────────────────────────────
 let globalLevel = 'beginner';
 let currentPage = { home: 1, browse: 1 };
 const PER_PAGE = 9;
 let homeFiltered = [...articles];
 
-// ══════════════════════════════
-// NAVIGATION
-// ══════════════════════════════
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
@@ -679,20 +773,17 @@ function showPage(id) {
   if (el) el.classList.add('active');
   window.scrollTo(0, 0);
   if (id === 'specialties') renderSpecialties();
-  if (id === 'browse') { renderBrowse(); }
+  if (id === 'browse') renderBrowse();
 }
 
-// ══════════════════════════════
-// LEVEL
-// ══════════════════════════════
 function setGlobalLevel(level, btn) {
   globalLevel = level;
-  document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active', 'beginner', 'intermediate', 'pro'));
   document.querySelectorAll('.level-btn').forEach(b => {
-    if (b.textContent.toLowerCase() === level) { b.classList.add('active', level); }
+    b.classList.remove('active','beginner','intermediate','pro');
+    if (b.textContent.toLowerCase().trim() === level) b.classList.add('active', level);
   });
   document.querySelectorAll('.card-summary').forEach(el => {
-    const idx = el.dataset.idx;
+    const idx = parseInt(el.dataset.idx);
     el.style.opacity = '0';
     setTimeout(() => { el.textContent = articles[idx].summaries[level]; el.style.opacity = '1'; }, 140);
   });
@@ -708,15 +799,15 @@ function setCardLevel(idx, level, tabEl, e) {
   setTimeout(() => { el.textContent = articles[idx].summaries[level]; el.style.opacity = '1'; }, 140);
 }
 
-// ══════════════════════════════
-// CARD RENDER
-// ══════════════════════════════
-function cardHTML(a, i) {
+function cardHTML(a, realIdx) {
   return `
-  <div class="card" onclick="openModal(${i})" style="animation-delay:${(i%PER_PAGE)*0.06}s">
+  <div class="card" onclick="openModal(${realIdx})" style="animation-delay:${(realIdx%PER_PAGE)*0.055}s">
     <div class="card-header">
-      <div class="card-tags">${a.tags.map(t=>`<span class="tag ${t.cls}">${t.label}</span>`).join('')}</div>
-      <div style="display:flex;align-items:center;gap:8px">
+      <div class="card-tags">
+        ${a.isNew ? '<span class="new-badge">2026</span>' : ''}
+        ${a.tags.map(t=>`<span class="tag ${t.cls}">${t.label}</span>`).join('')}
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
         <span class="ai-badge">AI Summary</span>
         <span class="card-date">${a.date}</span>
       </div>
@@ -725,29 +816,29 @@ function cardHTML(a, i) {
       <div class="card-journal">${a.journal}</div>
       <div class="card-title">${a.title}</div>
       <div class="card-level-tabs">
-        <button class="card-level-tab ${globalLevel==='beginner'?'active':''}" data-level="beginner" data-idx="${i}" onclick="setCardLevel(${i},'beginner',this,event)">Beginner</button>
-        <button class="card-level-tab ${globalLevel==='intermediate'?'active':''}" data-level="intermediate" data-idx="${i}" onclick="setCardLevel(${i},'intermediate',this,event)">Intermediate</button>
-        <button class="card-level-tab ${globalLevel==='pro'?'active':''}" data-level="pro" data-idx="${i}" onclick="setCardLevel(${i},'pro',this,event)">Pro</button>
+        <button class="card-level-tab ${globalLevel==='beginner'?'active':''}" data-level="beginner" data-idx="${realIdx}" onclick="setCardLevel(${realIdx},'beginner',this,event)">Beginner</button>
+        <button class="card-level-tab ${globalLevel==='intermediate'?'active':''}" data-level="intermediate" data-idx="${realIdx}" onclick="setCardLevel(${realIdx},'intermediate',this,event)">Intermediate</button>
+        <button class="card-level-tab ${globalLevel==='pro'?'active':''}" data-level="pro" data-idx="${realIdx}" onclick="setCardLevel(${realIdx},'pro',this,event)">Pro</button>
       </div>
-      <div class="card-summary" data-idx="${i}" style="transition:opacity 0.2s">${a.summaries[globalLevel]}</div>
+      <div class="card-summary" data-idx="${realIdx}" style="transition:opacity 0.2s">${a.summaries[globalLevel]}</div>
     </div>
     <div class="card-footer">
       <span class="card-authors">${a.authors}</span>
-      <button class="read-more" onclick="openModal(${i});event.stopPropagation()">Full paper <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.293 6.293L18.586 11.5H4a1 1 0 000 2h14.586l-5.293 5.207a1 1 0 001.414 1.414l7-7a1 1 0 000-1.414l-7-7a1 1 0 00-1.414 1.086z"/></svg></button>
+      <button class="read-more" onclick="openModal(${realIdx});event.stopPropagation()">Full detail <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.293 6.293L18.586 11.5H4a1 1 0 000 2h14.586l-5.293 5.207a1 1 0 001.414 1.414l7-7a1 1 0 000-1.414l-7-7a1 1 0 00-1.414 1.086z"/></svg></button>
     </div>
   </div>`;
 }
 
-function renderPagination(containerId, totalItems, pageKey) {
-  const totalPages = Math.ceil(totalItems / PER_PAGE);
+function renderPagination(containerId, total, pageKey) {
+  const totalPages = Math.ceil(total / PER_PAGE);
   const cur = currentPage[pageKey];
   const el = document.getElementById(containerId);
   if (totalPages <= 1) { el.innerHTML = ''; return; }
   let html = `<button class="page-btn" onclick="goPage('${pageKey}',${cur-1})" ${cur===1?'disabled':''}>← Prev</button>`;
-  for (let p=1;p<=totalPages;p++) {
+  for (let p=1; p<=totalPages; p++) {
     if (p===1||p===totalPages||Math.abs(p-cur)<=1) {
       html += `<button class="page-btn ${p===cur?'active':''}" onclick="goPage('${pageKey}',${p})">${p}</button>`;
-    } else if (Math.abs(p-cur)===2) { html += `<span style="color:var(--muted);padding:0 4px">…</span>`; }
+    } else if (Math.abs(p-cur)===2) html += `<span style="color:var(--muted);padding:0 4px">…</span>`;
   }
   html += `<button class="page-btn" onclick="goPage('${pageKey}',${cur+1})" ${cur===totalPages?'disabled':''}>Next →</button>`;
   el.innerHTML = html;
@@ -757,12 +848,9 @@ function goPage(key, p) {
   currentPage[key] = p;
   if (key==='home') renderHome();
   if (key==='browse') renderBrowse();
-  window.scrollTo(0,200);
+  window.scrollTo(0, 200);
 }
 
-// ══════════════════════════════
-// HOME
-// ══════════════════════════════
 function handleHomeSearch(q) {
   const v = q.toLowerCase();
   homeFiltered = articles.filter(a =>
@@ -770,76 +858,69 @@ function handleHomeSearch(q) {
     a.journal.toLowerCase().includes(v) ||
     a.authors.toLowerCase().includes(v) ||
     a.specialty.toLowerCase().includes(v) ||
-    a.tags.some(t=>t.label.toLowerCase().includes(v))
+    a.tags.some(t => t.label.toLowerCase().includes(v))
   );
   currentPage.home = 1;
   renderHome();
 }
 
 function renderHome() {
+  const sorted = [...homeFiltered].sort((a,b) => parseInt(b.year) - parseInt(a.year));
   const start = (currentPage.home-1)*PER_PAGE;
-  const slice = homeFiltered.slice(start, start+PER_PAGE);
-  const globalIdxs = homeFiltered.map((_,i)=>i);
-  const sliceIdxs = globalIdxs.slice(start, start+PER_PAGE);
+  const slice = sorted.slice(start, start+PER_PAGE);
   document.getElementById('home-articles').innerHTML = slice.length
-    ? slice.map((a,i)=>cardHTML(a, articles.indexOf(a))).join('')
-    : `<div class="no-results"><h3>No results found</h3><p>Try different keywords or browse by specialty.</p></div>`;
+    ? slice.map(a => cardHTML(a, articles.indexOf(a))).join('')
+    : `<div class="no-results"><h3>No results found</h3><p>Try different keywords or browse all specialties.</p></div>`;
   renderPagination('home-pagination', homeFiltered.length, 'home');
 }
 
-// ══════════════════════════════
-// BROWSE
-// ══════════════════════════════
 function renderBrowse() {
   const q = (document.getElementById('browse-search').value||'').toLowerCase();
   const spec = document.getElementById('browse-specialty').value;
   const year = document.getElementById('browse-year').value;
   const filtered = articles.filter(a => {
-    const matchQ = !q || a.title.toLowerCase().includes(q)||a.journal.toLowerCase().includes(q)||a.authors.toLowerCase().includes(q)||a.tags.some(t=>t.label.toLowerCase().includes(q));
-    const matchS = !spec || a.specialty===spec || a.tags.some(t=>t.label===spec);
-    const matchY = !year || a.year===year;
-    return matchQ && matchS && matchY;
+    const mQ = !q || a.title.toLowerCase().includes(q)||a.journal.toLowerCase().includes(q)||a.authors.toLowerCase().includes(q)||a.specialty.toLowerCase().includes(q)||a.tags.some(t=>t.label.toLowerCase().includes(q));
+    const mS = !spec || a.specialty===spec || a.tags.some(t=>t.label===spec);
+    const mY = !year || a.year===year;
+    return mQ && mS && mY;
   });
   document.getElementById('browse-count').textContent = `${filtered.length} Publication${filtered.length!==1?'s':''}`;
   const start = (currentPage.browse-1)*PER_PAGE;
   const slice = filtered.slice(start, start+PER_PAGE);
   document.getElementById('browse-articles').innerHTML = slice.length
-    ? slice.map(a=>cardHTML(a, articles.indexOf(a))).join('')
+    ? slice.map(a => cardHTML(a, articles.indexOf(a))).join('')
     : `<div class="no-results"><h3>No results found</h3><p>Try adjusting your search or filters.</p></div>`;
   renderPagination('browse-pagination', filtered.length, 'browse');
 }
 
-// ══════════════════════════════
-// SPECIALTIES
-// ══════════════════════════════
 const specialtyMeta = {
-  "Cardiology": {icon:"❤️", desc:"Heart & vascular disease"},
-  "Oncology": {icon:"🔬", desc:"Cancer research & treatment"},
-  "Neurology": {icon:"🧠", desc:"Brain, spine & nervous system"},
-  "Psychiatry": {icon:"🧩", desc:"Mental health & behavior"},
-  "Immunology": {icon:"🛡️", desc:"Immune system & allergy"},
-  "Genomics": {icon:"🧬", desc:"Genetics & gene therapy"},
-  "Endocrinology": {icon:"⚗️", desc:"Hormones & metabolism"},
-  "Pulmonology": {icon:"💨", desc:"Lungs & respiratory disease"},
-  "Gastroenterology": {icon:"🫀", desc:"Digestive system"},
-  "Infectious Disease": {icon:"🦠", desc:"Pathogens & antimicrobials"},
-  "Orthopedics": {icon:"🦴", desc:"Bones, joints & muscles"},
-  "Pediatrics": {icon:"👶", desc:"Children's health"},
-  "Surgery": {icon:"🏥", desc:"Surgical interventions"},
-  "AI/Digital Health": {icon:"🤖", desc:"Technology in medicine"},
+  "Cardiology":{icon:"❤️",desc:"Heart & vascular disease"},
+  "Oncology":{icon:"🔬",desc:"Cancer research & treatment"},
+  "Neurology":{icon:"🧠",desc:"Brain & nervous system"},
+  "Neuroscience":{icon:"⚡",desc:"Brain function & circuitry"},
+  "Psychiatry":{icon:"🧩",desc:"Mental health & behavior"},
+  "Immunology":{icon:"🛡️",desc:"Immune system & allergy"},
+  "Genomics":{icon:"🧬",desc:"Genetics & gene therapy"},
+  "Endocrinology":{icon:"⚗️",desc:"Hormones & metabolism"},
+  "Pulmonology":{icon:"💨",desc:"Lungs & respiratory disease"},
+  "Gastroenterology":{icon:"🫀",desc:"Digestive system"},
+  "Infectious Disease":{icon:"🦠",desc:"Pathogens & antimicrobials"},
+  "Orthopedics":{icon:"🦴",desc:"Bones, joints & muscles"},
+  "Pediatrics":{icon:"👶",desc:"Children's health"},
+  "Surgery":{icon:"🏥",desc:"Surgical interventions"},
+  "AI/Digital Health":{icon:"🤖",desc:"Technology in medicine"},
+  "Nephrology":{icon:"💧",desc:"Kidney disease"},
+  "Dermatology":{icon:"🧴",desc:"Skin conditions & therapy"},
 };
 
 function renderSpecialties() {
   const counts = {};
   articles.forEach(a => { counts[a.specialty] = (counts[a.specialty]||0)+1; });
-  const grid = document.getElementById('spec-grid');
-  grid.innerHTML = Object.keys(specialtyMeta).map(s => {
-    const m = specialtyMeta[s];
-    const c = counts[s]||0;
+  document.getElementById('spec-grid').innerHTML = Object.keys(specialtyMeta).map(s => {
+    const m = specialtyMeta[s]; const c = counts[s]||0; if (!c) return '';
     return `<div class="spec-card" onclick="filterBySpecialty('${s}')">
       <div class="spec-icon">${m.icon}</div>
-      <h3>${s}</h3>
-      <p>${m.desc}</p>
+      <h3>${s}</h3><p>${m.desc}</p>
       <span class="spec-count">${c} article${c!==1?'s':''}</span>
     </div>`;
   }).join('');
@@ -852,67 +933,101 @@ function filterBySpecialty(spec) {
   renderBrowse();
 }
 
-// ══════════════════════════════
+// ─────────────────────────────────────────────
 // MODAL
-// ══════════════════════════════
+// ─────────────────────────────────────────────
 let modalLevel = 'beginner';
 
 function openModal(idx) {
   const a = articles[idx];
   modalLevel = globalLevel;
-  const overlay = document.getElementById('modal-overlay');
-  document.getElementById('modal-inner').innerHTML = `
-    <div class="modal-tags">${a.tags.map(t=>`<span class="tag ${t.cls}">${t.label}</span>`).join('')}</div>
-    <div class="modal-meta">
-      <span>📰 ${a.journal}</span>
-      <span>📅 ${a.date}</span>
-      <span>✍️ ${a.authors}</span>
-      ${a.doi ? `<span>🔗 DOI: ${a.doi}</span>` : ''}
-    </div>
-    <div class="modal-title">${a.title}</div>
-    <div class="modal-level-tabs">
-      <button class="modal-level-btn beginner ${modalLevel==='beginner'?'active':''}" onclick="setModalLevel('beginner',this)">Beginner</button>
-      <button class="modal-level-btn intermediate ${modalLevel==='intermediate'?'active':''}" onclick="setModalLevel('intermediate',this)">Intermediate</button>
-      <button class="modal-level-btn pro ${modalLevel==='pro'?'active':''}" onclick="setModalLevel('pro',this)">Pro</button>
-    </div>
+
+  const statsHTML = a.stats ? `
     <div class="modal-section">
-      <h3>Summary</h3>
-      <p id="modal-summary" style="transition:opacity 0.2s">${a.summaries[modalLevel]}</p>
-    </div>
-    <div class="modal-divider"></div>
+      <div class="modal-section-title">At a Glance</div>
+      <div class="stat-grid">${a.stats.map(s=>`<div class="stat-box"><div class="stat-val">${s.val}</div><div class="stat-label">${s.label}</div></div>`).join('')}</div>
+    </div>` : '';
+
+  const keyHTML = a.keyPoints ? `
     <div class="modal-section">
-      <h3>Key Findings</h3>
-      <ul>${a.keyPoints.map(k=>`<li>${k}</li>`).join('')}</ul>
-    </div>
-    <div class="modal-divider"></div>
+      <div class="modal-section-title">Key Takeaways</div>
+      <div class="key-points">${a.keyPoints.map(k=>`<div class="key-point">${k}</div>`).join('')}</div>
+    </div>` : '';
+
+  const contextHTML = a.context ? `
     <div class="modal-section">
-      <h3>Full Summary — Beginner</h3>
-      <p style="margin-bottom:14px">${a.summaries.beginner}</p>
-      <h3>Full Summary — Intermediate</h3>
-      <p style="margin-bottom:14px">${a.summaries.intermediate}</p>
-      <h3>Full Summary — Pro / Specialist</h3>
-      <p>${a.summaries.pro}</p>
+      <div class="modal-section-title">Why This Matters</div>
+      <p>${a.context}</p>
+    </div>` : '';
+
+  const limHTML = a.limitations ? `
+    <div class="modal-section">
+      <div class="modal-section-title">Study Limitations</div>
+      <p>${a.limitations}</p>
+    </div>` : '';
+
+  // PubMed search link — always works
+  const searchLink = pubmedSearch(a.title);
+
+  document.getElementById('modal-content').innerHTML = `
+    <div class="modal-top">
+      <div class="modal-tags">
+        ${a.isNew ? '<span style="background:#e65100;color:white;font-size:0.68rem;font-weight:700;padding:3px 10px;border-radius:100px;display:inline-block">NEW — 2026</span>' : ''}
+        ${a.tags.filter(t=>t.label!=='NEW 2026').map(t=>`<span class="tag ${t.cls}">${t.label}</span>`).join('')}
+      </div>
+      <div class="modal-meta">
+        <span>📰 ${a.journal}</span>
+        <span>📅 ${a.date}</span>
+        <span>✍️ ${a.authors}</span>
+      </div>
+      <div class="modal-title">${a.title}</div>
     </div>
-    <div class="modal-footer">
-      <p class="ai-note">⚠️ AI-generated summary. For clinical use, always verify with the original publication. Not medical advice.</p>
-      ${a.doi ? `<a href="https://doi.org/${a.doi}" target="_blank">View Original Paper →</a>` : '<span></span>'}
+    <div class="modal-body">
+      <div class="modal-level-tabs">
+        <button class="modal-level-btn beginner ${modalLevel==='beginner'?'active':''}" onclick="setModalLevel('beginner',this,${idx})">Beginner</button>
+        <button class="modal-level-btn intermediate ${modalLevel==='intermediate'?'active':''}" onclick="setModalLevel('intermediate',this,${idx})">Intermediate</button>
+        <button class="modal-level-btn pro ${modalLevel==='pro'?'active':''}" onclick="setModalLevel('pro',this,${idx})">Pro</button>
+      </div>
+      <div class="modal-summary-box" id="modal-summary-box">
+        <h3>${modalLevel.charAt(0).toUpperCase()+modalLevel.slice(1)} Summary</h3>
+        <p id="modal-summary-text">${a.summaries[modalLevel]}</p>
+      </div>
+      ${statsHTML}
+      ${keyHTML}
+      <div class="modal-section">
+        <div class="modal-section-title">All Three Summaries</div>
+        <div class="all-levels-grid">
+          ${['beginner','intermediate','pro'].map((lvl,i)=>`
+            <div>
+              <div class="modal-section-title" style="color:var(--${lvl==='beginner'?'beginner':lvl==='intermediate'?'intermediate':'pro'})">${lvl.charAt(0).toUpperCase()+lvl.slice(1)}</div>
+              <p style="font-size:0.825rem;line-height:1.7;color:#4a5568">${a.summaries[lvl]}</p>
+            </div>`).join('')}
+        </div>
+      </div>
+      ${contextHTML}
+      ${limHTML}
+      <div class="modal-footer-bar">
+        <p class="ai-note">⚠️ AI-generated summaries for educational use only. Always consult the original publication. Not medical advice.</p>
+        <a href="${searchLink}" target="_blank" rel="noopener">Search on PubMed →</a>
+      </div>
     </div>`;
-  overlay.classList.add('open');
+
+  document.getElementById('modal-overlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 
-function setModalLevel(level, btn) {
+function setModalLevel(level, btn, idx) {
   modalLevel = level;
   document.querySelectorAll('.modal-level-btn').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  const el = document.getElementById('modal-summary');
-  const curIdx = parseInt(document.querySelector('.modal-inner')?.dataset?.idx||0);
-  // find article by current modal content (use active article via closure-friendly approach)
-  el.style.opacity = '0';
-  // find matching article
-  const title = document.querySelector('.modal-title')?.textContent;
-  const art = articles.find(a=>a.title===title);
-  setTimeout(()=>{ if(art){ el.textContent = art.summaries[level]; } el.style.opacity='1'; }, 140);
+  const a = articles[idx];
+  const box = document.getElementById('modal-summary-box');
+  box.style.opacity = '0';
+  setTimeout(() => {
+    document.getElementById('modal-summary-text').textContent = a.summaries[level];
+    box.querySelector('h3').textContent = level.charAt(0).toUpperCase()+level.slice(1)+' Summary';
+    box.style.opacity = '1';
+  }, 140);
 }
 
 function closeModal() {
@@ -926,9 +1041,6 @@ function closeModalOnBg(e) {
 
 document.addEventListener('keydown', e => { if (e.key==='Escape') closeModal(); });
 
-// ══════════════════════════════
-// INIT
-// ══════════════════════════════
 renderHome();
 renderSpecialties();
 renderBrowse();
