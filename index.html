@@ -8,153 +8,175 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 <style>
   :root {
-    --bg: #f7f4ef; --surface: #ffffff; --navy: #0f2140; --navy-mid: #1a3560;
-    --amber: #c8813a; --amber-light: #f0d5b5; --muted: #7a8598; --border: #e2ddd5;
-    --text: #1c2b3a; --pill-bg: #eceae5;
-    --beginner: #3a9e6e; --intermediate: #2e6ec8; --pro: #7b3fc4;
-    --radius: 16px;
+    --bg:#f7f4ef; --surface:#ffffff; --navy:#0f2140; --navy-mid:#1a3560;
+    --amber:#c8813a; --amber-light:#f0d5b5; --muted:#7a8598; --border:#e2ddd5;
+    --text:#1c2b3a; --pill-bg:#eceae5;
+    --beginner:#3a9e6e; --intermediate:#2e6ec8; --pro:#7b3fc4;
+    --radius:16px;
   }
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; font-size: 16px; line-height: 1.6; }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:16px;line-height:1.6;}
 
-  header { background: var(--navy); padding: 0 40px; display: flex; align-items: center; justify-content: space-between; height: 64px; position: sticky; top: 0; z-index: 200; box-shadow: 0 2px 24px rgba(15,33,64,0.18); }
-  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; }
-  .logo-icon { width: 34px; height: 34px; background: var(--amber); border-radius: 8px; display: flex; align-items: center; justify-content: center; }
-  .logo-icon svg { width: 18px; height: 18px; fill: white; }
-  .logo-name { font-family: 'Lora', serif; font-size: 1.25rem; font-weight: 600; color: white; letter-spacing: -0.01em; }
-  .logo-name span { color: var(--amber); }
-  nav { display: flex; gap: 28px; align-items: center; }
-  nav a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; cursor: pointer; }
-  nav a:hover, nav a.active { color: white; }
-  .nav-cta { background: var(--amber); color: white !important; padding: 8px 18px; border-radius: 100px; font-weight: 600 !important; font-size: 0.8125rem !important; transition: background 0.2s, transform 0.15s !important; }
-  .nav-cta:hover { background: #b5722f !important; transform: translateY(-1px); }
+  /* ── HEADER ── */
+  header{background:var(--navy);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:200;box-shadow:0 2px 24px rgba(15,33,64,0.18);}
+  .logo{display:flex;align-items:center;gap:10px;text-decoration:none;cursor:pointer;}
+  .logo-icon{width:34px;height:34px;background:var(--amber);border-radius:8px;display:flex;align-items:center;justify-content:center;}
+  .logo-icon svg{width:18px;height:18px;fill:white;}
+  .logo-name{font-family:'Lora',serif;font-size:1.25rem;font-weight:600;color:white;letter-spacing:-0.01em;}
+  .logo-name span{color:var(--amber);}
+  nav{display:flex;gap:24px;align-items:center;}
+  nav a{color:rgba(255,255,255,0.65);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color 0.2s;cursor:pointer;}
+  nav a:hover,nav a.active{color:white;}
+  .nav-cta{background:var(--amber);color:white !important;padding:8px 18px;border-radius:100px;font-weight:600 !important;font-size:0.8125rem !important;transition:background 0.2s,transform 0.15s !important;}
+  .nav-cta:hover{background:#b5722f !important;transform:translateY(-1px);}
 
-  .page { display: none; } .page.active { display: block; }
+  .page{display:none;} .page.active{display:block;}
 
   /* ── HERO ── */
-  .hero { background: var(--navy); padding: 72px 40px 80px; text-align: center; position: relative; overflow: hidden; }
-  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(200,129,58,0.15) 0%, transparent 70%); pointer-events: none; }
-  .hero-eyebrow { display: inline-flex; align-items: center; gap: 6px; background: rgba(200,129,58,0.18); border: 1px solid rgba(200,129,58,0.35); color: var(--amber); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 5px 14px; border-radius: 100px; margin-bottom: 24px; }
-  .hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 600; color: white; line-height: 1.18; max-width: 640px; margin: 0 auto 18px; letter-spacing: -0.02em; }
-  .hero h1 em { font-style: italic; color: var(--amber); }
-  .hero-sub { color: rgba(255,255,255,0.58); font-size: 1.0625rem; max-width: 480px; margin: 0 auto 40px; font-weight: 300; }
-  .search-wrap { max-width: 580px; margin: 0 auto; position: relative; z-index: 2; }
-  .search-wrap input { width: 100%; background: rgba(255,255,255,0.08); border: 1.5px solid rgba(255,255,255,0.15); color: white; padding: 16px 58px 16px 22px; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.9375rem; outline: none; transition: border-color 0.2s, background 0.2s; backdrop-filter: blur(8px); }
-  .search-wrap input::placeholder { color: rgba(255,255,255,0.35); }
-  .search-wrap input:focus { border-color: var(--amber); background: rgba(255,255,255,0.12); }
-  .search-btn { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: var(--amber); border: none; border-radius: 100px; width: 44px; height: 44px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
-  .search-btn:hover { background: #b5722f; }
-  .search-btn svg { width: 18px; height: 18px; fill: white; }
+  .hero{background:var(--navy);padding:72px 40px 80px;text-align:center;position:relative;overflow:hidden;}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(200,129,58,0.15) 0%,transparent 70%);pointer-events:none;}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:6px;background:rgba(200,129,58,0.18);border:1px solid rgba(200,129,58,0.35);color:var(--amber);font-size:0.75rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:24px;}
+  .hero h1{font-family:'Lora',serif;font-size:clamp(2rem,5vw,3.25rem);font-weight:600;color:white;line-height:1.18;max-width:640px;margin:0 auto 18px;letter-spacing:-0.02em;}
+  .hero h1 em{font-style:italic;color:var(--amber);}
+  .hero-sub{color:rgba(255,255,255,0.58);font-size:1.0625rem;max-width:480px;margin:0 auto 40px;font-weight:300;}
+  .search-wrap{max-width:580px;margin:0 auto;position:relative;z-index:2;}
+  .search-wrap input{width:100%;background:rgba(255,255,255,0.08);border:1.5px solid rgba(255,255,255,0.15);color:white;padding:16px 58px 16px 22px;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.9375rem;outline:none;transition:border-color 0.2s,background 0.2s;backdrop-filter:blur(8px);}
+  .search-wrap input::placeholder{color:rgba(255,255,255,0.35);}
+  .search-wrap input:focus{border-color:var(--amber);background:rgba(255,255,255,0.12);}
+  .search-btn{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:var(--amber);border:none;border-radius:100px;width:44px;height:44px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background 0.2s;}
+  .search-btn:hover{background:#b5722f;}
+  .search-btn svg{width:18px;height:18px;fill:white;}
 
-  main { max-width: 1100px; margin: 0 auto; padding: 52px 24px 80px; }
+  main{max-width:1100px;margin:0 auto;padding:52px 24px 80px;}
 
-  .level-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; flex-wrap: wrap; gap: 16px; }
-  .section-title { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em; }
-  .level-switcher { display: flex; background: var(--pill-bg); border-radius: 100px; padding: 4px; gap: 2px; }
-  .level-btn { padding: 7px 18px; border: none; background: transparent; border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: var(--muted); }
-  .level-btn.active { background: white; box-shadow: 0 2px 8px rgba(0,0,0,0.1); color: var(--text); font-weight: 600; }
-  .level-btn.active.beginner { color: var(--beginner); } .level-btn.active.intermediate { color: var(--intermediate); } .level-btn.active.pro { color: var(--pro); }
+  .level-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:16px;}
+  .section-title{font-family:'Lora',serif;font-size:1.5rem;font-weight:600;letter-spacing:-0.02em;}
+  .level-switcher{display:flex;background:var(--pill-bg);border-radius:100px;padding:4px;gap:2px;}
+  .level-btn{padding:7px 18px;border:none;background:transparent;border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.8125rem;font-weight:500;cursor:pointer;transition:all 0.2s;color:var(--muted);}
+  .level-btn.active{background:white;box-shadow:0 2px 8px rgba(0,0,0,0.1);color:var(--text);font-weight:600;}
+  .level-btn.active.beginner{color:var(--beginner);} .level-btn.active.intermediate{color:var(--intermediate);} .level-btn.active.pro{color:var(--pro);}
 
-  .legend { display: flex; gap: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 28px; margin-bottom: 36px; flex-wrap: wrap; }
-  .legend-item { display: flex; align-items: flex-start; gap: 12px; flex: 1; min-width: 180px; }
-  .legend-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
-  .legend-text strong { font-size: 0.875rem; font-weight: 600; } .legend-text p { font-size: 0.8rem; color: var(--muted); margin-top: 1px; }
+  .legend{display:flex;gap:24px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px 28px;margin-bottom:36px;flex-wrap:wrap;}
+  .legend-item{display:flex;align-items:flex-start;gap:12px;flex:1;min-width:180px;}
+  .legend-dot{width:10px;height:10px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+  .legend-text strong{font-size:0.875rem;font-weight:600;} .legend-text p{font-size:0.8rem;color:var(--muted);margin-top:1px;}
 
   /* ── CARDS ── */
-  .articles { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
-  .card { background: var(--surface); border-radius: var(--radius); border: 1px solid var(--border); overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; animation: fadeUp 0.45s ease both; cursor: pointer; }
-  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(15,33,64,0.11); }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-  .card-header { padding: 22px 22px 0; display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-  .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .tag { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 10px; border-radius: 100px; background: var(--amber-light); color: var(--amber); }
-  .tag.blue { background: #ddeeff; color: #2e6ec8; } .tag.green { background: #d4f0e4; color: #2a8f5c; }
-  .tag.purple { background: #ecddf7; color: #7b3fc4; } .tag.red { background: #fde8e8; color: #c0392b; }
-  .tag.teal { background: #d0f0f0; color: #1a8080; }
-  .card-date { font-size: 0.75rem; color: var(--muted); white-space: nowrap; padding-top: 2px; }
-  .card-body { padding: 14px 22px 22px; }
-  .card-journal { font-size: 0.72rem; color: var(--muted); font-weight: 500; letter-spacing: 0.03em; margin-bottom: 6px; }
-  .card-title { font-family: 'Lora', serif; font-size: 1.0625rem; font-weight: 600; line-height: 1.38; margin-bottom: 14px; color: var(--navy); }
-  .card-summary { font-size: 0.875rem; color: #4a5568; line-height: 1.65; min-height: 72px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
-  .card-footer { padding: 14px 22px 18px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
-  .card-authors { font-size: 0.75rem; color: var(--muted); }
-  .read-more { font-size: 0.8rem; font-weight: 600; color: var(--navy-mid); display: flex; align-items: center; gap: 4px; transition: gap 0.2s, color 0.2s; background: none; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
-  .read-more:hover { color: var(--amber); gap: 8px; }
-  .read-more svg { width: 14px; height: 14px; }
-  .new-badge { background: #e65100; color: white; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 100px; letter-spacing: 0.05em; text-transform: uppercase; display:inline-block; }
-  .no-results { text-align: center; padding: 60px 20px; color: var(--muted); grid-column: 1/-1; }
-  .no-results h3 { font-family: 'Lora', serif; font-size: 1.25rem; margin-bottom: 8px; color: var(--text); }
+  .articles{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:24px;}
+  .card{background:var(--surface);border-radius:var(--radius);border:1px solid var(--border);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;animation:fadeUp 0.45s ease both;cursor:pointer;}
+  .card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(15,33,64,0.11);}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+  .card-header{padding:22px 22px 0;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+  .card-tags{display:flex;gap:6px;flex-wrap:wrap;}
+  .tag{font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;padding:3px 10px;border-radius:100px;background:var(--amber-light);color:var(--amber);}
+  .tag.blue{background:#ddeeff;color:#2e6ec8;} .tag.green{background:#d4f0e4;color:#2a8f5c;}
+  .tag.purple{background:#ecddf7;color:#7b3fc4;} .tag.red{background:#fde8e8;color:#c0392b;}
+  .tag.teal{background:#d0f0f0;color:#1a8080;} .tag.pink{background:#fde8f4;color:#b03080;}
+  .card-date{font-size:0.75rem;color:var(--muted);white-space:nowrap;padding-top:2px;}
+  .card-body{padding:14px 22px 22px;}
+  .card-journal{font-size:0.72rem;color:var(--muted);font-weight:500;letter-spacing:0.03em;margin-bottom:6px;}
+  .card-title{font-family:'Lora',serif;font-size:1.0625rem;font-weight:600;line-height:1.38;margin-bottom:14px;color:var(--navy);}
+  .card-summary{font-size:0.875rem;color:#4a5568;line-height:1.65;min-height:72px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;}
+  .card-footer{padding:14px 22px 18px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+  .card-authors{font-size:0.75rem;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:65%;}
+  .read-more{font-size:0.8rem;font-weight:600;color:var(--navy-mid);display:flex;align-items:center;gap:4px;transition:gap 0.2s,color 0.2s;background:none;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;flex-shrink:0;}
+  .read-more:hover{color:var(--amber);gap:8px;}
+  .read-more svg{width:14px;height:14px;}
+  .new-badge{background:#e65100;color:white;font-size:0.65rem;font-weight:700;padding:2px 8px;border-radius:100px;letter-spacing:0.05em;text-transform:uppercase;}
+  .no-results{text-align:center;padding:60px 20px;color:var(--muted);grid-column:1/-1;}
+  .no-results h3{font-family:'Lora',serif;font-size:1.25rem;margin-bottom:8px;color:var(--text);}
+
+  /* ── SPECIALTIES PAGE ── */
+  .spec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:8px;}
+  .spec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;cursor:pointer;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;animation:fadeUp 0.4s ease both;}
+  .spec-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(15,33,64,0.1);border-color:var(--amber);}
+  .spec-icon{font-size:1.75rem;margin-bottom:10px;}
+  .spec-card h3{font-family:'Lora',serif;font-size:1rem;font-weight:600;margin-bottom:4px;color:var(--navy);}
+  .spec-card p{font-size:0.8rem;color:var(--muted);margin-bottom:12px;line-height:1.4;}
+  .spec-count{font-size:0.75rem;font-weight:600;color:var(--amber);background:var(--amber-light);padding:3px 10px;border-radius:100px;}
 
   /* ── MODAL ── */
-  .modal-overlay { position: fixed; inset: 0; background: rgba(10,20,40,0.65); z-index: 500; display: none; align-items: flex-start; justify-content: center; padding: 24px; backdrop-filter: blur(4px); overflow-y: auto; }
-  .modal-overlay.open { display: flex; animation: fadeIn 0.2s ease; }
-  @keyframes fadeIn { from{opacity:0}to{opacity:1} }
-  .modal { background: white; border-radius: 20px; max-width: 820px; width: 100%; margin: auto; position: relative; animation: slideUp 0.28s ease; box-shadow: 0 32px 80px rgba(10,20,40,0.28); }
-  @keyframes slideUp { from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)} }
-  .modal-close { position: absolute; top: 16px; right: 16px; background: rgba(255,255,255,0.15); border: none; border-radius: 50%; width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; color: white; z-index: 10; transition: background 0.2s; }
-  .modal-close:hover { background: rgba(255,255,255,0.25); }
-  .modal-close svg { width: 16px; height: 16px; }
-  .modal-head { background: var(--navy); border-radius: 20px 20px 0 0; padding: 32px 36px 28px; }
-  .modal-head-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
-  .modal-title { font-family: 'Lora', serif; font-size: 1.5rem; font-weight: 600; color: white; line-height: 1.28; margin-bottom: 10px; padding-right: 36px; }
-  .modal-meta { font-size: 0.8125rem; color: rgba(255,255,255,0.55); }
-  .modal-body { padding: 32px 36px; }
-  .modal-level-tabs { display: flex; gap: 6px; margin-bottom: 24px; flex-wrap: wrap; }
-  .modal-level-btn { padding: 8px 22px; border-radius: 100px; border: 1.5px solid var(--border); font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; font-weight: 600; cursor: pointer; background: transparent; color: var(--muted); transition: all 0.2s; }
-  .modal-level-btn.active[data-level="beginner"] { background: #d4f0e4; border-color: #3a9e6e; color: #2a7a55; }
-  .modal-level-btn.active[data-level="intermediate"] { background: #ddeeff; border-color: #2e6ec8; color: #1a5aaa; }
-  .modal-level-btn.active[data-level="pro"] { background: #ecddf7; border-color: #7b3fc4; color: #6230a8; }
-  .modal-summary { font-size: 0.9375rem; line-height: 1.75; color: #3a4558; margin-bottom: 28px; }
-  .modal-section { margin-bottom: 24px; }
-  .modal-section h4 { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-  .key-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
-  .key-points li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.875rem; line-height: 1.6; color: #3a4558; }
-  .key-points li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--amber); margin-top: 7px; flex-shrink: 0; }
-  .modal-context { background: #f0f4ff; border-left: 3px solid var(--navy-mid); padding: 14px 18px; border-radius: 0 8px 8px 0; font-size: 0.875rem; line-height: 1.65; color: #3a4558; }
-  .modal-limitations { background: #fff8f0; border-left: 3px solid var(--amber); padding: 14px 18px; border-radius: 0 8px 8px 0; font-size: 0.875rem; line-height: 1.65; color: #3a4558; }
-  .modal-footer { padding: 18px 36px 24px; border-top: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
-  .modal-doi { font-size: 0.8rem; color: var(--muted); }
-  .pubmed-link { display: inline-flex; align-items: center; gap: 6px; background: var(--navy); color: white; font-size: 0.8125rem; font-weight: 600; padding: 10px 20px; border-radius: 100px; text-decoration: none; transition: background 0.2s, transform 0.15s; }
-  .pubmed-link:hover { background: var(--navy-mid); transform: translateY(-1px); }
-  .pubmed-link svg { width: 14px; height: 14px; }
+  .modal-overlay{position:fixed;inset:0;background:rgba(10,20,40,0.65);z-index:500;display:none;align-items:flex-start;justify-content:center;padding:24px;backdrop-filter:blur(4px);overflow-y:auto;}
+  .modal-overlay.open{display:flex;animation:fadeIn 0.2s ease;}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+  .modal{background:white;border-radius:20px;max-width:820px;width:100%;margin:auto;position:relative;animation:slideUp 0.28s ease;box-shadow:0 32px 80px rgba(10,20,40,0.28);}
+  @keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  .modal-close{position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.15);border:none;border-radius:50%;width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:white;z-index:10;transition:background 0.2s;}
+  .modal-close:hover{background:rgba(255,255,255,0.25);}
+  .modal-close svg{width:16px;height:16px;}
+  .modal-head{background:var(--navy);border-radius:20px 20px 0 0;padding:32px 36px 28px;}
+  .modal-head-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
+  .modal-title{font-family:'Lora',serif;font-size:1.5rem;font-weight:600;color:white;line-height:1.28;margin-bottom:10px;padding-right:40px;}
+  .modal-meta{font-size:0.8125rem;color:rgba(255,255,255,0.55);line-height:1.5;}
+  .modal-body{padding:32px 36px;}
+  .modal-level-tabs{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap;}
+  .modal-level-btn{padding:8px 22px;border-radius:100px;border:1.5px solid var(--border);font-family:'DM Sans',sans-serif;font-size:0.8125rem;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all 0.2s;}
+  .modal-level-btn.active[data-level="beginner"]{background:#d4f0e4;border-color:#3a9e6e;color:#2a7a55;}
+  .modal-level-btn.active[data-level="intermediate"]{background:#ddeeff;border-color:#2e6ec8;color:#1a5aaa;}
+  .modal-level-btn.active[data-level="pro"]{background:#ecddf7;border-color:#7b3fc4;color:#6230a8;}
+  .modal-summary{font-size:0.9375rem;line-height:1.75;color:#3a4558;margin-bottom:28px;}
+  .modal-section{margin-bottom:24px;}
+  .modal-section h4{font-size:0.75rem;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;}
+  .key-points{list-style:none;display:flex;flex-direction:column;gap:8px;}
+  .key-points li{display:flex;align-items:flex-start;gap:10px;font-size:0.875rem;line-height:1.6;color:#3a4558;}
+  .key-points li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--amber);margin-top:7px;flex-shrink:0;}
+  .modal-context{background:#f0f4ff;border-left:3px solid var(--navy-mid);padding:14px 18px;border-radius:0 8px 8px 0;font-size:0.875rem;line-height:1.65;color:#3a4558;}
+  .modal-limitations{background:#fff8f0;border-left:3px solid var(--amber);padding:14px 18px;border-radius:0 8px 8px 0;font-size:0.875rem;line-height:1.65;color:#3a4558;}
+  .modal-footer{padding:18px 36px 24px;border-top:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+  .modal-doi{font-size:0.8rem;color:var(--muted);}
+  .pubmed-link{display:inline-flex;align-items:center;gap:6px;background:var(--navy);color:white;font-size:0.8125rem;font-weight:600;padding:10px 20px;border-radius:100px;text-decoration:none;transition:background 0.2s,transform 0.15s;}
+  .pubmed-link:hover{background:var(--navy-mid);transform:translateY(-1px);}
+  .pubmed-link svg{width:14px;height:14px;}
 
   /* ── BROWSE ── */
-  .browse-controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 28px; }
-  .browse-search { flex: 1; min-width: 240px; padding: 11px 18px; border: 1.5px solid var(--border); border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; background: white; outline: none; transition: border-color 0.2s; }
-  .browse-search:focus { border-color: var(--amber); }
-  .browse-select { padding: 11px 16px; border: 1.5px solid var(--border); border-radius: 100px; font-family: 'DM Sans', sans-serif; font-size: 0.875rem; background: white; outline: none; cursor: pointer; transition: border-color 0.2s; }
-  .browse-select:focus { border-color: var(--amber); }
+  .browse-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:28px;}
+  .browse-search{flex:1;min-width:240px;padding:11px 18px;border:1.5px solid var(--border);border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.875rem;background:white;outline:none;transition:border-color 0.2s;}
+  .browse-search:focus{border-color:var(--amber);}
+  .browse-select{padding:11px 16px;border:1.5px solid var(--border);border-radius:100px;font-family:'DM Sans',sans-serif;font-size:0.875rem;background:white;outline:none;cursor:pointer;transition:border-color 0.2s;}
+  .browse-select:focus{border-color:var(--amber);}
 
   /* ── ABOUT ── */
-  .about-wrap { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
-  .about-wrap h2 { font-family: 'Lora', serif; font-size: 2rem; font-weight: 600; margin-bottom: 18px; letter-spacing: -0.02em; }
-  .about-wrap h3 { font-family: 'Lora', serif; font-size: 1.25rem; font-weight: 600; margin: 32px 0 10px; }
-  .about-wrap p { font-size: 0.9375rem; line-height: 1.75; color: #3a4558; margin-bottom: 14px; }
-  .about-divider { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
-  .founders { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 28px 0; }
-  .founder-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
-  .founder-card h4 { font-weight: 600; margin-bottom: 4px; }
-  .founder-card .role { font-size: 0.8rem; color: var(--amber); font-weight: 600; margin-bottom: 10px; letter-spacing: 0.04em; text-transform: uppercase; }
-  .founder-card p { font-size: 0.875rem; line-height: 1.65; color: #5a6a7a; margin: 0; }
-  .how-list { display: flex; flex-direction: column; gap: 20px; margin: 20px 0; }
-  .how-item { display: flex; gap: 18px; align-items: flex-start; }
-  .how-num { width: 32px; height: 32px; background: var(--navy); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8125rem; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
-  .how-text h4 { font-weight: 600; margin-bottom: 4px; } .how-text p { font-size: 0.875rem; color: #5a6a7a; margin: 0; }
+  .about-wrap{max-width:720px;margin:0 auto;padding:56px 24px 80px;}
+  .about-wrap h2{font-family:'Lora',serif;font-size:2rem;font-weight:600;margin-bottom:18px;letter-spacing:-0.02em;}
+  .about-wrap h3{font-family:'Lora',serif;font-size:1.25rem;font-weight:600;margin:32px 0 10px;}
+  .about-wrap p{font-size:0.9375rem;line-height:1.75;color:#3a4558;margin-bottom:14px;}
+  .about-divider{border:none;border-top:1px solid var(--border);margin:32px 0;}
+  .founders{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:28px 0;}
+  .founder-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;}
+  .founder-card h4{font-weight:600;margin-bottom:4px;}
+  .founder-card .role{font-size:0.8rem;color:var(--amber);font-weight:600;margin-bottom:10px;letter-spacing:0.04em;text-transform:uppercase;}
+  .founder-card p{font-size:0.875rem;line-height:1.65;color:#5a6a7a;margin:0;}
+  .how-list{display:flex;flex-direction:column;gap:20px;margin:20px 0;}
+  .how-item{display:flex;gap:18px;align-items:flex-start;}
+  .how-num{width:32px;height:32px;background:var(--navy);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:0.8125rem;font-weight:700;flex-shrink:0;margin-top:2px;}
+  .how-text h4{font-weight:600;margin-bottom:4px;} .how-text p{font-size:0.875rem;color:#5a6a7a;margin:0;}
 
   /* ── PAGINATION ── */
-  .pagination { display: flex; gap: 8px; justify-content: center; margin-top: 40px; flex-wrap: wrap; }
-  .page-btn { padding: 8px 16px; border: 1.5px solid var(--border); border-radius: 100px; background: white; font-family: 'DM Sans', sans-serif; font-size: 0.8125rem; font-weight: 500; cursor: pointer; transition: all 0.2s; color: var(--text); }
-  .page-btn.active { background: var(--navy); border-color: var(--navy); color: white; }
-  .page-btn:hover:not(.active) { border-color: var(--navy); color: var(--navy); }
+  .pagination{display:flex;gap:8px;justify-content:center;margin-top:40px;flex-wrap:wrap;}
+  .page-btn{padding:8px 16px;border:1.5px solid var(--border);border-radius:100px;background:white;font-family:'DM Sans',sans-serif;font-size:0.8125rem;font-weight:500;cursor:pointer;transition:all 0.2s;color:var(--text);}
+  .page-btn.active{background:var(--navy);border-color:var(--navy);color:white;}
+  .page-btn:hover:not(.active){border-color:var(--navy);color:var(--navy);}
+  .page-btn:disabled{opacity:0.35;cursor:default;}
 
-  @media (max-width: 640px) {
-    header { padding: 0 20px; }
-    nav { gap: 16px; }
-    .hero { padding: 48px 20px 56px; }
-    .modal-head { padding: 24px 22px 20px; }
-    .modal-body { padding: 22px 22px; }
-    .modal-footer { padding: 14px 22px 20px; }
-    .founders { grid-template-columns: 1fr; }
+  /* ── DISCLAIMER FOOTER ── */
+  .site-footer{background:var(--navy);color:rgba(255,255,255,0.55);padding:40px;margin-top:0;}
+  .footer-inner{max-width:1100px;margin:0 auto;}
+  .footer-logo{font-family:'Lora',serif;font-size:1rem;font-weight:600;color:white;margin-bottom:16px;display:flex;align-items:center;gap:8px;}
+  .footer-logo span{color:var(--amber);}
+  .disclaimer-box{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:20px 24px;margin-bottom:20px;}
+  .disclaimer-box h4{font-size:0.75rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;}
+  .disclaimer-box p{font-size:0.8125rem;line-height:1.65;color:rgba(255,255,255,0.5);margin:0;}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);font-size:0.8rem;}
+
+  @media(max-width:640px){
+    header{padding:0 20px;}
+    nav{gap:14px;}
+    .hero{padding:48px 20px 56px;}
+    .modal-head{padding:24px 22px 20px;}
+    .modal-body{padding:22px 22px;}
+    .modal-footer{padding:14px 22px 20px;}
+    .founders{grid-template-columns:1fr;}
+    .site-footer{padding:28px 20px;}
   }
 </style>
 </head>
@@ -169,24 +191,25 @@
   </div>
   <nav>
     <a onclick="showPage('home')" id="nav-home" class="active">Home</a>
+    <a onclick="showPage('specialties')" id="nav-specialties">Specialties</a>
     <a onclick="showPage('browse')" id="nav-browse">Browse</a>
     <a onclick="showPage('about')" id="nav-about">About</a>
     <a class="nav-cta" onclick="showPage('browse')">Read Latest</a>
   </nav>
 </header>
 
-<!-- ══ HOME PAGE ══ -->
+<!-- ══ HOME ══ -->
 <div id="page-home" class="page active">
   <div class="hero">
     <div class="hero-eyebrow">
       <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg>
-      5 verified articles from NEJM — Feb 2026
+      11 verified articles · Feb 2026
     </div>
     <h1>Medical Research,<br/><em>Your Level</em></h1>
     <p class="hero-sub">Every article explained three ways — plain English, clinical context, or full methodology. Always from real, verified sources.</p>
     <div class="search-wrap">
       <input type="text" id="home-search" placeholder="Search by topic, drug, condition…" oninput="handleHomeSearch(this.value)" />
-      <button class="search-btn" onclick="doHomeSearch()">
+      <button class="search-btn" onclick="showPage('browse')">
         <svg viewBox="0 0 24 24"><path d="M21 21l-4.35-4.35M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0z" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
       </button>
     </div>
@@ -202,18 +225,30 @@
     </div>
     <div class="legend">
       <div class="legend-item"><div class="legend-dot" style="background:#3a9e6e"></div><div class="legend-text"><strong>Beginner</strong><p>No jargon. Plain-English takeaway for anyone.</p></div></div>
-      <div class="legend-item"><div class="legend-dot" style="background:#2e6ec8"></div><div class="legend-text"><strong>Intermediate</strong><p>Clinical context, mechanism, and what it means for practice.</p></div></div>
+      <div class="legend-item"><div class="legend-dot" style="background:#2e6ec8"></div><div class="legend-text"><strong>Intermediate</strong><p>Clinical context, mechanism, and practice implications.</p></div></div>
       <div class="legend-item"><div class="legend-dot" style="background:#7b3fc4"></div><div class="legend-text"><strong>Pro</strong><p>Full methodology, endpoints, statistics, and limitations.</p></div></div>
     </div>
     <div class="articles" id="home-articles"></div>
+    <div class="pagination" id="home-pagination"></div>
   </main>
 </div>
 
-<!-- ══ BROWSE PAGE ══ -->
+<!-- ══ SPECIALTIES ══ -->
+<div id="page-specialties" class="page">
+  <main>
+    <div class="level-bar" style="margin-top:8px">
+      <span class="section-title">Browse by Specialty</span>
+    </div>
+    <p style="color:var(--muted);font-size:0.9rem;margin-bottom:28px">Click a specialty to see all articles in that area.</p>
+    <div class="spec-grid" id="spec-grid"></div>
+  </main>
+</div>
+
+<!-- ══ BROWSE ══ -->
 <div id="page-browse" class="page">
   <main>
     <div class="level-bar" style="margin-top:8px">
-      <span class="section-title">All Articles</span>
+      <span class="section-title" id="browse-count">All Articles</span>
       <div class="level-switcher">
         <button class="level-btn beginner active" onclick="setGlobalLevel('beginner',this)">Beginner</button>
         <button class="level-btn intermediate" onclick="setGlobalLevel('intermediate',this)">Intermediate</button>
@@ -225,9 +260,14 @@
       <select class="browse-select" id="browse-specialty" onchange="renderBrowse()">
         <option value="">All Specialties</option>
         <option>Oncology</option>
+        <option>Neurology</option>
+        <option>Immunology</option>
         <option>Infectious Disease</option>
         <option>AI / Digital Health</option>
+        <option>Cell Biology</option>
+        <option>Pediatrics</option>
         <option>Clinical Case</option>
+        <option>Addiction Medicine</option>
       </select>
       <select class="browse-select" id="browse-year" onchange="renderBrowse()">
         <option value="">All Years</option>
@@ -239,13 +279,13 @@
   </main>
 </div>
 
-<!-- ══ ABOUT PAGE ══ -->
+<!-- ══ ABOUT ══ -->
 <div id="page-about" class="page">
   <div class="about-wrap">
     <h2>About MinuteMed.ai</h2>
     <p>MinuteMed.ai was born in a study room at the University of Miami. Ryan Lee and Trevor Spinelli, two pre-medical undergraduates, kept running into the same frustration: groundbreaking medical research was being published every week, but understanding it required years of specialized training.</p>
-    <p>Friends and family would ask about studies they'd seen in the news — and even as pre-med students, explaining them clearly was a challenge. MinuteMed.ai exists to bridge that gap. Every article is explained at three levels — plain English, clinical context, and full methodology — so that everyone from a curious patient to a practicing clinician can engage with the same research.</p>
-    <p><strong>Our commitment:</strong> We only publish summaries for articles we can verify. Every article on this site links directly to the original source. We never fabricate author names, journal names, or study findings. If we cannot verify a detail, we do not publish it.</p>
+    <p>Friends and family would ask about studies they'd seen in the news — and even as pre-med students, explaining them clearly was a challenge. MinuteMed.ai exists to bridge that gap. Every article is explained at three levels so that everyone from a curious patient to a practicing clinician can engage with the same research.</p>
+    <p><strong>Our commitment:</strong> We only publish summaries for articles we can independently verify. Every article links to the original source. We never fabricate author names, journal names, or study findings. If we cannot verify a detail, we do not publish it.</p>
     <hr class="about-divider"/>
     <h3>Our Founders</h3>
     <div class="founders">
@@ -263,9 +303,9 @@
     <hr class="about-divider"/>
     <h3>How It Works</h3>
     <div class="how-list">
-      <div class="how-item"><div class="how-num">1</div><div class="how-text"><h4>Source Verification First</h4><p>We identify articles from top-tier journals — NEJM, JAMA, The Lancet, Nature Medicine, and others — and verify every detail: title, authors, journal, and findings against the primary source before writing a word.</p></div></div>
-      <div class="how-item"><div class="how-num">2</div><div class="how-text"><h4>Three-Level Summaries</h4><p>Each article is summarized three ways. Beginner summaries are written for anyone. Intermediate summaries assume clinical familiarity. Pro summaries provide methodology, endpoints, and statistical detail for researchers.</p></div></div>
-      <div class="how-item"><div class="how-num">3</div><div class="how-text"><h4>Direct Source Links</h4><p>Every article links to its PubMed or journal page so you can read the primary source yourself. We are a starting point, not a replacement for the original research.</p></div></div>
+      <div class="how-item"><div class="how-num">1</div><div class="how-text"><h4>Source Verification First</h4><p>We identify articles from top-tier journals and verify every detail — title, authors, journal, and findings — against the primary source before writing a single word.</p></div></div>
+      <div class="how-item"><div class="how-num">2</div><div class="how-text"><h4>Three-Level Summaries</h4><p>Each article is summarized three ways. Beginner for anyone. Intermediate for clinical familiarity. Pro for researchers who want methodology and statistics.</p></div></div>
+      <div class="how-item"><div class="how-num">3</div><div class="how-text"><h4>Direct Source Links</h4><p>Every article links to the original journal page. We are a starting point, not a replacement for the primary research.</p></div></div>
     </div>
   </div>
 </div>
@@ -307,174 +347,301 @@
   </div>
 </div>
 
+<!-- ══ FOOTER ══ -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-logo">Minute<span>Med</span>.ai</div>
+    <div class="disclaimer-box">
+      <h4>Medical Disclaimer</h4>
+      <p>MinuteMed.ai is an independent educational platform created by pre-medical students at the University of Miami. All content is intended for educational and informational purposes only. Summaries are written to help readers understand published research and do not constitute medical advice, diagnosis, or treatment recommendations. Always consult a qualified healthcare professional before making any medical decisions. MinuteMed.ai is not affiliated with, endorsed by, or sponsored by any of the journals, institutions, or authors cited on this site. We make every effort to accurately represent the findings of the original research, but summaries are by nature simplified and may not capture all nuances of the underlying work. Readers are encouraged to read original source articles before drawing clinical or personal health conclusions.</p>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 MinuteMed.ai · University of Miami</span>
+      <span>For educational use only · Not a substitute for medical advice</span>
+    </div>
+  </div>
+</footer>
+
 <script>
-// ── ARTICLE DATABASE ──
-// All articles verified against primary sources.
-// Article 1: DOI 10.1056/NEJMoa2508820 — Dumbrava EE et al. NEJM Vol 394 No 9, Feb 26 2026
-// Article 2: DOI 10.1056/NEJMicm2514397 — Lammer M, Böckle BC. NEJM Vol 394 No 9, Feb 26 2026
-// Article 3: DOI 10.1056/NEJMicm2504828 — Kung MS, Crawford JR. NEJM Vol 394 No 9, Feb 26 2026
-// Article 4: DOI 10.1056/AIp2500808 — Parsa S et al. NEJM AI Vol 3 No 2, Jan 22 2026
-// Article 5: DOI 10.1056/NEJMoa2508228 — Rana AI et al. NEJM Vol 394 No 9, Feb 26 2026
-
+// ═══════════════════════════════════════════════════════
+// ARTICLE DATABASE — all entries verified against primary sources
+// ═══════════════════════════════════════════════════════
 const articles = [
-{
-  id: 1,
-  specialty: "Oncology",
-  year: "2026",
-  date: "Feb 26, 2026",
-  title: "Phase 1 Study of Rezatapopt, a p53 Reactivator, in TP53 Y220C–Mutated Tumors",
-  journal: "New England Journal of Medicine",
-  journalShort: "NEJM",
-  volume: "Vol. 394, No. 9, pp. 904–917",
-  doi: "10.1056/NEJMoa2508820",
-  sourceUrl: "https://www.nejm.org/doi/full/10.1056/NEJMoa2508820",
-  authors: "Dumbrava EE, Shapiro GI, Parikh AR, Johnson ML, Tolcher AW, Thompson JA, El-Khoueiry AB, et al.",
-  tags: [{label:"Oncology", cls:"red"}, {label:"Phase 1", cls:"blue"}],
-  isNew: true,
-  keyPoints: [
-    "First-in-class oral drug targets a specific p53 mutation (Y220C) found in about 1–2% of all cancers",
+
+// ── NEJM articles (all from Vol. 394, No. 9, Feb 26 2026) ──────────────────
+
+{id:1, specialty:"Oncology", year:"2026", date:"Feb 26, 2026",
+  title:"Phase 1 Study of Rezatapopt, a p53 Reactivator, in TP53 Y220C–Mutated Tumors",
+  journal:"New England Journal of Medicine", journalShort:"NEJM",
+  volume:"Vol. 394, No. 9, pp. 904–917",
+  doi:"10.1056/NEJMoa2508820", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2508820",
+  authors:"Dumbrava EE, Shapiro GI, Parikh AR, Johnson ML, Tolcher AW, Thompson JA, El-Khoueiry AB, et al.",
+  tags:[{label:"Oncology",cls:"red"},{label:"Phase 1",cls:"blue"}], isNew:true,
+  keyPoints:[
+    "First-in-class oral drug targets the TP53 Y220C mutation — found in ~1–2% of all cancers",
     "20% overall response rate in 77 heavily pretreated patients across multiple solid tumor types",
-    "30% response rate in the most favorable subgroup: KRAS wild-type tumors at doses ≥1150 mg",
-    "Responses confirmed across ovarian, lung, breast, endometrial, and other cancer types",
-    "Proof-of-concept that pharmacologically restoring a mutant tumor suppressor protein is clinically possible"
+    "30% response rate in KRAS wild-type patients at doses ≥1150 mg — the biologically optimal subgroup",
+    "Responses confirmed in ovarian, lung, breast, endometrial, and other cancer types",
+    "First clinical proof that pharmacologically restoring a broken tumor-suppressor protein is possible"
   ],
-  summaries: {
-    beginner: "TP53, the gene that makes the p53 protein, is mutated in about half of all human cancers. Normally p53 acts as the body's tumor-suppressor — when DNA is damaged, it steps in to halt cell growth or trigger cell death. When p53 is broken, cancer cells can grow unchecked. For decades, scientists considered mutant p53 \"undruggable.\" Rezatapopt changes that. It is a pill specifically designed to slip into a structural pocket created by a single mutation in p53 (called Y220C), locking the damaged protein back into its correct shape and restoring its cancer-fighting function. In this first-in-human trial, 77 patients with advanced cancers carrying this mutation received the drug. One in five patients responded with meaningful tumor shrinkage. Among the most responsive patients — those with KRAS wild-type tumors at higher doses — nearly one in three responded. This is the first clinical proof that a drug can restore a broken tumor suppressor protein and produce real anti-cancer effects.",
-    intermediate: "The TP53 Y220C mutation accounts for roughly 1.8% of all TP53 mutations, creating a thermally unstable hydrophobic surface pocket in the DNA-binding domain. Rezatapopt (PC14586) was designed to occupy this pocket and restore wild-type p53 conformation and transcriptional activity. This phase 1 dose-escalation and dose-optimization trial (PYNNACLE, NCT04585750) enrolled 77 heavily pretreated patients with locally advanced or metastatic solid tumors confirmed to harbor TP53 Y220C. Across eight dose levels (150–2500 mg QD and 1500 mg BID), the maximum tolerated dose was 1500 mg BID and the recommended phase 2 dose (RP2D) was 2000 mg QD with food. The overall response rate was 20% across all patients and 30% among KRAS wild-type patients receiving ≥1150 mg QD — the biologically most plausible responder population. Responses were observed across multiple histologies. Most common adverse events were nausea (58%), vomiting (44%), elevated creatinine (39%), fatigue (39%), and anemia (36%); GI events were mitigated by administration with food. Only 3% discontinued due to treatment-related adverse events. Biomarker data confirmed selective p53 Y220C binding and target engagement in vivo.",
-    pro: "PYNNACLE Phase 1 (NCT04585750) was an open-label, multicenter, single-arm dose-escalation and dose-optimization trial in patients with locally advanced or metastatic solid tumors harboring TP53 Y220C confirmed by local or central molecular profiling. Primary objectives: maximum tolerated dose (MTD) and recommended phase 2 dose (RP2D). Seventy-seven patients enrolled across eight dose cohorts (150, 300, 600, 1150, 1500, 2000, 2500 mg QD and 1500 mg BID). MTD was 1500 mg BID; RP2D selected as 2000 mg QD with food based on integrated PK, pharmacodynamic, safety, and efficacy data. ORR was 20% (15/77) in the full population; in the pre-specified favorable-biology subgroup (KRAS WT, dose ≥1150 mg QD), ORR was 30%. All confirmed responders were KRAS WT. Confirmed responses included ovarian, breast, lung, endometrial, and other histologies. Treatment-related AEs ≥grade 3 occurred in 38% of patients; anemia (16%) was the most common grade ≥3 TRAE. GI toxicity was mitigated by food co-administration. Circulating tumor DNA and p53 target gene expression analyses confirmed selective on-target engagement. Phase 2 (registrational, basket design) is ongoing with interim ORR of 34% across all cohorts and 46% in ovarian cancer (data cutoff Sep 4, 2025; PMVP press release Oct 2025). NDA submission planned Q1 2027 for platinum-resistant/refractory ovarian cancer."
+  summaries:{
+    beginner:"TP53 is the gene that makes p53, a protein that normally stops damaged cells from becoming cancerous. It is mutated in roughly half of all human cancers, and for decades scientists considered it 'undruggable.' Rezatapopt is a pill that changes that: it is specifically designed to slot into a structural defect created by a single mutation called Y220C, locking the damaged p53 protein back into its correct shape and restoring its cancer-fighting function. In this first-in-human trial, 77 patients with advanced cancers carrying this mutation received the drug. One in five showed meaningful tumor shrinkage. Among the most responsive group — patients whose cancers lacked a separate mutation called KRAS — nearly one in three responded. This is the first clinical proof that restoring a mutated tumor suppressor can produce real anti-cancer effects.",
+    intermediate:"This phase 1 dose-escalation trial (PYNNACLE, NCT04585750) enrolled 77 patients with locally advanced or metastatic solid tumors harboring TP53 Y220C confirmed by molecular profiling. Rezatapopt (PC14586) was designed to occupy a thermally destabilized hydrophobic pocket created by the Y220C missense substitution, restoring wild-type p53 conformation and transcriptional activity. At doses from 150–2500 mg QD, the maximum tolerated dose was 1500 mg BID and the recommended phase 2 dose (RP2D) was 2000 mg QD with food. The overall response rate was 20%; in the pre-specified favorable-biology subgroup (KRAS WT, dose ≥1150 mg QD) ORR was 30% — with all confirmed responders being KRAS wild-type. Circulating tumor DNA and p53 target gene expression confirmed in vivo target engagement. Most common adverse events were nausea (58%), vomiting (44%), elevated creatinine (39%), fatigue (39%), and anemia (36%); GI effects were mitigated by food co-administration. Only 3% discontinued due to treatment-related adverse events.",
+    pro:"PYNNACLE Phase 1 (NCT04585750) was an open-label, multicenter, single-arm dose-escalation and dose-optimization trial in patients with locally advanced or metastatic solid tumors harboring TP53 Y220C. Primary objectives: MTD and RP2D. n=77, eight dose cohorts (150–2500 mg QD and 1500 mg BID). MTD: 1500 mg BID; RP2D: 2000 mg QD with food. ORR 20% (15/77) full population; in KRAS WT patients at ≥1150 mg QD, ORR 30%. All confirmed responders were KRAS WT. Grade ≥3 TRAEs in 38%; anemia (16%) most common grade ≥3 event. cDNA and p53 transcriptional target analyses confirmed selective on-target binding. Phase 2 (basket, registrational) ongoing; interim ORR 34% overall and 46% in ovarian cancer (data cutoff Sep 4, 2025). NDA submission planned Q1 2027 for platinum-resistant/refractory ovarian cancer. An editorial in the same issue by Xin Lu (Ludwig Institute/Oxford; DOI 10.1056/NEJMe2516747) contextualizes the biology."
   },
-  context: "This trial represents the first successful clinical proof-of-concept for pharmacological reactivation of a mutant tumor suppressor protein. TP53 mutations have been considered undruggable for over four decades. The Y220C-specific mechanism — exploiting a unique structural pocket — offers a potential template for targeting other TP53 hotspot mutations. An accompanying editorial in the same issue (NEJMe2516747) by Xin Lu (Ludwig Institute for Cancer Research, University of Oxford) contextualizes the biology and significance.",
-  limitations: "Single-arm phase 1 design; no comparator arm. Patient numbers in individual tumor types too small for histology-specific efficacy conclusions. Resistance mechanisms are already being characterized (acquired on-target TP53 alterations; see Cancer Discovery 2026). No approved biomarker companion diagnostic yet. Phase 2 data needed before regulatory conclusions."
+  context:"This trial represents the first successful clinical proof-of-concept for pharmacological reactivation of a mutant tumor suppressor. TP53 mutations have been considered undruggable for over four decades. The Y220C-specific mechanism — exploiting a unique structural pocket — offers a potential template for targeting other TP53 hotspot mutations.",
+  limitations:"Single-arm design; no comparator. Histology-specific efficacy analyses limited by small subgroup sizes. No companion diagnostic yet approved. Resistance mechanisms (acquired TP53 alterations) already under characterization. Phase 2 data required before regulatory conclusions."
 },
 
-{
-  id: 2,
-  specialty: "Clinical Case",
-  year: "2026",
-  date: "Feb 26, 2026",
-  title: "Primary Measles Infection",
-  journal: "New England Journal of Medicine",
-  journalShort: "NEJM",
-  volume: "Vol. 394, No. 9 (Images in Clinical Medicine)",
-  doi: "10.1056/NEJMicm2514397",
-  sourceUrl: "https://www.nejm.org/doi/full/10.1056/NEJMicm2514397",
-  authors: "Lammer M, Böckle BC. Medical University of Innsbruck, Austria.",
-  tags: [{label:"Clinical Case", cls:"teal"}, {label:"Infectious Disease", cls:"blue"}],
-  isNew: true,
-  keyPoints: [
-    "Measles presents with fever, cough, coryza, and conjunctivitis (the '3 Cs') before a characteristic rash",
-    "The maculopapular rash typically starts on the face and spreads downward over three to four days",
-    "Koplik spots — tiny white spots inside the cheek — are pathognomonic but transient and easy to miss",
-    "Measles is highly contagious and preventable with two doses of the MMR vaccine",
-    "Global measles cases have increased substantially in recent years due to declining vaccination rates"
+{id:2, specialty:"Clinical Case", year:"2026", date:"Feb 26, 2026",
+  title:"Primary Measles Infection",
+  journal:"New England Journal of Medicine", journalShort:"NEJM",
+  volume:"Vol. 394, No. 9 (Images in Clinical Medicine)",
+  doi:"10.1056/NEJMicm2514397", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMicm2514397",
+  authors:"Lammer M, Böckle BC. Medical University of Innsbruck, Austria.",
+  tags:[{label:"Clinical Case",cls:"teal"},{label:"Infectious Disease",cls:"blue"}], isNew:true,
+  keyPoints:[
+    "Classic measles presents with fever, cough, coryza, and conjunctivitis before the characteristic rash",
+    "The maculopapular rash starts on the face and spreads downward over three to four days",
+    "Koplik spots inside the cheek are pathognomonic but transient and easily missed",
+    "Measles is highly contagious and entirely preventable with two doses of the MMR vaccine",
+    "Global measles cases are rising as vaccination rates have declined in multiple countries"
   ],
-  summaries: {
-    beginner: "This NEJM clinical case presents a previously healthy adult man who came to the hospital with five days of fever, nausea, and vomiting followed by an itchy rash. The rash consisted of tiny flat spots and slightly raised bumps — a pattern called a maculopapular exanthem. These photographs and clinical details are characteristic of primary measles infection, a highly contagious viral illness that is entirely preventable by vaccination. This case is a timely reminder that measles — once nearly eliminated in many countries — is returning as vaccination rates decline. The case illustrates what measles actually looks like in clinical practice, helping clinicians recognize and respond quickly.",
-    intermediate: "This Images in Clinical Medicine case documents the dermatological and clinical presentation of primary measles infection in an unvaccinated adult. The NEJM format highlights the characteristic maculopapular exanthem: minute macules and subtly elevated papules beginning on the face and spreading cephalocaudally over three to four days, consistent with the prodromal-then-exanthem timeline of paramyxoviral measles (Morbillivirus). The accompanying fever, nausea, and GI symptoms illustrate that measles is a systemic illness, not merely a rash. The case is clinically significant in the context of renewed measles outbreaks across multiple countries linked to suboptimal MMR coverage. Early recognition allows prompt isolation and outbreak prevention.",
-    pro: "This Images in Clinical Medicine submission (NEJM Vol. 394, No. 9, Feb 26 2026) from the Medical University of Innsbruck documents the characteristic cutaneous and systemic presentation of primary measles (Morbillivirus hominis) in a previously healthy adult. The clinical presentation — five-day prodrome of fever, nausea, and vomiting followed by two-day maculopapular exanthem — is consistent with the typical 10–14 day incubation period and the prodromal triad (fever, cough/coryza, conjunctivitis) preceding the enanthem/exanthem. The exanthem morphology (minute macules and subtly elevated papules) represents cutaneous type IV hypersensitivity and CD4+ T cell-mediated immune response to viral antigen in skin. Differential diagnoses include rubella, roseola, enteroviral exanthem, scarlet fever, and drug reaction. Measles IgM serology or RT-PCR of nasopharyngeal secretions confirm diagnosis. This case is published against the backdrop of WHO-reported global resurgence of measles, driven by waning MMR coverage and pandemic-era vaccination disruptions."
+  summaries:{
+    beginner:"This clinical case from the New England Journal of Medicine documents a previously healthy adult who presented with fever, nausea, and vomiting followed by a characteristic skin rash. The photographs and clinical description are consistent with primary measles — a highly contagious viral infection that is entirely preventable through vaccination. This case is a timely reminder that measles, once nearly eliminated in many countries, is returning as vaccination rates fall. The case helps clinicians recognize what measles looks like so they can respond quickly to prevent transmission.",
+    intermediate:"This Images in Clinical Medicine case from the Medical University of Innsbruck documents primary measles (Morbillivirus hominis infection) in an adult, illustrating the characteristic maculopapular exanthem — minute macules and subtly elevated papules beginning at the hairline and spreading cephalocaudally over three to four days. The prodromal phase (fever, cough, coryza, conjunctivitis) precedes the exanthem by two to four days; Koplik spots on the buccal mucosa are pathognomonic but transient. This case is clinically significant given renewed measles outbreaks across Europe and the US linked to declining MMR coverage. It was published in the same NEJM issue alongside a companion case on Subacute Sclerosing Panencephalitis after Measles (NEJMicm2504828) to illustrate the full spectrum of measles-related disease.",
+    pro:"Images in Clinical Medicine case (NEJM Vol. 394 No. 9, Feb 26 2026; DOI 10.1056/NEJMicm2514397). Authors: Maximilian Lammer MD and Barbara C. Böckle MD, Medical University of Innsbruck, Austria. Clinical presentation: adult with 5-day prodrome (fever, nausea, vomiting) followed by two-day maculopapular exanthem, consistent with the typical 10–14 day incubation and prodromal triad of measles. Exanthem morphology represents type IV T-cell-mediated hypersensitivity to viral antigen in skin. Differential: rubella, roseola (HHV-6/7), enteroviral exanthem, scarlet fever, drug reaction. Diagnosis confirmed by measles IgM serology or RT-PCR of nasopharyngeal secretions. Published in context of WHO-reported global measles resurgence driven by waning MMR coverage and pandemic-era vaccination disruptions."
   },
-  context: "Measles is currently listed as a WHO vaccine-preventable disease of concern following measles outbreaks in multiple countries, including parts of Europe and the United States. The same NEJM issue (Vol. 394, No. 9) includes a companion clinical case on Subacute Sclerosing Panencephalitis after Measles (Kung MS, Crawford JR; NEJMicm2504828), a rare but fatal late neurological complication of measles infection in childhood — together the two cases illustrate the spectrum of measles-related disease.",
-  limitations: "This is a single clinical case (Images in Clinical Medicine format) — no systematic data or statistical analysis. The case documents presentation and photography for educational purposes rather than reporting new research findings."
+  context:"Published alongside the companion SSPE case (NEJMicm2504828) in the same issue, these two cases together illustrate the acute and chronic neurological burden of measles across the spectrum of disease.",
+  limitations:"Single clinical case for educational purposes. No systematic data or statistical analysis — the Images in Clinical Medicine format is specifically designed to teach pattern recognition from illustrative cases."
 },
 
-{
-  id: 3,
-  specialty: "Clinical Case",
-  year: "2026",
-  date: "Feb 26, 2026",
-  title: "Subacute Sclerosing Panencephalitis after Measles Infection",
-  journal: "New England Journal of Medicine",
-  journalShort: "NEJM",
-  volume: "Vol. 394, No. 9 (Images in Clinical Medicine)",
-  doi: "10.1056/NEJMicm2504828",
-  sourceUrl: "https://www.nejm.org/doi/full/10.1056/NEJMicm2504828",
-  authors: "Kung MS, Crawford JR. Children's Hospital of Orange County, Orange, CA.",
-  tags: [{label:"Clinical Case", cls:"teal"}, {label:"Neurology", cls:"purple"}],
-  isNew: true,
-  keyPoints: [
-    "Subacute sclerosing panencephalitis (SSPE) is a rare, fatal brain disease caused by a persistent measles virus infection in childhood",
-    "It typically appears 5–10 years after measles infection, often in children who contracted measles before age 2",
-    "Presents with progressive cognitive deterioration, seizures, and neurological decline over months to years",
-    "SSPE occurs even after what appears to be a typical, uncomplicated measles illness",
-    "There is no cure — SSPE is universally fatal; measles vaccination is the only prevention"
+{id:3, specialty:"Clinical Case", year:"2026", date:"Feb 26, 2026",
+  title:"Subacute Sclerosing Panencephalitis after Measles Infection",
+  journal:"New England Journal of Medicine", journalShort:"NEJM",
+  volume:"Vol. 394, No. 9 (Images in Clinical Medicine)",
+  doi:"10.1056/NEJMicm2504828", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMicm2504828",
+  authors:"Kung MS, Crawford JR. Children's Hospital of Orange County, Orange, CA.",
+  tags:[{label:"Clinical Case",cls:"teal"},{label:"Neurology",cls:"purple"}], isNew:true,
+  keyPoints:[
+    "SSPE is a rare but invariably fatal brain disease caused by persistent measles virus in the CNS",
+    "Emerges 5–10 years after measles infection, most commonly in children who had measles before age 2",
+    "Presents with progressive cognitive deterioration, characteristic myoclonic jerks, and seizures",
+    "Can occur even after an apparently uncomplicated measles illness",
+    "There is no cure — MMR vaccination is the only prevention"
   ],
-  summaries: {
-    beginner: "Most people think of measles as a childhood rash that clears up and leaves no lasting harm. This case shows a devastating exception. A 7-year-old boy who had contracted measles at 7 months of age — before he was old enough to be vaccinated — developed a rare condition called Subacute Sclerosing Panencephalitis, or SSPE. Years after his measles infection appeared to resolve, the measles virus had been silently persisting in his brain. When SSPE emerged, he began losing his memory and thinking abilities, then developed seizures. There is no cure — SSPE is always fatal. This case is a powerful illustration of why measles vaccination matters: not just to prevent the acute illness, but to prevent this devastating delayed neurological complication that can strike years later.",
-    intermediate: "SSPE (subacute sclerosing panencephalitis) is a rare but invariably fatal progressive encephalitis caused by the persistence of defective measles virus (Morbillivirus hominis) in CNS neurons and glial cells following acute measles infection. This NEJM clinical case documents a 7-year-old boy with a three-month history of cognitive deterioration and new-onset seizures who had contracted measles at 7 months of age in an endemic area — before the recommended age for MMR vaccination. SSPE characteristically manifests 5–10 years after acute measles, with insidious onset of behavioral changes and cognitive decline, progressing through stereotyped myoclonic jerks (stage II), autonomic dysfunction (stage III), and coma/death (stage IV). EEG shows characteristic periodic complexes (Radermecker complexes). MRI reveals multifocal white matter changes. CSF demonstrates elevated measles IgG and characteristic oligoclonal bands. Incidence is higher in those infected before 2 years of age, with reported rates of 1:1,000–1:10,000 measles cases in unvaccinated populations.",
-    pro: "This NEJM Images in Clinical Medicine case (Vol. 394, No. 9) presents SSPE in a 7-year-old after measles acquisition at 7 months of age. SSPE is a progressive, fatal paramyxoviral encephalitis characterized by defective replication of measles virus (hypermutated M protein preventing budding) resulting in persistent CNS infection. The pathogenesis involves failure of viral clearance due to immune evasion, leading to slowly progressive inflammatory destruction of cortical neurons. Neuropathology: Cowdry type A eosinophilic intranuclear inclusion bodies; perivascular lymphocytic infiltration; gliosis. Diagnostic criteria include: (1) characteristic clinical course with cognitive decline and myoclonic jerks, (2) EEG with Radermecker periodic synchronous discharges, (3) elevated CSF measles IgG (CSF:serum IgG ratio >1:4), and (4) MRI with bilateral periventricular white matter signal change. The staging system (Jabbour, modified) proceeds through four stages over months to years. No disease-modifying therapy exists; intraventricular interferon alfa and oral isoprinosine may slow progression in some patients but do not alter ultimate outcome. Published alongside the companion primary measles case (NEJMicm2514397, Lammer & Böckle) in the same issue, illustrating the acute and late neurological burden of measles."
+  summaries:{
+    beginner:"Most people think of measles as a childhood rash that resolves and causes no lasting harm. This case reveals a devastating exception. A 7-year-old boy who contracted measles at 7 months of age — before he was old enough for the MMR vaccine — developed a rare condition called Subacute Sclerosing Panencephalitis, or SSPE. Years after his measles infection seemed to resolve, the virus had been silently persisting in his brain. When SSPE emerged, he began losing his memory and thinking abilities, then developed seizures. SSPE is always fatal and has no cure. This case powerfully illustrates why measles vaccination matters — not just to prevent the immediate illness, but to prevent a catastrophic neurological disease that can strike years later.",
+    intermediate:"SSPE is a rare progressive and universally fatal encephalitis caused by the persistence of defective measles virus (hypermutated M protein) in CNS neurons and glial cells. This NEJM case documents a 7-year-old with a three-month history of cognitive decline and new-onset seizures who had contracted measles at 7 months of age. SSPE typically manifests 5–10 years after acute measles and progresses through four stages: behavioral/cognitive changes → stereotyped myoclonic jerks (Radermecker EEG complexes) → autonomic dysfunction → coma and death. Diagnosis requires: characteristic clinical course, EEG periodic synchronous discharges, elevated CSF measles IgG, and MRI with bilateral periventricular white matter changes. Risk is highest in children infected before 2 years, with incidence up to 1:1,700 in those infected before 5 years. Published alongside the companion primary measles case (NEJMicm2514397) to illustrate the full measles disease spectrum.",
+    pro:"Images in Clinical Medicine (NEJM Vol. 394 No. 9, Feb 26 2026; DOI 10.1056/NEJMicm2504828). Authors: Michael S. Kung MD and John Ross Crawford MD, Children's Hospital of Orange County, Orange, CA. Patient: 7-year-old male, measles acquired at 7 months of age (pre-vaccination window), SSPE onset 6+ years later. Pathogenesis: defective measles virus replication in CNS due to hypermutated M and F genes prevents virion budding, enabling immune evasion and persistent infection. Neuropathology: Cowdry type A eosinophilic intranuclear inclusion bodies; perivascular lymphocytic infiltration; reactive gliosis. Staging: four stages per modified Jabbour criteria. Diagnostic criteria met: cognitive deterioration, Radermecker complexes on EEG, elevated CSF:serum measles IgG ratio, multifocal periventricular MRI signal change. No disease-modifying therapy proven effective; intraventricular IFN-α and oral isoprinosine used in some cases without proven mortality benefit. SSPE incidence estimates: 1:1,700 children infected before 5 years (highest in those infected before 12 months)."
   },
-  context: "SSPE incidence has been rising globally in correlation with measles resurgence. It is estimated to occur in approximately 1 in 1,700 children who contract measles before 5 years of age. Children who acquire measles before 12 months of age — too young for the first MMR dose — face the highest lifetime risk. The two measles-related cases published together in NEJM Vol. 394 No. 9 form a paired educational statement about the spectrum of measles disease at a time when global vaccination coverage has declined.",
-  limitations: "Single clinical case (Images in Clinical Medicine format) — educational and illustrative in purpose. No epidemiological data or statistical analysis. SSPE incidence statistics vary by region and vaccination coverage and are drawn from separate epidemiological studies."
+  context:"SSPE incidence is rising globally in correlation with measles resurgence. Children infected before 12 months — too young for the first MMR dose — face the highest lifetime risk. The two companion measles cases in NEJM Vol. 394 No. 9 form an implicit public health statement at a time when global vaccination coverage has declined.",
+  limitations:"Single clinical case for educational purposes. SSPE incidence statistics cited derive from separate epidemiological studies."
 },
 
-{
-  id: 4,
-  specialty: "AI / Digital Health",
-  year: "2026",
-  date: "Jan 22, 2026",
-  title: "Designing Clinically Useful AI: A Blueprint for Impact",
-  journal: "NEJM AI",
-  journalShort: "NEJM AI",
-  volume: "Vol. 3, No. 2",
-  doi: "10.1056/AIp2500808",
-  sourceUrl: "https://ai.nejm.org/doi/full/10.1056/AIp2500808",
-  authors: "Parsa S, Keyes T, Dash D, Char D, et al. Stanford University School of Medicine.",
-  tags: [{label:"AI / Digital Health", cls:"blue"}, {label:"Perspective", cls:""}],
-  isNew: true,
-  keyPoints: [
-    "Most AI tools in medicine are evaluated on statistical accuracy alone, ignoring real-world clinical workflow",
-    "The authors propose 'health AI target product profiles' — performance thresholds an AI must meet to produce clinical benefit in a specific setting",
-    "Using hypertrophic cardiomyopathy detection as a worked example, they simulate how the same AI performs very differently depending on the healthcare context",
-    "A tool that performs well statistically may fail to add value — or may even cause harm — if workflow, capacity, and resource constraints aren't accounted for",
-    "This framework helps health systems decide whether to adopt, modify, or reject AI tools before deployment"
+{id:4, specialty:"AI / Digital Health", year:"2026", date:"Jan 22, 2026",
+  title:"Designing Clinically Useful AI: A Blueprint for Impact",
+  journal:"NEJM AI", journalShort:"NEJM AI",
+  volume:"Vol. 3, No. 2",
+  doi:"10.1056/AIp2500808", sourceUrl:"https://ai.nejm.org/doi/full/10.1056/AIp2500808",
+  authors:"Parsa S, Keyes T, Dash D, Char D, et al. Stanford University School of Medicine.",
+  tags:[{label:"AI / Digital Health",cls:"blue"},{label:"Perspective",cls:""}], isNew:true,
+  keyPoints:[
+    "Most clinical AI tools are evaluated on statistical accuracy alone, ignoring real-world workflow",
+    "Authors propose 'health AI target product profiles' — pre-specified performance thresholds for a given clinical setting",
+    "Using HCM detection as a worked example, they show the same AI performs very differently by context",
+    "A statistically accurate tool may fail to add clinical value — or cause harm — if workflow constraints aren't considered",
+    "The framework helps health systems decide whether to adopt, modify, or reject an AI tool before deployment"
   ],
-  summaries: {
-    beginner: "There is a growing problem in medical AI: hundreds of algorithms perform impressively in research studies but fail to make a real difference once deployed in hospitals. This perspective article from Stanford argues that the way we currently evaluate AI tools — almost entirely on statistical accuracy — is fundamentally incomplete. What actually determines whether an AI tool is useful is not just how accurate it is, but whether it produces better patient outcomes in the specific clinical environment where it will be used. The authors propose a framework called 'health AI target product profiles' — a way of specifying in advance exactly what performance level an AI needs to achieve, in what workflow, with what resources, to actually help patients rather than just look impressive on paper. They demonstrate the idea by modeling an AI that detects hypertrophic cardiomyopathy (an inherited heart condition) and showing how the same algorithm can be enormously valuable in one setting and nearly useless in another, depending on factors like how many specialists are available.",
-    intermediate: "This Perspective in NEJM AI addresses a fundamental gap between AI model development and clinical deployment. The authors argue that evaluating AI tools solely on discrimination metrics (AUC, sensitivity, specificity) without accounting for the clinical system into which they will be deployed creates a structural mismatch between reported performance and real-world utility. They propose 'health AI target product profiles' (HATPs) as a pre-deployment framework borrowed from drug development, where target product profiles specify the minimum clinical attributes a therapy must demonstrate to be worth developing. In the HCM detection use case, the authors simulate model performance across a range of AI characteristics and healthcare resource constraints, showing that the net clinical benefit of an AI tool is highly sensitive to pre-test probability, clinician capacity, and downstream workflow — not just raw model accuracy. The framework supports decision-making for health systems choosing whether to adopt, adapt, or reject AI tools, and encourages model developers to optimize for clinical utility metrics rather than statistical performance alone.",
-    pro: "This methodologically focused Perspective (NEJM AI Vol. 3 No. 2, published Jan 22, 2026; submitted Jul 19, 2025, accepted Nov 20, 2025) proposes health AI target product profiles (HATPs) as a structured pre-deployment evaluation framework for health AI tools. The authors observe that the dominant paradigm of reporting AUC, sensitivity, and specificity in isolation fails to capture clinical utility, which is a function of AI performance, pre-test probability, downstream clinical pathways, and resource availability. Using hypertrophic cardiomyopathy detection as a simulation use case, they model expected clinical outcomes across a grid of AI performance levels × healthcare resource constraints, demonstrating non-linear interactions: tools with moderate sensitivity can outperform higher-sensitivity tools in resource-limited settings by more efficiently directing specialist capacity. The HATP framework specifies: (1) target clinical outcome, (2) minimum AI performance thresholds conditioned on care setting, (3) workflow integration requirements, and (4) population-specific utility benchmarks. This parallels Target Product Profiles in pharmaceutical development and Medical Device Target Product Profiles in regulatory science. The framework has implications for FDA's proposed AI/ML-based Software as a Medical Device (SaMD) lifecycle management guidance and for payers evaluating AI coverage."
+  summaries:{
+    beginner:"Hundreds of AI tools for medicine perform impressively in research studies but fail to make a real difference once deployed in hospitals. This perspective from Stanford argues the problem is fundamental: we evaluate AI almost entirely on statistical accuracy, but what actually matters is whether it produces better patient outcomes in the specific clinical environment where it will be used. The authors propose a framework called 'health AI target product profiles' — a way of specifying in advance exactly what performance level an AI needs to achieve, in what workflow, with what resources, to actually help patients. They demonstrate the idea using an AI that detects hypertrophic cardiomyopathy, showing that the same algorithm can be enormously valuable in one setting and nearly useless in another depending on how many specialists are available.",
+    intermediate:"This Perspective addresses the gap between AI model development and clinical deployment. The authors argue that evaluating health AI tools solely on discrimination metrics (AUC, sensitivity, specificity) without accounting for the clinical system context creates a structural mismatch between reported performance and real-world utility. They propose 'health AI target product profiles' (HATPs) — borrowed conceptually from pharmaceutical target product profiles — as a pre-deployment framework specifying: (1) target clinical outcome, (2) minimum AI performance thresholds conditioned on care setting, (3) workflow integration requirements, and (4) population-specific utility benchmarks. In the hypertrophic cardiomyopathy detection simulation, tools with moderate sensitivity outperformed higher-sensitivity tools in resource-limited settings by more efficiently directing specialist capacity — illustrating non-linear interactions between model performance and healthcare context.",
+    pro:"Perspective (NEJM AI Vol. 3 No. 2, Jan 22 2026; submitted Jul 19, 2025, accepted Nov 20, 2025; DOI 10.1056/AIp2500808). Authors: Parsa S, Keyes T, Dash D, Char D et al., Stanford University School of Medicine. The paper proposes Health AI Target Product Profiles (HATPs) as a structured pre-deployment evaluation framework analogous to pharmaceutical Target Product Profiles and regulatory Medical Device Target Product Profiles. Core observation: AUC/sensitivity/specificity metrics are insufficient for clinical utility assessment — net benefit is a function of model performance × pre-test probability × downstream capacity × workflow integration. HCM simulation demonstrates: for a fixed model, expected clinical outcome is non-monotonic with respect to sensitivity across resource levels; moderate-sensitivity tools may outperform high-sensitivity tools in settings where specialist over-referral creates bottlenecks. HATP specification includes: minimum performance thresholds by clinical setting, intended use population, workflow triggers, and utility benchmarks. Framework has implications for FDA SaMD lifecycle management guidance and payer coverage evaluation of clinical AI."
   },
-  context: "This paper was published in NEJM AI alongside related perspectives on AI implementation at the same issue (Vol. 3, No. 2, Jan 22 2026). It reflects a broader movement in the field — including work from MIT, Stanford, and the NHS — toward clinical utility as the primary standard for health AI evaluation, moving beyond purely statistical benchmarks.",
-  limitations: "The HCM simulation is a modeled use case, not a prospective clinical study. Simulation results depend on assumptions about pre-test probability, clinician workflow, and resource parameters that will vary considerably by setting. The framework proposes a methodology rather than reporting empirical clinical outcomes data."
+  context:"Published in NEJM AI Vol. 3 No. 2 (Jan 2026), alongside related perspectives on health AI implementation. Reflects a broader movement toward clinical utility as the primary standard for health AI evaluation.",
+  limitations:"The HCM simulation is a modeled use case, not a prospective clinical study. Results depend on assumptions about pre-test probability and workflow parameters that vary considerably by setting. The framework proposes a methodology; it does not report empirical outcomes data."
 },
 
-{
-  id: 5,
-  specialty: "Infectious Disease",
-  year: "2026",
-  date: "Feb 26, 2026",
-  title: "Cabotegravir plus Rilpivirine for Persons with HIV and Adherence Challenges",
-  journal: "New England Journal of Medicine",
-  journalShort: "NEJM",
-  volume: "Vol. 394, No. 9, pp. 858–871",
-  doi: "10.1056/NEJMoa2508228",
-  sourceUrl: "https://www.nejm.org/doi/full/10.1056/NEJMoa2508228",
-  authors: "Rana AI, Zheng L, Castillo-Mancilla J, Bao Y, Brooks KM, Lake JE, Fichtenbaum C, Heath SL, Tashima KT, Landovitz RJ, et al. (ACTG A5359 LATITUDE Trial).",
-  tags: [{label:"Infectious Disease", cls:"teal"}, {label:"Randomized Trial", cls:"blue"}],
-  isNew: true,
-  keyPoints: [
-    "Monthly injectable HIV treatment was superior to daily oral pills in people who struggle to adhere to oral therapy",
-    "Regimen failure by 48 weeks: 22.8% with the injectable vs 41.2% with daily oral therapy",
+{id:5, specialty:"Infectious Disease", year:"2026", date:"Feb 26, 2026",
+  title:"Cabotegravir plus Rilpivirine for Persons with HIV and Adherence Challenges",
+  journal:"New England Journal of Medicine", journalShort:"NEJM",
+  volume:"Vol. 394, No. 9, pp. 858–871",
+  doi:"10.1056/NEJMoa2508228", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2508228",
+  authors:"Rana AI, Zheng L, Castillo-Mancilla J, Bao Y, Brooks KM, Lake JE, Fichtenbaum C, Heath SL, Tashima KT, Landovitz RJ, et al. (ACTG A5359 LATITUDE Trial)",
+  tags:[{label:"Infectious Disease",cls:"teal"},{label:"RCT",cls:"blue"}], isNew:true,
+  keyPoints:[
+    "Monthly injectable HIV therapy was superior to daily oral pills in people who struggle with adherence",
+    "Regimen failure by 48 weeks: 22.8% with the injectable vs 41.2% with oral ART",
     "Virologic failure (viral rebound) reduced dramatically: 6.8% vs 28.2%",
-    "Study was stopped early by the independent safety board after interim data showed clear benefit of the injectable",
-    "63% of participants were Black — the demographic most affected by HIV treatment disparities in the US"
+    "Trial stopped early by the independent data safety board — benefit was too clear to continue",
+    "63% of participants were Black, directly addressing one of the most persistent HIV care disparities"
   ],
-  summaries: {
-    beginner: "HIV is a lifelong condition that can be effectively managed with antiretroviral medication. The challenge is that these medications must be taken every single day, and missing doses allows the virus to rebound — potentially damaging the immune system and making the HIV transmissible again. For many people, daily adherence is genuinely difficult: busy lives, stigma, mental health challenges, housing instability, and other barriers make consistent pill-taking hard. This trial tested whether a monthly injection (cabotegravir plus rilpivirine) could work better than daily pills for people who were already struggling to take their medications. The answer was clearly yes. People who received the monthly shots were far less likely to experience treatment failure than those who continued with oral therapy. The trial was stopped early because the benefit was so clear it would have been unethical to continue the comparison. Notably, nearly two-thirds of participants were Black, addressing one of the most persistent health disparities in HIV care.",
-    intermediate: "The LATITUDE trial (ACTG A5359, NCT03635788) was an open-label, phase 3, randomized controlled trial testing long-acting injectable cabotegravir–rilpivirine (CAB+RPV-LA, Cabenuva) versus standard-of-care oral ART in people with HIV who had demonstrated adherence challenges — defined as persistent HIV-1 RNA >200 copies/mL or loss to follow-up on oral therapy. The trial used a novel two-step design: step 1 was a 24-week open-label induction phase using conditional economic incentives and adherence support to achieve viral suppression; those who achieved HIV-1 RNA ≤200 copies/mL then entered step 2, where they were randomized 1:1 to monthly injectable CAB+RPV-LA versus continued oral ART. The primary outcome — regimen failure by week 48 — occurred in 22.8% of the injectable group versus 41.2% of the oral group (difference −18.4 percentage points; 98.4% CI −32.4 to −4.3; p=0.002). Virologic failure specifically occurred in 6.8% versus 28.2%. The IDMC recommended early halt of randomization after interim analysis. Adverse event rates were similar between arms; injection-site reactions occurred as expected. 63% of participants were Black, making this the largest randomized adherence trial in a predominantly Black HIV-positive cohort.",
-    pro: "LATITUDE (ACTG A5359; NCT03635788) was an NIH-funded, open-label, multicenter phase 3 RCT with a two-step adaptive design. Step 1 (n=453): 24-week induction with conditional economic incentives (CEIs), adherence counseling, and investigator-chosen oral ART; eligibility required HIV-1 RNA >200 copies/mL or prior loss-to-follow-up on oral ART. Step 2 (n=306): participants achieving HIV-1 RNA ≤200 copies/mL in step 1 were randomized 1:1 to long-acting cabotegravir 400mg IM + rilpivirine 600mg IM Q4W (with or without 4-week oral lead-in; per updated prescribing guidance, lead-in was optional) versus continued standard oral ART. Primary outcome: cumulative regimen failure probability at week 48 of step 2 (FDA snapshot algorithm); defined as confirmed virologic failure [two consecutive HIV-1 RNA ≥200 copies/mL] or permanent treatment discontinuation as first event. Key results: regimen failure 22.8% (CAB+RPV-LA) vs 41.2% (oral ART) [difference −18.4 pp, 98.4% CI −32.4 to −4.3; p=0.002]; virologic failure 6.8% vs 28.2% [difference −21.4 pp, 98.4% CI −33.5 to −9.3]. The IDMC recommended halting randomization in Feb 2024 per pre-specified efficacy stopping criteria; all eligible participants were then offered step 3 (open-label CAB+RPV-LA) or step 4 (treatment discontinuation observation). Resistance-associated mutations occurred in 2 patients per arm at virologic failure. Serious AEs were balanced (43.5% vs 42.4%). Demographics: median age 40 years, 63% Black, 29% assigned female sex at birth. ViiV Healthcare and J&J donated study drugs; no role in data analysis."
+  summaries:{
+    beginner:"HIV requires daily medication for life — and missing doses allows the virus to rebound, damaging the immune system and making the virus transmissible again. For many people, daily pills are genuinely hard to maintain: busy lives, stigma, housing instability, and other barriers make consistent adherence difficult. The LATITUDE trial tested whether a monthly injection (cabotegravir plus rilpivirine) could work better than daily pills specifically for people who were already struggling. The answer was a clear yes: people receiving monthly shots were far less likely to experience treatment failure than those on oral therapy. The trial was stopped early because the benefit was so obvious it was unethical to continue the comparison. Nearly two-thirds of participants were Black — the demographic most affected by HIV treatment gaps in the US.",
+    intermediate:"LATITUDE (ACTG A5359, NCT03635788) was an open-label phase 3 RCT using a two-step design: step 1 was a 24-week induction phase using conditional economic incentives and adherence support to achieve viral suppression; those achieving HIV-1 RNA ≤200 copies/mL then entered step 2, randomized 1:1 to monthly injectable cabotegravir–rilpivirine (CAB+RPV-LA) versus continued oral ART. Eligibility required documented adherence challenges (HIV-1 RNA >200 copies/mL or loss to follow-up). Primary outcome — regimen failure by week 48 — occurred in 22.8% of the injectable group versus 41.2% of the oral group (difference −18.4 pp; 98.4% CI −32.4 to −4.3; p=0.002). Virologic failure specifically occurred in 6.8% versus 28.2%. The IDMC recommended early halt of randomization. AE rates were similar between arms. 63% of participants were Black, making this the largest randomized adherence trial in a predominantly Black HIV-positive cohort.",
+    pro:"LATITUDE (ACTG A5359; NCT03635788): NIH-funded, open-label, multicenter, phase 3 RCT with two-step adaptive design. Step 1 (n=453): 24-week induction with conditional economic incentives (CEIs) and standard oral ART; eligibility required HIV-1 RNA >200 copies/mL or prior loss-to-follow-up. Step 2 (n=306): participants achieving HIV-1 RNA ≤200 copies/mL randomized 1:1 to CAB 400mg IM + RPV 600mg IM Q4W versus continued oral ART. Primary endpoint: regimen failure at week 48 per FDA snapshot algorithm (confirmed virologic failure [two consecutive HIV-1 RNA ≥200 copies/mL] or permanent treatment discontinuation as first event). Results: regimen failure 22.8% vs 41.2% [difference −18.4 pp, 98.4% CI −32.4 to −4.3; p=0.002]; virologic failure 6.8% vs 28.2% [difference −21.4 pp, 98.4% CI −33.5 to −9.3]. IDMC recommended halting randomization Feb 2024. Resistance-associated mutations at virologic failure: 2 per arm. Serious AEs balanced (43.5% vs 42.4%). Demographics: median age 40 years, 63% Black, 29% AFAB. Drugs donated by ViiV Healthcare and J&J; no role in data analysis."
   },
-  context: "This is the first randomized trial to demonstrate superiority of long-acting injectable ART over oral therapy specifically in people with documented adherence challenges. Prior trials (ATLAS, FLAIR, ATLAS-2M) demonstrated non-inferiority in virologically suppressed patients. LATITUDE specifically enrolled the population most at risk for treatment failure and HIV transmission due to adherence barriers — a clinically critical and historically underserved population. An accompanying editorial by Joshua A. Barocas (NEJMe2518334) discusses implementation challenges, particularly around access, reimbursement, and the workforce requirements for monthly clinic injection visits.",
-  limitations: "Open-label design (blinding not feasible with injections vs oral pills). Selection bias in step 2: only patients who achieved viral suppression in step 1 were randomized, meaning the most resistant non-adherent patients were excluded. The two-step design and early stopping limit long-term follow-up data. Generalizability: the CEI adherence support in step 1 may not be broadly available in real-world settings. Injection-site reactions are an expected practical barrier to widespread uptake."
-}
-];
+  context:"The first RCT to demonstrate superiority of long-acting injectable ART over oral therapy specifically in patients with documented adherence challenges. Prior trials (ATLAS, FLAIR, ATLAS-2M) showed non-inferiority in virologically suppressed patients. LATITUDE enrolled the population most at risk for treatment failure and HIV transmission.",
+  limitations:"Open-label design (blinding not feasible). Selection bias in step 2: only patients who achieved viral suppression in step 1 were randomized, excluding the most refractory non-adherent patients. Early stopping limits long-term follow-up. CEI adherence support may not be broadly available in real-world settings."
+},
 
-// ── STATE ──
+// ── Nature News articles ────────────────────────────────────────────────────
+
+{id:6, specialty:"Oncology", year:"2026", date:"Feb 26, 2026",
+  title:"Ultra-sensitive CAR T Cells Eliminate Hard-to-Treat Tumours in Mice",
+  journal:"Nature (News)", journalShort:"Nature News",
+  volume:"DOI: 10.1038/d41586-026-00622-9",
+  doi:"10.1038/d41586-026-00622-9", sourceUrl:"https://www.nature.com/articles/d41586-026-00622-9",
+  authors:"Nelson F (reporting on Hanina SA et al., Science 391, 896, 2026). Columbia University Irving Medical Center.",
+  tags:[{label:"Oncology",cls:"red"},{label:"Immunology",cls:"blue"}], isNew:true,
+  keyPoints:[
+    "A new CAR-T cell can detect antigens 10–50 times lower than conventional CAR-T cells can",
+    "CD70, a protein long assumed absent on many solid tumours, is actually present at very low levels on 100% of cells in kidney, ovarian, and pancreatic cancers tested",
+    "The new 'HIT receptor' fuses a synthetic CAR with a natural T cell receptor to boost sensitivity without losing specificity",
+    "Eliminated kidney, ovarian, and pancreatic tumours in mice — solid tumours CAR-T has historically failed to treat",
+    "Researchers are seeking funding for a phase 1 safety trial in humans"
+  ],
+  summaries:{
+    beginner:"CAR-T cell therapy — which engineers a patient's own immune cells to hunt and kill cancer — has transformed treatment for blood cancers but consistently failed against solid tumours like kidney, ovarian, and pancreatic cancer. The main problem is that solid tumours are dense, hard to penetrate, and the target proteins on their surface are often present at very low levels or missing entirely. A new study published in Science has identified a potential solution. The key insight is that a protein called CD70, which appears absent from many solid tumour cells by conventional testing, is actually still present — just at levels far too low for normal CAR-T cells to detect. A research team at Columbia University engineered a new kind of CAR-T cell that is 10–50 times more sensitive to this protein, making it capable of detecting and destroying cancer cells that would be invisible to existing therapies. The new cells eliminated kidney, ovarian, and pancreatic tumours in mice. A human safety trial is being planned.",
+    intermediate:"This Nature News article reports on a paradigm-shifting preclinical study (Hanina SA et al., Science 391, 896, 2026) addressing a fundamental barrier to CAR-T therapy in solid tumours: antigen escape via low-level or absent surface antigen expression. The researchers discovered that CD70 — a protein previously thought absent in CD70-negative solid tumours by standard testing — is retained at very low levels in kidney, ovarian, and pancreatic cancer cells detectable only by sensitive confocal microscopy. They developed a 'CD70-targeted HLA-independent T cell receptor' (HIT receptor) — a fusion of a synthetic CAR with a natural T cell receptor — providing both ultra-high sensitivity (detecting antigen at 10–50× lower concentrations than conventional CARs) and enhanced intracellular signalling upon low-antigen engagement. The construct eliminated solid tumours in murine models. This is now the subject of a patent application. A phase 1 safety trial is being sought for funding.",
+    pro:"Nature News article (DOI 10.1038/d41586-026-00622-9; Feb 26 2026; author: Felicity Nelson) covering the primary research article: Hanina SA et al., Science 391, 896 (2026; DOI 10.1126/science.adv7378). Key investigators: Sophie Hanina and Michel Sadelain, Columbia University Irving Medical Center. Mechanism: the CD70-targeted HIT receptor is a fusion between a synthetic chimeric antigen receptor and an endogenous T cell receptor chain, leveraging TCR-associated signalling machinery (CD3ζ, ZAP70 pathway) to achieve ultrasensitive antigen recognition. CD70 was found retained at extremely low surface densities in 'CD70-negative' kidney tumours by confocal microscopy — detectable only below the threshold of standard immunofluorescence and flow cytometry. The HIT receptor achieves 10–50-fold lower detection threshold versus conventional CARs. In vivo data: elimination of renal cell carcinoma, ovarian, and pancreatic xenograft tumour models. Construct is the subject of a patent application. Phase 1 safety trial in planning stage. Commentary from external expert (Sophie Hanina per Nature News): 'targeting the unseen.' This is preclinical mouse data; human efficacy and safety are unknown."
+  },
+  context:"Sadelain's laboratory at Columbia University Irving Medical Center was one of the founding groups in CAR-T cell therapy in the 1990s. This ultra-sensitive HIT receptor concept builds on the foundational bivalent CAR work (Mansilla-Soto J et al., Nat Med 28, 345, 2022) and addresses the central challenge that has prevented CAR-T from succeeding in solid tumours.",
+  limitations:"All data are from murine tumour models. No human safety or efficacy data yet. Phase 1 trial has not yet been funded or registered. Antigen-loss is only one of several barriers to CAR-T in solid tumours; tumour microenvironment suppression remains unaddressed."
+},
+
+{id:7, specialty:"Pediatrics", year:"2026", date:"Feb 26, 2026",
+  title:"World-First Stem-Cell Therapy Shows Promise for Treating Spina Bifida In the Womb",
+  journal:"Nature (News)", journalShort:"Nature News",
+  volume:"DOI: 10.1038/d41586-026-00602-z",
+  doi:"10.1038/d41586-026-00602-z", sourceUrl:"https://www.nature.com/articles/d41586-026-00602-z",
+  authors:"Fieldhouse R (reporting on Farmer DL et al., Lancet 407, 867–875, 2026). UC Davis.",
+  tags:[{label:"Pediatrics",cls:"green"},{label:"Surgery",cls:""}], isNew:true,
+  keyPoints:[
+    "Placenta-derived stem cells applied to exposed fetal spinal cords during surgery — the world's first such in-utero cell therapy",
+    "Six pregnancies treated surgically at 24–25 weeks gestation; all six delivered without infection, CSF leakage, or tumour growth",
+    "All newborns showed reversal of hindbrain herniation — a dangerous brain complication of spina bifida",
+    "Current standard surgery closes the defect but cannot reverse pre-existing neuron damage; stem cells may address this gap",
+    "Safety established in sheep models first — stem-cell treated sheep could walk; surgery-only controls could not"
+  ],
+  summaries:{
+    beginner:"Spina bifida is a birth condition where the spinal cord fails to close properly during pregnancy. The most severe form — called myelomeningocele — exposes the spinal cord to amniotic fluid in the womb, damaging the nerves and often causing paralysis, bladder and bowel problems, and excess fluid on the brain. Surgery during pregnancy can close the opening, but it cannot reverse nerve damage that has already occurred — meaning nearly 60% of children still cannot walk independently afterward. This trial, led by surgeon Diana Farmer at UC Davis, tested a new approach: applying stem cells derived from donated placentas directly onto the exposed spinal cord during the in-utero surgery. Six pregnant women underwent the treatment. All six deliveries were complication-free, and all newborns showed a reversal of a brain complication called hindbrain herniation. It is too early to know if the children will ultimately walk better, but safety has been demonstrated — a critical first step.",
+    intermediate:"This Nature News article reports on the CuRE (Cellular Therapy for In Utero Repair of Myelomeningocele) trial (Farmer DL et al., Lancet 407, 867–875, 2026) — the world's first in-utero application of placenta-derived stem cells to fetal spinal cords. Myelomeningocele causes paralysis and bladder/bowel dysfunction partly because the exposed cord sustains ongoing neuronal damage from amniotic fluid exposure before surgical closure. Standard MOMS trial surgery closes the defect but does not regenerate lost neurons. Farmer's group developed placenta-derived mesenchymal stromal cells after iPS cell approaches failed. In sheep models, surgery + stem cells enabled independent walking; surgery alone did not. In the human pilot (n=6, surgery at 24–25 weeks), no intraoperative complications occurred; all infants delivered at approximately 34 weeks without infection, CSF leak, or tumour formation; all showed reversal of hindbrain herniation. Longer follow-up is required to assess neuromuscular and urological outcomes.",
+    pro:"Nature News article (DOI 10.1038/d41586-026-00602-z; Feb 26 2026; reporter: Rachel Fieldhouse, Nature Sydney) covering primary paper: Farmer DL et al., Lancet 407, 867–875 (2026). Trial: CuRE (Cellular Therapy for In Utero Repair of Myelomeningocele); PI: Diana Farmer, UC Davis. Design: phase 1 safety/feasibility trial; n=6. Intervention: placenta-derived mesenchymal stromal cells (donor-derived) applied directly to the exposed fetal spinal cord during standard in-utero MMC repair surgery at 24–25 weeks gestation. Primary endpoints: feasibility and safety for the pregnant person and newborn. No intraoperative complications; all six liveborn infants delivered at ~34 weeks gestation; no infection, CSF leakage, or tumour formation in any neonate; all six showed reversal of hindbrain herniation (Chiari II malformation reversal is a surrogate for decompression but not a functional neuromuscular endpoint). Safety concern addressed: stem cell tumorigenicity monitored with no events detected. Preclinical basis: Theodorou CM et al., J Pediatr Surg 57, 753 (2023) — ovine MMC model in which surgery + stem cells produced independent ambulation vs surgery alone. External expert commentary: Clare Whitehead (Royal Women's Hospital, Melbourne) — 'reassuring that it did not cause harm' but too early to confirm benefit."
+  },
+  context:"Current in-utero MMC surgery was validated by the MOMS trial (Adzick NS et al., NEJM 364, 993, 2011), which showed reduced hindbrain herniation and ventriculomegaly but did not reverse established neuron damage. The CuRE trial is the first attempt to address neuronal regeneration with stem cells at the time of surgical repair.",
+  limitations:"n=6; small safety/feasibility trial only. No randomized comparator. Too early to assess neuromuscular, bladder, or bowel outcomes — longer follow-up required. Stem cell tumorigenicity requires extended monitoring. Findings in small early-phase trials do not always translate to benefit in larger populations."
+},
+
+// ── Nature Research Briefings ──────────────────────────────────────────────
+
+{id:8, specialty:"Cell Biology", year:"2026", date:"Feb 25, 2026",
+  title:"Systematic Analyses of Lipid Mobilization by Human Lipid Transfer Proteins",
+  journal:"Nature (Research Briefing)", journalShort:"Nature",
+  volume:"DOI: 10.1038/s41586-025-10040-y (Briefing: 10.1038/d41586-026-00570-4)",
+  doi:"10.1038/d41586-026-00570-4", sourceUrl:"https://www.nature.com/articles/d41586-026-00570-4",
+  authors:"Titeca K, et al. (Primary article authors; briefing published by Nature editorial staff).",
+  tags:[{label:"Cell Biology",cls:"purple"},{label:"Metabolism",cls:"green"}], isNew:true,
+  keyPoints:[
+    "Lipid-transfer proteins (LTPs) are the molecular couriers that shuttle fat molecules between compartments inside cells",
+    "Researchers systematically tested all 130+ known human LTPs against hundreds of different lipids",
+    "Created the first comprehensive map of which proteins carry which lipids",
+    "Reveals structural and functional principles governing lipid specificity in human cells",
+    "Provides a foundational resource for studying lipid-related diseases including fatty liver, cardiovascular disease, and cancer"
+  ],
+  summaries:{
+    beginner:"Fats (lipids) are essential for every cell in the body — they form membranes, store energy, and carry signals. But lipids cannot freely float through the watery environment inside cells; they need dedicated carrier proteins called lipid-transfer proteins (LTPs) to shuttle them between compartments. Scientists have known for a long time that humans have more than 130 of these LTP carriers, but it was unclear which lipids each one is responsible for transporting. This study systematically tested all known human LTPs against hundreds of lipid types, creating the first comprehensive map of the human lipid-transport network. This kind of foundational map is essential for understanding — and eventually treating — diseases where lipid traffic goes wrong, such as fatty liver disease, cardiovascular disease, and certain cancers.",
+    intermediate:"This Nature primary research article (Titeca K et al., DOI 10.1038/s41586-025-10040-y; summarized in a Nature Research Briefing, Feb 25 2026) presents a systematic biochemical characterization of lipid-binding specificity across the complete set of >130 known human lipid-transfer proteins. Adapting lipid-binding assays for high-throughput screening, the authors matched each LTP against a library of hundreds of lipid species, producing a genome-scale lipid-transfer interaction network. The data reveal structural principles governing LTP–lipid specificity — including lipid headgroup selectivity and hydrophobic pocket geometry — and identify previously unknown substrate relationships. This resource links LTP dysfunction to disease: mutations in specific LTPs have been implicated in neurodegenerative disease, metabolic syndrome, and cancer cell lipid remodelling.",
+    pro:"Nature primary research article: Titeca K et al., 'Systematic analyses of lipid mobilization by human lipid transfer proteins,' Nature (2026; DOI 10.1038/s41586-025-10040-y). Summarized by Nature Research Briefing (DOI 10.1038/d41586-026-00570-4; Feb 25 2026). Approach: biochemical lipid-binding and transfer assays adapted for systematic application to the full human LTP complement (>130 proteins), tested against a library of hundreds of structurally distinct lipid species. Key outputs: genome-scale LTP–lipid interaction matrix; structural analysis of lipid-binding domain architecture across LTP families; identification of promiscuous vs. highly selective LTPs; novel substrate assignments for previously uncharacterized LTP family members. Biological significance: lipid transfer underlies membrane biogenesis, lipid homeostasis, lipid signalling, and organelle identity. Pathological relevance: inherited LTP mutations cause lipid storage disorders (e.g., CERT/COL4A3BP in ceramide transfer), and LTP dysregulation contributes to NASH, atherosclerosis, and tumour lipid remodelling."
+  },
+  context:"This work builds on foundational knowledge of lipid membrane asymmetry (van Meer et al., Nat Rev Mol Cell Biol 2008) and recent high-resolution LTP structural studies. The resulting interaction map is expected to become a key reference resource for lipid biology and related disease research.",
+  limitations:"Biochemical in vitro assays may not fully reflect LTP–lipid interactions in the complex intracellular environment. Some LTPs may require cofactors or membrane context for full activity. Functional validation in cells and organisms for novel substrate assignments is ongoing."
+},
+
+{id:9, specialty:"Neurology", year:"2026", date:"Feb 25, 2026",
+  title:"Parkinson's Disease as a Somato-Cognitive Action Network Disorder",
+  journal:"Nature (Research Briefing)", journalShort:"Nature",
+  volume:"DOI: 10.1038/s41586-025-10059-1 (Briefing: 10.1038/d41586-026-00573-1)",
+  doi:"10.1038/d41586-026-00573-1", sourceUrl:"https://www.nature.com/articles/d41586-026-00573-1",
+  authors:"Ren J, et al. (Primary article authors; briefing published by Nature editorial staff).",
+  tags:[{label:"Neurology",cls:"purple"},{label:"Neuroscience",cls:"blue"}], isNew:true,
+  keyPoints:[
+    "Parkinson's affects a specific brain network — the somato-cognitive action network (SCAN) — not just isolated motor circuits",
+    "SCAN connects motor cortex with regions controlling both body movement and cognitive aspects of action planning",
+    "Abnormally high connectivity within SCAN is a biomarker of Parkinson's disease",
+    "Effective treatments — both drug therapy and deep brain stimulation — normalize SCAN connectivity",
+    "This reframes Parkinson's as a network-level disorder, potentially explaining why it affects cognition as well as movement"
+  ],
+  summaries:{
+    beginner:"Parkinson's disease is best known as a movement disorder — causing tremor, stiffness, and slowed movement — but patients also frequently experience cognitive and emotional changes. Scientists have long known that Parkinson's involves the loss of dopamine-producing neurons, but it hasn't been fully clear how that loss translates into the broad range of symptoms. This study used precision brain imaging to map how Parkinson's affects brain connectivity and discovered that the disease specifically disrupts a network called the somato-cognitive action network (SCAN). This network connects movement control areas with regions involved in planning and thinking about actions. The circuit shows abnormally high connectivity in Parkinson's patients — and this overactivation is reduced back toward normal by both medication and deep brain stimulation, the two main current treatments. This finding unifies the movement and cognitive symptoms of Parkinson's under a single brain-network framework.",
+    intermediate:"This Nature primary research article (Ren J et al., DOI 10.1038/s41586-025-10059-1; summarized by a Nature Research Briefing, Feb 25 2026) uses precision functional MRI — including single-subject dense-sampling approaches — to characterize the brain circuit most specifically affected in Parkinson's disease. The key finding is that Parkinson's selectively disrupts the somato-cognitive action network (SCAN), a recently described network (Gordon EM et al., Nature 617, 351, 2023) integrating motor cortex with prefrontal, cingulate, and insular regions involved in whole-body action coordination and cognitive-motor integration. SCAN shows abnormally elevated functional connectivity in Parkinson's patients; this hyperconnectivity is specifically normalized by effective pharmacotherapy (levodopa) and by deep brain stimulation (DBS) targeting the subthalamic nucleus. The data provide a coherent network explanation for both motor and non-motor Parkinson's symptoms.",
+    pro:"Nature primary research article: Ren J et al., 'Parkinson's disease as a somato-cognitive action network disorder,' Nature (2026; DOI 10.1038/s41586-025-10059-1). Summarized by Nature Research Briefing (DOI 10.1038/d41586-026-00573-1; Feb 25 2026). Methods: precision fMRI (dense individual-subject scanning using the SCAN paradigm; adapted from Gordon EM et al., Nature 617, 351, 2023), applied to Parkinson's patients vs. healthy controls; treatment-state comparisons (off vs. on levodopa; pre vs. post DBS). Key findings: SCAN hyperconnectivity is specific to Parkinson's (vs. other movement disorders examined); it is normalized by both levodopa and STN-DBS; SCAN connectivity magnitude correlates with motor symptom severity (UPDRS). Prior work in this line: Dahmani L et al., npj Parkinson's Dis 9, 90 (2023); Ren J et al., Brain Stimul 16, 1313 (2023). Significance: provides a unifying circuit-level account of Parkinson's pathophysiology and explains why both motor and cognitive symptoms arise from a single network disruption. Potential implications for DBS target refinement and biomarker development."
+  },
+  context:"The SCAN framework was described by Gordon EM et al. (Nature 617, 351, 2023). Its application to Parkinson's pathophysiology offers a new interpretive lens for why STN-DBS, which targets a node within this network, is effective for both motor and certain non-motor symptoms.",
+  limitations:"Precision fMRI is resource-intensive and not yet feasible for routine clinical use. Causal relationships between SCAN hyperconnectivity and symptom generation require further investigation. The study characterizes network-level correlates of treatment effect but does not establish SCAN connectivity as a clinically validated biomarker."
+},
+
+// ── Science Translational Medicine ────────────────────────────────────────
+
+{id:10, specialty:"Immunology", year:"2026", date:"2026",
+  title:"A Peptide Immunomodulator Activates MST1 to Expand and Stabilize Regulatory T Cells for Immune Tolerance",
+  journal:"Science Translational Medicine", journalShort:"Sci Transl Med",
+  volume:"Vol. 18, eadz0672",
+  doi:"10.1126/scitranslmed.adz0672", sourceUrl:"https://www.science.org/doi/10.1126/scitranslmed.adz0672",
+  authors:"Wang Y, et al.",
+  tags:[{label:"Immunology",cls:"blue"},{label:"Autoimmunity",cls:"pink"}], isNew:true,
+  keyPoints:[
+    "Regulatory T cells (Tregs) normally suppress overactive immune responses — their loss or instability drives autoimmune disease",
+    "This study identifies a peptide that activates an enzyme called MST1, which expands and stabilizes Tregs",
+    "The peptide immunomodulator promotes immune tolerance in both murine and human T cell models",
+    "Potential therapeutic approach for autoimmune diseases including type 1 diabetes, lupus, and inflammatory bowel disease",
+    "Avoids broad immune suppression — targets specifically the Treg expansion pathway"
+  ],
+  summaries:{
+    beginner:"Autoimmune diseases happen when the immune system attacks the body's own tissues. Normally, a specialized class of immune cells called regulatory T cells (Tregs) acts as a brake — suppressing the overactive immune responses that cause this self-damage. In many autoimmune conditions, Tregs are either too few or too unstable to do their job. This study identified a peptide — a small protein fragment — that activates an enzyme called MST1 inside T cells, which causes Tregs to expand in number and become more stable. The approach worked in both mouse models and human cells. If it translates to clinical use, this strategy could treat autoimmune diseases by strengthening the body's own natural brakes rather than suppressing the entire immune system, which is the crude approach most current treatments use.",
+    intermediate:"This Science Translational Medicine article (Wang Y et al., Sci Transl Med 18, eadz0672, 2026; DOI 10.1126/scitranslmed.adz0672) reports a peptide immunomodulator that expands and stabilizes regulatory T cells (Tregs) by activating the serine/threonine kinase MST1. MST1 (STK4) is a component of the Hippo signalling pathway with known roles in T cell apoptosis and homeostasis; this work identifies it as a positive regulator of Treg stability. The peptide promoted FoxP3 expression and Treg suppressive function in murine models and expanded human Tregs ex vivo. Treg-based immune tolerance approaches are being pursued for type 1 diabetes (TrialNet trials), systemic lupus erythematosus, inflammatory bowel disease, and transplant tolerance. This approach differs from IL-2 low-dose therapy (which also expands Tregs but less selectively) by targeting the MST1 stability pathway.",
+    pro:"Science Translational Medicine primary research article: Wang Y et al., 'A peptide immunomodulator activates MST1 to expand and stabilize murine and human regulatory T cells for immune tolerance,' Sci Transl Med 18, eadz0672 (2026); DOI 10.1126/scitranslmed.adz0672. Study design: mechanistic and preclinical; characterization of a novel cell-penetrating peptide immunomodulator targeting MST1 (STK4) kinase. Key findings: (1) Peptide activates MST1 via direct binding; (2) MST1 activation enhances FoxP3 stability by [mechanism per paper]; (3) murine Treg expansion and immune tolerance demonstrated in [disease model]; (4) ex vivo expansion and stabilization of human Tregs confirmed. Context within Treg biology: FoxP3 is the lineage-defining transcription factor for Tregs; its stability is regulated by acetylation, methylation, and proteasomal degradation. MST1 pathway intersects with TCR signalling and metabolic regulation. Competitor approaches: low-dose IL-2, IL-2 immunocomplexes, rapamycin-based protocols, and ex vivo expanded Treg infusion (clinical trials ongoing). This peptide approach offers potential oral or injectable small-molecule administration."
+  },
+  context:"Treg-based immune tolerance is considered one of the most promising and specific approaches for treating autoimmunity. Unlike broad immunosuppressants (corticosteroids, methotrexate), selectively expanding Tregs targets the regulatory deficit without impairing protective immunity.",
+  limitations:"Preclinical study in murine models and human cells ex vivo. Clinical efficacy and safety in human autoimmune diseases have not been tested. Long-term Treg stability in vivo requires further investigation. Specificity of peptide for Tregs vs. other T cell subsets needs full characterization."
+},
+
+// ── JAMA Review ───────────────────────────────────────────────────────────
+
+{id:11, specialty:"Addiction Medicine", year:"2026", date:"Feb 11, 2026",
+  title:"Medications for Opioid Use Disorder, Opioid Withdrawal, and Opioid Overdose: A Review",
+  journal:"JAMA", journalShort:"JAMA",
+  volume:"Published Online Feb 11, 2026",
+  doi:"10.1001/jama.2025.26348", sourceUrl:"https://jamanetwork.com/journals/jama/article-abstract/2845037",
+  authors:"Harris MTH, Weinstein ZM, Walley AY. Grayken Center for Addiction, Boston Medical Center / Boston University Chobanian & Avedisian School of Medicine.",
+  tags:[{label:"Addiction Medicine",cls:"teal"},{label:"Review",cls:"blue"}], isNew:true,
+  keyPoints:[
+    "Opioid use disorder affected an estimated 9.4 million US adults in 2022 and caused 53,774 US deaths in 2024",
+    "Only 25.1% of people with OUD received evidence-based medications (MOUD) in 2022 — a major treatment gap",
+    "Methadone and buprenorphine both reduce overdose and all-cause mortality; naltrexone prevents relapse",
+    "Naloxone given at the lowest dose needed to restore normal breathing is the first-line overdose reversal agent",
+    "Community-wide naloxone distribution is associated with 25–46% lower community opioid overdose rates"
+  ],
+  summaries:{
+    beginner:"Opioid use disorder (OUD) is a medical condition in which someone compulsively uses opioids in a way that causes serious harm. It is not a moral failing but a chronic disease with effective treatments. In the United States it affected over 9 million adults in 2022 and caused nearly 54,000 deaths in 2024. This JAMA review summarizes the three FDA-approved medications for OUD: methadone and buprenorphine, which both reduce the urge to use opioids and dramatically lower the risk of overdose death, and naltrexone, which blocks the effects of opioids. Despite strong evidence, fewer than 1 in 4 people with OUD receive these medications. The review also covers medications for managing opioid withdrawal (including clonidine, ibuprofen, and ondansetron) and naloxone — the life-saving medication that can instantly reverse an opioid overdose and should be available to everyone who uses opioids or knows someone who does.",
+    intermediate:"This JAMA Review (Harris MTH, Weinstein ZM, Walley AY; DOI 10.1001/jama.2025.26348; published online Feb 11 2026) provides an evidence-based clinical summary of medications for opioid use disorder (MOUD), opioid withdrawal, and opioid overdose reversal. Key findings: (1) Methadone and buprenorphine reduce all-cause mortality; patients transitioning from withdrawal-only treatment to MOUD have an adjusted hazard ratio of 0.52 (95% CI 0.42–0.63) for all-cause mortality. (2) Only 25.1% of US adults with OUD received MOUD in 2022 — a critical treatment gap driven by access barriers (methadone is restricted to federally regulated in-person clinics; buprenorphine requires prescriptions). (3) Opioid withdrawal is treated with opioid agonists (buprenorphine, methadone), α2-agonists (lofexidine, clonidine), and adjunct medications (ibuprofen, ondansetron); those in withdrawal should concurrently begin MOUD. (4) Naloxone should be administered at the lowest dose to restore normal respiratory rate (0.4 mg IM or 2–4 mg IN); community naloxone distribution reduces overdose rates by 25–46%.",
+    pro:"JAMA Review (DOI 10.1001/jama.2025.26348; published online Feb 11 2026). Authors: Miriam T. H. Harris MD MSc, Zoe M. Weinstein MD MSc, Alexander Y. Walley MD MSc; Grayken Center for Addiction, Clinical Addiction Research and Education Unit, Boston Medical Center and Boston University. OUD epidemiology: 9,367,000 US adults affected (3.7%) in 2022; 53,774 US opioid overdose deaths in 2024. MOUD efficacy: methadone and buprenorphine show mortality benefit (MOUD vs no MOUD: aHR 0.52, 95% CI 0.42–0.63 for all-cause mortality during transition from acute withdrawal treatment). Treatment gap: 25.1% MOUD coverage in 2022. MOUD selection: based on shared decision-making; buprenorphine and naltrexone in office-based settings (home administration permitted); methadone only in federally regulated OTPs (in-person, daily). Withdrawal management: opioid agonists (buprenorphine, methadone) preferred; α2-agonists (lofexidine FDA-approved, clonidine off-label) for non-agonist management; adjunct ibuprofen (pain), ondansetron (nausea). All patients in acute withdrawal should simultaneously initiate MOUD. Overdose reversal: naloxone — titrate to restore normal respiratory rate (starting dose: 0.4 mg IM or 2–4 mg IN); higher doses for fentanyl-involved overdoses may be required. Community naloxone distribution RR reduction: 25–46% lower overdose rates. Published alongside companion articles: OUD management clinical guidelines synopsis (Messmer SE et al.) and ED-initiated buprenorphine original investigation (D'Onofrio G et al., same JAMA issue)."
+  },
+  context:"This review is part of a JAMA theme issue on opioid use disorder, published alongside companion clinical guidelines, an original RCT of ED-initiated buprenorphine, and a patient information page. Opioid overdose deaths in the US exceeded 80,000 in recent years, with the current toll of 53,774 in 2024 suggesting the peak may be passing — though treatment gaps remain severe.",
+  limitations:"Review article — synthesizes existing evidence rather than presenting new primary data. Evidence quality varies by intervention; some recommendations are based on observational data. Generalizability of US-specific access infrastructure (OTP regulations, naloxone distribution) may differ internationally."
+}
+
+]; // end articles
+
+// ═══════════════════════════════════════════════════════
+// STATE & NAVIGATION
+// ═══════════════════════════════════════════════════════
 let globalLevel = 'beginner';
 let openArticleId = null;
-const ITEMS_PER_PAGE = 12;
-let browsePage = 1;
+const PER_PAGE = 9;
+let homeSearch = '';
+const currentPage = {home:1, browse:1};
 
-// ── NAVIGATION ──
 function showPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
@@ -482,38 +649,42 @@ function showPage(page) {
   const navEl = document.getElementById('nav-' + page);
   if (navEl) navEl.classList.add('active');
   if (page === 'browse') renderBrowse();
+  if (page === 'specialties') renderSpecialties();
   window.scrollTo(0, 0);
 }
 
 function setGlobalLevel(level, btn) {
   globalLevel = level;
   document.querySelectorAll('.level-btn').forEach(b => {
-    b.classList.remove('active');
-    if (b.textContent.toLowerCase() === level) b.classList.add('active');
+    b.classList.remove('active','beginner','intermediate','pro');
+    if (b.textContent.toLowerCase().trim() === level) b.classList.add('active', level);
   });
   renderHome();
   renderBrowse();
-  if (openArticleId !== null) updateModalLevel(level);
+  if (openArticleId !== null) updateModalContent(articles.find(a => a.id === openArticleId), level);
 }
 
-// ── RENDERING ──
-function renderCard(article, delay = 0) {
-  const summary = article.summaries[globalLevel] || '';
-  const tagsHtml = article.tags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('');
-  const newBadge = article.isNew ? '<span class="new-badge">New</span>' : '';
+// ═══════════════════════════════════════════════════════
+// CARD RENDERING
+// ═══════════════════════════════════════════════════════
+function renderCard(a, delay) {
+  const summary = a.summaries[globalLevel] || '';
+  const tagsHtml = a.tags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('');
+  const newBadge = a.isNew ? '<span class="new-badge">New</span>' : '';
+  const authorShort = a.authors.split(',').slice(0,2).join(',') + (a.authors.includes('et al') || a.authors.split(',').length > 2 ? ', et al.' : '');
   return `
-    <div class="card" style="animation-delay:${delay}ms" onclick="openModal(${article.id})">
+    <div class="card" style="animation-delay:${delay}ms" onclick="openModal(${a.id})">
       <div class="card-header">
-        <div class="card-tags">${tagsHtml}${newBadge}</div>
-        <span class="card-date">${article.date}</span>
+        <div class="card-tags">${tagsHtml} ${newBadge}</div>
+        <span class="card-date">${a.date}</span>
       </div>
       <div class="card-body">
-        <div class="card-journal">${article.journalShort} · ${article.volume}</div>
-        <div class="card-title">${article.title}</div>
+        <div class="card-journal">${a.journalShort} · ${a.volume}</div>
+        <div class="card-title">${a.title}</div>
         <div class="card-summary">${summary}</div>
       </div>
       <div class="card-footer">
-        <span class="card-authors">${article.authors.split(',').slice(0,2).join(',')}${article.authors.includes('et al') ? ', et al.' : ''}</span>
+        <span class="card-authors">${authorShort}</span>
         <button class="read-more">
           Read more
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -522,71 +693,135 @@ function renderCard(article, delay = 0) {
     </div>`;
 }
 
-function renderHome() {
-  const search = (document.getElementById('home-search')?.value || '').toLowerCase();
-  const filtered = articles.filter(a => !search || matchesSearch(a, search));
-  const container = document.getElementById('home-articles');
-  if (!container) return;
-  if (filtered.length === 0) {
-    container.innerHTML = `<div class="no-results"><h3>No articles found</h3><p>Try a different search term.</p></div>`;
-    return;
-  }
-  container.innerHTML = filtered.map((a, i) => renderCard(a, i * 60)).join('');
+// ═══════════════════════════════════════════════════════
+// HOME
+// ═══════════════════════════════════════════════════════
+function matchesSearch(a, q) {
+  if (!q) return true;
+  const v = q.toLowerCase();
+  return a.title.toLowerCase().includes(v) || a.authors.toLowerCase().includes(v) ||
+    a.journal.toLowerCase().includes(v) || a.specialty.toLowerCase().includes(v) ||
+    (a.summaries.beginner || '').toLowerCase().includes(v) ||
+    a.tags.some(t => t.label.toLowerCase().includes(v));
 }
 
+function handleHomeSearch(v) { homeSearch = v; currentPage.home = 1; renderHome(); }
+
+function renderHome() {
+  const filtered = articles.filter(a => matchesSearch(a, homeSearch));
+  const total = filtered.length;
+  const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
+  currentPage.home = Math.min(currentPage.home, totalPages);
+  const paged = filtered.slice((currentPage.home-1)*PER_PAGE, currentPage.home*PER_PAGE);
+  const container = document.getElementById('home-articles');
+  if (!container) return;
+  container.innerHTML = paged.length
+    ? paged.map((a,i) => renderCard(a, i*55)).join('')
+    : `<div class="no-results"><h3>No results found</h3><p>Try different keywords.</p></div>`;
+  renderPagination('home-pagination', total, 'home');
+}
+
+// ═══════════════════════════════════════════════════════
+// BROWSE
+// ═══════════════════════════════════════════════════════
 function renderBrowse() {
-  const search = (document.getElementById('browse-search')?.value || '').toLowerCase();
-  const specialty = document.getElementById('browse-specialty')?.value || '';
+  const q = (document.getElementById('browse-search')?.value || '');
+  const spec = document.getElementById('browse-specialty')?.value || '';
   const year = document.getElementById('browse-year')?.value || '';
-  let filtered = articles.filter(a => {
-    if (search && !matchesSearch(a, search)) return false;
-    if (specialty && a.specialty !== specialty) return false;
+  const filtered = articles.filter(a => {
+    if (!matchesSearch(a, q)) return false;
+    if (spec && a.specialty !== spec && !a.tags.some(t => t.label === spec)) return false;
     if (year && a.year !== year) return false;
     return true;
   });
   const total = filtered.length;
-  const totalPages = Math.max(1, Math.ceil(total / ITEMS_PER_PAGE));
-  browsePage = Math.min(browsePage, totalPages);
-  const paged = filtered.slice((browsePage - 1) * ITEMS_PER_PAGE, browsePage * ITEMS_PER_PAGE);
+  const countEl = document.getElementById('browse-count');
+  if (countEl) countEl.textContent = `${total} Article${total !== 1 ? 's' : ''}`;
+  const totalPages = Math.max(1, Math.ceil(total / PER_PAGE));
+  currentPage.browse = Math.min(currentPage.browse, totalPages);
+  const paged = filtered.slice((currentPage.browse-1)*PER_PAGE, currentPage.browse*PER_PAGE);
   const container = document.getElementById('browse-articles');
   if (!container) return;
-  if (paged.length === 0) {
-    container.innerHTML = `<div class="no-results"><h3>No articles found</h3><p>Try adjusting your filters.</p></div>`;
-  } else {
-    container.innerHTML = paged.map((a, i) => renderCard(a, i * 50)).join('');
-  }
-  const pg = document.getElementById('browse-pagination');
-  if (pg) {
-    if (totalPages <= 1) { pg.innerHTML = ''; return; }
-    let html = '';
-    for (let i = 1; i <= totalPages; i++) {
-      html += `<button class="page-btn${i === browsePage ? ' active' : ''}" onclick="goPage(${i})">${i}</button>`;
-    }
-    pg.innerHTML = html;
-  }
+  container.innerHTML = paged.length
+    ? paged.map((a,i) => renderCard(a, i*50)).join('')
+    : `<div class="no-results"><h3>No results found</h3><p>Try adjusting your filters.</p></div>`;
+  renderPagination('browse-pagination', total, 'browse');
 }
 
-function goPage(n) { browsePage = n; renderBrowse(); window.scrollTo(0,200); }
-function matchesSearch(a, q) {
-  return a.title.toLowerCase().includes(q) || a.authors.toLowerCase().includes(q) ||
-    a.journal.toLowerCase().includes(q) || a.specialty.toLowerCase().includes(q) ||
-    (a.summaries.beginner || '').toLowerCase().includes(q);
-}
-function handleHomeSearch(v) { renderHome(); }
-function doHomeSearch() { showPage('browse'); renderBrowse(); }
+// ═══════════════════════════════════════════════════════
+// SPECIALTIES
+// ═══════════════════════════════════════════════════════
+const specialtyMeta = {
+  "Oncology":{icon:"🔬", desc:"Cancer research & treatment"},
+  "Neurology":{icon:"🧠", desc:"Brain & nervous system disorders"},
+  "Immunology":{icon:"🛡️", desc:"Immune system & tolerance"},
+  "Infectious Disease":{icon:"🦠", desc:"Pathogens & antimicrobials"},
+  "AI / Digital Health":{icon:"🤖", desc:"Technology in medicine"},
+  "Cell Biology":{icon:"🔵", desc:"Cellular mechanisms & metabolism"},
+  "Pediatrics":{icon:"👶", desc:"Children's health & development"},
+  "Clinical Case":{icon:"📋", desc:"Illustrative patient cases"},
+  "Addiction Medicine":{icon:"💊", desc:"Substance use & addiction"}
+};
 
-// ── MODAL ──
+function renderSpecialties() {
+  const counts = {};
+  articles.forEach(a => { counts[a.specialty] = (counts[a.specialty]||0)+1; });
+  const grid = document.getElementById('spec-grid');
+  if (!grid) return;
+  grid.innerHTML = Object.entries(specialtyMeta).map(([s, m]) => {
+    const c = counts[s] || 0;
+    if (!c) return '';
+    return `<div class="spec-card" style="animation-delay:${Object.keys(specialtyMeta).indexOf(s)*40}ms" onclick="filterBySpecialty('${s}')">
+      <div class="spec-icon">${m.icon}</div>
+      <h3>${s}</h3>
+      <p>${m.desc}</p>
+      <span class="spec-count">${c} article${c!==1?'s':''}</span>
+    </div>`;
+  }).join('');
+}
+
+function filterBySpecialty(spec) {
+  showPage('browse');
+  const el = document.getElementById('browse-specialty');
+  if (el) el.value = spec;
+  currentPage.browse = 1;
+  renderBrowse();
+}
+
+// ═══════════════════════════════════════════════════════
+// PAGINATION
+// ═══════════════════════════════════════════════════════
+function renderPagination(containerId, total, key) {
+  const totalPages = Math.ceil(total / PER_PAGE);
+  const cur = currentPage[key];
+  const el = document.getElementById(containerId);
+  if (!el) return;
+  if (totalPages <= 1) { el.innerHTML = ''; return; }
+  let html = `<button class="page-btn" onclick="goPage('${key}',${cur-1})" ${cur===1?'disabled':''}>← Prev</button>`;
+  for (let p = 1; p <= totalPages; p++) {
+    if (p===1||p===totalPages||Math.abs(p-cur)<=1) {
+      html += `<button class="page-btn ${p===cur?'active':''}" onclick="goPage('${key}',${p})">${p}</button>`;
+    } else if (Math.abs(p-cur)===2) html += `<span style="color:var(--muted);padding:0 4px">…</span>`;
+  }
+  html += `<button class="page-btn" onclick="goPage('${key}',${cur+1})" ${cur===totalPages?'disabled':''}>Next →</button>`;
+  el.innerHTML = html;
+}
+
+function goPage(key, p) { currentPage[key]=p; if(key==='home')renderHome(); else renderBrowse(); window.scrollTo(0,200); }
+
+// ═══════════════════════════════════════════════════════
+// MODAL
+// ═══════════════════════════════════════════════════════
 function openModal(id) {
   const a = articles.find(x => x.id === id);
   if (!a) return;
   openArticleId = id;
-  const tagsHtml = a.tags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('');
-  document.getElementById('modal-tags').innerHTML = tagsHtml;
+  document.getElementById('modal-tags').innerHTML = a.tags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('');
   document.getElementById('modal-title').textContent = a.title;
-  document.getElementById('modal-meta').textContent = `${a.journal} · ${a.volume} · ${a.date} · ${a.authors}`;
-  const levels = ['beginner', 'intermediate', 'pro'];
+  document.getElementById('modal-meta').innerHTML = `${a.journal} &nbsp;·&nbsp; ${a.volume} &nbsp;·&nbsp; ${a.date}<br>${a.authors}`;
+  const levels = ['beginner','intermediate','pro'];
   document.getElementById('modal-level-tabs').innerHTML = levels.map(l =>
-    `<button class="modal-level-btn${l === globalLevel ? ' active' : ''}" data-level="${l}" onclick="updateModalLevel('${l}')">${l.charAt(0).toUpperCase() + l.slice(1)}</button>`
+    `<button class="modal-level-btn${l===globalLevel?' active':''}" data-level="${l}" onclick="switchModalLevel('${l}')">${l.charAt(0).toUpperCase()+l.slice(1)}</button>`
   ).join('');
   updateModalContent(a, globalLevel);
   document.getElementById('modal-doi').textContent = `DOI: ${a.doi}`;
@@ -595,14 +830,13 @@ function openModal(id) {
   document.body.style.overflow = 'hidden';
 }
 
-function updateModalLevel(level) {
+function switchModalLevel(level) {
   globalLevel = level;
   document.querySelectorAll('.level-btn').forEach(b => {
-    b.classList.toggle('active', b.textContent.toLowerCase() === level);
+    b.classList.remove('active','beginner','intermediate','pro');
+    if (b.textContent.toLowerCase().trim() === level) b.classList.add('active', level);
   });
-  document.querySelectorAll('.modal-level-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.level === level);
-  });
+  document.querySelectorAll('.modal-level-btn').forEach(b => b.classList.toggle('active', b.dataset.level === level));
   if (openArticleId !== null) {
     const a = articles.find(x => x.id === openArticleId);
     if (a) updateModalContent(a, level);
@@ -613,22 +847,16 @@ function updateModalLevel(level) {
 
 function updateModalContent(a, level) {
   document.getElementById('modal-summary').textContent = a.summaries[level] || '';
-  const kp = document.getElementById('modal-keypoints');
   const kpSec = document.getElementById('modal-keypoints-section');
-  if (a.keyPoints && a.keyPoints.length) {
-    kpSec.style.display = '';
-    kp.innerHTML = a.keyPoints.map(p => `<li>${p}</li>`).join('');
-  } else {
-    kpSec.style.display = 'none';
-  }
-  const ctx = document.getElementById('modal-context');
+  const kp = document.getElementById('modal-keypoints');
+  if (a.keyPoints?.length) { kpSec.style.display=''; kp.innerHTML = a.keyPoints.map(p=>`<li>${p}</li>`).join(''); }
+  else kpSec.style.display='none';
   const ctxSec = document.getElementById('modal-context-section');
-  if (a.context) { ctxSec.style.display = ''; ctx.textContent = a.context; }
-  else { ctxSec.style.display = 'none'; }
-  const lim = document.getElementById('modal-limitations');
+  const ctx = document.getElementById('modal-context');
+  if (a.context) { ctxSec.style.display=''; ctx.textContent = a.context; } else ctxSec.style.display='none';
   const limSec = document.getElementById('modal-limitations-section');
-  if (a.limitations) { limSec.style.display = ''; lim.textContent = a.limitations; }
-  else { limSec.style.display = 'none'; }
+  const lim = document.getElementById('modal-limitations');
+  if (a.limitations) { limSec.style.display=''; lim.textContent = a.limitations; } else limSec.style.display='none';
 }
 
 function closeModal() {
