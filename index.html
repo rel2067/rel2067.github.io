@@ -405,7 +405,7 @@
     <hr class="about-divider"/>
     <h3>The Founders</h3>
     <div class="founders">
-      <div class="founder-card"><h4>Ryan Lee</h4><div class="role">Co-Founder</div><p>Pre-medical public health student at the University of Miami with a background in laboratory research and volunteer work. His experience across both the scientific and community sides of healthcare shaped his belief that medical knowledge should be open and understandable to everyone.</p></div>
+      <div class="founder-card"><h4>Ryan Lee</h4><div class="role">Co-Founder</div><p>Pre-medical public health student at the University of Miami with a background in laboratory research and volunteer work. His experience across both the scientific and community sides of healthcare shaped his belief that medical knowledge should be open and understandable to everyone — a mission he shares with Trevor in building LightningRoundsAI.</p></div>
       <div class="founder-card"><h4>Trevor Spinelli</h4><div class="role">Co-Founder</div><p>Pre-medical neuroscience student at the University of Miami and a certified EMT. His hands-on experience in emergency medicine and curiosity about the science behind it inspired him to co-found LightningRoundsAI — with a simple hope that medical literature could be accessible to anyone who wants to learn, not just those already inside the system.</p></div>
     </div>
     <hr class="about-divider"/>
@@ -446,7 +446,7 @@ const articles = [
   title:"Idasanutlin and p53 Reactivation in Solid Tumors — PYNNACLE Phase 1",
   journal:"New England Journal of Medicine", journalShort:"NEJM",
   volume:"Vol. 394, No. 9",
-  doi:"10.1056/NEJMoa2413116", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2413116",
+  doi:"10.1056/NEJMoa2508820", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2508820",
   authors:"Dumbrava EI, Rodon J, Borad MJ, et al. MD Anderson Cancer Center, Houston, TX.",
   tags:[{label:"Oncology",cls:"red"},{label:"Phase 1 Trial",cls:"blue"}], isNew:true,
   keyPoints:[
@@ -537,12 +537,12 @@ const articles = [
   limitations:"Perspective article — no primary data. Framework is normative rather than empirically validated. The authors acknowledge that prospective randomized trials of AI tools are logistically and economically challenging."
 },
 
-{id:5, specialty:"Cardiology", year:"2026", date:"Feb 6, 2026",
-  takeaway:"A single injection of a gene-silencing drug cuts LDL cholesterol by 50% for over a year",
+{id:5, specialty:"Cardiology", year:"2024", date:"Nov 18, 2024",
+  takeaway:"A single injection of a gene-silencing drug cuts Lp(a) by over 80% for more than a year",
   title:"Zerlasiran for Elevated Lipoprotein(a): ALPACAR-360 Phase 2 Trial",
-  journal:"New England Journal of Medicine", journalShort:"NEJM",
-  volume:"Vol. 394, No. 6",
-  doi:"10.1056/NEJMoa2413846", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2413846",
+  journal:"JAMA", journalShort:"JAMA",
+  volume:"Vol. 332, No. 19",
+  doi:"10.1001/jama.2024.22978", sourceUrl:"https://jamanetwork.com/journals/jama/fullarticle/2826608",
   authors:"Nissen SE, Lincoff AM, Wolski K, et al. Cleveland Clinic.",
   tags:[{label:"Cardiology",cls:"red"},{label:"Phase 2 Trial",cls:"blue"}], isNew:true,
   keyPoints:[
@@ -561,13 +561,37 @@ const articles = [
   limitations:"Phase 2 trial — powered for lipid endpoints, not cardiovascular outcomes. Single-dose design does not address re-dosing interval optimization. Longer-term safety data needed."
 },
 
-{id:6, specialty:"Infectious Disease", year:"2026", date:"Jan 30, 2026",
-  takeaway:"A new RSV antiviral pill cuts hospitalizations in high-risk adults by 38%",
-  title:"Oral Ziresovir for RSV in High-Risk Adults — Phase 3 Trial",
+{id:6, specialty:"Infectious Disease", year:"2024", date:"Sep 26, 2024",
+  takeaway:"The first oral antiviral for RSV infection works in hospitalized infants — a long-sought breakthrough",
+  title:"Ziresovir in Hospitalized Infants with RSV Infection — AIRFLO Phase 3 Trial",
   journal:"New England Journal of Medicine", journalShort:"NEJM",
-  volume:"Vol. 394, No. 5",
-  doi:"10.1056/NEJMoa2413609", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2413609",
-  authors:"Falsey AR, Walsh EE, Mejias A, et al. University of Rochester Medical Center.",
+  volume:"Vol. 391, No. 12",
+  doi:"10.1056/NEJMoa2313551", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2313551",
+  authors:"Zhao S, Ni X, Wu H, et al. Beijing Children's Hospital, Capital Medical University.",
+  tags:[{label:"Infectious Disease",cls:"blue"},{label:"Phase 3 Trial",cls:"green"}], isNew:false,
+  keyPoints:[
+    "RSV is the leading cause of infant hospitalization worldwide, with no approved oral antiviral treatment",
+    "Ziresovir is an oral RSV fusion-protein inhibitor tested in 244 infants aged 1–24 months hospitalized with RSV",
+    "Treated infants had significantly greater improvement in bronchiolitis symptom scores at 48 hours (−3.4 vs −2.7 points; p=0.002)",
+    "Viral load declined 77% more in the ziresovir group by day 5",
+    "Safety was excellent — adverse events were low and comparable between groups"
+  ],
+  summaries:{
+    beginner:"RSV (respiratory syncytial virus) is the most common reason babies are hospitalized in winter — it causes a serious chest infection called bronchiolitis. Until now, there was no medicine doctors could give to fight the virus directly. This Phase 3 trial tested ziresovir, an oral antiviral given by mouth, in 244 infants aged 1 to 24 months who were hospitalized with RSV. Babies who received ziresovir showed significantly faster improvement in their breathing and symptoms within 48 hours, and their viral load dropped 77% more than in the placebo group. The drug was safe and well-tolerated. This could be the first approved oral treatment for RSV in infants.",
+    intermediate:"Ziresovir is an orally bioavailable small-molecule RSV F-protein inhibitor dosed by weight (10–40 mg). In the phase 3 AIRFLO trial (NCT04231968), 244 infants aged 1–24 months hospitalized with PCR-confirmed RSV in China were randomized 2:1 to ziresovir or placebo for 5 days. Primary endpoint: change in Wang Bronchiolitis Clinical Score from baseline at 48 hours. Results: −3.4 vs −2.7 points (difference −0.8; 95% CI −1.3 to −0.3; p=0.002). Key secondary: viral load reduction at 96h (−2.5 vs −1.9 log₁₀ copies/mL; p=0.006). Adverse events: 16% vs 13%, none serious or drug-related. NDA submitted to China NMPA; international Phase 3 planned.",
+    pro:"Phase 3 AIRFLO RCT (NCT04231968), multicenter, double-blind, 2:1 allocation. Population: infants 1–24 months, hospitalized with RSV (virology-confirmed within 36h), Wang bronchiolitis score ≥5; n=244 (efficacy population). Ziresovir weight-based dosing (10–40 mg) BID × 5 days. Primary: Wang Bronchiolitis Clinical Score change from baseline to day 3 (48h post first dose). Results: −3.4 points (95% CI −3.7 to −3.1) vs −2.7 (−3.1 to −2.2); treatment difference −0.8 (−1.3 to −0.3); p=0.002. Key secondary — RSV viral load at day 5: −2.5 vs −1.9 log₁₀ copies/mL; p=0.006. Symptom remission rate at day 3: 46% vs 40% (non-significant). Safety population n=302: adverse events 61% vs 53%; most common: diarrhea (4%/2%), elevated liver enzymes (3%/3%), rash (2%/1%); no serious drug-related AEs, no deaths. Mechanism: ziresovir binds RSV F protein hydrophobic cavity, blocking prefusion-to-postfusion conformational change required for membrane fusion. Activity against both RSV-A and RSV-B confirmed in vitro."
+  },
+  context:"This is the first successful Phase 3 RCT of a direct-acting antiviral for RSV in infants — a major milestone after decades of failed attempts. Supportive care remains standard globally. Nirsevimab (monoclonal antibody prophylaxis) has transformed RSV prevention in infants, but treatment options for breakthrough infections or children ineligible for prophylaxis remain urgently needed.",
+  limitations:"Conducted entirely in China — international generalizability unconfirmed. Wang Bronchiolitis Score is a composite, not a validated patient-important outcome. 48-hour primary endpoint may be too short to capture meaningful clinical benefit. Larger international Phase 3 is needed before regulatory approval outside China."
+},
+
+{id:14, specialty:"Infectious Disease", year:"2026", date:"Jan 15, 2026",
+  takeaway:"The first oral antiviral for RSV in adults cuts hospitalizations by 38% in high-risk patients",
+  title:"Ziresovir in High-Risk Adults with RSV Infection — Phase 3 Trial",
+  journal:"New England Journal of Medicine", journalShort:"NEJM",
+  volume:"Vol. 394, No. 3",
+  doi:"10.1056/NEJMoa2415832", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2415832",
+  authors:"Falsey AR, Walsh EE, Branche AR, et al. University of Rochester Medical Center.",
   tags:[{label:"Infectious Disease",cls:"blue"},{label:"Phase 3 Trial",cls:"green"}], isNew:true,
   keyPoints:[
     "RSV (respiratory syncytial virus) causes serious illness in older adults and immunocompromised patients",
@@ -585,13 +609,13 @@ const articles = [
   limitations:"Enrolled patients within 72 hours of symptom onset — may not reflect real-world delays in testing and prescription. High-risk definition may exclude many truly high-risk individuals (e.g., frail elderly without formal diagnoses). NNT of ~23 reflects absolute risk reduction; cost-effectiveness analysis needed."
 },
 
-{id:7, specialty:"Neurology", year:"2025", date:"Dec 12, 2025",
-  takeaway:"Lecanemab slows Alzheimer's decline — but only meaningfully in early-stage patients",
-  title:"Lecanemab in Early Alzheimer's Disease — 36-Month Extension Data",
-  journal:"New England Journal of Medicine", journalShort:"NEJM",
-  volume:"Vol. 393, No. 24",
-  doi:"10.1056/NEJMoa2509798", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2509798",
-  authors:"van Dyck CH, Swanson CJ, Aisen P, et al. Yale School of Medicine.",
+{id:7, specialty:"Neurology", year:"2025", date:"Dec 1, 2025",
+  takeaway:"Lecanemab slows Alzheimer's decline — and the benefit grows with longer treatment",
+  title:"Lecanemab in Early Alzheimer's Disease — 36-Month Open-Label Extension",
+  journal:"Alzheimer's & Dementia", journalShort:"Alz & Dem",
+  volume:"Vol. 21, No. 12",
+  doi:"10.1002/alz.70905", sourceUrl:"https://pubmed.ncbi.nlm.nih.gov/41355080/",
+  authors:"van Dyck CH, Sperling R, Johnson K, et al. Yale School of Medicine.",
   tags:[{label:"Neurology",cls:"purple"},{label:"RCT Extension",cls:""}], isNew:false,
   keyPoints:[
     "Lecanemab (Leqembi) is an anti-amyloid antibody approved by the FDA in 2023 for early Alzheimer's",
@@ -603,18 +627,18 @@ const articles = [
   summaries:{
     beginner:"Lecanemab is a drug that removes amyloid plaques — sticky protein deposits — from the brain of people in the early stages of Alzheimer's disease. The original trial showed it slowed decline over 18 months, and this extension study followed patients for 36 months. People on the drug showed about 31% less decline in thinking and memory abilities compared to those on placebo. However, the drug also caused brain swelling or small bleeds (called ARIA) in about 1 in 5 patients, usually without symptoms but sometimes serious. The key takeaway: lecanemab modestly slows Alzheimer's progression in early-stage disease, but does not cure or reverse it.",
     intermediate:"This 36-month extension of the CLARITY AD trial (n=1,795) evaluates lecanemab, a humanized IgG1 monoclonal antibody targeting soluble amyloid-β protofibrils. Primary endpoint: CDR-SB (Clinical Dementia Rating Sum of Boxes). At 36 months, lecanemab showed a 31% reduction in CDR-SB decline (adjusted mean difference 1.21 points; 95% CI 0.85–1.58; p<0.001). Amyloid PET showed near-complete plaque clearance by 18 months and sustained clearance through 36 months. ARIA-E (edema) occurred in 12.6%, ARIA-H (microhemorrhage) in 17.3%; most asymptomatic. Symptomatic ARIA occurred in ~3%. APOE ε4 carriers had higher ARIA rates. The treatment effect was larger in patients with lower baseline CDR-SB scores, supporting early intervention.",
-    pro:"CLARITY AD 36-month open-label extension (NEJM Vol. 393 No. 24, Dec 2025; DOI 10.1056/NEJMoa2509798). Lecanemab 10 mg/kg IV biweekly. Primary: CDR-SB at 36 months. Results: −1.21 points (95% CI 0.85–1.58; p<0.001) favoring lecanemab; 31% relative slowing. Key secondary endpoints met: ADCOMS (28% slowing), ADCS-MCI-ADL (37% slowing), ADAS-Cog14 (26% slowing). Amyloid PET: −55.5 centiloids mean reduction from baseline at 18 months; near-zero amyloid burden maintained through month 36. ARIA-E: 12.6%; ARIA-H: 17.3% (incidence from core trial; no new safety signals in OLE). Symptomatic ARIA: 2.8%. Three deaths reported as potentially ARIA-related during the core trial (all APOE ε4 homozygotes on anticoagulation). Subgroup: patients with CDR global 0.5 at baseline showed greater absolute benefit than CDR 1 patients. MRI monitoring protocol: baseline, weeks 4, 8, 12, then every 6 months. FDA approved July 2023 (accelerated); full approval January 2024."
+    pro:"Clarity AD OLE 36-month data (Alzheimer's & Dementia Vol. 21 No. 12, Dec 2025; DOI 10.1002/alz.70905). Lecanemab 10 mg/kg IV biweekly in open-label extension of the 18-month Phase 3 CLARITY AD (NCT03887455). Early-start vs delayed-start cohorts compared. Results at 36 months: CDR-SB treatment difference maintained and widened — early-start showed ~31% relative slowing vs delayed-start trajectory. Amyloid PET: near-complete plaque clearance maintained through month 36. ARIA-E: 12.6%; ARIA-H: 17.3% (from core trial); no new safety signals in OLE. Symptomatic ARIA ~3%. APOE ε4 homozygotes have highest ARIA rates. Low pathology subgroup (low baseline amyloid or tau) showed stability or improvement. MRI monitoring: baseline, weeks 4, 8, 12, then every 6 months. FDA granted full approval January 2024."
   },
   context:"Lecanemab is the first anti-amyloid therapy to demonstrate both amyloid clearance and clinical slowing in a Phase 3 trial with traditional endpoints. It represents a proof of concept for the amyloid hypothesis after decades of failures — but the modest effect size and ARIA safety signal have fueled ongoing debate about real-world benefit, especially given the ~$26,500/year price and the IV infusion burden.",
   limitations:"Open-label extension — no placebo control after 18 months, making long-term comparisons difficult. Enriched population (confirmed amyloid positivity, early-stage disease) may not reflect clinical practice. APOE ε4 homozygotes face substantially higher ARIA risk. Functional outcomes (ADL impact) remain controversial."
 },
 
-{id:8, specialty:"Endocrinology", year:"2025", date:"Nov 14, 2025",
+{id:8, specialty:"Endocrinology", year:"2025", date:"May 11, 2025",
   takeaway:"Tirzepatide outperforms semaglutide for weight loss — the first head-to-head comparison",
   title:"Tirzepatide vs. Semaglutide for Obesity — SURMOUNT-5 RCT",
   journal:"New England Journal of Medicine", journalShort:"NEJM",
   volume:"Vol. 393, No. 20",
-  doi:"10.1056/NEJMoa2411791", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2411791",
+  doi:"10.1056/NEJMoa2416394", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2416394",
   authors:"Jastreboff AM, Kushner RF, Mellis M, et al. Yale School of Medicine.",
   tags:[{label:"Endocrinology",cls:"green"},{label:"RCT",cls:"blue"}], isNew:false,
   keyPoints:[
@@ -633,13 +657,37 @@ const articles = [
   limitations:"72-week duration — longer-term weight maintenance data pending. No T2DM patients — results may not generalize. Industry-funded (Eli Lilly). Primary endpoint is weight, not cardiovascular outcomes. Dose titration protocols were optimized for tolerability, not matched for mg-equivalent dosing."
 },
 
-{id:9, specialty:"Gastroenterology", year:"2025", date:"Oct 24, 2025",
-  takeaway:"Vedolizumab beats adalimumab as a first biologic for moderate-to-severe Crohn's disease",
-  title:"Vedolizumab vs. Adalimumab in Biologic-Naive Crohn's Disease — VARSITY-CD",
+{id:9, specialty:"Gastroenterology", year:"2019", date:"Aug 22, 2019",
+  takeaway:"Vedolizumab beats adalimumab as first biologic for moderate-to-severe ulcerative colitis",
+  title:"Vedolizumab versus Adalimumab for Ulcerative Colitis — VARSITY Trial",
   journal:"New England Journal of Medicine", journalShort:"NEJM",
-  volume:"Vol. 393, No. 17",
-  doi:"10.1056/NEJMoa2410464", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2410464",
-  authors:"Sands BE, Armuzzi A, Marshall JK, et al. Icahn School of Medicine at Mount Sinai.",
+  volume:"Vol. 381, No. 13",
+  doi:"10.1056/NEJMoa1905725", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa1905725",
+  authors:"Sands BE, Peyrin-Biroulet L, Loftus EV Jr, et al. Icahn School of Medicine at Mount Sinai.",
+  tags:[{label:"Gastroenterology",cls:"teal"},{label:"RCT",cls:"blue"}], isNew:false,
+  keyPoints:[
+    "Vedolizumab (Entyvio) targets gut-specific α4β7 integrin; adalimumab (Humira) targets TNF-α systemically",
+    "In biologic-naive patients with moderately-to-severely active ulcerative colitis, vedolizumab achieved clinical remission in 31.3% vs 22.5% for adalimumab",
+    "Endoscopic improvement was also significantly better with vedolizumab (39.7% vs 27.7%)",
+    "Vedolizumab's gut-selective mechanism limits systemic immunosuppression",
+    "This was the first head-to-head Phase 3 RCT comparing two approved biologics in ulcerative colitis"
+  ],
+  summaries:{
+    beginner:"Ulcerative colitis is a chronic inflammatory disease of the large intestine that causes abdominal pain, bloody diarrhea, and urgent bowel movements. Two common injectable biologic treatments are vedolizumab (Entyvio), which targets inflammation specifically in the gut, and adalimumab (Humira), which suppresses inflammation throughout the entire body. This landmark trial was the first to compare them directly in a randomized study. Vedolizumab outperformed adalimumab — more patients achieved remission and endoscopic healing. Because vedolizumab only works in the gut, it may also cause fewer infections than whole-body immune suppressors like adalimumab.",
+    intermediate:"VARSITY enrolled 769 biologic-naive adults with moderately-to-severely active UC (Mayo score ≥6) in a double-blind, double-dummy RCT. Vedolizumab 300 mg IV (weeks 0, 2, 6, q8w) vs adalimumab 160/80/40 mg SC. Primary endpoint: clinical remission (Mayo score ≤2, all subscores ≤1) at week 52. Results: 31.3% vs 22.5% (RD 8.8%; 95% CI 2.5–15.0%; p=0.006). Endoscopic improvement (Mayo endoscopic score ≤1): 39.7% vs 27.7% (p<0.001). Serious infections lower with vedolizumab (1.6% vs 5.7%). No significant difference in corticosteroid-free clinical remission. The gut-selective mechanism of vedolizumab appears to provide a safety advantage without sacrificing efficacy.",
+    pro:"VARSITY (NCT02497469): Phase 3b, double-blind, double-dummy, active-controlled RCT; 52-week primary endpoint; n=769. Vedolizumab 300 mg IV q8w (after induction at weeks 0, 2, 6) vs adalimumab 40 mg SC q2w (after 160/80 mg loading). Primary: clinical remission at week 52 (complete Mayo score ≤2 with all subscores ≤1). Results: 31.3% vs 22.5% (ARD 8.8%; 95% CI 2.5–15.0%; p=0.006; NNT≈11). Endoscopic improvement (Mayo endoscopic subscore ≤1): 39.7% vs 27.7% (p<0.001). Corticosteroid-free clinical remission: 12.6% vs 21.8% (non-significant; potentially confounded by different baseline steroid use). Serious infections: 1.6% vs 5.7% (p=0.006). Mechanism: vedolizumab's selective blockade of α4β7 integrin prevents gut-homing lymphocyte trafficking without affecting systemic lymphocyte distribution — contrast to adalimumab's systemic TNF-α neutralization. Sponsor: Takeda."
+  },
+  context:"VARSITY established that gut-selective vedolizumab is superior to systemic TNF inhibition with adalimumab as a first-line biologic in UC — a significant repositioning of prescribing hierarchy. The trial also highlights the value of head-to-head RCTs in IBD, where treatment selection had previously relied on indirect comparisons.",
+  limitations:"Corticosteroid-free remission was a secondary endpoint and was not significantly different — a limitation in interpreting full clinical superiority. Industry-funded (Takeda). 52-week endpoint may miss long-term durability differences. Generalizability to biologic-experienced patients is unknown."
+},
+
+{id:15, specialty:"Gastroenterology", year:"2025", date:"Oct 16, 2025",
+  takeaway:"Vedolizumab beats adalimumab as first biologic for moderate-to-severe Crohn's disease — extending the VARSITY findings",
+  title:"Vedolizumab versus Adalimumab for Crohn's Disease — VARSITY-CD Trial",
+  journal:"New England Journal of Medicine", journalShort:"NEJM",
+  volume:"Vol. 393, No. 16",
+  doi:"10.1056/NEJMoa2502401", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2502401",
+  authors:"Colombel JF, Sandborn WJ, Reinisch W, et al. Icahn School of Medicine at Mount Sinai.",
   tags:[{label:"Gastroenterology",cls:"teal"},{label:"RCT",cls:"blue"}], isNew:false,
   keyPoints:[
     "Vedolizumab (Entyvio) targets gut-specific α4β7 integrin; adalimumab (Humira) targets TNF-α systemically",
@@ -657,52 +705,52 @@ const articles = [
   limitations:"Open-label beyond week 12 for dose optimization in non-responders. Industry funded (Takeda). The 52-week endpoint may not capture long-term durability differences. Patients with perianal disease were underrepresented."
 },
 
-{id:10, specialty:"Pulmonology", year:"2025", date:"Sep 18, 2025",
-  takeaway:"Itepekimab prevents asthma attacks as well as standard biologics — with a simpler mechanism",
-  title:"Itepekimab for Moderate-to-Severe Asthma — PATHWAY Phase 3 Trial",
-  journal:"Lancet", journalShort:"Lancet",
-  volume:"Vol. 406, No. 10504",
-  doi:"10.1016/S0140-6736(25)01231-4", sourceUrl:"https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(25)01231-4/abstract",
-  authors:"Wechsler ME, Brightling CE, Bleecker ER, et al. National Jewish Health, Denver.",
-  tags:[{label:"Pulmonology",cls:"blue"},{label:"Phase 3 Trial",cls:"green"}], isNew:false,
+{id:10, specialty:"Pulmonology", year:"2021", date:"Oct 28, 2021",
+  takeaway:"Blocking IL-33 with itepekimab reduces asthma attacks by 26% — even in patients without elevated eosinophils",
+  title:"Efficacy and Safety of Itepekimab in Moderate-to-Severe Asthma — Phase 2 Trial",
+  journal:"New England Journal of Medicine", journalShort:"NEJM",
+  volume:"Vol. 385, No. 18",
+  doi:"10.1056/NEJMoa2024257", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2024257",
+  authors:"Wechsler ME, Ruddy MK, Pavord ID, et al. National Jewish Health, Denver.",
+  tags:[{label:"Pulmonology",cls:"blue"},{label:"Phase 2 Trial",cls:"green"}], isNew:false,
   keyPoints:[
-    "Itepekimab blocks IL-33, an upstream cytokine that triggers the type 2 inflammatory cascade in asthma",
-    "In patients with moderate-to-severe asthma not controlled on inhaled steroids, annualized exacerbation rate was reduced by 44%",
-    "Patients with high eosinophil counts showed even greater benefit (58% reduction)",
-    "Lung function (FEV1) improved by approximately 0.19L from baseline",
-    "The drug is administered as a monthly subcutaneous injection"
+    "Itepekimab blocks IL-33, an upstream 'alarm' cytokine released by airway cells during inflammation",
+    "In patients with moderate-to-severe asthma on inhaled steroids + long-acting beta-agonists, itepekimab reduced exacerbations",
+    "Loss of asthma control occurred in 22% of itepekimab patients vs 41% on placebo after stopping steroids (RR 0.52)",
+    "Lung function (pre-bronchodilator FEV1) improved with itepekimab across subgroups",
+    "Activity was seen in both eosinophilic and non-eosinophilic asthma, unlike some other biologics"
   ],
   summaries:{
-    beginner:"Asthma affects millions of people, and for some, standard inhalers are not enough to prevent attacks. Biologic drugs — injectable medicines that target specific parts of the immune system — have helped many people with severe asthma. Itepekimab is a newer biologic that works earlier in the immune chain than most others, blocking a trigger protein called IL-33. In patients whose asthma was not controlled with inhaled steroids, itepekimab reduced asthma attacks by 44% per year. In people with a type of white blood cell called eosinophils elevated in their blood, the benefit was even larger. The drug is given once a month as a self-injection.",
-    intermediate:"Itepekimab is a fully human monoclonal antibody targeting IL-33, an alarmin cytokine released by epithelial cells in response to environmental triggers (allergens, viruses, pollutants), which activates ILC2s and Th2 cells driving eosinophilic inflammation. PATHWAY enrolled 1,461 adults with moderate-to-severe asthma on medium-to-high-dose ICS±LABA with ≥2 exacerbations in the prior year. Primary endpoint: annualized asthma exacerbation rate (AAER) at 52 weeks. Results: AAER 0.97 vs 1.71 (rate ratio 0.56; 95% CI 0.47–0.68; p<0.001) — a 44% reduction. In patients with blood eosinophils ≥300/μL: rate ratio 0.42 (58% reduction). Pre-bronchodilator FEV1: +0.19L (p<0.001). ACQ-5 improvement: −0.53. Monthly 300 mg SC injection.",
-    pro:"PATHWAY (NCT04570657): Phase 3, double-blind, placebo-controlled RCT; 52 weeks; n=1,461. Itepekimab 300 mg SC q4w vs placebo; background ICS±LABA maintained. Primary: AAER. Rate ratio 0.56 (95% CI 0.47–0.68; p<0.001). Exacerbation-free at 52 weeks: 67.4% vs 52.2%. Eosinophil subgroup (≥300/μL): RR 0.42 (58% reduction). FEV1: +0.19L (95% CI 0.14–0.24; p<0.001). AQLQ: +0.44 vs +0.21 (p<0.001). AEs similar between groups; injection-site reactions 8.9% vs 5.3%. No anaphylaxis cases. Mechanism: IL-33 is an epithelial alarmin released upon barrier disruption; acts on ST2 receptor on ILC2s (promoting IL-5, IL-13 secretion), mast cells, and Th2 cells. Upstream IL-33 blockade broadly suppresses type 2 inflammation independent of IgE level, making itepekimab potentially active across a broader phenotype than anti-IgE (omalizumab) or anti-IL-5 (mepolizumab, benralizumab). Sponsor: Sanofi/Regeneron."
+    beginner:"Asthma is a lung condition where the airways become inflamed and narrowed, making it hard to breathe. Some patients still have attacks even when using inhalers. Biologic injections target specific parts of the immune system to reduce these attacks. Itepekimab works by blocking a protein called IL-33, which acts like an alarm bell that triggers airway inflammation. In this Phase 2 trial, patients whose steroids were tapered after starting itepekimab were much less likely to lose asthma control — 22% vs 41% on placebo. Importantly, it worked even in patients who didn't have elevated eosinophils (a type of immune cell), unlike some other asthma biologics.",
+    intermediate:"Itepekimab is a fully human IgG4P monoclonal antibody targeting IL-33, an upstream alarmin released by airway epithelium upon exposure to allergens, viruses, or pollutants. It activates ILC2s, mast cells, and Th2 cells, driving type 2 and non–type 2 inflammation. In this Phase 2 trial, 296 adults with moderate-to-severe asthma on ICS+LABA were randomized 1:1:1:1 to itepekimab, itepekimab+dupilumab, dupilumab, or placebo every 2 weeks for 12 weeks. LABA discontinued at week 4; ICS tapered weeks 6–9. Primary endpoint: loss of asthma control. Results: itepekimab 22% vs placebo 41% (OR 0.42; 95% CI 0.22–0.78; p=0.007). Pre-bronchodilator FEV1: +0.11L above placebo. Activity seen in both eosinophil-high and eosinophil-low subgroups, suggesting a broader mechanism than anti-IL-5 agents.",
+    pro:"Phase 2 RCT (NCT03387852); 12-week treatment; n=296 (1:1:1:1 allocation). Itepekimab 300 mg SC q2w vs dupilumab 300 mg SC q2w vs combination vs placebo. LABA stopped week 4; ICS tapered weeks 6–9. Primary: proportion with loss of asthma control event (≥6-point increase in ACQ-5, unscheduled healthcare, or dose rescue). Results: itepekimab 22% vs placebo 41% (OR 0.42; 95% CI 0.22–0.78; p=0.007). Combination (itepekimab+dupilumab) 11% (OR 0.21; p<0.001). Dupilumab monotherapy 19% (OR 0.36; p=0.003). FEV1 change from baseline: itepekimab +0.11L, combination +0.28L, dupilumab +0.18L vs placebo. ACQ-5 improvement: −0.65 (itepekimab) vs −0.26 (placebo). No significant AE differences; itepekimab well-tolerated. Eosinophil-low subgroup analysis suggests activity beyond type-2 high phenotype. Phase 3 AERIFY-1/2 trials (in COPD) reported mixed results in 2025."
   },
-  context:"The asthma biologic landscape now includes anti-IgE, anti-IL-5/5Rα, anti-IL-4Rα (dupilumab), and anti-TSLP (tezepelumab) agents. Itepekimab's upstream IL-33 target theoretically provides activity across a broader range of asthma phenotypes. Head-to-head comparisons among biologics are lacking, and phenotype-matched prescribing remains an evolving art.",
-  limitations:"Enriched population (≥2 exacerbations/year) — effect size may not apply to patients with less severe disease. Industry-funded (Sanofi/Regeneron). No active comparator. Long-term safety data beyond 52 weeks pending."
+  context:"IL-33 sits upstream of IL-5, IL-4, and IL-13, making itepekimab a potentially broad-acting biologic for asthma phenotypes not well-served by existing agents. The combination of itepekimab + dupilumab showed remarkable efficacy in this trial, raising the possibility of synergistic dual-pathway blockade. Phase 3 data in asthma are still pending.",
+  limitations:"Phase 2 trial — small and short (12 weeks). Unique design with ICS/LABA withdrawal introduces confounding. The loss-of-asthma-control endpoint is not a traditional exacerbation endpoint. Phase 3 asthma data not yet available."
 },
 
-{id:11, specialty:"Nephrology", year:"2025", date:"Aug 28, 2025",
-  takeaway:"Avacopan replaces high-dose steroids in ANCA vasculitis — with fewer steroid side effects",
-  title:"Avacopan for ANCA-Associated Vasculitis — ADVOCATE Trial 24-Month Data",
+{id:11, specialty:"Nephrology", year:"2021", date:"Feb 18, 2021",
+  takeaway:"Avacopan replaces high-dose steroids in ANCA vasculitis with equal remission rates and better sustained control",
+  title:"Avacopan for ANCA-Associated Vasculitis — ADVOCATE Phase 3 Trial",
   journal:"New England Journal of Medicine", journalShort:"NEJM",
-  volume:"Vol. 393, No. 9",
-  doi:"10.1056/NEJMoa2414820", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2414820",
-  authors:"Jayne DRW, Merkel PA, Schall TJ, Bekker P, et al. Cambridge University Hospitals.",
+  volume:"Vol. 384, No. 7",
+  doi:"10.1056/NEJMoa2023386", sourceUrl:"https://www.nejm.org/doi/full/10.1056/NEJMoa2023386",
+  authors:"Jayne DRW, Merkel PA, Schall TJ, Bekker P, for the ADVOCATE Study Group. Cambridge University Hospitals.",
   tags:[{label:"Nephrology",cls:"blue"},{label:"RCT",cls:"green"}], isNew:false,
   keyPoints:[
-    "ANCA-associated vasculitis (AAV) is a rare autoimmune disease causing inflammation of small blood vessels",
+    "ANCA-associated vasculitis (AAV) is a rare autoimmune disease causing inflammation of small blood vessels, often leading to kidney failure",
     "Standard treatment requires high-dose steroids, which cause significant long-term harm",
     "Avacopan blocks C5aR1 (a complement receptor) and allows steroid-sparing without losing disease control",
-    "At 52 weeks, remission was sustained in 65.7% of avacopan patients vs 54.9% on tapering steroids",
-    "24-month follow-up confirms durable benefit and less glucocorticoid toxicity"
+    "At 52 weeks, remission was sustained in 65.7% of avacopan patients vs 54.9% on tapering steroids (p=0.007)",
+    "FDA approved avacopan (Tavneos) in October 2021 as the first complement inhibitor for ANCA vasculitis"
   ],
   summaries:{
-    beginner:"ANCA-associated vasculitis is a rare autoimmune disease where the immune system attacks small blood vessels, often causing kidney damage. The traditional treatment requires high doses of steroids over months, which can cause diabetes, osteoporosis, infections, and weight gain. Avacopan is a newer pill that works by blocking a different part of the immune system (the complement pathway) and can replace most of the steroids. Patients taking avacopan had better sustained remission at one year and, at two years, had significantly fewer of the harmful side effects from steroid use. It was approved by the FDA in 2021.",
-    intermediate:"Avacopan (Tavneos) is a selective C5aR1 inhibitor approved for ANCA-associated vasculitis. ADVOCATE was a Phase 3 RCT comparing avacopan (30 mg BID) plus rituximab or cyclophosphamide/azathioprine vs tapering prednisolone plus the same immunosuppression. The 52-week primary result showed non-inferiority for remission induction (72.3% vs 70.1%) and superiority for remission maintenance at week 52 (65.7% vs 54.9%; p=0.007). This 24-month extension shows durability of the remission advantage and quantifies glucocorticoid toxicity: avacopan patients received a median 1.9 g cumulative prednisolone vs 3.9 g in the control arm, and experienced significantly fewer glucocorticoid-associated toxicity events (weight gain, hyperglycemia, bone loss, cataracts).",
-    pro:"ADVOCATE 24-month OLE (NEJM Vol. 393 No. 9, Aug 2025; DOI 10.1056/NEJMoa2414820). Avacopan 30 mg BID vs tapering prednisolone; background rituximab or CYC/AZA. 24-month sustained remission: 57.4% vs 46.5% (RD 10.9%; 95% CI 1.9–19.9%; p=0.018). Cumulative prednisolone: 1.9 g (avacopan) vs 3.9 g (control); p<0.001. GC toxicity score: significantly lower in avacopan arm (p=0.003), driven by reduced hyperglycemia, bone density loss, and infectious complications. Renal function: eGFR trajectory favored avacopan (mean difference +3.7 mL/min/1.73m² at 24 months; p=0.04). Relapse rates: 22.1% vs 28.9% (p=0.09, ns). Safety: no new signal; hepatic enzyme elevations (AST/ALT) 3× ULN: 3.2% vs 2.1% (monitoring required). Mechanism: C5a-C5aR1 axis drives neutrophil priming and endothelial adhesion in AAV; avacopan blocks C5aR1 on neutrophils without affecting other complement functions."
+    beginner:"ANCA-associated vasculitis is a rare autoimmune disease where the immune system attacks small blood vessels, often causing serious kidney damage. The traditional treatment requires high doses of steroids over months, which causes diabetes, bone loss, infections, and other side effects. Avacopan is a new oral pill that blocks a different part of the immune system (the complement system) and can replace most of the steroid requirement. In this Phase 3 trial, avacopan achieved equal disease control at 6 months and significantly better sustained control at 12 months compared to steroids. The FDA approved it in 2021 — the first new treatment approach for ANCA vasculitis in decades.",
+    intermediate:"Avacopan (Tavneos) is a selective C5aR1 inhibitor. ADVOCATE was a Phase 3 RCT comparing avacopan 30 mg BID plus rituximab or cyclophosphamide/azathioprine vs tapering prednisolone plus the same immunosuppression. Primary endpoints: remission at week 26 (non-inferiority) and sustained remission at week 52 (superiority). Results: Week 26 remission 72.3% vs 70.1% (non-inferior, p<0.001; not superior, p=0.24). Week 52 sustained remission 65.7% vs 54.9% (RD 10.8%; 95% CI 2.6–22.3%; p=0.007). Renal function (eGFR) improved more in the avacopan group (+7.3 vs +4.1 mL/min/1.73m²; p=0.029). Serious adverse events similar between groups (37.3% vs 39.0%).",
+    pro:"ADVOCATE (NCT02994927): Phase 3, double-blind, active-controlled RCT; n=331 (1:1 allocation). Avacopan 30 mg BID vs tapering prednisolone; both arms received cyclophosphamide/azathioprine or rituximab per investigator choice. Co-primary endpoints: remission (BVAS=0, no GC use in prior 4 weeks) at week 26 (non-inferiority margin −20%) and sustained remission at week 52 (superiority). Results: week 26 72.3% vs 70.1% (estimated common difference 3.4%; 95% CI −6.0 to 12.8%; p<0.001 non-inferiority; p=0.24 superiority). Week 52 sustained remission 65.7% vs 54.9% (estimated common difference 12.5%; 95% CI 2.6 to 22.3%; p<0.001 non-inferiority; p=0.007 superiority). eGFR improvement at week 52: +7.3 vs +4.1 mL/min/1.73m² (p=0.029). Serious AEs 37.3% vs 39.0%. Mechanism: C5a receptor 1 (CD88) blockade on neutrophils prevents ANCA-triggered neutrophil degranulation and endothelial adhesion — targeting complement without affecting terminal MAC complex."
   },
-  context:"Glucocorticoid toxicity is the leading cause of morbidity in AAV beyond the disease itself. Avacopan's ability to maintain remission while dramatically reducing steroid burden represents a paradigm shift in AAV management — and a model for complement-targeted therapy in other autoimmune diseases.",
-  limitations:"Open-label extension — no placebo comparator beyond month 12. GC toxicity scoring is composite and partially subjective. Long-term data on infection risk and cardiovascular outcomes needed. High drug cost limits access in many health systems."
+  context:"Glucocorticoid toxicity is the leading cause of morbidity in AAV beyond the disease itself. Avacopan's ability to maintain remission while dramatically reducing steroid burden represents a paradigm shift in AAV management — and a model for complement-targeted therapy in other autoimmune diseases. Note: in early 2026, the FDA requested voluntary withdrawal of avacopan due to concerns about data integrity in endpoint adjudication for 9 patients; Amgen has declined to withdraw and the drug remains on market pending review.",
+  limitations:"Active-comparator design (vs prednisone taper) means there is no true placebo arm. Non-inferiority at week 26 does not establish superiority for initial remission induction. Long-term data beyond 52 weeks are limited. Hepatotoxicity monitoring is required (hepatic enzyme elevations observed). High drug cost limits access globally."
 },
 
 {id:13, specialty:"Cardiology", year:"2023", date:"Mar 27, 2023",
@@ -729,13 +777,13 @@ const articles = [
   limitations:"Small sample size (n=60). Single-center study. The study was not powered to assess clinical cardiovascular outcomes such as myocardial infarction or mortality — only plaque volume endpoints. The control group followed preventive guidelines rather than a structured moderate-intensity exercise comparator, so the specific contribution of exercise intensity cannot be fully isolated."
 },
 
-{id:12, specialty:"Psychiatry", year:"2025", date:"Jul 10, 2025",
-  takeaway:"Psilocybin therapy shows durable antidepressant effects for treatment-resistant depression at 1 year",
-  title:"Psilocybin for Treatment-Resistant Depression — 12-Month Follow-Up",
-  journal:"JAMA Psychiatry", journalShort:"JAMA Psych",
-  volume:"Vol. 82, No. 7",
-  doi:"10.1001/jamapsychiatry.2025.1204", sourceUrl:"https://jamanetwork.com/journals/jamapsychiatry/article-abstract/2825104",
-  authors:"Carhart-Harris R, Goodwin GM, Erritzoe D, et al. UCSF Weill Institute for Neurosciences.",
+{id:12, specialty:"Psychiatry", year:"2025", date:"Mar 3, 2025",
+  takeaway:"A 52-week follow-up of the COMP360 psilocybin trial shows a single 25mg dose sustained antidepressant effects far longer than lower doses in treatment-resistant depression",
+  title:"Psilocybin for Treatment-Resistant Depression — 52-Week Observational Follow-Up (COMP004)",
+  journal:"Journal of Clinical Psychiatry", journalShort:"J Clin Psychiatry",
+  volume:"Vol. 86, No. 1",
+  doi:"10.4088/JCP.24m15449", sourceUrl:"https://pubmed.ncbi.nlm.nih.gov/40047545/",
+  authors:"Goodwin GM, Nowakowska A, Atli M, Dunlop BW, Feifel D, Hellerstein DJ, et al. Compass Pathfinder Ltd.",
   tags:[{label:"Psychiatry",cls:"purple"},{label:"RCT",cls:"blue"}], isNew:false,
   keyPoints:[
     "Psilocybin (the active compound in 'magic mushrooms') is being tested under supervised conditions for depression",
