@@ -168,15 +168,101 @@
   .disclaimer-box p{font-size:0.8125rem;line-height:1.65;color:rgba(255,255,255,0.5);margin:0;}
   .footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:20px;border-top:1px solid rgba(255,255,255,0.08);font-size:0.8rem;}
 
+  /* ── TABLET ── */
+  @media(max-width:900px){
+    main{padding:36px 20px 60px;}
+    .articles{grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;}
+    .about-wrap{padding:40px 20px 60px;}
+    .modal-body{padding:28px 28px;}
+    .modal-head{padding:28px 28px 24px;}
+    .modal-footer{padding:16px 28px 20px;}
+    .spec-grid{grid-template-columns:repeat(auto-fill,minmax(170px,1fr));}
+    .site-footer{padding:32px 24px;}
+  }
+
+  /* ── MOBILE ── */
   @media(max-width:640px){
-    header{padding:0 20px;}
-    nav{gap:14px;}
-    .hero{padding:48px 20px 56px;}
-    .modal-head{padding:24px 22px 20px;}
-    .modal-body{padding:22px 22px;}
-    .modal-footer{padding:16px 22px 20px;}
-    .founders{grid-template-columns:1fr;}
-    .logo-name{font-size:1rem;}
+    /* Header */
+    header{padding:0 16px;height:56px;}
+    .logo img{height:30px;}
+    .logo-name{font-size:0.95rem;}
+    nav{gap:10px;}
+    nav a{font-size:0.8rem;}
+    .nav-cta{padding:6px 12px;font-size:0.75rem !important;}
+
+    /* Hero */
+    .hero{padding:40px 16px 48px;}
+    .hero h1{font-size:clamp(1.6rem,7vw,2.4rem);}
+    .hero-sub{font-size:0.9375rem;margin-bottom:28px;}
+    .search-wrap input{padding:13px 52px 13px 18px;font-size:0.875rem;}
+    .search-btn{width:38px;height:38px;}
+
+    /* Main layout */
+    main{padding:28px 14px 52px;}
+
+    /* Level bar */
+    .level-bar{flex-direction:column;align-items:flex-start;gap:12px;margin-bottom:20px;}
+    .section-title{font-size:1.25rem;}
+    .level-switcher{width:100%;}
+    .level-btn{flex:1;text-align:center;padding:7px 10px;font-size:0.775rem;}
+
+    /* Legend */
+    .legend{padding:14px 16px;gap:12px;margin-bottom:24px;}
+    .legend-item{min-width:140px;}
+    .legend-text strong{font-size:0.8rem;}
+    .legend-text p{font-size:0.74rem;}
+
+    /* Cards */
+    .articles{grid-template-columns:1fr;gap:14px;}
+    .card-header{padding:16px 16px 0;}
+    .card-body{padding:12px 16px 16px;}
+    .card-takeaway{font-size:1rem;}
+    .card-footer{padding:12px 16px 14px;}
+
+    /* Browse */
+    .browse-controls{flex-direction:column;gap:10px;}
+    .browse-search,.browse-select{width:100%;min-width:unset;}
+
+    /* Specialties */
+    .spec-grid{grid-template-columns:repeat(2,1fr);gap:12px;}
+    .spec-card{padding:18px 14px;}
+    .spec-icon{font-size:1.5rem;margin-bottom:8px;}
+    .spec-card h3{font-size:0.9rem;}
+    .spec-card p{font-size:0.75rem;}
+
+    /* Modal */
+    .modal-overlay{padding:0;}
+    .modal{border-radius:16px 16px 0 0;margin:auto 0 0 0;max-height:92vh;overflow-y:auto;animation:slideUpMobile 0.3s ease;}
+    @keyframes slideUpMobile{from{opacity:0;transform:translateY(100%)}to{opacity:1;transform:translateY(0)}}
+    .modal-head{padding:20px 18px 16px;border-radius:16px 16px 0 0;}
+    .modal-title{font-size:1.2rem;padding-right:36px;}
+    .modal-body{padding:20px 18px;}
+    .modal-level-tabs{gap:6px;}
+    .modal-level-btn{padding:7px 14px;font-size:0.775rem;}
+    .modal-footer{padding:14px 18px 20px;flex-direction:column;align-items:flex-start;gap:10px;}
+    .modal-summary{font-size:0.875rem;}
+    .pubmed-link{width:100%;justify-content:center;}
+
+    /* About */
+    .about-wrap{padding:28px 14px 52px;}
+    .about-wrap h2{font-size:1.5rem;}
+    .about-wrap h3{font-size:1.1rem;}
+    .founders{grid-template-columns:1fr;gap:14px;}
+    .founder-card{padding:18px;}
+
+    /* Pagination */
+    .pagination{gap:6px;margin-top:28px;}
+    .page-btn{padding:7px 13px;font-size:0.775rem;}
+
+    /* Footer */
+    .site-footer{padding:28px 16px;}
+    .footer-bottom{flex-direction:column;align-items:flex-start;gap:8px;font-size:0.75rem;}
+  }
+
+  /* ── VERY SMALL SCREENS ── */
+  @media(max-width:360px){
+    nav a:not(.nav-cta){display:none;}
+    .spec-grid{grid-template-columns:1fr;}
   }
 </style>
 </head>
@@ -319,8 +405,8 @@
     <hr class="about-divider"/>
     <h3>The Founders</h3>
     <div class="founders">
-      <div class="founder-card"><h4>Ryan Lee</h4><div class="role">Co-Founder</div><p>Ryan Lee is a pre-medical public health student at the University of Miami with a background in laboratory research and volunteer work. His experience across both the scientific and community sides of healthcare shaped his belief that medical knowledge should be open and understandable to everyone .</p></div>
-      <div class="founder-card"><h4>Trevor Spinelli</h4><div class="role">Co-Founder</div><p>Trevor Spinelli is a pre-medical neuroscience student at the University of Miami and a certified EMT. His hands-on experience in emergency medicine and curiosity about the science behind it inspired him to co-found LightningRoundsAI — with a simple hope that medical literature could be accessible to anyone who wants to learn, not just those already inside the system..</p></div>
+      <div class="founder-card"><h4>Ryan Lee</h4><div class="role">Co-Founder</div><p>Pre-medical public health student at the University of Miami with a background in laboratory research and volunteer work. His experience across both the scientific and community sides of healthcare shaped his belief that medical knowledge should be open and understandable to everyone.</p></div>
+      <div class="founder-card"><h4>Trevor Spinelli</h4><div class="role">Co-Founder</div><p>Pre-medical neuroscience student at the University of Miami and a certified EMT. His hands-on experience in emergency medicine and curiosity about the science behind it inspired him to co-found LightningRoundsAI — with a simple hope that medical literature could be accessible to anyone who wants to learn, not just those already inside the system.</p></div>
     </div>
     <hr class="about-divider"/>
     <p style="font-size:0.8125rem;color:var(--muted);line-height:1.7;"><strong>Medical Disclaimer:</strong> LightningRoundsAI summaries are for educational purposes only and do not constitute medical advice. Always refer to the original publication and consult a qualified clinician before making clinical decisions.</p>
@@ -619,30 +705,6 @@ const articles = [
   limitations:"Open-label extension — no placebo comparator beyond month 12. GC toxicity scoring is composite and partially subjective. Long-term data on infection risk and cardiovascular outcomes needed. High drug cost limits access in many health systems."
 },
 
-{id:12, specialty:"Psychiatry", year:"2025", date:"Jul 10, 2025",
-  takeaway:"Psilocybin therapy shows durable antidepressant effects for treatment-resistant depression at 1 year",
-  title:"Psilocybin for Treatment-Resistant Depression — 12-Month Follow-Up",
-  journal:"JAMA Psychiatry", journalShort:"JAMA Psych",
-  volume:"Vol. 82, No. 7",
-  doi:"10.1001/jamapsychiatry.2025.1204", sourceUrl:"https://jamanetwork.com/journals/jamapsychiatry/article-abstract/2825104",
-  authors:"Carhart-Harris R, Goodwin GM, Erritzoe D, et al. UCSF Weill Institute for Neurosciences.",
-  tags:[{label:"Psychiatry",cls:"purple"},{label:"RCT",cls:"blue"}], isNew:false,
-  keyPoints:[
-    "Psilocybin (the active compound in 'magic mushrooms') is being tested under supervised conditions for depression",
-    "Two sessions of psilocybin therapy produced remission in 29% of treatment-resistant patients at 12 months",
-    "The active comparator (escitalopram) showed 8% remission at 12 months in the same population",
-    "Effects appear linked to mystical-type experiences during the session and subsequent changes in psychological flexibility",
-    "Psilocybin is a Schedule I substance; use is currently only in research settings"
-  ],
-  summaries:{
-    beginner:"Treatment-resistant depression is when someone has tried multiple antidepressant medications without improvement — and it affects millions of people worldwide. Psilocybin (the active ingredient in certain mushrooms) is being studied as a therapy when given in a controlled clinical setting with psychological support. In this study, patients received two supervised psilocybin sessions and psychological therapy. One year later, 29% were still in remission, compared to only 8% of those who received escitalopram (a standard antidepressant). Psilocybin is still a Schedule I drug and is not available outside of research — but these results are fueling applications for FDA approval.",
-    intermediate:"This 12-month follow-up of a Phase 2 RCT compared psilocybin-assisted therapy (two sessions, 25 mg each, with psychological support) versus escitalopram (10–20 mg daily × 6 weeks) in patients with treatment-resistant depression (≥2 failed adequate antidepressant trials). Primary endpoint: QIDS-SR remission (<6) at 12 months. Results: 29.0% (psilocybin) vs 8.0% (escitalopram); OR 4.6 (95% CI 1.8–11.9; p=0.001). Patients with higher mystical experience scores (MEQ-30) during psilocybin sessions had better 12-month outcomes. Psychological flexibility (AAQ-II) mediated approximately 30% of the treatment effect. No serious adverse events in the psilocybin arm beyond transient anxiety during sessions.",
-    pro:"12-month follow-up of Phase 2 RCT (NEJM 2021 original; DOI 10.1056/NEJMoa2107725); extended analysis published JAMA Psychiatry Vol. 82 No. 7, Jul 2025; DOI 10.1001/jamapsychiatry.2025.1204. n=59 (completers at 12 months). Psilocybin 25 mg × 2 sessions (days 1 and 15) with manualized psychological support (preparation, support during session, integration) vs escitalopram 10→20 mg QD × 6 weeks. QIDS-SR remission (<6) at 12 months: 29.0% vs 8.0% (NNT≈5). QIDS-SR response (≥50% reduction): 54.8% vs 28.0% (p=0.01). Mediation analysis: mystical experience (MEQ-30 total score, β=0.31) and psychological flexibility (AAQ-II, β=0.29) independently mediated outcome; conjoint mediation model accounted for ~45% of variance in 12-month depression score. No new safety events. COMPASS Pathways COMP360 Phase 3 trial ongoing; FDA Breakthrough Therapy designation held."
-  },
-  context:"Treatment-resistant depression affects ~30% of all depressed patients and carries substantial suicide risk and functional impairment. The durability of psilocybin's effect — from just two sessions — is mechanistically distinct from daily pharmacotherapy and challenges the current model of antidepressant treatment. FDA approval hinges on the ongoing Phase 3 COMP360 trial results.",
-  limitations:"Small sample (n=59 at 12 months); Phase 2. Non-blinded at follow-up. Psychological support component makes it impossible to isolate pharmacological vs psychotherapeutic effects. Short escitalopram course (6 weeks) may underestimate its long-term efficacy. Schedule I status creates recruitment and regulatory barriers."
-},
-
 {id:13, specialty:"Cardiology", year:"2023", date:"Mar 27, 2023",
   takeaway:"Six months of high-intensity interval training shrinks coronary artery plaques in heart disease patients",
   title:"High-intensity interval training induces beneficial effects on coronary atheromatous plaques: a randomized trial",
@@ -665,6 +727,30 @@ const articles = [
   },
   context:"Coronary atheroma volume is associated with risk of coronary events in CAD. Exercise training is a cornerstone in primary and secondary prevention of CAD, but the effect of exercise on coronary atheromatous plaques was largely unknown prior to this trial. The authors conclude that HIIT counteracts atherosclerotic coronary disease progression and reduces atheroma volume in residual plaques following PCI.",
   limitations:"Small sample size (n=60). Single-center study. The study was not powered to assess clinical cardiovascular outcomes such as myocardial infarction or mortality — only plaque volume endpoints. The control group followed preventive guidelines rather than a structured moderate-intensity exercise comparator, so the specific contribution of exercise intensity cannot be fully isolated."
+},
+
+{id:12, specialty:"Psychiatry", year:"2025", date:"Jul 10, 2025",
+  takeaway:"Psilocybin therapy shows durable antidepressant effects for treatment-resistant depression at 1 year",
+  title:"Psilocybin for Treatment-Resistant Depression — 12-Month Follow-Up",
+  journal:"JAMA Psychiatry", journalShort:"JAMA Psych",
+  volume:"Vol. 82, No. 7",
+  doi:"10.1001/jamapsychiatry.2025.1204", sourceUrl:"https://jamanetwork.com/journals/jamapsychiatry/article-abstract/2825104",
+  authors:"Carhart-Harris R, Goodwin GM, Erritzoe D, et al. UCSF Weill Institute for Neurosciences.",
+  tags:[{label:"Psychiatry",cls:"purple"},{label:"RCT",cls:"blue"}], isNew:false,
+  keyPoints:[
+    "Psilocybin (the active compound in 'magic mushrooms') is being tested under supervised conditions for depression",
+    "Two sessions of psilocybin therapy produced remission in 29% of treatment-resistant patients at 12 months",
+    "The active comparator (escitalopram) showed 8% remission at 12 months in the same population",
+    "Effects appear linked to mystical-type experiences during the session and subsequent changes in psychological flexibility",
+    "Psilocybin is a Schedule I substance; use is currently only in research settings"
+  ],
+  summaries:{
+    beginner:"Treatment-resistant depression is when someone has tried multiple antidepressant medications without improvement — and it affects millions of people worldwide. Psilocybin (the active ingredient in certain mushrooms) is being studied as a therapy when given in a controlled clinical setting with psychological support. In this study, patients received two supervised psilocybin sessions and psychological therapy. One year later, 29% were still in remission, compared to only 8% of those who received escitalopram (a standard antidepressant). Psilocybin is still a Schedule I drug and is not available outside of research — but these results are fueling applications for FDA approval.",
+    intermediate:"This 12-month follow-up of a Phase 2 RCT compared psilocybin-assisted therapy (two sessions, 25 mg each, with psychological support) versus escitalopram (10–20 mg daily × 6 weeks) in patients with treatment-resistant depression (≥2 failed adequate antidepressant trials). Primary endpoint: QIDS-SR remission (<6) at 12 months. Results: 29.0% (psilocybin) vs 8.0% (escitalopram); OR 4.6 (95% CI 1.8–11.9; p=0.001). Patients with higher mystical experience scores (MEQ-30) during psilocybin sessions had better 12-month outcomes. Psychological flexibility (AAQ-II) mediated approximately 30% of the treatment effect. No serious adverse events in the psilocybin arm beyond transient anxiety during sessions.",
+    pro:"12-month follow-up of Phase 2 RCT (NEJM 2021 original; DOI 10.1056/NEJMoa2107725); extended analysis published JAMA Psychiatry Vol. 82 No. 7, Jul 2025; DOI 10.1001/jamapsychiatry.2025.1204. n=59 (completers at 12 months). Psilocybin 25 mg × 2 sessions (days 1 and 15) with manualized psychological support (preparation, support during session, integration) vs escitalopram 10→20 mg QD × 6 weeks. QIDS-SR remission (<6) at 12 months: 29.0% vs 8.0% (NNT≈5). QIDS-SR response (≥50% reduction): 54.8% vs 28.0% (p=0.01). Mediation analysis: mystical experience (MEQ-30 total score, β=0.31) and psychological flexibility (AAQ-II, β=0.29) independently mediated outcome; conjoint mediation model accounted for ~45% of variance in 12-month depression score. No new safety events. COMPASS Pathways COMP360 Phase 3 trial ongoing; FDA Breakthrough Therapy designation held."
+  },
+  context:"Treatment-resistant depression affects ~30% of all depressed patients and carries substantial suicide risk and functional impairment. The durability of psilocybin's effect — from just two sessions — is mechanistically distinct from daily pharmacotherapy and challenges the current model of antidepressant treatment. FDA approval hinges on the ongoing Phase 3 COMP360 trial results.",
+  limitations:"Small sample (n=59 at 12 months); Phase 2. Non-blinded at follow-up. Psychological support component makes it impossible to isolate pharmacological vs psychotherapeutic effects. Short escitalopram course (6 weeks) may underestimate its long-term efficacy. Schedule I status creates recruitment and regulatory barriers."
 }
 ];
 
