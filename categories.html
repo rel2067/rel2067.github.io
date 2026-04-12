@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <title>About — LightningRoundsAI</title>
+  <title>Categories — LightningRoundsAI</title>
 </head>
 <body>
 
@@ -24,35 +24,49 @@
     <a class="nav-cta" href="index.html">Home</a>
   </nav>
 </header>
-
-<div class="about-wrap">
-  <h2>About LightningRoundsAI</h2>
-  <p>LightningRoundsAI was started by two pre-medical students at the University of Miami who believe that access to medical literature shouldn't be limited to those who already speak the language of medicine.</p>
-  <p>Our mission is simple: <strong>expand access to medical literature</strong> by translating complex studies into clear, tiered summaries that meet readers where they are — whether you're a curious patient, a pre-med student, or a clinician reviewing your own field.</p>
-  <hr class="about-divider"/>
-  <h3>How It Works</h3>
-  <div class="how-list">
-    <div class="how-item"><div class="how-num">1</div><div class="how-text"><h4>We curate the research</h4><p>We monitor high-impact journals — NEJM, Lancet, JAMA, BMJ, and more — selecting studies that matter clinically.</p></div></div>
-    <div class="how-item"><div class="how-num">2</div><div class="how-text"><h4>AI drafts the summaries</h4><p>Our AI generates three-level summaries tuned to different knowledge levels, with clinical context and key points.</p></div></div>
-    <div class="how-item"><div class="how-num">3</div><div class="how-text"><h4>We review &amp; verify</h4><p>Every summary is reviewed before publication to ensure accuracy and clarity.</p></div></div>
-  </div>
-  <hr class="about-divider"/>
-  <h3>The Founders</h3>
-  <div class="founders">
-    <div class="founder-card">
-      <h4>Ryan Lee</h4>
-      <div class="role">Co-Founder</div>
-      <p>Pre-medical public health student at the University of Miami with a background in laboratory research and volunteer work. His experience across both the scientific and community sides of healthcare shaped his belief that medical knowledge should be open and understandable to everyone — a mission he shares with Trevor in building LightningRoundsAI.</p>
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-head">
+      <div class="modal-head-tags" id="modal-tags"></div>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-meta" id="modal-meta"></div>
     </div>
-    <div class="founder-card">
-      <h4>Trevor Spinelli</h4>
-      <div class="role">Co-Founder</div>
-      <p>Pre-medical neuroscience student at the University of Miami and a certified EMT. His hands-on experience in emergency medicine and curiosity about the science behind it inspired him to co-found LightningRoundsAI — with a simple hope that medical literature could be accessible to anyone who wants to learn, not just those already inside the system.</p>
+    <div class="modal-body">
+      <div class="modal-level-tabs" id="modal-level-tabs"></div>
+      <p class="modal-summary" id="modal-summary"></p>
+      <div class="modal-section" id="modal-keypoints-section">
+        <h4>Key Points</h4>
+        <ul class="key-points" id="modal-keypoints"></ul>
+      </div>
+      <div class="modal-section" id="modal-context-section">
+        <h4>Why It Matters</h4>
+        <div class="modal-context" id="modal-context"></div>
+      </div>
+      <div class="modal-section" id="modal-limitations-section">
+        <h4>Limitations</h4>
+        <div class="modal-limitations" id="modal-limitations"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <span class="modal-doi" id="modal-doi"></span>
+      <a class="pubmed-link" id="modal-pubmed" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View on PubMed
+      </a>
     </div>
   </div>
-  <hr class="about-divider"/>
-  <p style="font-size:0.8125rem;color:var(--muted);line-height:1.7;"><strong>Medical Disclaimer:</strong> LightningRoundsAI summaries are for educational purposes only and do not constitute medical advice. Always refer to the original publication and consult a qualified clinician before making clinical decisions.</p>
 </div>
+
+<main>
+  <div class="level-bar">
+    <h2 class="section-title">Browse by Category</h2>
+  </div>
+  <div class="spec-grid" id="spec-grid"></div>
+</main>
 
 <footer class="site-footer">
   <div class="footer-inner">
@@ -70,7 +84,30 @@
 
 <script src="app.js"></script>
 <script>
-  document.getElementById('nav-about').classList.add('active');
+  document.getElementById('nav-categories').classList.add('active');
+
+  function renderSpecialties() {
+    const counts = {};
+    articles.forEach(a => { counts[a.specialty] = (counts[a.specialty]||0)+1; });
+    const grid = document.getElementById('spec-grid');
+    if (!grid) return;
+    grid.innerHTML = Object.entries(categoryMeta).map(([s, m]) => {
+      const c = counts[s] || 0;
+      if (!c) return '';
+      return `<div class="spec-card" style="animation-delay:${Object.keys(categoryMeta).indexOf(s)*40}ms"
+        onclick="window.location.href='browse.html?specialty=${encodeURIComponent(s)}'">
+        <div class="spec-icon">${m.icon}</div>
+        <h3>${s}</h3>
+        <p>${m.desc}</p>
+        <span class="spec-count">${c} article${c!==1?'s':''}</span>
+      </div>`;
+    }).join('');
+    if (!grid.innerHTML.trim()) {
+      grid.innerHTML = '<p style="color:var(--muted);grid-column:1/-1">No categories yet — add articles to app.js to see them here.</p>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', renderSpecialties);
 </script>
 </body>
 </html>

@@ -19,7 +19,7 @@
   <nav>
     <a href="index.html" id="nav-home">Latest</a>
     <a href="browse.html" id="nav-browse">Browse</a>
-    <a href="specialties.html" id="nav-specialties">Specialties</a>
+    <a href="categories.html" id="nav-categories">Categories</a>
     <a href="about.html" id="nav-about">About</a>
     <a class="nav-cta" href="index.html">Home</a>
   </nav>
@@ -74,7 +74,7 @@
     <input class="browse-search" id="browse-search" type="text" placeholder="Search articles…"
       oninput="currentPage.browse=1;renderBrowse()" />
     <select class="browse-select" id="browse-specialty" onchange="currentPage.browse=1;renderBrowse()">
-      <option value="">All Specialties</option>
+      <option value="">All Categories</option>
     </select>
     <select class="browse-select" id="browse-year" onchange="currentPage.browse=1;renderBrowse()">
       <option value="">All Years</option>
@@ -105,7 +105,7 @@
   document.getElementById('nav-browse').classList.add('active');
 
   function populateBrowseFilters() {
-    const sel = document.getElementById('browse-specialty');
+    const sel = document.getElementById('browse-specialty'); // category param
     if (!sel || sel.options.length > 1) return;
     const specs = [...new Set(articles.map(a => a.specialty))].sort();
     specs.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); });
@@ -144,10 +144,10 @@
       const el = document.getElementById('browse-search');
       if (el) el.value = q;
     }
-    const spec = params.get('specialty');
+    const spec = params.get('category');
     if (spec) {
       populateBrowseFilters();
-      const sel = document.getElementById('browse-specialty');
+      const sel = document.getElementById('browse-specialty'); // category param
       if (sel) sel.value = spec;
     }
     renderBrowse();

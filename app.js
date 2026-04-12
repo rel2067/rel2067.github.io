@@ -16,23 +16,16 @@ const articles = [
 // ═══════════════════════════════════════════════════════
 // SPECIALTIES METADATA
 // ═══════════════════════════════════════════════════════
-const specialtyMeta = {
-  "Oncology":          { icon:"🎗️",  desc:"Cancer research & treatment" },
-  "Cardiology":        { icon:"❤️",  desc:"Heart & vascular disease" },
-  "Neurology":         { icon:"🧠",  desc:"Brain & nervous system" },
-  "Endocrinology":     { icon:"⚖️",  desc:"Hormones & metabolism" },
-  "Infectious Disease":{ icon:"🦠",  desc:"Infections & immunology" },
-  "Gastroenterology":  { icon:"🫁",  desc:"Digestive & GI disorders" },
-  "Pulmonology":       { icon:"💨",  desc:"Lungs & respiratory" },
-  "Nephrology":        { icon:"🫘",  desc:"Kidney disease" },
-  "Psychiatry":        { icon:"🧩",  desc:"Mental health & neuroscience" },
-  "Rheumatology":      { icon:"🦴",  desc:"Joints & autoimmune" },
-  "AI / Digital Health":{ icon:"🤖", desc:"Technology in medicine" },
-  "Clinical Case":     { icon:"📋",  desc:"Illustrative patient cases" },
-  "Cell Biology":      { icon:"🔵",  desc:"Cellular mechanisms & metabolism" },
-  "Pediatrics":        { icon:"👶",  desc:"Children's health & development" },
-  "Addiction Medicine":{ icon:"💊",  desc:"Substance use & addiction" }
+const categoryMeta = {
+  "Exercise":             { icon:"🏋️",  desc:"Physical activity & performance" },
+  "Nutrition":            { icon:"🥗",  desc:"Diet, food, & metabolic health" },
+  "Basic Science":        { icon:"🔬",  desc:"Fundamental biology & mechanisms" },
+  "Cognitive Health":     { icon:"🧠",  desc:"Brain function, memory & mental wellness" },
+  "Pharmacology":         { icon:"💊",  desc:"Drugs, dosing & therapeutic targets" },
+  "Diseases / Pathology": { icon:"🩺",  desc:"Disease processes & clinical conditions" }
 };
+// Alias for backward-compatibility
+const specialtyMeta = categoryMeta;
 
 // ═══════════════════════════════════════════════════════
 // LEVEL PERSISTENCE
