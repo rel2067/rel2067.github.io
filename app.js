@@ -7,14 +7,43 @@ const PER_PAGE = 6;
 const currentPage = { home: 1, browse: 1 };
 
 // ═══════════════════════════════════════════════════════
-// ARTICLES DATA  (add your articles here)
+// ARTICLES DATA
+// ── specialty is now an ARRAY so one article can belong
+//    to multiple categories, e.g.:
+//    specialty: ["Basic Science", "Diseases / Pathology"]
 // ═══════════════════════════════════════════════════════
 const articles = [
+
+  {id:1, specialty:["Basic Science", "Diseases / Pathology"], year:"2023", date:"Jul 2023",
+    takeaway:"SERINC proteins restrict HIV-1 by acting as lipid transporters that scramble the viral membrane, disrupting the envelope structure needed for infection.",
+    title:"Antiviral HIV-1 SERINC restriction factors disrupt virus membrane asymmetry",
+    journal:"Nature Communications", journalShort:"Nat Commun",
+    volume:"14:4368",
+    doi:"10.1038/s41467-023-39262-2", sourceUrl:"https://pmc.ncbi.nlm.nih.gov/articles/PMC10359404/",
+    authors:"Leonhardt SA, Purdy MD, Grover JR, Yang Z, Poulos S, McIntire WE, Tatham EA, Erramilli SK, Nosol K, Lai KK, Ding S, Lu M, Uchil PD, Finzi A, Rein A, Kossiakoff AA, Mothes W, Yeager M",
+    tags:[{label:"Basic Science",cls:"blue"},{label:"Basic Science Study",cls:"green"}], isNew:true,
+    keyPoints:[
+      "SERINC3 and SERINC5 are human proteins that reduce HIV-1 infectivity when incorporated into the viral envelope",
+      "CryoEM revealed SERINC3's architecture closely resembles non-ATP-dependent lipid transporters",
+      "Purified SERINC proteins flip phosphatidylserine, phosphatidylethanolamine, and phosphatidylcholine across membranes",
+      "This lipid scrambling disrupts normal membrane asymmetry and alters the conformation of the viral envelope protein (Env)",
+      "HIV's Nef protein counteracts SERINC by rerouting it away from the viral envelope before the virus buds"
+    ],
+    summaries:{
+      beginner:"HIV is one of the most studied viruses in history, yet researchers are still uncovering the molecular tricks our own cells use to fight it. Your body makes proteins called SERINC3 and SERINC5 that can get embedded in HIV's outer membrane and make the virus far less infectious. Scientists knew this happened, but they did not understand why. This study set out to answer that question. Using a powerful imaging technique called cryo-electron microscopy, researchers determined the three-dimensional structure of SERINC3 for the first time. The structure looked strikingly similar to proteins that shuttle lipids — the fatty molecules that make up cell membranes. When the team tested this idea directly, they confirmed that SERINC proteins physically flip lipids from one side of a membrane to the other. In a healthy viral membrane, certain lipids are carefully kept on the inside. SERINC scrambles that arrangement, exposing normally hidden lipids on the outer surface. That disruption changes the shape of the proteins on HIV's outer coat that the virus needs to fuse with and enter human cells. Without the right membrane geometry, HIV becomes far less able to infect. HIV does have a workaround — a viral protein called Nef reroutes SERINCs away from the envelope before the virus forms — but understanding exactly how SERINCs work opens new doors for antiviral thinking.",
+      intermediate:"SERINC3 and SERINC5 are host restriction factors incorporated into HIV-1 particles that substantially reduce viral infectivity, but their structural basis and mechanism of action were previously unknown. This study used single-particle cryo-electron microscopy to resolve the structure of full-length human SERINC3 at 4.2 Å resolution. The resulting map revealed an architecture of two alpha-helical bundles connected by a ~40-residue diagonal crossmember helix, closely resembling non-ATP-dependent lipid transporter proteins. To test the functional implication of this structural similarity, purified hSERINC3 and hSERINC5 were reconstituted into proteoliposomes and assayed for lipid flipping activity. Both proteins drove transbilayer movement of phosphatidylserine (PS), phosphatidylethanolamine (PE), and phosphatidylcholine (PC). In HIV-1 and murine leukemia virus (MLV) models, SERINC3, SERINC5, and the known scramblase TMEM16F all exposed PS on the viral surface and reduced infectivity. This loss of membrane asymmetry correlated strongly with conformational changes in the envelope glycoprotein (Env) and restriction activity. The viral protein Nef in HIV-1 and GlycoGag in MLV each counteracted SERINC by preventing its incorporation into the viral envelope, preserving membrane asymmetry and infectivity.",
+      pro:"SERINC3 and SERINC5 are multipass transmembrane restriction factors incorporated into retroviral envelopes that reduce infectivity through an incompletely characterized mechanism. Prior work established that SERINC5 alters Env conformation and impedes membrane fusion intermediates, but without structural data the molecular basis remained elusive. Here, single-particle cryoEM of full-length wild-type hSERINC3 — stabilized via a synthetic Fab complex — yielded a map at 4.2 Å mean resolution. The structure consists of two alpha-helical bundles bridged by a ~40-residue, steeply tilted crossmember helix, a topology with marked resemblance to non-ATP-dependent lipid scramblases and flippases. Functional reconstitution of purified hSERINC3 and hSERINC5 into proteoliposomes confirmed transbilayer flipping of PS, PE, and PC, establishing SERINCs as bona fide lipid transporters. In parallel retroviral infectivity assays using HIV-1 and MLV, both hSERINCs and the canonical scramblase mTMEM16F exposed PS on the outer viral leaflet, altered Env conformation as measured by epitope accessibility, and suppressed infectivity. These phenotypes were rescued by Nef in HIV-1 and GlycoGag in MLV, which counteract restriction by diverting SERINC from the assembly site. A cryoEM map of the ΔICL4 deletion mutant — removing the acidic cluster motif implicated in Nef/AP2-mediated endosomal rerouting — further informed the structural basis of Nef antagonism. Collectively, these data establish that SERINC-driven loss of membrane lipid asymmetry is mechanistically coupled to Env conformational change and restriction activity across retroviral systems."
+    },
+    context:"Despite decades of HIV research, the molecular basis of host-encoded restriction factors has remained incompletely understood. Defining how SERINC proteins work at the structural level is significant because it identifies membrane lipid asymmetry as a functional determinant of viral envelope integrity — a concept with implications beyond HIV for other enveloped viruses that rely on precise lipid organization for fusion competence.",
+    limitations:"The study was conducted primarily in cell-based and proteoliposome reconstitution systems. Direct structural characterization of SERINC5 — the more potent isoform — was not achieved, with AlphaFold modeling used in its place. Causal directionality between lipid scrambling, Env conformational change, and infectivity loss is strongly suggested by correlation but has not yet been formally dissected with experiments that isolate each step independently."
+  },
 
 ];
 
 // ═══════════════════════════════════════════════════════
-// SPECIALTIES METADATA
+// CATEGORY METADATA
+// All seven allowed categories. specialty arrays are
+// matched against these keys for filtering and display.
 // ═══════════════════════════════════════════════════════
 const categoryMeta = {
   "Exercise":             { icon:"🏋️",  desc:"Physical activity & performance" },
@@ -22,10 +51,18 @@ const categoryMeta = {
   "Basic Science":        { icon:"🔬",  desc:"Fundamental biology & mechanisms" },
   "Cognitive Health":     { icon:"🧠",  desc:"Brain function, memory & mental wellness" },
   "Pharmacology":         { icon:"💊",  desc:"Drugs, dosing & therapeutic targets" },
-  "Diseases / Pathology": { icon:"🩺",  desc:"Disease processes & clinical conditions" }
+  "Diseases / Pathology": { icon:"🩺",  desc:"Disease processes & clinical conditions" },
+  "Historical Papers":    { icon:"📜",  desc:"Landmark & foundational studies" }
 };
-// Alias for backward-compatibility
-const specialtyMeta = categoryMeta;
+
+// ═══════════════════════════════════════════════════════
+// HELPER — normalize specialty to always be an array
+// ═══════════════════════════════════════════════════════
+function getCategories(a) {
+  if (Array.isArray(a.specialty)) return a.specialty;
+  if (a.specialty) return [a.specialty];
+  return [];
+}
 
 // ═══════════════════════════════════════════════════════
 // LEVEL PERSISTENCE

@@ -118,7 +118,7 @@
     const spec = document.getElementById('browse-specialty')?.value || '';
     const year = document.getElementById('browse-year')?.value || '';
     const filtered = articles.filter(a => {
-      if (spec && a.specialty !== spec) return false;
+      if (spec && !getCategories(a).includes(spec)) return false;
       if (year && a.year !== year) return false;
       if (q) {
         const hay = (a.takeaway + a.title + a.specialty + a.authors + (a.summaries[globalLevel]||'')).toLowerCase();

@@ -88,7 +88,7 @@
 
   function renderSpecialties() {
     const counts = {};
-    articles.forEach(a => { counts[a.specialty] = (counts[a.specialty]||0)+1; });
+    articles.forEach(a => { getCategories(a).forEach(s => { counts[s] = (counts[s]||0)+1; }); });
     const grid = document.getElementById('spec-grid');
     if (!grid) return;
     grid.innerHTML = Object.entries(categoryMeta).map(([s, m]) => {
