@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <title>LightningRoundsAI — Latest Articles</title>
+  <title>Browse Articles — LightningRoundsAI</title>
 </head>
 <body>
 
@@ -61,38 +61,31 @@
   </div>
 </div>
 
-<div class="hero">
-  <div class="hero-eyebrow">⚡ New articles added weekly</div>
-  <h1>Medical Research,<br><em>Instantly Understood</em></h1>
-  <p class="hero-sub">Complex clinical studies translated into clear, actionable insights — at your level.</p>
-  <div class="search-wrap">
-    <input type="text" id="hero-search" placeholder="Search articles, conditions, drugs…"
-      onkeydown="if(event.key==='Enter')handleHeroSearch(this.value)" />
-    <button class="search-btn" onclick="handleHeroSearch(document.getElementById('hero-search').value)">
-      <svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
-    </button>
-  </div>
-</div>
-
 <main>
   <div class="level-bar">
-    <h2 class="section-title">Latest Articles</h2>
+    <h2 class="section-title">Browse All Articles</h2>
     <div class="level-switcher">
       <button class="level-btn active beginner" onclick="switchLevel('beginner')">Beginner</button>
       <button class="level-btn intermediate" onclick="switchLevel('intermediate')">Intermediate</button>
       <button class="level-btn pro" onclick="switchLevel('pro')">Pro</button>
     </div>
   </div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--beginner)"></div><div class="legend-text"><strong>Beginner</strong><p>Plain language for patients &amp; students</p></div></div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--intermediate)"></div><div class="legend-text"><strong>Intermediate</strong><p>Clinical detail for residents &amp; nurses</p></div></div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--pro)"></div><div class="legend-text"><strong>Pro</strong><p>Full methodology for specialists</p></div></div>
+  <div class="browse-controls">
+    <input class="browse-search" id="browse-search" type="text" placeholder="Search articles…"
+      oninput="currentPage.browse=1;renderBrowse()" />
+    <select class="browse-select" id="browse-specialty" onchange="currentPage.browse=1;renderBrowse()">
+      <option value="">All Specialties</option>
+    </select>
+    <select class="browse-select" id="browse-year" onchange="currentPage.browse=1;renderBrowse()">
+      <option value="">All Years</option>
+      <option value="2026">2026</option>
+      <option value="2025">2025</option>
+    </select>
   </div>
-  <div class="articles" id="home-articles"></div>
-  <div class="pagination" id="home-pagination"></div>
+  <div class="articles" id="browse-articles"></div>
+  <div class="pagination" id="browse-pagination"></div>
 </main>
 
-<!-- ── FOOTER ── -->
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-logo">⚡ LightningRounds<span>AI</span></div>
@@ -109,30 +102,56 @@
 
 <script src="app.js"></script>
 <script>
-  // Mark active nav link
-  document.getElementById('nav-home').classList.add('active');
+  document.getElementById('nav-browse').classList.add('active');
 
-  // Hero search → redirect to browse with query param
-  function handleHeroSearch(val) {
-    if (val.trim()) {
-      window.location.href = 'browse.html?q=' + encodeURIComponent(val.trim());
-    }
+  function populateBrowseFilters() {
+    const sel = document.getElementById('browse-specialty');
+    if (!sel || sel.options.length > 1) return;
+    const specs = [...new Set(articles.map(a => a.specialty))].sort();
+    specs.forEach(s => { const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o); });
   }
 
-  function renderHome() {
-    const container = document.getElementById('home-articles');
+  function renderBrowse() {
+    const container = document.getElementById('browse-articles');
     if (!container) return;
-    const sorted = [...articles].sort((a,b) => b.id - a.id);
-    const total = sorted.length;
-    const start = (currentPage.home - 1) * PER_PAGE;
-    const page = sorted.slice(start, start + PER_PAGE);
+    const q    = (document.getElementById('browse-search')?.value || '').toLowerCase();
+    const spec = document.getElementById('browse-specialty')?.value || '';
+    const year = document.getElementById('browse-year')?.value || '';
+    const filtered = articles.filter(a => {
+      if (spec && a.specialty !== spec) return false;
+      if (year && a.year !== year) return false;
+      if (q) {
+        const hay = (a.takeaway + a.title + a.specialty + a.authors + (a.summaries[globalLevel]||'')).toLowerCase();
+        if (!hay.includes(q)) return false;
+      }
+      return true;
+    });
+    const total = filtered.length;
+    const start = (currentPage.browse - 1) * PER_PAGE;
+    const page  = filtered.slice(start, start + PER_PAGE);
     container.innerHTML = page.length
       ? page.map((a,i) => cardHTML(a, i * 60)).join('')
-      : `<div class="no-results"><h3>No articles yet</h3><p>Check back soon!</p></div>`;
-    renderPagination('home-pagination', total, 'home');
+      : `<div class="no-results"><h3>No articles match your filters</h3><p>Try adjusting your search or filters.</p></div>`;
+    renderPagination('browse-pagination', total, 'browse');
   }
 
-  document.addEventListener('DOMContentLoaded', renderHome);
+  document.addEventListener('DOMContentLoaded', () => {
+    populateBrowseFilters();
+    // Support ?q= from hero search
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+    if (q) {
+      const el = document.getElementById('browse-search');
+      if (el) el.value = q;
+    }
+    const spec = params.get('specialty');
+    if (spec) {
+      populateBrowseFilters();
+      const sel = document.getElementById('browse-specialty');
+      if (sel) sel.value = spec;
+    }
+    renderBrowse();
+  });
 </script>
 </body>
 </html>

@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <title>LightningRoundsAI — Latest Articles</title>
+  <title>Specialties — LightningRoundsAI</title>
 </head>
 <body>
 
@@ -61,38 +61,13 @@
   </div>
 </div>
 
-<div class="hero">
-  <div class="hero-eyebrow">⚡ New articles added weekly</div>
-  <h1>Medical Research,<br><em>Instantly Understood</em></h1>
-  <p class="hero-sub">Complex clinical studies translated into clear, actionable insights — at your level.</p>
-  <div class="search-wrap">
-    <input type="text" id="hero-search" placeholder="Search articles, conditions, drugs…"
-      onkeydown="if(event.key==='Enter')handleHeroSearch(this.value)" />
-    <button class="search-btn" onclick="handleHeroSearch(document.getElementById('hero-search').value)">
-      <svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>
-    </button>
-  </div>
-</div>
-
 <main>
   <div class="level-bar">
-    <h2 class="section-title">Latest Articles</h2>
-    <div class="level-switcher">
-      <button class="level-btn active beginner" onclick="switchLevel('beginner')">Beginner</button>
-      <button class="level-btn intermediate" onclick="switchLevel('intermediate')">Intermediate</button>
-      <button class="level-btn pro" onclick="switchLevel('pro')">Pro</button>
-    </div>
+    <h2 class="section-title">Browse by Specialty</h2>
   </div>
-  <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:var(--beginner)"></div><div class="legend-text"><strong>Beginner</strong><p>Plain language for patients &amp; students</p></div></div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--intermediate)"></div><div class="legend-text"><strong>Intermediate</strong><p>Clinical detail for residents &amp; nurses</p></div></div>
-    <div class="legend-item"><div class="legend-dot" style="background:var(--pro)"></div><div class="legend-text"><strong>Pro</strong><p>Full methodology for specialists</p></div></div>
-  </div>
-  <div class="articles" id="home-articles"></div>
-  <div class="pagination" id="home-pagination"></div>
+  <div class="spec-grid" id="spec-grid"></div>
 </main>
 
-<!-- ── FOOTER ── -->
 <footer class="site-footer">
   <div class="footer-inner">
     <div class="footer-logo">⚡ LightningRounds<span>AI</span></div>
@@ -109,30 +84,30 @@
 
 <script src="app.js"></script>
 <script>
-  // Mark active nav link
-  document.getElementById('nav-home').classList.add('active');
+  document.getElementById('nav-specialties').classList.add('active');
 
-  // Hero search → redirect to browse with query param
-  function handleHeroSearch(val) {
-    if (val.trim()) {
-      window.location.href = 'browse.html?q=' + encodeURIComponent(val.trim());
+  function renderSpecialties() {
+    const counts = {};
+    articles.forEach(a => { counts[a.specialty] = (counts[a.specialty]||0)+1; });
+    const grid = document.getElementById('spec-grid');
+    if (!grid) return;
+    grid.innerHTML = Object.entries(specialtyMeta).map(([s, m]) => {
+      const c = counts[s] || 0;
+      if (!c) return '';
+      return `<div class="spec-card" style="animation-delay:${Object.keys(specialtyMeta).indexOf(s)*40}ms"
+        onclick="window.location.href='browse.html?specialty=${encodeURIComponent(s)}'">
+        <div class="spec-icon">${m.icon}</div>
+        <h3>${s}</h3>
+        <p>${m.desc}</p>
+        <span class="spec-count">${c} article${c!==1?'s':''}</span>
+      </div>`;
+    }).join('');
+    if (!grid.innerHTML.trim()) {
+      grid.innerHTML = '<p style="color:var(--muted);grid-column:1/-1">No specialties yet — add articles to app.js to see them here.</p>';
     }
   }
 
-  function renderHome() {
-    const container = document.getElementById('home-articles');
-    if (!container) return;
-    const sorted = [...articles].sort((a,b) => b.id - a.id);
-    const total = sorted.length;
-    const start = (currentPage.home - 1) * PER_PAGE;
-    const page = sorted.slice(start, start + PER_PAGE);
-    container.innerHTML = page.length
-      ? page.map((a,i) => cardHTML(a, i * 60)).join('')
-      : `<div class="no-results"><h3>No articles yet</h3><p>Check back soon!</p></div>`;
-    renderPagination('home-pagination', total, 'home');
-  }
-
-  document.addEventListener('DOMContentLoaded', renderHome);
+  document.addEventListener('DOMContentLoaded', renderSpecialties);
 </script>
 </body>
 </html>
