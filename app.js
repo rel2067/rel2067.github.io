@@ -35,7 +35,7 @@ const articles = [
     volume:"14:4368",
     doi:"10.1038/s41467-023-39262-2", sourceUrl:"https://pmc.ncbi.nlm.nih.gov/articles/PMC10359404/",
     authors:"Leonhardt SA, Purdy MD, Grover JR, Yang Z, Poulos S, McIntire WE, Tatham EA, Erramilli SK, Nosol K, Lai KK, Ding S, Lu M, Uchil PD, Finzi A, Rein A, Kossiakoff AA, Mothes W, Yeager M",
-    tags:[{label:"Basic Science",cls:"blue"},{label:"Basic Science Study",cls:"green"}], isNew:true,
+    tags:[{label:"Basic Science",cls:"blue"},{label:"Diseases / Pathology",cls:"purple"},{label:"Basic Science Study",cls:"green"}], isNew:true,
     keyPoints:[
       "SERINC3 and SERINC5 are human proteins that reduce HIV-1 infectivity when incorporated into the viral envelope",
       "CryoEM revealed SERINC3's architecture closely resembles non-ATP-dependent lipid transporters",
@@ -158,7 +158,8 @@ function openModal(id) {
   if (!a) return;
   openArticleId = id;
   document.getElementById('modal-tags').innerHTML = a.tags.map(t=>`<span class="tag ${t.cls}">${t.label}</span>`).join('');
-  document.getElementById('modal-title').textContent = a.title;
+  document.getElementById('modal-title').textContent = a.takeaway;
+  document.getElementById('modal-subtitle').textContent = a.title;
   document.getElementById('modal-meta').innerHTML = `${a.journal} &nbsp;·&nbsp; ${a.volume} &nbsp;·&nbsp; ${a.date}<br>${a.authors}`;
   const levels = ['beginner','intermediate','pro'];
   document.getElementById('modal-level-tabs').innerHTML = levels.map(l =>
