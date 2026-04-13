@@ -14,7 +14,7 @@ const editions = [
     number: 1,
     label: "Edition 1",
     date: "April 2026",
-    articleIds: [1, 2, 3, 4, 5]
+    articleIds: [5, 1, 2, 3, 4]
   }
 ];
 
