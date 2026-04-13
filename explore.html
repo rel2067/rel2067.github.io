@@ -6,7 +6,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
-  <title>About — LightningRoundsAI</title>
+  <title>Explore — LightningRoundsAI</title>
 </head>
 <body>
 <header>
@@ -20,34 +20,92 @@
     <a href="about.html" id="nav-about">About</a>
   </nav>
 </header>
-
-<main class="about-main">
-  <h1 class="page-title"><span class="title-dot"></span>About</h1>
-
-  <div class="about-body">
-    <p>LightningRoundsAI was started by two pre-medical students at the University of Miami who believe that access to medical literature shouldn't be limited to those who already speak the language of medicine.</p>
-    <p>Our mission is simple: <strong>expand access to medical literature</strong> by translating complex studies into clear, tiered summaries that meet readers where they are — whether you're a curious patient, a pre-med student, or a clinician reviewing your own field.</p>
-
-    <hr class="about-divider" />
-
-    <h2>How It Works</h2>
-    <div class="how-list">
-      <div class="how-item"><div class="how-num">1</div><div class="how-text"><h4>We curate the research</h4><p>We monitor high-impact journals — NEJM, Lancet, JAMA, BMJ, and more — selecting studies that matter clinically.</p></div></div>
-      <div class="how-item"><div class="how-num">2</div><div class="how-text"><h4>AI drafts the summaries</h4><p>Our AI generates three-level summaries tuned to different knowledge levels, with clinical context and key points.</p></div></div>
-      <div class="how-item"><div class="how-num">3</div><div class="how-text"><h4>We review &amp; verify</h4><p>Every summary is reviewed before publication to ensure accuracy and clarity.</p></div></div>
+<div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+    <div class="modal-head">
+      <div class="modal-head-tags" id="modal-tags"></div>
+      <div class="modal-title" id="modal-title"></div>
+      <div class="modal-meta" id="modal-meta"></div>
     </div>
-
-    <hr class="about-divider" />
-
-    <h2>The Founders</h2>
-    <div class="founders">
-      <div class="founder-card"><h4>Ryan Lee</h4><div class="role">Co-Founder</div><p>Pre-medical public health student at the University of Miami with a background in laboratory research and volunteer work. His experience across both the scientific and community sides of healthcare shaped his belief that medical knowledge should be open and understandable to everyone.</p></div>
-      <div class="founder-card"><h4>Trevor Spinelli</h4><div class="role">Co-Founder</div><p>Pre-medical neuroscience student at the University of Miami and a certified EMT. His hands-on experience in emergency medicine and curiosity about the science behind it inspired him to co-found LightningRoundsAI.</p></div>
+    <div class="modal-body">
+      <div class="modal-level-tabs" id="modal-level-tabs"></div>
+      <p class="modal-summary" id="modal-summary"></p>
+      <div class="modal-section" id="modal-keypoints-section">
+        <h4>Key Points</h4>
+        <ul class="key-points" id="modal-keypoints"></ul>
+      </div>
+      <div class="modal-section" id="modal-context-section">
+        <h4>Why It Matters</h4>
+        <div class="modal-context" id="modal-context"></div>
+      </div>
+      <div class="modal-section" id="modal-limitations-section">
+        <h4>Limitations</h4>
+        <div class="modal-limitations" id="modal-limitations"></div>
+      </div>
     </div>
-
-    <hr class="about-divider" />
-    <p class="disclaimer-note"><strong>Medical Disclaimer:</strong> LightningRoundsAI summaries are for educational purposes only and do not constitute medical advice. Always refer to the original publication and consult a qualified clinician before making clinical decisions.</p>
+    <div class="modal-footer">
+      <span class="modal-doi" id="modal-doi"></span>
+      <a class="pubmed-link" id="modal-pubmed" href="#" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        View on PubMed
+      </a>
+    </div>
   </div>
+</div>
+
+<main class="explore-main">
+
+  <h1 class="page-title"><span class="title-dot"></span>Explore</h1>
+
+  <!-- ── Filter row ── -->
+  <div class="filter-row">
+    <div class="filter-block">
+      <label class="filter-label">Keywords</label>
+      <input class="filter-input" id="kw-input" type="text" placeholder="Search articles, topics, authors…" />
+    </div>
+    <div class="filter-block filter-block--sm">
+      <label class="filter-label">Journal</label>
+      <select class="filter-select" id="journal-select">
+        <option value="">All Journals</option>
+      </select>
+    </div>
+    <div class="filter-block filter-block--sm">
+      <label class="filter-label">Year</label>
+      <select class="filter-select" id="year-select">
+        <option value="">All Years</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- ── Category checkboxes ── -->
+  <div class="cat-grid">
+    <label class="cat-tile"><input type="checkbox" class="cat-cb" value="Exercise" /><span class="cat-icon">🏋️</span><span class="cat-name">Exercise</span><span class="cat-check"></span></label>
+    <label class="cat-tile"><input type="checkbox" class="cat-cb" value="Nutrition" /><span class="cat-icon">🥗</span><span class="cat-name">Nutrition</span><span class="cat-check"></span></label>
+    <label class="cat-tile"><input type="checkbox" class="cat-cb" value="Cognitive Health" /><span class="cat-icon">🧠</span><span class="cat-name">Cognitive Health</span><span class="cat-check"></span></label>
+    <label class="cat-tile"><input type="checkbox" class="cat-cb" value="Pharmacology" /><span class="cat-icon">💊</span><span class="cat-name">Pharmacology</span><span class="cat-check"></span></label>
+    <label class="cat-tile"><input type="checkbox" class="cat-cb" value="Diseases / Pathology" /><span class="cat-icon">🩺</span><span class="cat-name">Diseases / Pathology</span><span class="cat-check"></span></label>
+    <label class="cat-tile"><input type="checkbox" class="cat-cb" value="Basic Science" /><span class="cat-icon">🔬</span><span class="cat-name">Basic Science</span><span class="cat-check"></span></label>
+  </div>
+
+  <!-- ── Explore button ── -->
+  <button class="explore-btn" onclick="runSearch()">Explore</button>
+
+  <!-- ── Results ── -->
+  <section class="results-section" id="results-section" style="display:none">
+    <div class="results-bar">
+      <span class="results-count" id="results-count"></span>
+      <div class="level-switcher">
+        <button class="level-btn active beginner" data-level="beginner" onclick="switchLevel('beginner')">Beginner</button>
+        <button class="level-btn intermediate" data-level="intermediate" onclick="switchLevel('intermediate')">Intermediate</button>
+        <button class="level-btn pro" data-level="pro" onclick="switchLevel('pro')">Pro</button>
+      </div>
+    </div>
+    <div class="results-grid" id="results-grid"></div>
+  </section>
+
 </main>
 
 <footer class="site-footer">
@@ -66,7 +124,73 @@
 
 <script src="app.js"></script>
 <script>
-  document.getElementById('nav-about').classList.add('active');
+  document.getElementById('nav-explore').classList.add('active');
+
+  function populateFilters() {
+    const journals = [...new Set(articles.map(a => a.journal))].sort();
+    const jSel = document.getElementById('journal-select');
+    journals.forEach(j => { const o = document.createElement('option'); o.value=j; o.textContent=j; jSel.appendChild(o); });
+
+    const years = [...new Set(articles.map(a => a.year))].sort((a,b)=>a-b);
+    const ySel = document.getElementById('year-select');
+    years.forEach(y => { const o = document.createElement('option'); o.value=y; o.textContent=y; ySel.appendChild(o); });
+  }
+
+  let lastResults = [];
+
+  function runSearch() {
+    const kw      = document.getElementById('kw-input').value.toLowerCase().trim();
+    const journal = document.getElementById('journal-select').value;
+    const year    = document.getElementById('year-select').value;
+    const checked = [...document.querySelectorAll('.cat-cb:checked')].map(cb => cb.value);
+
+    lastResults = articles.filter(a => {
+      if (journal && a.journal !== journal) return false;
+      if (year    && a.year   !== year)    return false;
+      if (checked.length && !checked.some(c => getCategories(a).includes(c))) return false;
+      if (kw) {
+        const hay = [a.takeaway, a.title, a.authors, a.summaries[globalLevel]||'', ...getCategories(a)].join(' ').toLowerCase();
+        if (!hay.includes(kw)) return false;
+      }
+      return true;
+    });
+
+    displayResults(lastResults);
+    document.getElementById('results-section').scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  function displayResults(list) {
+    const sec = document.getElementById('results-section');
+    document.getElementById('results-count').textContent =
+      list.length + ' result' + (list.length !== 1 ? 's' : '');
+    document.getElementById('results-grid').innerHTML = list.length
+      ? list.map((a,i) => cardHTML(a,i)).join('')
+      : '<div class="no-results"><h3>No articles match your filters</h3><p>Try broadening your search.</p></div>';
+    sec.style.display = 'block';
+  }
+
+  function rerenderCards() {
+    if (lastResults.length) displayResults(lastResults);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    populateFilters();
+    document.getElementById('kw-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') runSearch();
+    });
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('category');
+    if (cat) {
+      const cb = document.querySelector(`.cat-cb[value="${cat}"]`);
+      if (cb) cb.checked = true;
+      runSearch();
+    }
+    const q = params.get('q');
+    if (q) {
+      document.getElementById('kw-input').value = q;
+      runSearch();
+    }
+  });
 </script>
 </body>
 </html>
