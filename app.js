@@ -425,25 +425,22 @@ function escapeRegex(s) {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-// Wrap glossary terms in a text node with tooltip spans
-// Only wraps plain text — does not re-wrap already-wrapped terms
+// Store definitions by numeric ID to avoid any attribute escaping issues
+const _tipDefs = [];
+
 function highlightTerms(html) {
-  // We work on the full HTML string but only touch text outside of HTML tags
-  // Strategy: split into segments of tag vs text, process text segments only
   const parts = html.split(/(<[^>]+>)/);
   return parts.map((part, i) => {
-    // Even indices are text, odd are tags — skip tags
-    if (i % 2 === 1) return part;
-    // Also skip if already inside a term span (shouldn't occur but safety)
+    if (i % 2 === 1) return part; // skip HTML tags
     let text = part;
     for (const term of glossaryTerms) {
       const regex = new RegExp(`\\b(${escapeRegex(term)})\\b`, 'gi');
       text = text.replace(regex, (match) => {
-        // Look up using original case-insensitive key
         const key = glossaryTerms.find(t => t.toLowerCase() === match.toLowerCase());
         if (!key) return match;
-        const def = glossary[key].replace(/"/g, '&quot;');
-        return `<span class="gt" data-def="${def}">${match}</span>`;
+        const id = _tipDefs.length;
+        _tipDefs.push(glossary[key]);
+        return `<span class="gt" data-tid="${id}">${match}</span>`;
       });
     }
     return text;
@@ -455,10 +452,12 @@ let activeTooltip = null;
 let activeEl = null;
 
 function showTooltip(el) {
-  if (activeTooltip && activeEl === el) return; // already shown
+  if (activeTooltip && activeEl === el) return;
   hideTooltip();
 
-  const def = el.dataset.def;
+  const tid = parseInt(el.dataset.tid, 10);
+  const def = _tipDefs[tid];
+  if (!def) return;
   const term = el.textContent;
 
   const tip = document.createElement('div');
