@@ -203,7 +203,7 @@ function switchLevel(level) {
 // CARD HTML
 // ═══════════════════════════════════════════════════════
 function cardHTML(a, index) {
-  const sum = a.summaries[globalLevel] || '';
+  const sum = highlightTerms(a.summaries[globalLevel] || '');
   const delay = index * 60;
   return `<article class="card" style="animation-delay:${delay}ms" onclick="openModal(${a.id})">
     <div class="card-header">
@@ -224,7 +224,7 @@ function cardHTML(a, index) {
 }
 
 function featuredCardHTML(a) {
-  const sum = a.summaries[globalLevel] || '';
+  const sum = highlightTerms(a.summaries[globalLevel] || '');
   return `<article class="featured-card" onclick="openModal(${a.id})">
     <div class="featured-left">
       <div class="card-tags">${a.tags.map(t=>`<span class="tag ${t.cls}">${t.label}</span>`).join('')}${a.isNew?'<span class="new-badge">NEW</span>':''}</div>
@@ -263,7 +263,7 @@ function openModal(id) {
 }
 
 function updateModalContent(a, level) {
-  document.getElementById('modal-summary').textContent = a.summaries[level] || '';
+  document.getElementById('modal-summary').innerHTML = highlightTerms(a.summaries[level] || '');
   const kpSec = document.getElementById('modal-keypoints-section');
   const kp    = document.getElementById('modal-keypoints');
   if (a.keyPoints?.length) { kpSec.style.display=''; kp.innerHTML = a.keyPoints.map(p=>`<li>${p}</li>`).join(''); }
@@ -285,3 +285,240 @@ function closeModalOutside(e) { if (e.target === document.getElementById('modal-
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 document.addEventListener('DOMContentLoaded', () => applyLevel(globalLevel));
+
+// ═══════════════════════════════════════════════════════
+// KEY TERMS GLOSSARY
+// Plain-English definitions shown on hover/click
+// ═══════════════════════════════════════════════════════
+const glossary = {
+  // ── Genetics & Molecular Biology ──────────────────────
+  "DNA": "The molecule inside every cell that stores the instructions for building and running a living thing — like a blueprint written in a four-letter chemical alphabet.",
+  "RNA": "A chemical messenger that carries instructions from DNA to the cell's protein-making machinery. Think of it as a working copy of one page from the DNA blueprint.",
+  "mRNA": "A type of RNA that carries the specific recipe for making one protein. mRNA vaccines work by delivering these recipes into your cells.",
+  "gene": "A specific section of DNA that contains the instructions for making one particular protein or performing one biological function.",
+  "genes": "Specific sections of DNA that each contain instructions for making a particular protein or performing a biological function.",
+  "genetic code": "The universal 'dictionary' that cells use to read RNA sequences and decide which amino acids to string together into proteins. The same code is used by virtually all life on Earth.",
+  "codon": "A three-letter 'word' in the RNA sequence. Each codon specifies one amino acid, like a three-note chord that calls for a specific ingredient.",
+  "codons": "Three-letter 'words' in the RNA sequence. Each codon specifies one amino acid, like a three-note chord that calls for a specific ingredient.",
+  "amino acid": "The individual building blocks that get linked together to form proteins. There are 20 different ones, and their order determines the protein's shape and job.",
+  "amino acids": "The individual building blocks that get linked together to form proteins. There are 20 different ones, and their order determines the protein's shape and job.",
+  "protein": "A molecule made of amino acids that does most of the real work in the body — from carrying oxygen in blood, to fighting infections, to making your muscles contract.",
+  "proteins": "Molecules made of amino acids that do most of the real work in the body — from carrying oxygen in blood, to fighting infections, to making your muscles contract.",
+  "ribosome": "A tiny molecular machine inside every cell that reads RNA instructions and assembles proteins from amino acids, one piece at a time.",
+  "ribosomes": "Tiny molecular machines inside every cell that read RNA instructions and assemble proteins from amino acids, one piece at a time.",
+  "double helix": "The famous twisted-ladder shape of DNA. The two 'rails' are made of sugar and phosphate; the 'rungs' are pairs of chemical letters (A, T, G, C).",
+  "nucleotide": "One unit of the DNA or RNA chain — like a single bead in a very long necklace. Each nucleotide has one of four chemical 'letters' (A, T, G, C in DNA).",
+  "nucleotides": "The individual units of the DNA or RNA chain — like beads in a very long necklace. Each has one of four chemical 'letters' (A, T, G, C in DNA).",
+  "base pair": "Two complementary chemical letters that lock together across the middle of the DNA double helix — A always pairs with T, and G always pairs with C.",
+  "base pairs": "Pairs of complementary chemical letters that lock together across the middle of the DNA double helix — A always pairs with T, and G always pairs with C.",
+  "replication": "The process by which a cell makes an exact copy of its DNA before dividing, so each new cell gets a complete set of instructions.",
+  "transcription": "The process of reading a DNA gene and making an RNA copy of it — like photocopying one page from a book.",
+  "translation": "The process of reading an RNA message and using it to build a protein — converting the genetic code into a functional molecule.",
+  "mutation": "A change or 'typo' in the DNA sequence. Some mutations are harmless, some cause disease, and rarely some are beneficial.",
+  "mutations": "Changes or 'typos' in the DNA sequence. Some are harmless, some cause disease, and rarely some are beneficial.",
+  "chromosome": "A tightly coiled package of DNA. Human cells typically have 46 chromosomes containing all of our genetic instructions.",
+  "chromosomes": "Tightly coiled packages of DNA. Human cells typically have 46 chromosomes containing all of our genetic instructions.",
+  "genome": "The complete set of all the DNA in an organism — every gene, every instruction, the entire biological library for that species.",
+  "epigenetic": "Relating to changes in how genes are switched on or off, without changing the DNA sequence itself — like editing which chapters of a book get read, rather than rewriting the words.",
+
+  // ── Cell Biology ──────────────────────────────────────
+  "cell": "The basic unit of all living things. Your body is made of about 37 trillion of them, each one a self-contained living system.",
+  "cells": "The basic units of all living things. Your body is made of about 37 trillion of them, each one a self-contained living system.",
+  "membrane": "A thin, flexible barrier — like a soap bubble wall — that surrounds cells and their internal compartments, controlling what can enter or leave.",
+  "membranes": "Thin, flexible barriers — like soap bubble walls — that surround cells and internal compartments, controlling what can enter or leave.",
+  "mitochondria": "The power generators of the cell. They convert nutrients from food into the energy currency (ATP) that the cell uses to do its work.",
+  "lipid": "A fatty or oily molecule. Lipids form the outer membrane of cells and are used to store energy. They also play key roles in cell signaling.",
+  "lipids": "Fatty or oily molecules. Lipids form the outer membrane of cells and are used to store energy. They also play key roles in cell signaling.",
+  "phosphatidylserine": "A type of fat molecule (lipid) normally kept on the inner face of cell membranes. When it flips to the outside, it acts as a signal — telling the immune system a cell is dying, or, in viruses, disrupting the envelope's structure.",
+  "nanoparticle": "A particle so tiny it's measured in billionths of a meter. In medicine, nanoparticles are used as delivery vehicles to carry drugs or genetic material into cells.",
+  "nanoparticles": "Particles so tiny they're measured in billionths of a meter. In medicine, they're used as delivery vehicles to carry drugs or genetic material into cells.",
+  "lipid nanoparticle": "A tiny fat-based bubble used to deliver fragile molecules (like mRNA) safely into cells. The same technology was used in COVID-19 mRNA vaccines.",
+  "lipid nanoparticles": "Tiny fat-based bubbles used to deliver fragile molecules (like mRNA) safely into cells. The same technology was used in COVID-19 mRNA vaccines.",
+  "receptor": "A protein on or in a cell that acts like a lock. When the right molecule (the 'key') binds to it, it triggers a specific response inside the cell.",
+  "receptors": "Proteins on or in cells that act like locks. When the right molecule (the 'key') binds to one, it triggers a specific response inside the cell.",
+  "enzyme": "A protein that speeds up a specific chemical reaction in the body without being used up itself — like a biological catalyst.",
+  "enzymes": "Proteins that speed up specific chemical reactions in the body without being used up themselves — biological catalysts.",
+  "cytokine": "A small signaling protein released by cells, especially immune cells, to send messages that coordinate inflammation, immune responses, or healing.",
+  "cytokines": "Small signaling proteins released by cells — especially immune cells — to coordinate inflammation, immune responses, or healing.",
+  "autophagy": "The cell's self-cleaning process — it breaks down and recycles old, damaged, or unneeded components. Think of it as the cell's recycling and waste disposal system.",
+
+  // ── Disease & Pathology ───────────────────────────────
+  "amyloid": "Abnormal protein clumps that build up in the brain in Alzheimer's disease, interfering with normal brain function.",
+  "amyloid-beta": "A specific protein fragment that clumps into sticky plaques in the brains of Alzheimer's patients, disrupting communication between nerve cells.",
+  "tau": "A protein that normally stabilizes nerve cell structure. In Alzheimer's and some other diseases it becomes tangled and twisted, damaging or killing neurons.",
+  "neurodegeneration": "The gradual breakdown and death of nerve cells in the brain over time. It's the underlying process in diseases like Alzheimer's, Parkinson's, and others.",
+  "neurodegenerative": "Relating to the gradual breakdown and death of nerve cells in the brain — the underlying process in diseases like Alzheimer's and Parkinson's.",
+  "inflammation": "The body's first-response defense reaction to injury or infection — it causes redness, swelling, and heat, but when chronic, it can damage healthy tissue.",
+  "oxidative stress": "An imbalance in the cell where harmful molecules called free radicals outnumber the cell's ability to neutralize them, causing damage to DNA, proteins, and fats.",
+  "hyperammonemia": "A dangerous buildup of ammonia in the blood. Ammonia is toxic to the brain, and the body normally eliminates it through the urea cycle.",
+  "urea cycle": "A series of chemical reactions in the liver that converts toxic ammonia (from protein breakdown) into urea, which is safely excreted in urine.",
+  "CPS1": "An enzyme in the liver that starts the urea cycle — the process that clears toxic ammonia from the blood. Deficiency of CPS1 causes ammonia to build up dangerously.",
+  "CPS1 deficiency": "A rare inherited disease in which the liver can't clear ammonia from the blood. Without treatment it causes severe brain damage and is often fatal in infants.",
+  "melanoma": "A serious form of skin cancer that starts in melanocytes — the cells that produce pigment. It's more common in people who can't tan effectively.",
+  "tumor": "An abnormal mass of cells that have grown out of control. Tumors can be benign (not cancerous) or malignant (cancerous and able to spread).",
+  "carcinogen": "A substance or radiation that can cause cancer by damaging DNA.",
+
+  // ── Gene Editing & Therapy ────────────────────────────
+  "CRISPR": "A powerful gene-editing tool, adapted from a bacterial immune system, that can cut DNA at a precise location and change, delete, or repair specific genetic sequences.",
+  "base editor": "A precise gene-editing tool that changes a single 'letter' in the DNA sequence without cutting both strands of the DNA — like using a pencil eraser to fix one typo.",
+  "base editing": "A precise gene-editing technique that corrects a single 'letter' in the DNA sequence without cutting both strands of the DNA — like using a pencil eraser to fix one typo.",
+  "gene therapy": "A medical approach that treats or prevents disease by adding, replacing, or adjusting genes inside a patient's cells.",
+  "gene editing": "The ability to make targeted changes to the DNA sequence of a living organism — correcting mutations, turning genes on or off, or inserting new instructions.",
+
+  // ── Pharmacology & Biochemistry ───────────────────────
+  "cyclic AMP": "A tiny signaling molecule inside cells that relays messages from surface receptors to the cell's internal machinery — like a second messenger or a 'telephone relay.'",
+  "cAMP": "A tiny signaling molecule inside cells that relays messages from surface receptors to the cell's internal machinery — like a telephone relay inside the cell.",
+  "MC1R": "A protein on the surface of skin pigment cells that acts as the 'on switch' for tanning. People with red or blonde hair often have variants that work less effectively.",
+  "melanin": "The pigment that gives skin, hair, and eyes their color. Darker-skinned people have more melanin, which also helps absorb and neutralize UV radiation from the sun.",
+  "eumelanin": "The brown-black form of melanin that provides strong protection against UV radiation. People who tan produce more eumelanin in response to sun exposure.",
+  "MSH": "Melanocyte-Stimulating Hormone — a signal released by skin cells in response to UV light that tells pigment-producing cells (melanocytes) to make more melanin.",
+  "melanocyte": "A specialized skin cell whose job is to produce melanin (pigment). These cells transfer melanin to surrounding skin cells to give skin its color and UV protection.",
+  "melanocytes": "Specialized skin cells whose job is to produce melanin (pigment). These cells transfer melanin to surrounding skin cells to give skin its color and UV protection.",
+  "forskolin": "A plant-derived compound that directly activates a cell signaling pathway (via cyclic AMP), bypassing the normal receptor step. Used in this study to trigger tanning without UV light.",
+  "UV": "Ultraviolet radiation — invisible rays from the sun (and tanning beds) that can damage DNA in skin cells, causing sunburn and increasing skin cancer risk.",
+  "ultraviolet": "Invisible radiation from the sun that can damage DNA in skin cells, causing sunburn and increasing the risk of skin cancer over time.",
+  "bioavailability": "How much of a drug or substance actually reaches the bloodstream and target tissues after you take it. Low bioavailability means most of it gets broken down before it can work.",
+  "antioxidant": "A molecule that neutralizes harmful free radicals, protecting cells from oxidative damage. Found naturally in fruits and vegetables.",
+  "polyphenol": "A type of plant-based chemical compound with antioxidant properties, found in foods like berries, tea, coffee, and spices including turmeric.",
+  "curcumin": "The main active compound in turmeric — a bright yellow polyphenol with anti-inflammatory and antioxidant effects, studied for potential brain-protective properties.",
+  "NF-κB": "A protein complex in cells that acts as a master switch for inflammation. When activated, it turns on genes that produce inflammatory signals.",
+  "Nrf2": "A protein that acts as a master switch for the cell's own antioxidant defenses — it turns on genes that protect against oxidative damage.",
+  "neuroprotective": "Describing something that helps protect nerve cells from damage, degeneration, or death — relevant in conditions like Alzheimer's and Parkinson's.",
+  "biomarker": "A measurable biological indicator — like a protein level in blood or a brain scan finding — used to detect, monitor, or predict a disease.",
+  "biomarkers": "Measurable biological indicators — like protein levels in blood or brain scan findings — used to detect, monitor, or predict a disease.",
+  "blood-brain barrier": "A protective filter formed by tightly packed cells lining the brain's blood vessels, which blocks most substances in the bloodstream from reaching the brain.",
+
+  // ── Virology & Immunology ─────────────────────────────
+  "HIV": "Human Immunodeficiency Virus — the virus that causes AIDS. It attacks immune cells and, if untreated, progressively destroys the immune system.",
+  "HIV-1": "The most common and virulent strain of HIV, responsible for the vast majority of HIV infections worldwide.",
+  "SERINC": "A family of proteins made by human cells that can be incorporated into the HIV envelope and reduce the virus's ability to infect new cells.",
+  "viral envelope": "The outer membrane that surrounds some viruses, including HIV. It's derived from the host cell's membrane and helps the virus fuse with and enter new cells.",
+  "cryo-EM": "Cryo-electron microscopy — a technique that uses beams of electrons to image frozen proteins at near-atomic resolution, revealing their 3D structure in extraordinary detail.",
+  "cryo-electron microscopy": "A technique that uses beams of electrons to image frozen proteins at near-atomic resolution, revealing their 3D structure in extraordinary detail.",
+  "antiviral": "Anything that fights or inhibits a virus — whether a drug, a protein, or another molecule that interferes with the virus's ability to replicate or infect cells.",
+
+  // ── Research Methods ──────────────────────────────────
+  "cell-free": "Describing a biological process carried out outside of a living cell, using extracted cellular components in a test tube or similar setting.",
+  "in vitro": "Experiments carried out outside a living organism — in a test tube, dish, or similar controlled environment. Latin for 'in glass.'",
+  "in vivo": "Experiments carried out inside a living organism. Latin for 'in the living.' Results from in vivo studies are generally more relevant to how things work in real life.",
+  "n-of-1": "A clinical study or trial involving just one patient — often used when a disease is so rare that a larger study isn't possible.",
+  "placebo": "An inactive treatment (like a sugar pill) given to some participants in a clinical trial, to compare against the real treatment and account for the power of expectation.",
+  "randomized trial": "A study where participants are randomly assigned to different groups (e.g., treatment vs. placebo) to reduce bias and produce the most reliable evidence.",
+  "meta-analysis": "A study that statistically combines results from many previous studies to get a more reliable overall answer than any single study could provide.",
+  "systematic review": "A rigorous survey of all available research on a topic, following a strict method to find and evaluate every relevant study.",
+  "cohort study": "A type of observational study that follows a group of people over time to see who develops a disease or outcome, and what factors are associated with it.",
+  "peer-reviewed": "Describes research that has been evaluated and vetted by other experts in the same field before being published — a quality check on scientific claims.",
+  "centrifugation": "A lab technique that spins samples at high speed to separate components by density — heavier particles sink to the bottom, lighter ones stay near the top.",
+  "isotope": "A version of a chemical element that has the same number of protons but a different number of neutrons — making it heavier or lighter than the standard form.",
+  "polymerase": "An enzyme that builds new strands of DNA or RNA by reading an existing strand as a template.",
+};
+
+// ─────────────────────────────────────────────────────
+// TOOLTIP ENGINE
+// ─────────────────────────────────────────────────────
+
+// Build a sorted list of terms (longest first so multi-word phrases match before single words)
+const glossaryTerms = Object.keys(glossary).sort((a, b) => b.length - a.length);
+
+// Escape a string for use inside a RegExp
+function escapeRegex(s) {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+// Wrap glossary terms in a text node with tooltip spans
+// Only wraps plain text — does not re-wrap already-wrapped terms
+function highlightTerms(html) {
+  // We work on the full HTML string but only touch text outside of HTML tags
+  // Strategy: split into segments of tag vs text, process text segments only
+  const parts = html.split(/(<[^>]+>)/);
+  return parts.map((part, i) => {
+    // Even indices are text, odd are tags — skip tags
+    if (i % 2 === 1) return part;
+    // Also skip if already inside a term span (shouldn't occur but safety)
+    let text = part;
+    for (const term of glossaryTerms) {
+      const regex = new RegExp(`\\b(${escapeRegex(term)})\\b`, 'gi');
+      text = text.replace(regex, (match) => {
+        // Look up using original case-insensitive key
+        const key = glossaryTerms.find(t => t.toLowerCase() === match.toLowerCase());
+        if (!key) return match;
+        const def = glossary[key].replace(/"/g, '&quot;');
+        return `<span class="gt" data-def="${def}">${match}</span>`;
+      });
+    }
+    return text;
+  }).join('');
+}
+
+// ─── Active tooltip state ─────────────────────────────
+let activeTooltip = null;
+let activeEl = null;
+
+function showTooltip(el) {
+  if (activeTooltip && activeEl === el) return; // already shown
+  hideTooltip();
+
+  const def = el.dataset.def;
+  const term = el.textContent;
+
+  const tip = document.createElement('div');
+  tip.className = 'glossary-tip';
+  tip.innerHTML = `<strong>${term}</strong><span>${def}</span>`;
+  document.body.appendChild(tip);
+
+  // Position
+  const rect = el.getBoundingClientRect();
+  const scrollY = window.scrollY;
+  const scrollX = window.scrollX;
+  const tipW = 260;
+
+  let left = rect.left + scrollX + rect.width / 2 - tipW / 2;
+  let top = rect.bottom + scrollY + 8;
+
+  // Keep within viewport
+  if (left < 8) left = 8;
+  if (left + tipW > window.innerWidth - 8) left = window.innerWidth - tipW - 8;
+
+  // Flip above if not enough room below
+  if (rect.bottom + 120 > window.innerHeight) {
+    top = rect.top + scrollY - 8;
+    tip.style.transform = 'translateY(-100%)';
+  }
+
+  tip.style.left = left + 'px';
+  tip.style.top = top + 'px';
+
+  activeTooltip = tip;
+  activeEl = el;
+}
+
+function hideTooltip() {
+  if (activeTooltip) {
+    activeTooltip.remove();
+    activeTooltip = null;
+    activeEl = null;
+  }
+}
+
+// Delegate events on the document
+document.addEventListener('mouseover', e => {
+  const el = e.target.closest('.gt');
+  if (el) showTooltip(el);
+});
+document.addEventListener('mouseout', e => {
+  const el = e.target.closest('.gt');
+  if (el && !el.contains(e.relatedTarget)) hideTooltip();
+});
+document.addEventListener('click', e => {
+  const el = e.target.closest('.gt');
+  if (el) {
+    if (activeEl === el) { hideTooltip(); return; }
+    showTooltip(el);
+    e.stopPropagation();
+    return;
+  }
+  hideTooltip();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') hideTooltip();
+});
